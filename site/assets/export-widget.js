@@ -127,22 +127,77 @@
     return '';
   }
 
+  function pushBullet(sec, text, cap) {
+    text = clean(text);
+    if (!text || text.length < 3) return;
+    if (sec.bullets.length >= (cap || 11)) return;
+    if (sec.bullets.indexOf(text) !== -1) return;
+    sec.bullets.push(text.length > 240 ? text.slice(0, 237) + '…' : text);
+  }
+
+  // Turn a single content block into one readable line, handling the report's
+  // custom widgets (callouts, chart columns, template rows) as well as prose.
+  function blockToText(b) {
+    if (b.classList.contains('callout')) {
+      var t = clean((b.querySelector('.t') || {}).textContent || '');
+      var d = clean((b.querySelector('.d') || {}).textContent || '');
+      return t && d ? (t + ' — ' + d) : (t || d);
+    }
+    if (b.classList.contains('dcol')) {
+      var v = clean((b.querySelector('span') || {}).textContent || '');
+      var y = clean((b.querySelector('.dyear') || {}).textContent || '');
+      var n = clean((b.querySelector('.dnote') || {}).textContent || '');
+      return (y || v) ? (y + ': ' + v + (n ? ' (' + n + ')' : '')) : '';
+    }
+    if (b.classList.contains('tmpl-row')) {
+      if (b.classList.contains('head')) return '';
+      var nn = clean((b.querySelector('.tmpl-n') || {}).textContent || '');
+      var vv = clean((b.querySelector('.tmpl-v') || {}).textContent || '');
+      return nn ? (nn + (vv ? ' — ' + vv : '')) : clean(b.textContent);
+    }
+    return clean(b.textContent);
+  }
+
   function collectSections() {
-    var nodes = document.querySelectorAll('h2, h3, p, li');
-    var out = [], cur = null;
-    Array.prototype.forEach.call(nodes, function (el) {
-      if (el.closest(CHROME)) return;
-      var t = clean(el.textContent);
-      if (!t) return;
-      var tag = el.tagName.toLowerCase();
-      if (tag === 'h2' || tag === 'h3') {
-        cur = { title: t, bullets: [] };
-        out.push(cur);
-      } else if (cur && t.length > 3 && cur.bullets.length < 7 && cur.bullets.indexOf(t) === -1) {
-        cur.bullets.push(t.length > 200 ? t.slice(0, 197) + '…' : t);
+    var heads = Array.prototype.filter.call(document.querySelectorAll('h2, h3'), function (h) {
+      return !h.closest(CHROME) && clean(h.textContent);
+    });
+    if (!heads.length) {
+      var one = { title: '', bullets: [] };
+      Array.prototype.forEach.call(document.querySelectorAll('p, li'), function (p) {
+        if (!p.closest(CHROME)) pushBullet(one, p.textContent, 40);
+      });
+      return one.bullets.length ? [one] : [];
+    }
+    var sections = heads.map(function (h) { return { el: h, title: clean(h.textContent), bullets: [] }; });
+
+    var SEL = 'p, li, blockquote, table, .callout, .dcol, .tmpl-row, .qitem, .verdict, .fnode, .pcard, .phase, figcaption';
+    var NEST = 'table, .callout, .dcol, .tmpl-row, .qitem, .verdict, .fnode, .pcard, .phase';
+    var blocks = Array.prototype.filter.call(document.querySelectorAll(SEL), function (b) {
+      if (b.closest(CHROME)) return false;
+      if (b.matches('p, li, blockquote, figcaption') && b.closest(NEST)) return false;
+      return true;
+    });
+
+    blocks.forEach(function (b) {
+      var owner = null;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].el.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING) owner = sections[i];
+        else break;
+      }
+      if (!owner) return;
+      if (b.tagName === 'TABLE') {
+        Array.prototype.forEach.call(b.querySelectorAll('tr'), function (tr, idx) {
+          if (idx === 0 && tr.querySelector('th')) return;
+          var cells = Array.prototype.map.call(tr.querySelectorAll('th,td'), function (c) { return clean(c.textContent); }).filter(Boolean);
+          if (cells.length) pushBullet(owner, cells.join('  —  '));
+        });
+      } else {
+        pushBullet(owner, blockToText(b));
       }
     });
-    return out.filter(function (s) { return s.bullets.length || s.title; });
+
+    return sections.filter(function (s) { return s.bullets.length; });
   }
 
   function generateDeck() {
@@ -150,7 +205,7 @@
     var W = 13.333;
     var title = firstMainH1() || pageName();
     var lead = leadText();
-    var sections = collectSections().slice(0, 16);
+    var sections = collectSections().slice(0, 20);
 
     var pptx = new PptxGenJS();
     pptx.layout = 'LAYOUT_WIDE';
@@ -176,7 +231,7 @@
         var body = sec.bullets.map(function (b) {
           return { text: b, options: { bullet: { code: '2022', indent: 18 }, paraSpaceAfter: 8 } };
         });
-        cs.addText(body, { x: 0.9, y: 1.75, w: 11.6, h: 4.95, fontFace: FONT, fontSize: 15, color: '374151', valign: 'top', lineSpacingMultiple: 1.1 });
+        cs.addText(body, { x: 0.9, y: 1.7, w: 11.6, h: 5.0, fontFace: FONT, fontSize: 14, color: '374151', valign: 'top', lineSpacingMultiple: 1.06, fit: 'shrink' });
       }
       cs.addText('MTN SME Hub  ·  2026 Redesign', { x: 0.9, y: 7.02, w: 9, h: 0.35, fontFace: FONT, fontSize: 9, color: GREY });
       cs.addText(String(i + 2), { x: 12.3, y: 7.02, w: 0.7, h: 0.35, fontFace: FONT, fontSize: 9, color: GREY, align: 'right' });
