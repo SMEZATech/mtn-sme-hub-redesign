@@ -18,6 +18,17 @@
   .tpl-panel h1{ font-size:20px; margin-bottom:8px; }
   .tpl-panel .meta{ font-size:12.5px; color:var(--muted); margin-bottom:20px; display:flex; gap:10px; flex-wrap:wrap; }
   .tpl-panel .meta span{ display:flex; align-items:center; gap:5px; }
+  .tpl-panel .sub{ font-size:12.5px; color:var(--muted); margin-bottom:18px; }
+  .tpl-panel .field{ margin-bottom:14px; }
+  .tpl-panel .field label{ display:block; font-size:12px; font-weight:700; margin-bottom:6px; }
+  .tpl-panel input{ width:100%; padding:11px 13px; border:1.5px solid var(--border); border-radius:8px; font-size:13.5px; font-family:inherit; outline:none; background:var(--surface); }
+  .tpl-panel input:focus{ border-color:var(--yellow); background:#fff; }
+  .tpl-panel .fine{ font-size:10.5px; color:var(--muted-2); margin-top:12px; text-align:center; }
+  .tpl-done{ display:none; text-align:center; padding:12px 0; }
+  .tpl-done.show{ display:block; }
+  .tpl-done .ic{ margin:0 auto 16px; }
+  .tpl-done h4{ font-size:16px; margin-bottom:8px; }
+  .tpl-done p{ font-size:12.5px; color:var(--muted); margin-bottom:4px; }
   .tpl-includes{ display:flex; flex-direction:column; gap:9px; margin:18px 0 22px; }
   .tpl-includes li{ list-style:none; display:flex; gap:8px; font-size:13px; align-items:flex-start; }
   .tpl-includes li svg{ color:var(--yellow-shade); flex-shrink:0; margin-top:2px; }
@@ -132,17 +143,31 @@
         </div>
       </div>
 
-      <aside class="tpl-panel">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-        <h1>Cash Flow Projection Template</h1>
-        <div class="meta">
-          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg> XLSX</span>
-          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> 340KB</span>
-          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Updated Jul 2026</span>
+      <aside class="tpl-panel" id="tpl-panel">
+        <div id="tpl-form-wrap">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
+          <h1>Cash Flow Projection Template</h1>
+          <div class="meta">
+            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg> XLSX</span>
+            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> 340KB</span>
+            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Updated Jul 2026</span>
+          </div>
+          <p class="sub">Enter your details to get instant access to this template.</p>
+          <form id="tpl-form">
+            <div class="field"><label>Full name</label><input type="text" id="tf-name" placeholder="Thabo Nkosi" required></div>
+            <div class="field"><label>Business name</label><input type="text" id="tf-business" placeholder="Nkosi Trading CC" required></div>
+            <div class="field"><label>eMail address</label><input type="email" id="tf-email" placeholder="thabo@nkositrading.co.za" required></div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Download Template</button>
+            <p class="fine">By downloading, you agree to MTN's Privacy Policy and Terms of Service.</p>
+          </form>
         </div>
-
-        <a class="btn btn-primary btn-block btn-lg" href="#" onclick="return false;">Download Template</a>
-        <p style="font-size:11px; color:var(--muted-2); text-align:center; margin-top:12px;">Free. No email required.</p>
+        <div class="tpl-done" id="tpl-done">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h4>Your template is ready</h4>
+          <p>We've also emailed you a copy for safekeeping.</p>
+          <a class="btn btn-primary btn-block" href="#" onclick="return false;" style="margin-top:14px;">Download Now</a>
+          <a class="btn btn-outline btn-block" href="templates.html" style="margin-top:8px;">Browse More Templates</a>
+        </div>
       </aside>
     </div>
   </div>
@@ -188,10 +213,10 @@
         <img src="assets/logo-white.png" alt="MTN SME Hub">
         <p>MTN SME Hub is a daily online resource that provides strategic business content and tools to help South African SMMEs grow.</p>
         <div class="foot-social">
-          <a href="#" aria-label="Facebook"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
-          <a href="#" aria-label="X"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.7l-5.2-6.8L5.6 22H2.4l8.1-9.3L1.6 2h6.8l4.7 6.2z"/></svg></a>
-          <a href="#" aria-label="LinkedIn"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21H9z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://www.facebook.com/MTNBusinessZA/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+          <a href="https://x.com/MTNBusinessZA" target="_blank" rel="noopener" aria-label="X"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.7l-5.2-6.8L5.6 22H2.4l8.1-9.3L1.6 2h6.8l4.7 6.2z"/></svg></a>
+          <a href="https://www.linkedin.com/company/mtn-business-south-africa/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21H9z"/></svg></a>
+          <a href="https://www.instagram.com/mtnza/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
         </div>
       </div>
       <div>
@@ -208,12 +233,19 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 MTN SME Hub. All rights reserved.</span>
+      <span>© 2026 MTN SME Hub. All rights reserved. Built and managed by <a class="credit" href="https://smesouthafrica.co.za" target="_blank" rel="noopener">SME South Africa</a>.</span>
       <div class="links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="index.html#leadgen">MTN Business</a></div>
     </div>
   </div>
 </footer>
 
 <script src="assets/main.js"></script>
+<script>
+  document.getElementById('tpl-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('tpl-form-wrap').style.display = 'none';
+    document.getElementById('tpl-done').classList.add('show');
+  });
+</script>
 </body>
 </html>
