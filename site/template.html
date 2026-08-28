@@ -3,11 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Templates | MTN SME Hub</title>
+<title>Cash Flow Projection Template | MTN SME Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .tpl-layout{ display:grid; grid-template-columns:1fr 340px; gap:44px; align-items:start; }
+  .tpl-preview{ aspect-ratio:16/10; border-radius:var(--radius); background:var(--surface); border:1px solid var(--border); display:grid; place-items:center; margin-bottom:28px; position:relative; overflow:hidden; }
+  .tpl-preview img{ width:100%; height:100%; object-fit:cover; opacity:.9; }
+  .tpl-preview .badge{ position:absolute; top:14px; left:14px; }
+  .tpl-panel{ border:1px solid var(--border); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); position:sticky; top:88px; }
+  .tpl-panel .ic{ width:48px; height:48px; border-radius:10px; background:var(--yellow-tint); display:grid; place-items:center; color:var(--yellow-shade); margin-bottom:16px; }
+  .tpl-panel h1{ font-size:20px; margin-bottom:8px; }
+  .tpl-panel .meta{ font-size:12.5px; color:var(--muted); margin-bottom:20px; display:flex; gap:10px; flex-wrap:wrap; }
+  .tpl-panel .meta span{ display:flex; align-items:center; gap:5px; }
+  .tpl-includes{ display:flex; flex-direction:column; gap:9px; margin:18px 0 22px; }
+  .tpl-includes li{ list-style:none; display:flex; gap:8px; font-size:13px; align-items:flex-start; }
+  .tpl-includes li svg{ color:var(--yellow-shade); flex-shrink:0; margin-top:2px; }
+  @media(max-width:1100px){ .tpl-layout{ grid-template-columns:1fr; } .tpl-panel{ position:static; } }
+</style>
 </head>
 <body>
 
@@ -79,42 +94,78 @@
   </div>
 </div>
 
-<div class="page-head">
+<section style="padding-bottom:0; padding-top:36px;">
   <div class="wrap">
-    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="insights.html">Insights</a><span class="sep">/</span><span class="current">Templates</span></div>
-    <h1>Templates</h1>
-    <p>Functional business templates, ready to download and use immediately.</p>
-    <p class="count">6 templates</p>
-  </div>
-</div>
+    <div class="breadcrumb" style="margin-bottom:22px;"><a href="index.html">Home</a><span class="sep">/</span><a href="insights.html">Insights</a><span class="sep">/</span><a href="templates.html">Templates</a><span class="sep">/</span><span class="current">Cash Flow Projection Template</span></div>
 
-<section style="padding-top:44px;">
+    <div class="tpl-layout">
+      <div>
+        <div class="tpl-preview">
+          <span class="tag-pill yellow badge">XLSX</span>
+          <img src="https://picsum.photos/seed/mtn-tpl-cashflow/900/560" alt="Cash Flow Projection Template preview">
+        </div>
+
+        <h2 style="font-size:19px; margin-bottom:14px;">About this template</h2>
+        <p style="font-size:14.5px; color:#374151; line-height:1.75; margin-bottom:16px;">A ready-to-use spreadsheet for forecasting the money moving in and out of your business over the next 12 months. Built for South African SMEs preparing a funding application or simply trying to see a cash shortfall coming before it happens.</p>
+        <p style="font-size:14.5px; color:#374151; line-height:1.75;">Fill in your expected income and expenses month by month, and the template calculates your running balance automatically, so you can see exactly which months are tight.</p>
+
+        <h2 style="font-size:19px; margin:30px 0 14px;">What's inside</h2>
+        <ul class="tpl-includes" style="margin-bottom:0;">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> A 12-month income and expense forecast sheet, pre-formulated</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> A running cash balance calculator that flags shortfall months</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> A summary chart you can drop straight into a funding application</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Worked example, so you can see it filled in before you start</li>
+        </ul>
+
+        <div class="ad-wrap leaderboard" style="margin-top:36px;">
+          <a class="mtn-lb" href="plan.html?plan=data-l">
+            <div class="lb-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></div>
+            <div class="lb-txt">
+              <div class="lb-eyebrow">MTN Business</div>
+              <div class="lb-head">Work from anywhere on your own data</div>
+              <div class="lb-sub">Made For Business Data+ &middot; 100GB anytime data, from R229pm</div>
+            </div>
+            <span class="lb-cta">View Plans</span>
+          </a>
+        </div>
+        <p class="ad-fineprint">Advertisement</p>
+      </div>
+
+      <aside class="tpl-panel">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
+        <h1>Cash Flow Projection Template</h1>
+        <div class="meta">
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg> XLSX</span>
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> 340KB</span>
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Updated Jul 2026</span>
+        </div>
+
+        <a class="btn btn-primary btn-block btn-lg" href="#" onclick="return false;">Download Template</a>
+        <p style="font-size:11px; color:var(--muted-2); text-align:center; margin-top:12px;">Free. No email required.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--surface); margin-top:24px;">
   <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow-label">More templates</p><h2 class="sec-title">Related downloads</h2></div>
+      <a class="btn btn-outline" href="templates.html">View All</a>
+    </div>
     <div class="card-grid">
-      <div class="dl-card">
+      <a class="dl-card" href="template.html">
         <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-        <div><h4><a href="template.html" style="color:inherit;">Cash Flow Projection Template</a></h4><p>Manage finances and plan investments and reserves with confidence.</p><div class="meta-row"><span class="filetype">XLSX</span><a class="btn btn-outline btn-sm" href="template.html">View Details</a></div></div>
-      </div>
-      <div class="dl-card">
+        <div><h4>Business Plan Template</h4><p>A structured approach to a comprehensive, fundable business plan.</p></div>
+      </a>
+      <a class="dl-card" href="template.html">
         <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-        <div><h4><a href="template.html" style="color:inherit;">Business Plan Template</a></h4><p>A structured approach to a comprehensive, fundable business plan.</p><div class="meta-row"><span class="filetype">DOCX</span><a class="btn btn-outline btn-sm" href="template.html">View Details</a></div></div>
-      </div>
-      <div class="dl-card">
+        <div><h4>Business Budget Template</h4><p>Plan and track monthly income and expenses against your targets.</p></div>
+      </a>
+      <a class="dl-card" href="template.html">
         <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-        <div><h4><a href="template.html" style="color:inherit;">Invoice &amp; Quotation Template</a></h4><p>Manage finances and maintain strong customer relationships.</p><div class="meta-row"><span class="filetype">XLSX</span><a class="btn btn-outline btn-sm" href="template.html">View Details</a></div></div>
-      </div>
-      <div class="dl-card">
-        <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-        <div><h4><a href="template.html" style="color:inherit;">Employment Contract Template</a></h4><p>Clear expectations and responsibilities for employer and employee.</p><div class="meta-row"><span class="filetype">DOCX</span><a class="btn btn-outline btn-sm" href="template.html">View Details</a></div></div>
-      </div>
-      <div class="dl-card">
-        <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-        <div><h4><a href="template.html" style="color:inherit;">Business Budget Template</a></h4><p>Plan and track monthly income and expenses against your targets.</p><div class="meta-row"><span class="filetype">XLSX</span><a class="btn btn-outline btn-sm" href="template.html">View Details</a></div></div>
-      </div>
-      <div class="dl-card">
-        <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-        <div><h4><a href="template.html" style="color:inherit;">Startup Launch Checklist</a></h4><p>Every registration, account and document you need before day one.</p><div class="meta-row"><span class="filetype">PDF</span><a class="btn btn-outline btn-sm" href="template.html">View Details</a></div></div>
-      </div>
+        <div><h4>Invoice &amp; Quotation Template</h4><p>Manage finances and maintain strong customer relationships.</p></div>
+      </a>
     </div>
   </div>
 </section>
