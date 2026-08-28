@@ -368,13 +368,12 @@ footer.site{ background:var(--ink); color:rgba(255,255,255,.62); padding:64px 0 
 /* -- 728x90 leaderboard -- */
 .mtn-lb{ width:728px; height:90px; flex-shrink:0; border-radius:var(--radius-sm); background:var(--ink); position:relative; overflow:hidden; color:#fff; display:flex; align-items:center; gap:20px; padding:0 24px; }
 .mtn-lb::before{ content:""; position:absolute; top:-60px; left:40%; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); }
-.mtn-lb .lb-ic{ position:relative; z-index:1; width:44px; height:44px; border-radius:10px; background:linear-gradient(135deg, var(--yellow) 0%, #FFE066 100%); display:grid; place-items:center; color:var(--ink); flex-shrink:0; }
+.mtn-lb .lb-brand{ position:relative; z-index:1; height:26px; flex-shrink:0; }
 .mtn-lb .lb-txt{ position:relative; z-index:1; flex:1; min-width:0; }
 .mtn-lb .lb-eyebrow{ font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--yellow); }
 .mtn-lb .lb-head{ font-size:15px; font-weight:800; line-height:1.25; }
 .mtn-lb .lb-sub{ font-size:11px; color:rgba(255,255,255,.55); }
 .mtn-lb .lb-cta{ position:relative; z-index:1; flex-shrink:0; background:var(--yellow); color:var(--ink); font-weight:800; font-size:13px; padding:10px 18px; border-radius:8px; white-space:nowrap; }
-.mtn-lb .lb-logo{ position:absolute; z-index:1; top:12px; right:16px; height:11px; opacity:.5; }
 @media(max-width:520px){ .mtn-lb .lb-sub{ display:none; } }
 
 .guide-summary{ background:var(--surface); border-radius:var(--radius-sm); padding:18px 20px; margin-bottom:8px; }
