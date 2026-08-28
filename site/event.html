@@ -3,21 +3,38 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Partners &amp; Stakeholders | MTN SME Hub</title>
+<title>Funding Your Business in 2026 | MTN SME Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
 <style>
-  .partner-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-  .partner-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:24px 22px; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s, border-color .15s; }
-  .partner-card:hover{ box-shadow:var(--shadow-hover); transform:translateY(-3px); border-color:var(--yellow); }
-  .partner-card .mark{ width:44px; height:44px; border-radius:10px; background:var(--ink); color:var(--yellow); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; margin-bottom:16px; }
-  .partner-card h4{ font-size:15px; margin-bottom:6px; }
-  .partner-card .role{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--yellow-shade); margin-bottom:10px; }
-  .partner-card p{ font-size:12.5px; color:var(--muted); line-height:1.6; }
-  .category-block{ margin-bottom:52px; }
-  .category-block:last-child{ margin-bottom:0; }
+  .ev-hero-img{ aspect-ratio:16/8; border-radius:var(--radius); overflow:hidden; background:url('https://picsum.photos/seed/mtn-event-hero/1200/700') center/cover; margin-bottom:28px; }
+  .ev-layout{ display:grid; grid-template-columns:1fr 380px; gap:44px; align-items:start; }
+  .ev-meta-row{ display:flex; flex-wrap:wrap; gap:18px; margin-bottom:22px; }
+  .ev-meta-row div{ font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; }
+  .ev-meta-row svg{ color:var(--yellow-shade); flex-shrink:0; }
+  .agenda{ display:flex; flex-direction:column; gap:0; margin-top:8px; }
+  .agenda-item{ display:grid; grid-template-columns:88px 1fr; gap:16px; padding:16px 0; border-bottom:1px solid var(--border); }
+  .agenda-item:last-child{ border-bottom:none; }
+  .agenda-item .time{ font-size:12.5px; font-weight:700; color:var(--muted); }
+  .agenda-item h5{ font-size:14.5px; margin-bottom:4px; }
+  .agenda-item p{ font-size:12.5px; color:var(--muted); }
+  .reg-card{ border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; position:sticky; top:88px; }
+  .reg-card h4{ font-size:16px; margin-bottom:4px; }
+  .reg-card .sub{ font-size:12.5px; color:var(--muted); margin-bottom:18px; }
+  .reg-card .field{ margin-bottom:14px; }
+  .reg-card .field label{ display:block; font-size:12px; font-weight:700; margin-bottom:6px; }
+  .reg-card input{ width:100%; padding:11px 13px; border:1.5px solid var(--border); border-radius:8px; font-size:13.5px; font-family:inherit; outline:none; background:var(--surface); }
+  .reg-card input:focus{ border-color:var(--yellow); background:#fff; }
+  .reg-card .fine{ font-size:10.5px; color:var(--muted-2); margin-top:12px; text-align:center; }
+  .reg-done{ display:none; text-align:center; padding:12px 0; }
+  .reg-done.show{ display:block; }
+  .reg-done .ic{ width:52px; height:52px; border-radius:50%; background:var(--yellow-tint); display:grid; place-items:center; margin:0 auto 16px; color:var(--yellow-shade); }
+  .reg-done h4{ font-size:16px; margin-bottom:8px; }
+  .reg-done p{ font-size:12.5px; color:var(--muted); margin-bottom:4px; }
+  .reg-done .ref{ font-size:18px; font-weight:800; margin:12px 0; }
+  @media(max-width:1100px){ .ev-layout{ grid-template-columns:1fr; } .reg-card{ position:static; } }
 </style>
 </head>
 <body>
@@ -90,110 +107,81 @@
   </div>
 </div>
 
-<div class="page-head">
+<section style="padding-bottom:0; padding-top:36px;">
   <div class="wrap">
-    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="about.html">About</a><span class="sep">/</span><span class="current">Partners and Stakeholders</span></div>
-    <h1>Partners and Stakeholders</h1>
-    <p>MTN SME Hub sits inside a wider support network. These are the funders, agencies, and institutions whose programmes the advice on this hub can point SMEs toward.</p>
-  </div>
-</div>
+    <div class="breadcrumb" style="margin-bottom:18px;"><a href="index.html">Home</a><span class="sep">/</span><a href="events.html">Events</a><span class="sep">/</span><span class="current">Funding Your Business in 2026</span></div>
 
-<section>
-  <div class="wrap">
+    <div class="ev-layout">
+      <div>
+        <span class="tag-pill yellow" style="margin-bottom:14px; display:inline-block;">Upcoming</span>
+        <h1 style="font-size:clamp(26px,4vw,38px); margin-bottom:16px; max-width:700px;">Funding Your Business in 2026</h1>
+        <div class="ev-meta-row">
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Thu, 10 Sep 2026 &middot; 10:00 &ndash; 11:30 SAST</div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.6 7-12a7 7 0 10-14 0c0 5.4 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg> In Person, MTN Innovation Centre, Fairland</div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg> Limited to 80 seats</div>
+        </div>
+        <div class="ev-hero-img"></div>
 
-    <div class="category-block">
-      <div class="sec-head">
-        <div><p class="eyebrow-label">Funding and finance</p><h2 class="sec-title" style="font-size:22px;">Where SMEs can access capital</h2></div>
-      </div>
-      <div class="partner-grid">
-        <div class="partner-card">
-          <div class="mark">AB</div>
-          <h4>African Bank</h4>
-          <div class="role">Banking Partner</div>
-          <p>Business banking and working capital finance for South African SMEs.</p>
-        </div>
-        <div class="partner-card">
-          <div class="mark">SB</div>
-          <h4>Standard Bank</h4>
-          <div class="role">Banking Partner</div>
-          <p>Business accounts, overdraft facilities, and SME lending products.</p>
-        </div>
-        <div class="partner-card">
-          <div class="mark">sefa</div>
-          <h4>Small Enterprise Finance Agency</h4>
-          <div class="role">Development Finance</div>
-          <p>State-owned finance institution providing loans to qualifying small businesses.</p>
-        </div>
-        <div class="partner-card">
-          <div class="mark">IDC</div>
-          <h4>Industrial Development Corporation</h4>
-          <div class="role">Development Finance</div>
-          <p>Funding for industrial and productive-sector SMEs across South Africa.</p>
+        <h2 style="font-size:19px; margin-bottom:12px;">About this event</h2>
+        <p style="font-size:14.5px; color:#374151; line-height:1.75; margin-bottom:16px;">A live session on grants, loans, and MTN Business support options for South African SMEs, with time set aside for audience questions. Walk away with a clear view of what funding is realistically available to a business your size, and how to prepare a strong application.</p>
+
+        <h2 style="font-size:19px; margin:30px 0 6px;">What to expect</h2>
+        <div class="agenda">
+          <div class="agenda-item"><div class="time">10:00</div><div><h5>Welcome and introductions</h5><p>MTN SME Hub and MTN Business set the scene.</p></div></div>
+          <div class="agenda-item"><div class="time">10:10</div><div><h5>Funding landscape overview</h5><p>Grants, loans, and where MTN Business fits in.</p></div></div>
+          <div class="agenda-item"><div class="time">10:40</div><div><h5>What makes an application fundable</h5><p>The documents and numbers funders actually want to see.</p></div></div>
+          <div class="agenda-item"><div class="time">11:05</div><div><h5>Audience Q&amp;A</h5><p>Bring your questions, get them answered on the spot.</p></div></div>
         </div>
       </div>
+
+      <aside class="reg-card" id="reg-card">
+        <div id="reg-form-wrap">
+          <h4>Register for this event</h4>
+          <p class="sub">Free to attend. Seats are limited.</p>
+          <form id="reg-form">
+            <div class="field"><label>Full name</label><input type="text" id="rf-name" placeholder="Thabo Nkosi" required></div>
+            <div class="field"><label>Business name</label><input type="text" id="rf-business" placeholder="Nkosi Trading CC" required></div>
+            <div class="field"><label>eMail address</label><input type="email" id="rf-email" placeholder="thabo@nkositrading.co.za" required></div>
+            <div class="field"><label>Contact number</label><input type="tel" id="rf-phone" placeholder="082 000 0000" required></div>
+            <button type="submit" class="btn btn-primary btn-block">Register Free</button>
+            <p class="fine">By registering, you agree to MTN's Privacy Policy and Terms of Service.</p>
+          </form>
+        </div>
+        <div class="reg-done" id="reg-done">
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h4>You're registered</h4>
+          <p>A confirmation has been sent to your email.</p>
+          <div class="ref" id="reg-ref">EVT-829104</div>
+          <a class="btn btn-outline btn-block" href="events.html">Back to Events</a>
+        </div>
+      </aside>
     </div>
-
-    <div class="category-block">
-      <div class="sec-head">
-        <div><p class="eyebrow-label">Enterprise development</p><h2 class="sec-title" style="font-size:22px;">Agencies and programmes</h2></div>
-      </div>
-      <div class="partner-grid">
-        <div class="partner-card">
-          <div class="mark">SEDA</div>
-          <h4>Small Enterprise Development Agency</h4>
-          <div class="role">Government Agency</div>
-          <p>Business advisory, incubation, and support services for small businesses.</p>
-        </div>
-        <div class="partner-card">
-          <div class="mark">NYDA</div>
-          <h4>National Youth Development Agency</h4>
-          <div class="role">Government Agency</div>
-          <p>Funding and support programmes for young entrepreneurs under 35.</p>
-        </div>
-        <div class="partner-card">
-          <div class="mark">DSBD</div>
-          <h4>Dept. of Small Business Development</h4>
-          <div class="role">Government Department</div>
-          <p>National policy and support programmes for South African SMMEs.</p>
-        </div>
-        <div class="partner-card">
-          <div class="mark">GEP</div>
-          <h4>Gauteng Enterprise Propeller</h4>
-          <div class="role">Provincial Agency</div>
-          <p>Provincial funding and business support for Gauteng-based SMEs.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="category-block">
-      <div class="sec-head">
-        <div><p class="eyebrow-label">Technology and payments</p><h2 class="sec-title" style="font-size:22px;">Tools referenced in Business Solutions</h2></div>
-      </div>
-      <div class="partner-grid">
-        <div class="partner-card">
-          <div class="mark">MTN</div>
-          <h4>MTN Business</h4>
-          <div class="role">Connectivity and Security</div>
-          <p>Mobile, data, and Managed Security Solutions for South African SMEs.</p>
-        </div>
-        <div class="partner-card">
-          <div class="mark">MF</div>
-          <h4>MTN Foundation</h4>
-          <div class="role">Corporate Social Investment</div>
-          <p>Skills development and community investment programmes linked to MTN.</p>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<section class="newsletter">
+<section style="background:var(--surface); margin-top:44px;">
   <div class="wrap">
-    <div class="nl-inner">
-      <div><h3>Get SME advice in your inbox</h3><p>Weekly, practical, no spam. New articles, templates and MTN Business offers.</p></div>
-      <form class="nl-form"><input type="email" placeholder="you@yourbusiness.co.za" required /><button class="btn btn-dark" type="submit">Subscribe</button></form>
-      <div class="nl-success"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Thanks! Check your inbox to confirm.</div>
+    <div class="sec-head">
+      <div><p class="eyebrow-label">More events</p><h2 class="sec-title">Recent recaps</h2></div>
+      <a class="btn btn-outline" href="events.html">View All Events</a>
+    </div>
+    <div class="card-grid">
+      <a class="article-card" href="event-replay.html">
+        <div class="img" style="background-image:url('https://picsum.photos/seed/mtn-past-5/400/260')"></div>
+        <div class="bd"><div class="tags"><span class="tag">Recap</span></div><h4>MTN SME Excellence Awards 2026</h4><p class="excerpt">Celebrating the standout South African small businesses of the year.</p><div class="meta"><span>12 Aug 2026</span></div></div>
+      </a>
+      <a class="article-card" href="event-replay.html">
+        <div class="img" style="background-image:url('https://picsum.photos/seed/mtn-past-2/400/260')"></div>
+        <div class="bd"><div class="tags"><span class="tag">Recap</span></div><h4>MTN SME JumpStarter: Gauteng Pitch Day</h4><p class="excerpt">Meet the MTN Business team and this year's finalists.</p><div class="meta"><span>2 Aug 2026</span></div></div>
+      </a>
+      <a class="article-card" href="event-replay.html">
+        <div class="img" style="background-image:url('https://picsum.photos/seed/mtn-past-1/400/260')"></div>
+        <div class="bd"><div class="tags"><span class="tag">Recap</span></div><h4>How to Win Your First Government Tender</h4><p class="excerpt">Registering on CSD and building a compliant tender submission.</p><div class="meta"><span>14 Aug 2026</span></div></div>
+      </a>
+      <a class="article-card" href="event-replay.html">
+        <div class="img" style="background-image:url('https://picsum.photos/seed/mtn-past-3/400/260')"></div>
+        <div class="bd"><div class="tags"><span class="tag">Recap</span></div><h4>Cash Flow Clinic: Ask the Experts</h4><p class="excerpt">A practical, no-jargon session on staying on top of cash flow.</p><div class="meta"><span>19 Jul 2026</span></div></div>
+      </a>
     </div>
   </div>
 </section>
@@ -232,5 +220,14 @@
 </footer>
 
 <script src="assets/main.js"></script>
+<script>
+  document.getElementById('reg-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var ref = 'EVT-' + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('reg-ref').textContent = ref;
+    document.getElementById('reg-form-wrap').style.display = 'none';
+    document.getElementById('reg-done').classList.add('show');
+  });
+</script>
 </body>
 </html>

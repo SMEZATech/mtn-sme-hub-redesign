@@ -39,13 +39,6 @@ button{ font-family:inherit; }
 .breadcrumb .sep{ color:var(--muted-2); }
 .breadcrumb .current{ color:var(--ink); font-weight:600; }
 
-/* ===== Utility bar ===== */
-.utility{ background:var(--ink); color:rgba(255,255,255,.72); font-size:12.5px; }
-.utility .wrap{ display:flex; justify-content:space-between; align-items:center; padding:8px 32px; }
-.utility .left{ display:flex; gap:20px; align-items:center; }
-.utility .left span, .utility .left a{ display:flex; align-items:center; gap:6px; }
-.utility a:hover{ color:#fff; }
-
 /* ===== Header / Nav ===== */
 header.site{ position:sticky; top:0; z-index:200; background:rgba(255,255,255,.94); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
 .nav-row{ display:flex; align-items:center; justify-content:space-between; max-width:var(--maxw); margin:0 auto; padding:14px 32px; gap:24px; }
@@ -273,6 +266,10 @@ section{ padding:76px 0; }
 
 /* ===== Newsletter ===== */
 .newsletter{ background:var(--yellow); padding:56px 0; }
+.nl-success{ display:none; align-items:center; gap:10px; background:#fff; border-radius:8px; padding:13px 16px; box-shadow:var(--shadow); font-size:13.5px; font-weight:700; color:var(--ink); }
+.nl-success.show{ display:flex; }
+.nl-success svg{ color:var(--yellow-shade); flex-shrink:0; }
+.nl-form.hide{ display:none; }
 .nl-inner{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
 .nl-inner h3{ font-size:22px; margin-bottom:6px; }
 .nl-inner p{ font-size:13.5px; color:rgba(33,37,41,.72); }
@@ -328,6 +325,13 @@ footer.site{ background:var(--ink); color:rgba(255,255,255,.62); padding:64px 0 
 .toc ul{ display:flex; flex-direction:column; gap:7px; }
 .toc a{ font-size:13px; color:var(--muted); font-weight:600; }
 .toc a:hover{ color:var(--ink); }
+
+/* ===== Ad slot placeholders ===== */
+.ad-slot{ border:1px dashed var(--border); border-radius:var(--radius-sm); background:var(--surface); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; color:var(--muted-2); margin-bottom:20px; }
+.ad-slot .lbl{ font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+.ad-slot .dim{ font-family:monospace; font-size:11px; }
+.ad-slot.s300x600{ width:300px; max-width:100%; height:600px; }
+.ad-slot.s728x90{ width:728px; max-width:100%; height:90px; margin:32px auto; }
 .inline-promo{ margin:32px 0; background:var(--yellow-tint); border:1px solid var(--yellow-tint-2); border-radius:var(--radius); padding:22px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
 .inline-promo h4{ font-size:15px; margin-bottom:4px; }
 .inline-promo p{ font-size:13px; color:var(--muted); }

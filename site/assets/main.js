@@ -36,4 +36,37 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+
+  // Checkbox category filters (e.g. business-solutions.html sidebar)
+  document.querySelectorAll('.filter-box input[type="checkbox"][data-filter]').forEach(function (box) {
+    box.addEventListener('change', function () {
+      var scope = document.querySelector(box.getAttribute('data-target') || 'body');
+      if (!scope) return;
+      var checked = Array.prototype.slice.call(
+        document.querySelectorAll('.filter-box input[type="checkbox"][data-filter]:checked')
+      ).map(function (b) { return b.getAttribute('data-filter'); });
+      var showAll = checked.length === 0 || checked.indexOf('all') !== -1;
+      scope.querySelectorAll('[data-cat]').forEach(function (card) {
+        var cat = card.getAttribute('data-cat');
+        var show = showAll || checked.some(function (f) { return cat.indexOf(f) !== -1; });
+        card.style.display = show ? '' : 'none';
+      });
+      document.querySelectorAll('.filter-box .opt').forEach(function (opt) {
+        var input = opt.querySelector('input[data-filter]');
+        if (input) opt.classList.toggle('active', input.checked);
+      });
+    });
+  });
+
+  // Newsletter subscribe: swap form for a confirmation message
+  document.querySelectorAll('.nl-form').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.querySelector('input[type="email"]');
+      if (email && !email.value.trim()) { email.focus(); return; }
+      var success = form.parentElement.querySelector('.nl-success');
+      form.classList.add('hide');
+      if (success) success.classList.add('show');
+    });
+  });
 });

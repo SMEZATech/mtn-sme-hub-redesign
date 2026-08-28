@@ -11,19 +11,6 @@
 </head>
 <body>
 
-<div class="utility">
-  <div class="wrap">
-    <div class="left">
-      <span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg> info@mtnsmehub.co.za</span>
-      <span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.6 7-12a7 7 0 10-14 0c0 5.4 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg> Innovation Centre, Fairland, Gauteng</span>
-    </div>
-    <div class="left">
-      <a href="index.html#leadgen">MTN Business</a>
-      <a href="business-solutions.html">Business Solutions</a>
-    </div>
-  </div>
-</div>
-
 <header class="site">
   <div class="nav-row">
     <a href="index.html" class="logo"><img src="assets/logo-black.png" alt="MTN SME Hub"></a>
@@ -42,9 +29,8 @@
       <div class="nav-item">
         <a href="insights.html">Insights <svg class="icon chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
         <div class="mega mega-simple">
-          <a href="insights.html#guides">Guides</a>
-          <a href="insights.html#templates">Templates</a>
-          <a href="insights.html#ld">Learning &amp; Development</a>
+          <a href="guides.html">Guides</a>
+          <a href="templates.html">Templates</a>
           <a href="events.html">Events</a>
         </div>
       </div>
@@ -79,9 +65,8 @@
     <div class="mdrawer-group">
       <div class="mlabel">Insights <svg class="icon chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
       <div class="mdrawer-sub">
-        <a href="insights.html#guides">Guides</a>
-        <a href="insights.html#templates">Templates</a>
-        <a href="insights.html#ld">Learning &amp; Development</a>
+        <a href="guides.html">Guides</a>
+        <a href="templates.html">Templates</a>
         <a href="events.html">Events</a>
       </div>
     </div>
@@ -99,19 +84,18 @@
     <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="current">Business Solutions</span></div>
     <h1>Business Solutions</h1>
     <p>MTN Business plans and managed services for South African SMEs: connectivity and cybersecurity, sourced from MTN Business's own catalogue.</p>
-    <p class="count">Plan and service details from mtn.co.za/business · confirm current pricing before publishing live</p>
   </div>
 </div>
 
 <section style="padding-top:44px;">
   <div class="wrap">
     <div class="layout-sidebar">
-      <aside class="filter-box">
+      <aside class="filter-box" id="sol-filter">
         <h5>Category</h5>
-        <label class="opt active"><input type="checkbox" checked> All Solutions <span class="count">21</span></label>
-        <label class="opt"><input type="checkbox"> Made For Business Plans <span class="count">8</span></label>
-        <label class="opt"><input type="checkbox"> Data-only &amp; Starter <span class="count">3</span></label>
-        <label class="opt"><input type="checkbox"> Managed Security Solutions <span class="count">10</span></label>
+        <label class="opt active"><input type="checkbox" data-sol-filter="all" checked> All Solutions <span class="count">21</span></label>
+        <label class="opt"><input type="checkbox" data-sol-filter="plans"> Made For Business Plans <span class="count">8</span></label>
+        <label class="opt"><input type="checkbox" data-sol-filter="data"> Data-only &amp; Starter <span class="count">3</span></label>
+        <label class="opt"><input type="checkbox" data-sol-filter="security"> Managed Security Solutions <span class="count">10</span></label>
         <h5>Contract</h5>
         <label class="opt"><input type="radio" name="term"> 24 months</label>
         <label class="opt"><input type="radio" name="term"> 36 months</label>
@@ -132,6 +116,7 @@
           <span class="tab-btn">Managed Security</span>
         </div>
 
+        <div class="sol-section" data-section="plans">
         <div class="sec-head" style="margin-bottom:20px;">
           <div><p class="eyebrow-label">Made For Business</p><h2 class="sec-title" style="font-size:22px;">Voice &amp; data plans</h2></div>
         </div>
@@ -178,6 +163,9 @@
           </a>
         </div>
 
+        </div>
+
+        <div class="sol-section" data-section="data">
         <div class="sec-head" style="margin:44px 0 20px;">
           <div><p class="eyebrow-label">Made For Business Data</p><h2 class="sec-title" style="font-size:22px;">Data-only &amp; starter</h2></div>
         </div>
@@ -200,6 +188,9 @@
           </a>
         </div>
 
+        </div>
+
+        <div class="sol-section" data-section="security">
         <div class="sec-head" style="margin:52px 0 20px;">
           <div><p class="eyebrow-label">Cybersecurity</p><h2 class="sec-title" style="font-size:22px;">Managed Security Solutions</h2><p class="sec-desc" style="margin-bottom:0;">Turn security into a business advantage, from firewalls and SOC as a Service to Zero Trust and eMail protection.</p></div>
         </div>
@@ -316,11 +307,12 @@
           </div>
         </div>
 
+        </div>
+
         <div class="mk-band">
           <div><h4>Ready to make end-to-end protection effortless?</h4><p>Talk to MTN Business about combining connectivity and managed security for your SME.</p></div>
           <a class="btn btn-dark" href="index.html#leadgen">Talk to MTN Business</a>
         </div>
-        <p class="sample-note">Made For Business plan pricing and Managed Security Solutions descriptions sourced from mtn.co.za/business (shop/plans and managed-security-solutions). Confirm current pricing and terms with MTN Business before publishing live.</p>
       </div>
     </div>
   </div>
@@ -330,7 +322,8 @@
   <div class="wrap">
     <div class="nl-inner">
       <div><h3>Get SME advice in your inbox</h3><p>Weekly, practical, no spam. New articles, templates and MTN Business offers.</p></div>
-      <form class="nl-form" onsubmit="return false;"><input type="email" placeholder="you@yourbusiness.co.za" /><button class="btn btn-dark" type="submit">Subscribe</button></form>
+      <form class="nl-form"><input type="email" placeholder="you@yourbusiness.co.za" required /><button class="btn btn-dark" type="submit">Subscribe</button></form>
+      <div class="nl-success"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Thanks! Check your inbox to confirm.</div>
     </div>
   </div>
 </section>
@@ -354,7 +347,7 @@
       </div>
       <div>
         <h5>Insights</h5>
-        <ul><li><a href="insights.html#guides">Guides</a></li><li><a href="insights.html#templates">Templates</a></li><li><a href="insights.html#ld">Learning &amp; Development</a></li><li><a href="events.html">Events</a></li><li><a href="business-solutions.html">Business Solutions</a></li><li><a href="stakeholders.html">Partners and Stakeholders</a></li></ul>
+        <ul><li><a href="guides.html">Guides</a></li><li><a href="templates.html">Templates</a></li><li><a href="events.html">Events</a></li><li><a href="business-solutions.html">Business Solutions</a></li><li><a href="stakeholders.html">Partners and Stakeholders</a></li></ul>
       </div>
       <div>
         <h5>Contact</h5>
@@ -369,5 +362,30 @@
 </footer>
 
 <script src="assets/main.js"></script>
+<script>
+(function(){
+  var boxes = document.querySelectorAll('#sol-filter input[data-sol-filter]');
+  var sections = document.querySelectorAll('.sol-section');
+  function apply(){
+    var checked = Array.prototype.filter.call(boxes, function(b){ return b.checked; }).map(function(b){ return b.getAttribute('data-sol-filter'); });
+    var showAll = checked.length === 0 || checked.indexOf('all') !== -1;
+    sections.forEach(function(sec){
+      sec.style.display = (showAll || checked.indexOf(sec.getAttribute('data-section')) !== -1) ? '' : 'none';
+    });
+    boxes.forEach(function(b){ b.closest('.opt').classList.toggle('active', b.checked); });
+  }
+  boxes.forEach(function(box){
+    box.addEventListener('change', function(){
+      if (box.getAttribute('data-sol-filter') === 'all' && box.checked) {
+        boxes.forEach(function(b){ if (b !== box) b.checked = false; });
+      } else if (box.checked) {
+        var allBox = Array.prototype.find.call(boxes, function(b){ return b.getAttribute('data-sol-filter') === 'all'; });
+        if (allBox) allBox.checked = false;
+      }
+      apply();
+    });
+  });
+})();
+</script>
 </body>
 </html>
