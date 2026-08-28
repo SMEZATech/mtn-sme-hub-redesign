@@ -48,7 +48,7 @@ button{ font-family:inherit; }
 
 /* ===== Header / Nav ===== */
 header.site{ position:sticky; top:0; z-index:200; background:rgba(255,255,255,.94); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
-.nav-row{ display:flex; align-items:center; justify-content:space-between; padding:14px 32px; gap:24px; }
+.nav-row{ display:flex; align-items:center; justify-content:space-between; max-width:var(--maxw); margin:0 auto; padding:14px 32px; gap:24px; }
 .nav-row .logo img{ height:30px; }
 .nav-main{ display:flex; align-items:center; gap:6px; flex:1; justify-content:center; }
 .nav-item{ position:relative; }
