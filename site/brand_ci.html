@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MTN SME Hub | Brand CI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* ==== EXTRACTED FROM LIVE SITE (mtnsmehub.co.za) — do not alter without client sign-off ==== */
+    --mtn-yellow: #FFC502;
+    --ink: rgb(33, 37, 41);          /* body text, as computed on live site */
+    --ink-hex: #212529;
+    --bg: #FFFFFF;
+
+    /* ==== DERIVED — not on the live site, proposed for the redesign's neutral system ==== */
+    --muted: #5C6570;                /* secondary text, meta, captions */
+    --muted-2: #8A929B;              /* tertiary / placeholder */
+    --border: #E7E9EC;
+    --surface: #F7F8F9;              /* card fills, hover states */
+    --surface-2: #F1F3F4;
+    --yellow-tint-95: #FFFAE6;       /* yellow at 95% tint — safe as a background wash */
+    --yellow-tint-90: #FFF3C4;
+    --yellow-shade-20: #CC9E00;      /* yellow darkened 20% — for text-on-light use ONLY, see rule below */
+    --radius: 10px;
+    --shadow-card: 0 1px 2px rgba(20,20,20,.04), 0 6px 16px rgba(20,20,20,.05);
+    --shadow-card-hover: 0 4px 10px rgba(20,20,20,.06), 0 14px 28px rgba(20,20,20,.09);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Inter', 'Helvetica Neue', Arial, sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4,h5{ font-family:'Inter', 'Helvetica Neue', Arial, sans-serif; font-weight:800; line-height:1.15; letter-spacing:-.01em; }
+  code{ font-family:'SF Mono', ui-monospace, Menlo, monospace; font-size:.92em; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+  a{ color:inherit; }
+
+  /* Sticky mini-nav */
+  .docnav{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
+  .docnav .row{ max-width:1080px; margin:0 auto; padding:12px 28px; display:flex; align-items:center; gap:18px; overflow-x:auto; }
+  .docnav .brand{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
+  .docnav .brand .mark{ width:28px; height:28px; border-radius:6px; background:var(--mtn-yellow); display:grid; place-items:center; color:var(--ink); font-weight:800; font-size:11px; }
+  .docnav .brand b{ font-weight:800; font-size:14px; }
+  .docnav .links{ display:flex; gap:4px; flex-shrink:0; }
+  .docnav .links a{ font-size:12px; font-weight:600; color:var(--muted); text-decoration:none; padding:6px 10px; border-radius:7px; white-space:nowrap; }
+  .docnav .links a:hover{ background:var(--surface); color:var(--ink); }
+
+  /* Hero */
+  .hero{ background:var(--ink); color:white; padding:84px 0 76px; position:relative; overflow:hidden; }
+  .hero::after{ content:""; position:absolute; inset:0; background:radial-gradient(circle at 84% 14%, rgba(255,197,2,.16) 0%, transparent 50%); }
+  .hero .wrap{ position:relative; z-index:1; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--mtn-yellow); margin-bottom:22px; }
+  .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--mtn-yellow); box-shadow:0 0 0 4px rgba(255,197,2,.2); }
+  .hero h1{ font-size:clamp(38px,7vw,64px); font-weight:800; letter-spacing:-.02em; margin-bottom:18px; }
+  .hero h1 .hl{ color:var(--mtn-yellow); }
+  .hero p{ font-size:17px; color:rgba(255,255,255,.72); max-width:600px; }
+  .hero .meta{ margin-top:28px; display:flex; flex-wrap:wrap; gap:10px; }
+  .hero .tag{ font-size:12px; font-weight:600; color:rgba(255,255,255,.88); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:999px; padding:6px 14px; }
+
+  section{ padding:68px 0; border-bottom:1px solid var(--border); scroll-margin-top:60px; }
+  .sec-label{ font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--yellow-shade-20); margin-bottom:10px; }
+  .sec-title{ font-size:clamp(26px,4vw,36px); font-weight:800; letter-spacing:-.02em; margin-bottom:10px; }
+  .sec-desc{ color:var(--muted); font-size:15.5px; max-width:660px; margin-bottom:36px; }
+  .subhead{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin:34px 0 14px; }
+
+  /* Callout / rule panel */
+  .panel{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px 26px; }
+  .panel.warn{ background:var(--yellow-tint-95); border-color:var(--yellow-tint-90); }
+  .panel h4{ font-size:14px; font-weight:800; margin-bottom:8px; }
+  .panel p{ font-size:13.5px; color:var(--muted); line-height:1.7; }
+  .panel p b{ color:var(--ink); }
+
+  /* Audience cards */
+  .aud-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; }
+  .aud-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-card); }
+  .aud-card .ic{ width:40px; height:40px; border-radius:9px; display:grid; place-items:center; margin-bottom:14px; background:var(--yellow-tint-95); }
+  .aud-card h4{ font-size:15px; font-weight:700; margin-bottom:6px; }
+  .aud-card p{ font-size:13.5px; color:var(--muted); }
+
+  /* Evolution table */
+  .shift-grid{ display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-card); }
+  .shift-grid > div{ padding:20px 22px; }
+  .shift-grid .head{ font-weight:800; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; }
+  .shift-old{ background:var(--surface); border-right:1px solid var(--border); }
+  .shift-new{ background:var(--yellow-tint-95); }
+  .shift-row{ display:flex; align-items:flex-start; gap:9px; padding:8px 0; font-size:13.5px; border-top:1px solid var(--border); }
+  .dotsm{ width:16px; height:16px; border-radius:5px; flex-shrink:0; border:1px solid var(--border); margin-top:1px; }
+
+  /* Swatches */
+  .swatch-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+  .swatch{ border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-card); }
+  .swatch .chip{ height:84px; display:flex; align-items:flex-end; justify-content:flex-end; padding:8px 10px; }
+  .swatch .chip span{ font-size:10px; font-family:monospace; padding:2px 6px; border-radius:4px; background:rgba(255,255,255,.7); }
+  .swatch .info{ padding:13px 15px; background:#fff; }
+  .swatch .name{ font-weight:700; font-size:13.5px; }
+  .swatch .role{ font-size:12px; color:var(--muted); margin:2px 0 8px; }
+  .swatch .vals{ display:flex; flex-direction:column; gap:3px; font-family:monospace; font-size:11px; color:var(--muted); }
+  .swatch .vals b{ color:var(--ink); font-weight:600; }
+
+  /* Contrast demo */
+  .contrast-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+  .cx-card{ border-radius:var(--radius); padding:22px; display:flex; flex-direction:column; gap:10px; border:1px solid var(--border); }
+  .cx-card .ratio{ font-family:monospace; font-size:12px; font-weight:700; }
+  .cx-card .verdict{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; padding:3px 9px; border-radius:999px; width:fit-content; }
+  .verdict.fail{ background:#FDEBEC; color:#B3261E; }
+  .verdict.pass{ background:#E6F4EA; color:#1E7B34; }
+
+  /* Ramps */
+  .ramp{ display:flex; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-card); }
+  .ramp > div{ flex:1; height:52px; display:flex; align-items:flex-end; justify-content:center; padding-bottom:4px; font-size:8px; font-family:monospace; }
+
+  /* Type specimens */
+  .type-row{ padding:18px 0; border-bottom:1px solid var(--border); display:flex; align-items:baseline; gap:24px; flex-wrap:wrap; }
+  .type-row:last-child{ border-bottom:none; }
+  .type-meta{ font-size:12px; color:var(--muted); width:180px; flex-shrink:0; font-family:monospace; line-height:1.5; }
+  .sp-display{ font-weight:800; font-size:46px; letter-spacing:-.02em; }
+  .sp-h1{ font-weight:800; font-size:32px; letter-spacing:-.01em; }
+  .sp-h2{ font-weight:800; font-size:23px; }
+  .sp-h3{ font-weight:700; font-size:18px; }
+  .sp-body{ font-weight:400; font-size:16px; max-width:560px; }
+  .sp-small{ font-weight:500; font-size:13px; color:var(--muted); }
+
+  /* Logo */
+  .logo-box{ border:1px solid var(--border); border-radius:var(--radius); padding:36px; display:grid; place-items:center; }
+  .logo-box.dark{ background:var(--ink); }
+  .logo-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
+
+  /* Buttons */
+  .btn{ display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:14px; padding:11px 22px; border-radius:8px; border:none; cursor:pointer; transition:transform .1s, box-shadow .2s, opacity .2s; text-decoration:none; }
+  .btn:active{ transform:scale(.98); }
+  .btn-primary{ background:var(--mtn-yellow); color:var(--ink); }
+  .btn-primary:hover{ box-shadow:0 0 0 3px rgba(255,197,2,.25); }
+  .btn-dark{ background:var(--ink); color:#fff; }
+  .btn-outline{ background:transparent; color:var(--ink); border:1.5px solid var(--border); }
+  .btn-outline:hover{ border-color:var(--ink); }
+  .btn-sm{ padding:8px 16px; font-size:12px; }
+  .btn-row{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+
+  /* Nav specimen */
+  .navbar{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:0; box-shadow:var(--shadow-card); overflow:hidden; }
+  .navbar .top{ padding:14px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; border-bottom:1px solid var(--border); }
+  .navbar .nav-links{ display:flex; gap:22px; font-size:13.5px; font-weight:700; }
+  .navbar .nav-links span{ cursor:default; padding:4px 0; border-bottom:2px solid transparent; }
+  .navbar .nav-links span.active{ border-bottom-color:var(--mtn-yellow); }
+  .navbar .sub{ background:var(--surface); padding:12px 20px; display:flex; gap:18px; flex-wrap:wrap; }
+  .navbar .sub span{ font-size:12.5px; font-weight:600; color:var(--muted); background:#fff; border:1px solid var(--border); padding:6px 12px; border-radius:999px; }
+  .navbar .sub span:first-child{ color:var(--ink); border-color:var(--mtn-yellow); background:var(--yellow-tint-95); font-weight:700; }
+
+  /* Article / content cards */
+  .card-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+  .article-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-card); transition:box-shadow .15s, transform .15s; }
+  .article-card:hover{ box-shadow:var(--shadow-card-hover); transform:translateY(-2px); }
+  .article-card .img{ aspect-ratio:16/10; background:linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%); display:grid; place-items:center; color:var(--muted-2); font-size:11px; font-weight:600; }
+  .article-card .bd{ padding:16px 18px; }
+  .article-card .tags{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px; }
+  .article-card .tag{ font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--ink); background:var(--yellow-tint-95); border:1px solid var(--yellow-tint-90); padding:3px 8px; border-radius:5px; }
+  .article-card .tag.alt{ background:var(--surface); border-color:var(--border); color:var(--muted); }
+  .article-card h4{ font-size:16px; font-weight:700; margin-bottom:8px; line-height:1.3; }
+  .article-card .excerpt{ font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:12px; }
+  .article-card .meta{ font-size:11.5px; color:var(--muted-2); display:flex; gap:8px; align-items:center; border-top:1px solid var(--border); padding-top:10px; }
+
+  /* Do / Don't */
+  .dd-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .dd{ border-radius:var(--radius); padding:18px 20px; border:1px solid var(--border); }
+  .dd.do{ background:#F0FAF2; border-color:#CDE9D2; }
+  .dd.dont{ background:#FDF2F2; border-color:#F3D3D3; }
+  .dd .lbl{ font-weight:800; font-size:12px; text-transform:uppercase; letter-spacing:.08em; display:flex; align-items:center; gap:6px; margin-bottom:10px; }
+  .dd.do .lbl{ color:#1E7B34; }
+  .dd.dont .lbl{ color:#B3261E; }
+  .dd ul{ list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .dd li{ font-size:13px; padding-left:18px; position:relative; }
+  .dd li::before{ position:absolute; left:0; top:0; }
+  .dd.do li::before{ content:"✓"; color:#1E7B34; font-weight:700; }
+  .dd.dont li::before{ content:"✕"; color:#B3261E; font-weight:700; }
+
+  /* Code */
+  .code-block{ background:var(--ink); border-radius:var(--radius); overflow:hidden; margin-bottom:20px; box-shadow:var(--shadow-card); }
+  .code-head{ display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.12); }
+  .code-head .ttl{ font-weight:700; font-size:13px; color:white; }
+  pre{ padding:18px 16px; overflow-x:auto; font-size:12.5px; line-height:1.6; color:rgba(255,255,255,.85); white-space:pre; }
+  pre .c{ color:rgba(255,255,255,.4); } pre .k{ color:var(--mtn-yellow); }
+
+  footer.docfoot{ padding:52px 0 68px; text-align:center; color:var(--muted); font-size:13px; }
+  .approve{ max-width:560px; margin:0 auto 28px; background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow-card); }
+  .approve h4{ font-size:15px; font-weight:800; margin-bottom:8px; }
+
+  @media(max-width:640px){
+    .type-meta{ width:100%; }
+    .shift-grid, .dd-grid{ grid-template-columns:1fr; }
+    .shift-old{ border-right:none; border-bottom:1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="docnav">
+  <div class="row">
+    <div class="brand"><img src="assets/logo-black.png" alt="MTN SME Hub" style="height:18px;"><b>Brand CI</b></div>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#evolution">Evolution</a>
+      <a href="#colour">Colour</a>
+      <a href="#type">Type</a>
+      <a href="#logo">Logo</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#nav">Nav</a>
+      <a href="#content">Content cards</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#components">Components</a>
+      <a href="#rules">Rules</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> Corporate Identity</div>
+    <h1>Same brand. <span class="hl">Better structure.</span></h1>
+    <p>The reference for the MTN SME Hub redesign: the exact colour, type, and component rules the mockups must be held to. This is not a new brand. It is MTN's real corporate identity, documented so the redesign can't drift.</p>
+    <div class="meta">
+      <span class="tag">Primary · MTN Yellow #FFC502</span>
+      <span class="tag">Headings · MTN Brighter Sans XBold</span>
+      <span class="tag">Body · MTN Brighter Sans Regular</span>
+      <span class="tag">Ink · rgb(33,37,41)</span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <p class="sec-label">How to use this document</p>
+    <h2 class="sec-title">One reference, held constant</h2>
+    <p class="sec-desc">Every value on this page was pulled from the live site's computed styles, not guessed or reinterpreted. Where the redesign proposes something new, like a neutral scale, a component, or a nav pattern, it's marked <b>Proposed</b>. Everything else is <b>Locked</b>: MTN's actual identity, not ours to change.</p>
+  </div>
+</section>
+
+<section id="evolution">
+  <div class="wrap">
+    <p class="sec-label">Redesign scope</p>
+    <h2 class="sec-title">What actually changes</h2>
+    <p class="sec-desc">The brand palette is locked, so this redesign is not a colour refresh. It's an information architecture and hierarchy upgrade. Same yellow, same ink, same logo, restructured around how people actually browse a resource hub.</p>
+    <div class="shift-grid">
+      <div class="shift-old">
+        <div class="head" style="color:var(--muted)">Today: blog layout</div>
+        <div class="shift-row"><span class="dotsm" style="background:#fff"></span> Nav: Home / Business Advice / Insights only</div>
+        <div class="shift-row"><span class="dotsm" style="background:#fff"></span> 5 content pillars exist only as homepage tiles</div>
+        <div class="shift-row"><span class="dotsm" style="background:#fff"></span> Articles: no date, no author, no read time</div>
+        <div class="shift-row"><span class="dotsm" style="background:#fff"></span> Same articles repeated across multiple homepage tabs</div>
+        <div class="shift-row"><span class="dotsm" style="background:#fff"></span> Insights sub-sections (Guides/Templates/L&amp;D/Events) buried one level deep</div>
+      </div>
+      <div class="shift-new">
+        <div class="head" style="color:var(--yellow-shade-20)">Redesign: publication layout</div>
+        <div class="shift-row"><span class="dotsm" style="background:var(--mtn-yellow)"></span> Nav: pillar-aware, all 5 categories + Insights sub-nav surfaced</div>
+        <div class="shift-row"><span class="dotsm" style="background:var(--mtn-yellow)"></span> Pillars become primary browsing structure, not decoration</div>
+        <div class="shift-row"><span class="dotsm" style="background:var(--mtn-yellow)"></span> Articles carry date + read time as standard metadata</div>
+        <div class="shift-row"><span class="dotsm" style="background:var(--mtn-yellow)"></span> Cross-tagged content de-duplicated, shown once per surface</div>
+        <div class="shift-row"><span class="dotsm" style="background:var(--mtn-yellow)"></span> Insights promoted to a first-class nav destination</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="colour">
+  <div class="wrap">
+    <p class="sec-label">01 · Colour (Locked)</p>
+    <h2 class="sec-title">Brand colours</h2>
+    <p class="sec-desc">MTN Yellow, ink, and white are the entire brand palette pulled from the live site. Everything else on this page (neutral scale, tints) is derived, proposed for this redesign, and open to revision. The three above are not.</p>
+
+    <div class="subhead">Core palette (from live site)</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:var(--mtn-yellow)"><span>#FFC502</span></div><div class="info"><div class="name">MTN Yellow</div><div class="role">Buttons, tags, active states, key accents</div><div class="vals"><span><b>HEX</b> #FFC502</span><span><b>RGB</b> 255 197 2</span></div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--ink)"><span style="background:rgba(255,255,255,.15); color:#fff;">rgb(33,37,41)</span></div><div class="info"><div class="name">Ink</div><div class="role">Body text, headings, dark surfaces</div><div class="vals"><span><b>RGB</b> 33 37 41</span><span><b>HEX</b> #212529</span></div></div></div>
+      <div class="swatch"><div class="chip" style="background:#fff; border-bottom:1px solid var(--border);"><span>#FFFFFF</span></div><div class="info"><div class="name">White</div><div class="role">Page background</div><div class="vals"><span><b>HEX</b> #FFFFFF</span></div></div></div>
+    </div>
+
+    <div class="subhead">Neutral scale (Proposed)</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:var(--muted)"><span style="background:rgba(255,255,255,.15); color:#fff;">#5C6570</span></div><div class="info"><div class="name">Muted</div><div class="role">Secondary text, meta lines, captions</div><div class="vals"><span><b>HEX</b> #5C6570</span></div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--muted-2)"><span style="background:rgba(255,255,255,.2)">#8A929B</span></div><div class="info"><div class="name">Muted 2</div><div class="role">Placeholder text, disabled state</div><div class="vals"><span><b>HEX</b> #8A929B</span></div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--surface); border-bottom:1px solid var(--border);"><span>#F7F8F9</span></div><div class="info"><div class="name">Surface</div><div class="role">Card fills, section washes</div><div class="vals"><span><b>HEX</b> #F7F8F9</span></div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--border); border-bottom:1px solid var(--border);"><span>#E7E9EC</span></div><div class="info"><div class="name">Border</div><div class="role">Hairlines, card outlines</div><div class="vals"><span><b>HEX</b> #E7E9EC</span></div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--yellow-tint-95); border-bottom:1px solid var(--border);"><span>#FFFAE6</span></div><div class="info"><div class="name">Yellow tint 95%</div><div class="role">Category-tag fill, safe yellow wash</div><div class="vals"><span><b>HEX</b> #FFFAE6</span></div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--yellow-shade-20)"><span style="background:rgba(255,255,255,.2)">#CC9E00</span></div><div class="info"><div class="name">Yellow shade 20%</div><div class="role">Eyebrow/label text only. See contrast rule.</div><div class="vals"><span><b>HEX</b> #CC9E00</span></div></div></div>
+    </div>
+
+    <div class="subhead">Contrast rule: the one mistake this brand invites</div>
+    <p style="font-size:13.5px; color:var(--muted); margin-bottom:16px; max-width:660px; line-height:1.7;">
+      MTN Yellow at full saturation fails text contrast against white. It looks bright and "on-brand" but is close to unreadable as body or link text. <b style="color:var(--ink)">Yellow is a fill and accent colour, never a text colour on a light background.</b> Use ink text on a yellow fill, or a darkened shade of yellow for small label text only.
+    </p>
+    <div class="contrast-grid">
+      <div class="cx-card" style="background:#fff;">
+        <span style="color:var(--mtn-yellow); font-weight:800; font-size:15px;">Yellow text on white</span>
+        <span class="ratio">Contrast ≈ 1.6:1</span>
+        <span class="verdict fail">Fails WCAG AA</span>
+      </div>
+      <div class="cx-card" style="background:var(--mtn-yellow);">
+        <span style="color:var(--ink); font-weight:800; font-size:15px;">Ink text on yellow fill</span>
+        <span class="ratio">Contrast ≈ 11:1</span>
+        <span class="verdict pass">Passes AAA</span>
+      </div>
+      <div class="cx-card" style="background:var(--ink);">
+        <span style="color:var(--mtn-yellow); font-weight:800; font-size:15px;">Yellow on ink</span>
+        <span class="ratio">Contrast ≈ 7:1</span>
+        <span class="verdict pass">Passes AA</span>
+      </div>
+    </div>
+
+    <div class="subhead" style="margin-top:34px;">Yellow tints toward white</div>
+    <div class="ramp">
+      <div style="background:var(--mtn-yellow)">100</div>
+      <div style="background:#FFD22E">85</div>
+      <div style="background:#FFDD5C">70</div>
+      <div style="background:#FFE88A">55</div>
+      <div style="background:#FFF0AD; color:#6b5300">40</div>
+      <div style="background:#FFF6CE; color:#6b5300">25</div>
+      <div style="background:#FFFAE6; color:#6b5300">10</div>
+      <div style="background:#fff; color:#6b5300; border-left:1px solid var(--border)">0</div>
+    </div>
+  </div>
+</section>
+
+<section id="type">
+  <div class="wrap">
+    <p class="sec-label">02 · Typography (Locked family, proposed scale)</p>
+    <h2 class="sec-title">Brighter Sans, two weights</h2>
+    <p class="sec-desc">MTN Brighter Sans Extra Bold for headings, Regular for body. This is real MTN corporate identity, confirmed from the live site. The size scale below is proposed for the redesign's hierarchy (the current site uses far fewer distinct sizes).</p>
+
+    <div class="type-row">
+      <div class="type-meta">Display<br>XBold · 46px<br>-2% tracking</div>
+      <div class="sp-display">Grow your business, faster.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Heading 1<br>XBold · 32px</div>
+      <div class="sp-h1">Connect My Business</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Heading 2<br>XBold · 23px</div>
+      <div class="sp-h2">What Are Working Capital Loans?</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Heading 3<br>XBold · 18px</div>
+      <div class="sp-h3">Why Businesses Take Working Capital Loans</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Body<br>Regular · 16px<br>1.6 line height</div>
+      <div class="sp-body">A content hub for South African small businesses, sponsored by MTN. Body copy stays in Brighter Sans Regular for comfortable reading at article length.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Small / Meta<br>Medium · 13px</div>
+      <div class="sp-small">Connect My Business · Finance · 6 min read</div>
+    </div>
+
+    <div class="dd-grid" style="margin-top:32px">
+      <div class="dd do">
+        <div class="lbl">✓ Do</div>
+        <ul>
+          <li>Use Brighter Sans XBold for all headings and nav labels</li>
+          <li>Keep body copy in Brighter Sans Regular</li>
+          <li>Use ink (#212529) for all body and heading text</li>
+          <li>Let article body breathe: 1.6+ line height at length</li>
+        </ul>
+      </div>
+      <div class="dd dont">
+        <div class="lbl">✕ Don't</div>
+        <ul>
+          <li>Don't introduce a second typeface anywhere in the UI</li>
+          <li>Don't set long paragraphs in the heading weight</li>
+          <li>Don't use yellow as heading or body text colour</li>
+          <li>Don't substitute a condensed or narrow face for Brighter Sans</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="logo">
+  <div class="wrap">
+    <p class="sec-label">03 · Logo (Locked)</p>
+    <h2 class="sec-title">Logo usage</h2>
+    <p class="sec-desc">The live site uses a black wordmark lockup (<code>logo-black.png</code>). Keep clear space equal to the cap-height of the "M" on all sides; never recolour, stretch, or place it directly on a busy photo without a scrim.</p>
+    <div class="logo-grid">
+      <div class="logo-box"><img src="assets/logo-black.png" alt="MTN SME Hub" style="height:34px;"></div>
+      <div class="logo-box dark"><img src="assets/logo-white.png" alt="MTN SME Hub" style="height:34px;"></div>
+      <div class="logo-box dark"><img src="assets/logo-yellow.png" alt="MTN SME Hub" style="height:34px;"></div>
+    </div>
+    <div class="dd-grid" style="margin-top:20px">
+      <div class="dd do">
+        <div class="lbl">✓ Do</div>
+        <ul>
+          <li>Use the black lockup on white or light surfaces</li>
+          <li>Use a white-knockout version on ink or photo backgrounds</li>
+          <li>Maintain minimum clear space around the mark</li>
+        </ul>
+      </div>
+      <div class="dd dont">
+        <div class="lbl">✕ Don't</div>
+        <ul>
+          <li>Don't use the yellow-fill logo except on ink/dark or photo backgrounds</li>
+          <li>Don't recolour, rotate, or add effects to the mark</li>
+          <li>Don't crowd it: no UI element inside the clear-space zone</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="buttons">
+  <div class="wrap">
+    <p class="sec-label">04 · Buttons (Proposed)</p>
+    <h2 class="sec-title">Actions</h2>
+    <p class="sec-desc">Primary actions use the yellow fill with ink text. It's the one place yellow appears at full strength and stays accessible.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary">Read Article</a>
+      <a class="btn btn-dark">Subscribe</a>
+      <a class="btn btn-outline">View All</a>
+      <a class="btn btn-primary btn-sm">Register Free</a>
+      <a class="btn btn-outline btn-sm">View Recap</a>
+    </div>
+  </div>
+</section>
+
+<section id="nav">
+  <div class="wrap">
+    <p class="sec-label">05 · Navigation (Proposed, the core UX fix)</p>
+    <h2 class="sec-title">Category-aware nav</h2>
+    <p class="sec-desc">Today's nav is Home / Business Advice / Insights. Three links hiding nine real categories and the MTN Business products this hub should be driving toward. The redesign surfaces the 5 content pillars directly, gives Insights its own sub-nav, and promotes Business Solutions to a first-class destination.</p>
+    <div class="navbar">
+      <div class="top">
+        <b>MTN SME HUB</b>
+        <div class="nav-links">
+          <span class="active">Business Advice</span>
+          <span>Insights</span>
+          <span>Business Solutions</span>
+          <span>About</span>
+        </div>
+      </div>
+      <div class="sub">
+        <span>Connect My Business</span>
+        <span>Build My Business</span>
+        <span>Manage My Business</span>
+        <span>Feature My Business</span>
+        <span>Ecommerce</span>
+      </div>
+    </div>
+    <p style="font-size:12.5px; color:var(--muted); margin-top:12px;">Sub-nav shown on hover/active for "Business Advice"; "Insights" gets an equivalent sub-nav for Guides / Templates / Learning &amp; Development / Events.</p>
+  </div>
+</section>
+
+<section id="content">
+  <div class="wrap">
+    <p class="sec-label">06 · Content cards (Proposed)</p>
+    <h2 class="sec-title">Article card, with credibility signals</h2>
+    <p class="sec-desc">Same card used everywhere: homepage, category archive, search. Adds date and read time, which the current site has nowhere.</p>
+    <div class="card-grid">
+      <div class="article-card">
+        <div class="img">16:10 image</div>
+        <div class="bd">
+          <div class="tags"><span class="tag">Connect My Business</span><span class="tag alt">Finance</span></div>
+          <h4>What Are Working Capital Loans?</h4>
+          <p class="excerpt">Short-term loans businesses take to cover regular operational expenses during a cash-flow shortfall.</p>
+          <div class="meta"><span>12 Aug 2026</span><span>·</span><span>6 min read</span></div>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="img">16:10 image</div>
+        <div class="bd">
+          <div class="tags"><span class="tag">Build My Business</span><span class="tag alt">Ecommerce</span></div>
+          <h4>10 eCommerce Trends to Watch</h4>
+          <p class="excerpt">Staying up to date with the latest eCommerce trends matters if you run an online store.</p>
+          <div class="meta"><span>3 Jul 2026</span><span>·</span><span>4 min read</span></div>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="img">16:10 image</div>
+        <div class="bd">
+          <div class="tags"><span class="tag">Feature My Business</span></div>
+          <h4>MTN Business Celebrates SME Excellence</h4>
+          <p class="excerpt">Kevinot Farming named winner of MTN's SME JumpStarter campaign, aligned with Ambition 2025.</p>
+          <div class="meta"><span>28 May 2026</span><span>·</span><span>3 min read</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solutions">
+  <div class="wrap">
+    <p class="sec-label">07 · Business Solutions (Proposed)</p>
+    <h2 class="sec-title">Real products, no photography, never flat</h2>
+    <p class="sec-desc">MTN Business plans and Managed Security Solutions don't have product photography, but a plain white card reads as an afterthought. The fix is a yellow-infused surface treatment: a soft radial glow, a gradient edge, and an arrow affordance instead of a button, since these link through to a configurator or lead form rather than an instant purchase.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:20px 20px 18px; position:relative; overflow:hidden; box-shadow:var(--shadow-card);">
+        <div style="position:absolute; top:0; right:0; width:130px; height:130px; background:radial-gradient(circle at top right, rgba(255,197,2,.22) 0%, transparent 70%); pointer-events:none;"></div>
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, var(--mtn-yellow) 0%, #FFE066 60%, transparent 100%);"></div>
+        <div style="font-weight:800; font-size:14.5px; margin:6px 0 14px; position:relative;">Made For Business L</div>
+        <div style="display:flex; gap:14px; margin-bottom:14px; position:relative;">
+          <div><b style="display:block; font-size:19px; font-weight:800;">23GB</b><span style="font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;">Data</span></div>
+          <div><b style="display:block; font-size:19px; font-weight:800;">1,000</b><span style="font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;">Minutes</span></div>
+        </div>
+        <div style="border-top:1px solid var(--border); padding-top:12px; display:flex; align-items:flex-end; justify-content:space-between; position:relative;">
+          <div><b style="font-size:20px; font-weight:800;">R499</b><span style="display:block; font-size:11px; color:var(--muted);">pm x36 months</span></div>
+          <span style="width:34px; height:34px; border-radius:50%; background:var(--ink); color:var(--mtn-yellow); display:grid; place-items:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </div>
+      <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:22px; position:relative; overflow:hidden; box-shadow:var(--shadow-card);">
+        <div style="position:absolute; top:-40px; right:-40px; width:110px; height:110px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.16) 0%, transparent 72%); pointer-events:none;"></div>
+        <div style="width:42px; height:42px; border-radius:10px; background:linear-gradient(135deg, var(--mtn-yellow) 0%, #FFE066 100%); display:grid; place-items:center; margin-bottom:16px; position:relative; box-shadow:0 3px 8px rgba(255,197,2,.35);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212529" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+        <div style="font-weight:800; font-size:15px; margin-bottom:8px; position:relative;">Managed Firewall</div>
+        <p style="font-size:12.5px; color:var(--muted); margin-bottom:0; line-height:1.55; position:relative;">Full network protection with deployment, patching, and 24/7 monitoring.</p>
+      </div>
+    </div>
+    <div class="dd-grid" style="margin-top:20px">
+      <div class="dd do">
+        <div class="lbl">✓ Do</div>
+        <ul>
+          <li>Use the yellow radial-glow + gradient-edge treatment on every plan/solution card</li>
+          <li>Use an arrow affordance when the card leads to a detail page or configurator</li>
+          <li>Use a full "Get a Quote" button only when the card leads straight to the lead form</li>
+        </ul>
+      </div>
+      <div class="dd dont">
+        <div class="lbl">✕ Don't</div>
+        <ul>
+          <li>Don't use stock photography on plan or solution cards</li>
+          <li>Don't ship a plain flat white card with no yellow treatment</li>
+          <li>Don't fabricate pricing for a term or add-on MTN hasn't confirmed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="components">
+  <div class="wrap">
+    <p class="sec-label">08 · Interactive components (Proposed)</p>
+    <h2 class="sec-title">Event card</h2>
+    <p class="sec-desc">In-person events (Insights → Events) get a real spec instead of collapsing into a generic card. Date chip, format tag, and a single clear Register action.</p>
+    <div style="max-width:340px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-card); background:#fff;">
+      <div style="aspect-ratio:16/10; background:var(--surface); position:relative;">
+        <div style="position:absolute; top:12px; left:12px; background:#fff; border-radius:7px; padding:6px 10px; text-align:center; line-height:1.1; box-shadow:var(--shadow-card);">
+          <b style="display:block; font-size:15px;">10</b><span style="font-size:9px; font-weight:700; text-transform:uppercase; color:var(--muted);">Sep</span>
+        </div>
+      </div>
+      <div style="padding:17px 18px;">
+        <span style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow-shade-20); background:var(--yellow-tint-95); border:1px solid var(--yellow-tint-90); padding:3px 8px; border-radius:5px;">Event</span>
+        <h4 style="font-size:15px; margin:10px 0 8px;">Funding Your Business in 2026</h4>
+        <p style="font-size:12.5px; color:var(--muted); line-height:1.55; margin-bottom:14px;">A live session on grants, loans and MTN Business support options.</p>
+        <div style="font-size:12px; color:var(--muted); margin-bottom:14px;">10:00 – 11:30 SAST · Online</div>
+        <div style="background:var(--mtn-yellow); color:var(--ink); font-weight:700; font-size:13px; text-align:center; padding:10px; border-radius:8px;">Register Free</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <p class="sec-label">09 · Global rules</p>
+    <h2 class="sec-title">What holds every screen accountable</h2>
+    <div class="dd-grid">
+      <div class="dd do">
+        <div class="lbl">✓ Do</div>
+        <ul>
+          <li>Ink text on white/surface, ink text on yellow fills</li>
+          <li>One accent colour, yellow, used with restraint</li>
+          <li>Pillar identity via labels/tags, not a rainbow of category colours</li>
+          <li>Every article card carries date + read time</li>
+          <li>Nav always exposes the 5 pillars, Insights sub-nav, and Business Solutions</li>
+          <li>Business Solutions cards use the yellow-glow treatment: never flat, never a stock photo</li>
+        </ul>
+      </div>
+      <div class="dd dont">
+        <div class="lbl">✕ Don't</div>
+        <ul>
+          <li>Don't invent secondary brand colours to "add variety"</li>
+          <li>Don't use yellow as body or link text on light backgrounds</li>
+          <li>Don't restructure the 5 pillars or rename them</li>
+          <li>Don't let a mockup screen ship a value not on this page</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="docfoot">
+  <div class="wrap">
+    © 2026 MTN SME Hub · All rights reserved · Compiled by SME South Africa
+  </div>
+</footer>
+
+</body>
+</html>

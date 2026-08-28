@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MTN SME Hub Redesign Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --yellow:#FFC502; --ink:rgb(33,37,41); --muted:#5C6570; --muted-2:#8A929B;
+    --border:#E7E9EC; --surface:#F7F8F9; --yellow-tint:#FFFAE6; --yellow-shade:#CC9E00;
+    --radius:14px; --shadow:0 1px 2px rgba(20,20,20,.04), 0 6px 20px rgba(20,20,20,.06);
+    --shadow-hover:0 6px 16px rgba(20,20,20,.08), 0 20px 40px rgba(20,20,20,.10);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Inter', 'Helvetica Neue', Arial, sans-serif; background:#fff; color:var(--ink); line-height:1.6; }
+  h1,h2,h3{ font-weight:800; letter-spacing:-.015em; line-height:1.15; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+
+  header.hero{ background:var(--ink); color:#fff; padding:64px 0 56px; position:relative; overflow:hidden; }
+  header.hero::after{ content:""; position:absolute; inset:0; background:radial-gradient(circle at 88% 10%, rgba(255,197,2,.16) 0%, transparent 50%); pointer-events:none; }
+  header.hero .wrap{ position:relative; z-index:1; }
+  .eyebrow{ font-size:11.5px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--yellow); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .eyebrow::before{ content:""; width:16px; height:2px; background:var(--yellow); border-radius:2px; }
+  header.hero h1{ font-size:clamp(30px,4.5vw,46px); margin-bottom:14px; }
+  header.hero p{ color:rgba(255,255,255,.65); font-size:16px; max-width:600px; }
+
+  section{ padding:56px 0; border-bottom:1px solid var(--border); }
+  .sec-label{ font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--yellow-shade); margin-bottom:8px; }
+  .sec-title{ font-size:22px; margin-bottom:8px; }
+  .sec-desc{ color:var(--muted); font-size:14.5px; max-width:560px; margin-bottom:32px; }
+
+  .card-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+  .arch-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s, border-color .15s; position:relative; overflow:hidden; }
+  .arch-card:hover{ box-shadow:var(--shadow-hover); transform:translateY(-3px); border-color:var(--yellow); }
+  .arch-card::before{ content:""; position:absolute; top:0; right:0; width:140px; height:140px; background:radial-gradient(circle at top right, rgba(255,197,2,.16) 0%, transparent 70%); pointer-events:none; }
+  .arch-card .tag{ font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow-shade); background:var(--yellow-tint); border:1px solid #FFF3C4; padding:3px 8px; border-radius:5px; display:inline-block; margin-bottom:14px; position:relative; }
+  .arch-card h3{ font-size:18px; margin-bottom:8px; position:relative; }
+  .arch-card p{ font-size:13.5px; color:var(--muted); margin-bottom:18px; line-height:1.6; position:relative; }
+  .arch-card .go{ font-size:13px; font-weight:700; display:flex; align-items:center; gap:6px; position:relative; }
+  .arch-card:hover .go{ gap:9px; transition:gap .15s; }
+  .arch-card.disabled{ opacity:.55; }
+  .arch-card.disabled:hover{ transform:none; box-shadow:var(--shadow); border-color:var(--border); }
+
+  .page-list{ display:flex; flex-direction:column; gap:0; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+  .page-list a{ display:flex; align-items:center; justify-content:space-between; padding:14px 20px; font-size:14px; font-weight:600; border-bottom:1px solid var(--border); }
+  .page-list a:last-child{ border-bottom:none; }
+  .page-list a:hover{ background:var(--surface); }
+  .page-list span.desc{ font-size:12.5px; color:var(--muted); font-weight:400; }
+
+  footer{ padding:40px 0; text-align:center; color:var(--muted-2); font-size:12.5px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Redesign project</div>
+    <h1>MTN SME Hub Redesign</h1>
+    <p>A working archive for the MTN SME Hub redesign: the mockup site, the brand accountability reference, and the supporting reports, all in one place.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">Start here</p>
+    <h2 class="sec-title">The two core deliverables</h2>
+    <p class="sec-desc">Both are full interactive HTML builds. Click through and browse them like a live site.</p>
+    <div class="card-grid">
+      <a class="arch-card" href="site/index.html">
+        <span class="tag">Mockup</span>
+        <h3>Redesigned MTN SME Hub</h3>
+        <p>The full site rebuild: homepage, category pages, articles, Business Solutions with a real plan configurator, Events, Insights, About, and Partners and Stakeholders.</p>
+        <span class="go">Open the mockup →</span>
+      </a>
+      <a class="arch-card" href="site/brand_ci.html">
+        <span class="tag">Brand CI</span>
+        <h3>Brand corporate identity reference</h3>
+        <p>The accountability document: colour, type, logo, components, and rules every mockup screen is held to.</p>
+        <span class="go">Open the Brand CI →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">Reports</p>
+    <h2 class="sec-title">Supporting documents</h2>
+    <p class="sec-desc">Strategy and data reports produced alongside the mockup.</p>
+    <div class="page-list">
+      <a href="reports/data-and-lead-engine-strategy.html">Data and Lead-Engine Strategy <span class="desc">Report</span></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">Mockup pages</p>
+    <h2 class="sec-title">Every screen, direct link</h2>
+    <p class="sec-desc">For quick navigation without going through the mockup's own menu.</p>
+    <div class="page-list">
+      <a href="site/index.html">Home <span class="desc">Homepage</span></a>
+      <a href="site/category.html">Connect My Business <span class="desc">Category archive</span></a>
+      <a href="site/article.html">What Are Working Capital Loans? <span class="desc">Article</span></a>
+      <a href="site/business-solutions.html">Business Solutions <span class="desc">Plans and Managed Security Solutions</span></a>
+      <a href="site/plan.html?plan=l">Made For Business L <span class="desc">Plan configurator and lead-gen journey</span></a>
+      <a href="site/product.html">Managed Firewall <span class="desc">Solution detail</span></a>
+      <a href="site/insights.html">Insights <span class="desc">Guides, templates, learning</span></a>
+      <a href="site/events.html">Events <span class="desc">Upcoming and past events</span></a>
+      <a href="site/stakeholders.html">Partners and Stakeholders <span class="desc">Funding and support ecosystem</span></a>
+      <a href="site/about.html">About <span class="desc">About MTN SME Hub</span></a>
+    </div>
+  </div>
+</section>
+
+<section style="border-bottom:none;">
+  <div class="wrap">
+    <p class="sec-label">Project brief</p>
+    <h2 class="sec-title">Original scope</h2>
+    <p class="sec-desc">The brief this redesign was built from.</p>
+    <div class="page-list">
+      <a href="brief.md">MTN SME Hub Mockup Brief <span class="desc">Markdown file</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  MTN SME Hub Redesign. Compiled by SME South Africa. Working mockup, not a live production site.
+</footer>
+
+</body>
+</html>

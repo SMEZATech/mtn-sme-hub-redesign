@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Managed Firewall | MTN SME Hub Business Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .prod-layout{ display:grid; grid-template-columns:1fr 420px; gap:44px; align-items:start; }
+  .prod-panel{ border:1px solid var(--border); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); position:sticky; top:88px; }
+  .prod-panel .price{ font-size:30px; font-weight:800; margin:8px 0 2px; }
+  .prod-panel .per{ font-size:13px; color:var(--muted); margin-bottom:18px; }
+  .prod-feat{ display:flex; flex-direction:column; gap:10px; margin:18px 0; }
+  .prod-feat li{ display:flex; gap:9px; font-size:13.5px; align-items:flex-start; }
+  .prod-feat li svg{ color:var(--yellow-shade); flex-shrink:0; margin-top:2px; }
+  .spec-table{ width:100%; border-collapse:collapse; font-size:13.5px; }
+  .spec-table tr{ border-bottom:1px solid var(--border); }
+  .spec-table td{ padding:12px 4px; }
+  .spec-table td:first-child{ color:var(--muted); width:180px; }
+  .spec-table td:last-child{ font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="utility">
+  <div class="wrap">
+    <div class="left">
+      <span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg> info@mtnsmehub.co.za</span>
+      <span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.6 7-12a7 7 0 10-14 0c0 5.4 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg> Innovation Centre, Fairland, Gauteng</span>
+    </div>
+    <div class="left">
+      <a href="index.html#leadgen">MTN Business</a>
+      <a href="business-solutions.html">Business Solutions</a>
+    </div>
+  </div>
+</div>
+
+<header class="site">
+  <div class="nav-row">
+    <a href="index.html" class="logo"><img src="assets/logo-black.png" alt="MTN SME Hub"></a>
+    <nav class="nav-main">
+      <div class="nav-item">
+        <a href="category.html">Business Advice <svg class="icon chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega mega-pillars">
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div><b>Connect My Business</b><span>Websites, funding, going online</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 19V9m7 10V5m7 14v-7"/></svg></div><div><b>Build My Business</b><span>Growth, trends, entrepreneurship</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><div><b>Manage My Business</b><span>Cash flow, inventory, compliance</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div><div><b>Feature My Business</b><span>SME spotlights &amp; success stories</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6"/></svg></div><div><b>Ecommerce</b><span>Online stores &amp; digital sales</span></div></a>
+          <a class="mega-link" href="index.html#leadgen"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></div><div><b>MTN Business</b><span>Products for your business</span></div></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="insights.html">Insights <svg class="icon chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega mega-simple">
+          <a href="insights.html#guides">Guides</a>
+          <a href="insights.html#templates">Templates</a>
+          <a href="insights.html#ld">Learning &amp; Development</a>
+          <a href="events.html">Events</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="business-solutions.html">Business Solutions</a></div>
+      <div class="nav-item"><a href="about.html">About</a></div>
+    </nav>
+    <div class="nav-cta">
+      <div class="nav-search"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+      <a class="btn btn-primary btn-sm" href="index.html#leadgen">Talk to MTN Business</a>
+      <div class="nav-burger"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-drawer">
+  <div class="scrim"></div>
+  <div class="panel">
+    <div class="top">
+      <img src="assets/logo-black.png" alt="MTN SME Hub" style="height:24px;">
+      <div class="close"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+    </div>
+    <div class="mdrawer-group">
+      <div class="mlabel">Business Advice <svg class="icon chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="mdrawer-sub">
+        <a href="category.html">Connect My Business</a>
+        <a href="category.html">Build My Business</a>
+        <a href="category.html">Manage My Business</a>
+        <a href="category.html">Feature My Business</a>
+        <a href="category.html">Ecommerce</a>
+      </div>
+    </div>
+    <div class="mdrawer-group">
+      <div class="mlabel">Insights <svg class="icon chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="mdrawer-sub">
+        <a href="insights.html#guides">Guides</a>
+        <a href="insights.html#templates">Templates</a>
+        <a href="insights.html#ld">Learning &amp; Development</a>
+        <a href="events.html">Events</a>
+      </div>
+    </div>
+    <div class="mdrawer-group"><a href="business-solutions.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Business Solutions</a></div>
+    <div class="mdrawer-group"><a href="about.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">About</a></div>
+    <div class="cta-block">
+      <a class="btn btn-primary btn-block" href="index.html#leadgen">Talk to MTN Business</a>
+      <a class="btn btn-outline btn-block" href="business-solutions.html">Browse Business Solutions</a>
+    </div>
+  </div>
+</div>
+
+<section style="padding-bottom:0; padding-top:36px;">
+  <div class="wrap">
+    <div class="breadcrumb" style="margin-bottom:22px;"><a href="index.html">Home</a><span class="sep">/</span><a href="business-solutions.html">Business Solutions</a><span class="sep">/</span><a href="business-solutions.html">Managed Security Solutions</a><span class="sep">/</span><span class="current">Managed Firewall</span></div>
+
+    <div class="prod-layout">
+      <div>
+        <div style="aspect-ratio:16/9; border-radius:var(--radius); background:var(--ink); display:grid; place-items:center; margin-bottom:12px; position:relative; overflow:hidden;">
+          <div style="position:absolute; inset:0; background-image:radial-gradient(rgba(255,197,2,.15) 1px, transparent 1.5px); background-size:22px 22px;"></div>
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#FFC502" stroke-width="1.5" style="position:relative;"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+        </div>
+
+        <div style="margin-top:36px;">
+          <h2 style="font-size:19px; margin-bottom:14px;">About this solution</h2>
+          <p style="font-size:14.5px; color:#374151; line-height:1.75; margin-bottom:16px;">Managed Firewall gives your business full network protection. MTN handles deployment, patching, and 24/7 monitoring, so intrusions are stopped early and your systems stay current without adding to your team's workload.</p>
+          <p style="font-size:14.5px; color:#374151; line-height:1.75;">Part of MTN Business's Managed Security Solutions, built to turn cybersecurity into a business advantage rather than a distraction. It covers everything from firewalls and SOC as a Service to Zero Trust and eMail protection.</p>
+
+          <h2 style="font-size:19px; margin:30px 0 14px;">Key benefits</h2>
+          <table class="spec-table">
+            <tr><td>Auto-patching</td><td>Keeps systems updated automatically</td></tr>
+            <tr><td>Monitoring</td><td>24/7 network protection</td></tr>
+            <tr><td>Threat response</td><td>Stop intrusions early</td></tr>
+            <tr><td>Delivery</td><td>Fully managed by MTN, deployment included</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <aside class="prod-panel">
+        <div class="cat" style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--muted-2);">Managed Security Solutions</div>
+        <h1 style="font-size:22px; margin:8px 0;">Managed Firewall</h1>
+        <p style="font-size:13px; color:var(--muted); margin-bottom:18px; line-height:1.6;">Full network protection with deployment, patching, and 24/7 monitoring.</p>
+        <div class="price">Custom quote</div>
+        <div class="per">Priced to your business size and risk profile</div>
+
+        <ul class="prod-feat">
+          <li><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Auto-patching keeps systems updated</li>
+          <li><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 24/7 network protection</li>
+          <li><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Stop intrusions early</li>
+        </ul>
+
+        <a class="btn btn-primary btn-block btn-lg" href="index.html#leadgen">Get a Quote</a>
+        <a class="btn btn-outline btn-block" style="margin-top:10px;" href="index.html#leadgen">Request a Callback</a>
+        <p style="font-size:11px; color:var(--muted-2); text-align:center; margin-top:12px;">Sourced from mtn.co.za/business/solution/list/managed-security-solutions.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--surface); margin-top:20px;">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow-label">You may also like</p><h2 class="sec-title">Related security solutions</h2></div>
+      <a class="btn btn-outline" href="business-solutions.html">View All</a>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.4 8.5-8 11-4.6-2.5-8-6-8-11V5z"/></svg></div>
+        <h4>SOC as a Service</h4>
+        <p>Certified analysts monitor and respond to threats around the clock.</p>
+        <a class="btn btn-outline btn-sm btn-block" href="index.html#leadgen">Get a Quote</a>
+      </div>
+      <div class="service-card">
+        <div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M4 12h2M18 12h2M12 4v2M12 18v2"/></svg></div>
+        <h4>Managed EDR</h4>
+        <p>Continuous endpoint monitoring and rapid remediation for threats.</p>
+        <a class="btn btn-outline btn-sm btn-block" href="index.html#leadgen">Get a Quote</a>
+      </div>
+      <div class="service-card">
+        <div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg></div>
+        <h4>eMail Security &amp; Archiving</h4>
+        <p>Stop phishing, spam, and malware while archiving business emails.</p>
+        <a class="btn btn-outline btn-sm btn-block" href="index.html#leadgen">Get a Quote</a>
+      </div>
+      <div class="service-card">
+        <div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+        <h4>Mobility Management</h4>
+        <p>Secure devices, apps, and data across all platforms and users.</p>
+        <a class="btn btn-outline btn-sm btn-block" href="index.html#leadgen">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="assets/logo-white.png" alt="MTN SME Hub">
+        <p>MTN SME Hub is a daily online resource that provides strategic business content and tools to help South African SMMEs grow.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="Facebook"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+          <a href="#" aria-label="X"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.7l-5.2-6.8L5.6 22H2.4l8.1-9.3L1.6 2h6.8l4.7 6.2z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21H9z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Business Advice</h5>
+        <ul><li><a href="category.html">Connect My Business</a></li><li><a href="category.html">Build My Business</a></li><li><a href="category.html">Manage My Business</a></li><li><a href="category.html">Feature My Business</a></li><li><a href="category.html">Ecommerce</a></li></ul>
+      </div>
+      <div>
+        <h5>Insights</h5>
+        <ul><li><a href="insights.html#guides">Guides</a></li><li><a href="insights.html#templates">Templates</a></li><li><a href="insights.html#ld">Learning &amp; Development</a></li><li><a href="events.html">Events</a></li><li><a href="business-solutions.html">Business Solutions</a></li><li><a href="stakeholders.html">Partners and Stakeholders</a></li></ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul><li>Innovation Centre, 216 14th Avenue,<br>Fairland, Gauteng, 2195</li><li>info@mtnsmehub.co.za</li><li>www.mtnsmehub.co.za</li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 MTN SME Hub. All rights reserved.</span>
+      <div class="links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="index.html#leadgen">MTN Business</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

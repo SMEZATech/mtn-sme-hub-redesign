@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MTN SME Hub — Data &amp; Lead-Engine Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --yellow:#FFC502; --yellow-shade:#CC9E00; --yellow-tint:#FFFAE6; --yellow-tint-2:#FFF3C4;
+    --ink:#212529; --bg:#FFFFFF; --muted:#5C6570; --muted-2:#8A929B;
+    --border:#E7E9EC; --surface:#F7F8F9; --surface-2:#F1F3F4;
+    --good:#1B8A5A; --good-tint:#E7F5EE;
+    --bad:#C0392B; --bad-tint:#FDECEA;
+    --warn:#B7791F; --warn-tint:#FFF7E6;
+    --radius:14px; --radius-sm:8px;
+    --shadow:0 1px 2px rgba(20,20,20,.04), 0 6px 20px rgba(20,20,20,.06);
+    --maxw:1000px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Inter','Helvetica Neue',Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4,h5{ font-weight:800; line-height:1.18; letter-spacing:-.015em; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+  .mono{ font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace; }
+  a{ color:var(--yellow-shade); }
+
+  /* ---------- cover ---------- */
+  .cover{ background:var(--ink); color:#fff; padding:64px 0 56px; position:relative; overflow:hidden; }
+  .cover::before{ content:""; position:absolute; top:-90px; right:-90px; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); }
+  .cover::after{ content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.5px); background-size:22px 22px; }
+  .cover .wrap{ position:relative; z-index:1; }
+  .cover .eyebrow{ display:inline-flex; align-items:center; gap:9px; font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--yellow); margin-bottom:20px; }
+  .cover .eyebrow::before{ content:""; width:20px; height:2px; background:var(--yellow); border-radius:2px; }
+  .cover h1{ font-size:clamp(30px,5vw,46px); font-weight:900; margin-bottom:14px; max-width:20ch; }
+  .cover p{ font-size:16px; color:rgba(255,255,255,.7); max-width:66ch; }
+  .cover .meta{ display:flex; flex-wrap:wrap; gap:9px; margin-top:26px; }
+  .cover .chip{ font-size:11.5px; font-weight:600; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); padding:6px 14px; border-radius:999px; color:rgba(255,255,255,.85); }
+
+  /* ---------- sections ---------- */
+  section{ padding:46px 0; border-bottom:1px solid var(--border); }
+  .sec-label{ font-size:11px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:var(--yellow-shade); margin-bottom:9px; display:flex; align-items:center; gap:8px; }
+  .sec-label::before{ content:""; width:16px; height:2px; background:var(--yellow); border-radius:2px; }
+  h2.sec{ font-size:26px; margin-bottom:10px; }
+  .sec-desc{ font-size:14.5px; color:var(--muted); max-width:74ch; margin-bottom:26px; }
+  h3.sub{ font-size:17px; margin:30px 0 12px; }
+
+  /* ---------- verdict cards (exec summary) ---------- */
+  .verdicts{ display:flex; flex-direction:column; gap:12px; }
+  .verdict{ display:grid; grid-template-columns:38px 1fr; gap:15px; padding:18px 20px; border-radius:var(--radius); border:1px solid var(--border); background:var(--surface); }
+  .verdict .n{ width:38px; height:38px; border-radius:10px; display:grid; place-items:center; font-weight:900; font-size:15px; background:var(--yellow); color:var(--ink); }
+  .verdict h4{ font-size:15.5px; margin-bottom:5px; }
+  .verdict p{ font-size:13.5px; color:var(--muted); }
+  .verdict p b{ color:var(--ink); }
+
+  /* ---------- callouts ---------- */
+  .callout{ border-radius:var(--radius); padding:18px 20px; margin:20px 0; border:1px solid; }
+  .callout .t{ font-weight:800; font-size:13.5px; margin-bottom:5px; display:flex; align-items:center; gap:8px; }
+  .callout .d{ font-size:13.5px; line-height:1.6; }
+  .callout.warn{ background:var(--warn-tint); border-color:#F0D9A0; }
+  .callout.warn .t{ color:#8A5A00; }
+  .callout.warn .d{ color:#5A4210; }
+  .callout.good{ background:var(--good-tint); border-color:#A8D9BF; }
+  .callout.good .t{ color:#106640; }
+  .callout.good .d{ color:#194A34; }
+  .callout.bad{ background:var(--bad-tint); border-color:#F0BDB6; }
+  .callout.bad .t{ color:#93271B; }
+  .callout.bad .d{ color:#5E241C; }
+
+  /* ---------- tables ---------- */
+  .tbl-wrap{ overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius); }
+  table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:520px; }
+  th{ text-align:left; font-size:10.5px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:12px 15px; background:var(--surface); border-bottom:1px solid var(--border); }
+  td{ padding:12px 15px; border-bottom:1px solid var(--border); vertical-align:top; }
+  tr:last-child td{ border-bottom:none; }
+  td.num{ font-family:ui-monospace,Menlo,monospace; font-weight:600; text-align:right; white-space:nowrap; }
+  .pill{ display:inline-block; font-size:10.5px; font-weight:800; padding:3px 9px; border-radius:999px; letter-spacing:.03em; }
+  .pill.g{ background:var(--good-tint); color:#106640; }
+  .pill.b{ background:var(--bad-tint); color:#93271B; }
+  .pill.w{ background:var(--warn-tint); color:#8A5A00; }
+
+  /* ---------- decline chart ---------- */
+  .decline{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:8px 0 4px; }
+  .dcol{ text-align:center; }
+  .dbar-area{ height:150px; display:flex; align-items:flex-end; justify-content:center; }
+  .dbar{ width:100%; max-width:76px; border-radius:6px 6px 0 0; background:var(--yellow); position:relative; }
+  .dbar.dim{ background:var(--surface-2); }
+  .dbar span{ position:absolute; top:-24px; left:0; right:0; text-align:center; font-weight:800; font-size:14px; }
+  .dyear{ font-size:12px; font-weight:700; margin-top:9px; }
+  .dnote{ font-size:10.5px; color:var(--muted-2); }
+
+  /* ---------- template performance ---------- */
+  .tmpl{ display:flex; flex-direction:column; gap:0; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+  .tmpl-row{ display:grid; grid-template-columns:1fr 130px 92px; gap:12px; align-items:center; padding:14px 18px; border-bottom:1px solid var(--border); }
+  .tmpl-row:last-child{ border-bottom:none; }
+  .tmpl-row.head{ background:var(--surface); font-size:10.5px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); }
+  .tmpl-n{ font-size:13.5px; font-weight:600; }
+  .tmpl-track{ height:9px; background:var(--surface-2); border-radius:99px; overflow:hidden; }
+  .tmpl-fill{ height:100%; background:var(--yellow); border-radius:99px; }
+  .tmpl-v{ font-family:ui-monospace,Menlo,monospace; font-size:12.5px; font-weight:600; text-align:right; }
+
+  /* ---------- API flow diagram ---------- */
+  .flow{ display:flex; flex-direction:column; gap:0; margin:22px 0; }
+  .fnode{ display:grid; grid-template-columns:44px 1fr; gap:16px; }
+  .fnode .rail{ display:flex; flex-direction:column; align-items:center; }
+  .fnode .dot{ width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-weight:900; font-size:13px; flex:none; }
+  .fnode .line{ flex:1; width:2px; background:var(--border); min-height:16px; }
+  .fnode:last-child .line{ display:none; }
+  .fnode .body{ padding-bottom:22px; }
+  .fnode h4{ font-size:15px; margin-bottom:5px; }
+  .fnode .dir{ font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:5px; margin-left:8px; vertical-align:middle; }
+  .dir.out{ background:var(--yellow-tint-2); color:#7A5F00; }
+  .dir.in{ background:#E8F0FE; color:#174EA6; }
+  .dir.hook{ background:var(--good-tint); color:#106640; }
+  .fnode p{ font-size:13.5px; color:var(--muted); margin-bottom:8px; }
+  .fnode ul{ list-style:none; }
+  .fnode li{ font-size:13px; color:var(--muted); padding-left:16px; position:relative; margin-bottom:4px; }
+  .fnode li::before{ content:"—"; position:absolute; left:0; color:var(--yellow-shade); }
+  .fnode li b{ color:var(--ink); }
+
+  /* ---------- payload code block ---------- */
+  pre{ background:var(--ink); color:#E8EAED; border-radius:var(--radius); padding:20px 22px; overflow-x:auto; font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace; font-size:12px; line-height:1.7; margin:18px 0; }
+  pre .k{ color:#FFC502; }
+  pre .s{ color:#9BD1A0; }
+  pre .c{ color:#8A929B; font-style:italic; }
+
+  /* ---------- proof cards ---------- */
+  .proof{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0; }
+  .pcard{ border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; background:var(--surface); }
+  .pcard .k{ font-size:10px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:var(--good); margin-bottom:8px; }
+  .pcard h4{ font-size:14.5px; margin-bottom:6px; }
+  .pcard p{ font-size:12.5px; color:var(--muted); line-height:1.55; }
+
+  /* ---------- phased plan ---------- */
+  .phase{ display:grid; grid-template-columns:104px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--border); }
+  .phase:last-child{ border-bottom:none; }
+  .ptag{ font-size:10px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; padding:5px 11px; border-radius:999px; display:inline-block; }
+  .ptag.p1{ background:var(--yellow); color:var(--ink); }
+  .ptag.p2{ background:var(--yellow-tint-2); color:#7A5F00; }
+  .ptag.p0{ background:var(--surface-2); color:var(--muted); }
+  .pnum{ font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--muted-2); margin-bottom:7px; }
+  .phase h4{ font-size:16px; margin-bottom:6px; }
+  .phase p{ font-size:13.5px; color:var(--muted); }
+
+  /* ---------- question list ---------- */
+  .qlist{ counter-reset:q; }
+  .qitem{ counter-increment:q; display:grid; grid-template-columns:30px 1fr; gap:13px; padding:13px 0; border-bottom:1px solid var(--border); }
+  .qitem:last-child{ border-bottom:none; }
+  .qitem::before{ content:counter(q); font-family:ui-monospace,Menlo,monospace; font-weight:700; font-size:12px; color:var(--yellow-shade); padding-top:2px; }
+  .qitem .qt{ font-size:14px; font-weight:700; margin-bottom:3px; }
+  .qitem .qd{ font-size:12.5px; color:var(--muted); line-height:1.5; }
+
+  .footer{ padding:34px 0 60px; }
+  .footer p{ font-size:12px; color:var(--muted-2); }
+
+  @media(max-width:720px){
+    .proof{ grid-template-columns:1fr; }
+    .decline{ grid-template-columns:repeat(2,1fr); row-gap:22px; }
+    .phase{ grid-template-columns:1fr; gap:8px; }
+    .tmpl-row{ grid-template-columns:1fr 70px; }
+    .tmpl-row > div:nth-child(2){ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="wrap">
+    <div class="eyebrow">Client Report &middot; Prepared by SME South Africa</div>
+    <h1>MTN SME Hub: what the data says, and how it becomes a lead engine</h1>
+    <p>A platform review built from direct database access to the live production site, plus a strategy for turning the hub from a content archive into a measurable acquisition channel for MTN Business.</p>
+    <div class="meta">
+      <div class="chip">mtnsmehub.co.za</div>
+      <div class="chip">WP Engine · production install</div>
+      <div class="chip">DB + Search Console data · 28 Aug 2026</div>
+      <div class="chip">Final draft</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EXEC SUMMARY ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Executive Summary</div>
+    <h2 class="sec">Five things that matter</h2>
+    <p class="sec-desc">Every figure below comes from the production database, not from an estimate. Where I could not get data, I have said so explicitly rather than filling the gap.</p>
+
+    <div class="verdicts">
+      <div class="verdict">
+        <div class="n">1</div>
+        <div>
+          <h4>Publishing has all but stopped, and the audience followed</h4>
+          <p>Content output fell roughly <b>91% between 2023 and 2026</b>. Newsletter sign-ups fell in lockstep: August 2025 to August 2026 is a <b>69% year-on-year decline</b>. This is the single clearest cause-and-effect in the data.</p>
+        </div>
+      </div>
+      <div class="verdict">
+        <div class="n">2</div>
+        <div>
+          <h4>Four templates are quietly doing a third of the work</h4>
+          <p>Four downloadable templates, published once in 2023 and never touched since, account for roughly <b>a third of every form submission the site has ever received</b> — and one of them took a submission on the day I pulled this data.</p>
+        </div>
+      </div>
+      <div class="verdict">
+        <div class="n">3</div>
+        <div>
+          <h4>The demand pattern is independently confirmed</h4>
+          <p>MTN's four best-performing templates match SME South Africa's most-downloaded resources in <b>almost exactly the same order</b>, across two unrelated audiences. This is structural SME demand, not an audience quirk — which makes it safe to build on.</p>
+        </div>
+      </div>
+      <div class="verdict">
+        <div class="n">4</div>
+        <div>
+          <h4>Nothing on the site is set up to measure a conversion</h4>
+          <p>Analytics is collecting traffic but has <b>no conversion tracking configured at all</b> — no events on a template download, no event on a newsletter sign-up. Template downloads and sign-ups, the two things that actually work, are invisible to every report we can pull.</p>
+        </div>
+      </div>
+      <div class="verdict">
+        <div class="n">5</div>
+        <div>
+          <h4>There is real, untapped organic search demand sitting on pages that rank poorly</h4>
+          <p>Search Console access came through this week. Two funding-related guides are pulling in <b>10,000+ and 14,000+ impressions</b> over the last 28 days each, but sit at <b>positions 39–44</b> — meaning the demand exists and Google is showing the page, but it isn't winning the click. That is a content/SEO fix, not a rebuild, and it is available immediately.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DATA ACCESS ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Scope of this review</div>
+    <h2 class="sec">What I could see, and what I could not</h2>
+    <p class="sec-desc">Being precise about this matters, because it determines which conclusions in this report are solid and which still need confirming.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Source</th><th>Status</th><th>What it gave us</th></tr>
+        <tr>
+          <td><b>Production database</b><br><span style="color:var(--muted); font-size:12px;">WP Engine SSH, install <span class="mono">mtnsmehub</span></span></td>
+          <td><span class="pill g">Full access</span></td>
+          <td>Complete content inventory, publishing dates, every form submission with timestamps, taxonomy structure, plugin and theme configuration.</td>
+        </tr>
+        <tr>
+          <td><b>Google Search Console</b><br><span style="color:var(--muted); font-size:12px;">Property <span class="mono">https://mtnsmehub.co.za/</span></span></td>
+          <td><span class="pill g">Full access</span></td>
+          <td>Connected 28 Aug 2026. Real search queries, click/impression volumes, ranking positions and top pages now pulled directly — see the Search Demand section below.</td>
+        </tr>
+        <tr>
+          <td><b>Google Analytics 4</b><br><span style="color:var(--muted); font-size:12px;">Property <span class="mono">392480894</span></span></td>
+          <td><span class="pill b">Still no access</span></td>
+          <td>The Viewer grant has not taken effect on our side yet — a live permission check against the property still returns a 403 as of this data pull. <b>No traffic, source, landing-page or engagement data in this report.</b> Worth a quick re-check on the property that the service account was actually added to.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <div class="t">One request still unlocks the rest of this report</div>
+      <div class="d">Search Console access is live — thank you. GA4 is the one piece still outstanding: add <span class="mono">sme-gsc-reader@driven-saga-459713-h8.iam.gserviceaccount.com</span> as a <b>Viewer</b> directly on GA4 property <span class="mono">392480894</span> (Admin &rarr; Property Access Management on that specific property, not the account level). With it I can add session volumes, acquisition channels and which articles actually hold attention. Everything in this report stands without it.</div>
+    </div>
+
+    <div class="callout bad">
+      <div class="t">Correction to the existing brief</div>
+      <div class="d">The mockup brief records the install as <span class="mono">mtnsmehubstg</span>. That is the <b>staging</b> copy, and it is materially out of date — it has three fewer articles and around 400 fewer form submissions than production. Live is the separate <span class="mono">mtnsmehub</span> production install. All figures in this report are from production. Worth correcting in the brief so nobody analyses the wrong copy again.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT'S ON THE SITE ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">The site today</div>
+    <h2 class="sec">A well-built archive that stopped being fed</h2>
+    <p class="sec-desc">The content itself is genuinely good — practical, specific, written for a South African SME rather than translated from a US template. The problem is not quality. It is supply, structure and measurement.</p>
+
+    <div class="tbl-wrap" style="margin-bottom:30px;">
+      <table>
+        <tr><th>Content type</th><th class="num">Published</th><th>Note</th></tr>
+        <tr><td>Business advice articles</td><td class="num">90</td><td>The core asset. Organised across five pillars.</td></tr>
+        <tr><td>Guides</td><td class="num">16</td><td>Longer-form, separate post type and taxonomy.</td></tr>
+        <tr><td>Templates</td><td class="num">4</td><td><b>The highest-converting content on the site.</b> All published 2023.</td></tr>
+        <tr><td>Infographics</td><td class="num">4</td><td>Three of the four are from 2026 — recent activity.</td></tr>
+        <tr><td>Events</td><td class="num">0</td><td><span class="pill w">14 stuck in draft</span> Never published. The redesign includes an events page with nothing to fill it.</td></tr>
+      </table>
+    </div>
+
+    <h3 class="sub">The publishing collapse</h3>
+    <p class="sec-desc" style="margin-bottom:18px;">Total content items published per year, all types combined:</p>
+    <div class="decline">
+      <div class="dcol">
+        <div class="dbar-area"><div class="dbar" style="height:100%"><span>82</span></div></div>
+        <div class="dyear">2023</div><div class="dnote">the build year</div>
+      </div>
+      <div class="dcol">
+        <div class="dbar-area"><div class="dbar" style="height:32%"><span>26</span></div></div>
+        <div class="dyear">2024</div><div class="dnote">&minus;68%</div>
+      </div>
+      <div class="dcol">
+        <div class="dbar-area"><div class="dbar" style="height:17%"><span>14</span></div></div>
+        <div class="dyear">2025</div><div class="dnote">&minus;83% vs 2023</div>
+      </div>
+      <div class="dcol">
+        <div class="dbar-area"><div class="dbar dim" style="height:9%"><span>7</span></div></div>
+        <div class="dyear">2026</div><div class="dnote">&minus;91% vs 2023</div>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top:26px;">
+      <div class="t">There is a twelve-month hole in the article archive</div>
+      <div class="d">The most recent articles before August 2026 were published in <b>August 2025</b>. Nothing for a full year. Then three articles appeared in August 2026 — including one published the day before this data pull. Someone has restarted publishing very recently, which is the right instinct and worth building on rather than starting cold.</div>
+    </div>
+
+    <h3 class="sub">Sign-ups tracked the content decline almost exactly</h3>
+    <p class="sec-desc" style="margin-bottom:14px;">Newsletter sign-ups per month. Nothing about the form changed in this period — only the volume of content bringing people to it.</p>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Period</th><th class="num">Monthly average</th><th>Change</th></tr>
+        <tr><td>Mar &ndash; Dec 2025</td><td class="num">~106</td><td>Baseline</td></tr>
+        <tr><td>Jan &ndash; Mar 2026</td><td class="num">~72</td><td><span class="pill w">&minus;32%</span></td></tr>
+        <tr><td>Apr &ndash; Aug 2026</td><td class="num">~29</td><td><span class="pill b">&minus;73%</span></td></tr>
+      </table>
+    </div>
+    <p style="font-size:12.5px; color:var(--muted-2); margin-top:10px;">August 2025 recorded 95 sign-ups. August 2026 recorded 29 — a 69% year-on-year fall. July 2026 was the floor at 16.</p>
+    <div class="callout warn" style="margin-top:18px;">
+      <div class="t">Sign-up counts only — not open or click performance</div>
+      <div class="d">The figures above come from the site's own sign-up form submissions in the production database. We do not have access to MTN's newsletter sending platform, so open rates, click rates and list health are not in this report. Flagged as a gap to close later, not a blocker to closing this one.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEARCH DEMAND ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Search demand · pulled live, 28 Aug 2026</div>
+    <h2 class="sec">Google is already sending traffic. Some of it is being left on the table</h2>
+    <p class="sec-desc">Search Console access came through this week, so this section is real data rather than a gap. It is entirely organic — no paid search sits behind any of these numbers.</p>
+
+    <div class="tbl-wrap" style="margin-bottom:22px;">
+      <table>
+        <tr><th>Window</th><th class="num">Clicks</th><th class="num">Impressions</th><th class="num">Avg. CTR</th><th class="num">Avg. position</th></tr>
+        <tr><td>Last 28 days</td><td class="num">533</td><td class="num">59,916</td><td class="num">0.89%</td><td class="num">31.9</td></tr>
+        <tr><td>Prior 28 days</td><td class="num">559</td><td class="num">62,375</td><td class="num">0.90%</td><td class="num">29.0</td></tr>
+      </table>
+    </div>
+    <p class="sec-desc" style="margin-bottom:22px;">Broadly flat period on period, with average position drifting slightly worse. Nothing alarming, but nothing improving either — consistent with a site that has mostly stopped publishing.</p>
+
+    <h3 class="sub" style="margin-top:6px;">Top queries are mostly MTN Foundation brand searches, not SME searches</h3>
+    <div class="tbl-wrap" style="margin-bottom:14px;">
+      <table>
+        <tr><th>Query</th><th class="num">Clicks</th><th class="num">Position</th></tr>
+        <tr><td>mtn foundation</td><td class="num">84</td><td class="num">2.6</td></tr>
+        <tr><td>non repayable small business grants south africa</td><td class="num">29</td><td class="num">10.0</td></tr>
+        <tr><td>mtn sa foundation</td><td class="num">15</td><td class="num">3.1</td></tr>
+        <tr><td>what business can i start with r1000 in south africa</td><td class="num">13</td><td class="num">9.0</td></tr>
+        <tr><td>mtn foundation funding</td><td class="num">9</td><td class="num">3.3</td></tr>
+      </table>
+    </div>
+    <div class="callout warn">
+      <div class="t">The single biggest query is a different MTN entity entirely</div>
+      <div class="d">"mtn foundation" and its variants (foundation, sponsorship, contact details) are the top traffic driver, at position 2–3. MTN SA Foundation is corporate social investment — a different team, different budget, different mandate to MTN Business. The hub is inadvertently absorbing Foundation-brand search traffic. Worth a quick conversation on whether that traffic should be redirected toward Foundation's own channels, or whether the hub is a deliberate front door for it — either is fine, but right now it looks unplanned.</div>
+    </div>
+
+    <h3 class="sub">The clearest quick win: two high-demand pages ranking too low to be found</h3>
+    <div class="tbl-wrap" style="margin-bottom:14px;">
+      <table>
+        <tr><th>Page</th><th class="num">Impressions (28d)</th><th class="num">Clicks</th><th class="num">Position</th></tr>
+        <tr><td>Non-repayable business grants for startups (guide)</td><td class="num">10,921</td><td class="num">46</td><td class="num"><span class="pill b">44.3</span></td></tr>
+        <tr><td>Funding options for small business startups in SA</td><td class="num">14,786</td><td class="num">40</td><td class="num"><span class="pill b">39.3</span></td></tr>
+        <tr><td>Business ideas to start with R100 (guide)</td><td class="num">4,283</td><td class="num">55</td><td class="num"><span class="pill w">8.0</span></td></tr>
+      </table>
+    </div>
+    <div class="callout good">
+      <div class="t">This is a content-refresh job, not a rebuild</div>
+      <div class="d">The first two pages are shown to searchers <b>10,000+ and 14,000+ times a month</b> each — Google already believes they are relevant — but sit past page 3, where almost nobody clicks. A content refresh (update the figures, tighten the headline, add current 2026 funding sources) on just these two pages is the single highest-leverage, lowest-cost action available in this entire report. It needs no API, no MTN sign-off, and no ad spend.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT WORKS ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">What is working</div>
+    <h2 class="sec">The templates are the whole story</h2>
+    <p class="sec-desc">Four templates. Published once, in 2023. Never revised, never re-promoted, no longer even mentioned in the main navigation. They are still generating leads today.</p>
+
+    <div class="tmpl">
+      <div class="tmpl-row head"><div>Template</div><div>Share of template leads</div><div style="text-align:right;">Last lead</div></div>
+      <div class="tmpl-row">
+        <div class="tmpl-n">Business Plan Template</div>
+        <div class="tmpl-track"><div class="tmpl-fill" style="width:100%"></div></div>
+        <div class="tmpl-v">27 Aug</div>
+      </div>
+      <div class="tmpl-row">
+        <div class="tmpl-n">Cash Flow Projection Template</div>
+        <div class="tmpl-track"><div class="tmpl-fill" style="width:92%"></div></div>
+        <div class="tmpl-v">16 Aug</div>
+      </div>
+      <div class="tmpl-row">
+        <div class="tmpl-n">Employment Contract Template</div>
+        <div class="tmpl-track"><div class="tmpl-fill" style="width:68%"></div></div>
+        <div class="tmpl-v">25 Jun</div>
+      </div>
+      <div class="tmpl-row">
+        <div class="tmpl-n">Invoice &amp; Quotation Template</div>
+        <div class="tmpl-track"><div class="tmpl-fill" style="width:45%"></div></div>
+        <div class="tmpl-v">28 Aug</div>
+      </div>
+    </div>
+
+    <div class="callout good">
+      <div class="t">Two of the four took a lead within 48 hours of this report</div>
+      <div class="d">This is content that has been left completely alone for three years and is <b>still the most reliable conversion mechanism on the site</b>. Together the four account for roughly a third of all form submissions ever recorded. Any strategy that does not start by expanding this is ignoring the one thing with proven demand.</div>
+    </div>
+
+    <h3 class="sub">And the demand is confirmed independently</h3>
+    <p class="sec-desc" style="margin-bottom:16px;">We run the same kind of resource library on SME South Africa, for a completely different audience acquired through completely different channels. The rankings are near-identical:</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Rank</th><th>MTN SME Hub</th><th>SME South Africa</th></tr>
+        <tr><td class="num">1</td><td>Business Plan Template</td><td>Business Plan Template <span style="color:var(--muted); font-size:12px;">— 17% of all downloads</span></td></tr>
+        <tr><td class="num">2</td><td>Cash Flow Projection</td><td>Cash flow &amp; income statement tools</td></tr>
+        <tr><td class="num">3</td><td>Employment Contract</td><td>Contract of Employment</td></tr>
+        <tr><td class="num">4</td><td>Invoice &amp; Quotation</td><td>Business Invoice Template</td></tr>
+      </table>
+    </div>
+
+    <div class="callout good">
+      <div class="t">Why this matters more than either data set alone</div>
+      <div class="d">Two unrelated SME audiences producing the same demand hierarchy means this is <b>how South African small businesses behave</b>, not a quirk of MTN's traffic mix. It converts "we think templates work" into a defensible planning assumption — and it is the strongest single argument in the redesign proposal.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT'S NOT WORKING ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">What is not working</div>
+    <h2 class="sec">Structure, measurement and hygiene</h2>
+
+    <h3 class="sub" style="margin-top:6px;">1. Navigation does not match the content</h3>
+    <p class="sec-desc">This is the highest-value fix, and the mockup already addresses it. The site holds 90 articles organised into meaningful pillars, but the live navigation offers only Home, Business Advice and Insights. The structure exists in the database and is invisible to the visitor.</p>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Pillar</th><th class="num">Articles</th><th>Assessment</th></tr>
+        <tr><td>Connect My Business</td><td class="num">33</td><td><span class="pill g">Strong</span></td></tr>
+        <tr><td>Manage My Business</td><td class="num">32</td><td><span class="pill g">Strong</span></td></tr>
+        <tr><td>Build My Business</td><td class="num">22</td><td><span class="pill g">Strong</span></td></tr>
+        <tr><td>Ecommerce</td><td class="num">7</td><td><span class="pill w">Thin for a named pillar</span></td></tr>
+        <tr><td>Feature My Business</td><td class="num">2</td><td><span class="pill b">A pillar with no content</span></td></tr>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:12px;">"Feature My Business" promises SME spotlights and delivers two articles. Either commit to it as a content stream — and it is a good one, because featured SMEs promote their own feature — or fold it away until there is substance behind it.</p>
+
+    <h3 class="sub">2. The category system is genuinely broken</h3>
+    <div class="callout bad">
+      <div class="t">There are two category taxonomies, and one is a typo</div>
+      <div class="d">Alongside the working <span class="mono">business-advise-category</span> there is a second taxonomy spelled <span class="mono">business-advicse-category</span>, containing <b>14 near-duplicate terms</b> — its own "Connect My Business", "Build My Business", "Finance" and so on. Two articles are filed under the misspelt one, where nothing will ever find them. It needs merging and deleting, carefully, with redirects.</div>
+    </div>
+    <p class="sec-desc" style="margin-bottom:12px;">Two further empty taxonomies exist: <span class="mono">insight-category</span> has six terms and zero articles assigned — so "Insights" appears in the navigation while its category system is entirely unused. <span class="mono">sme-guides-categories</span> is similarly empty.</p>
+    <p class="sec-desc">There is also no hierarchy: the four strategic pillars sit in the same flat list as eleven ad-hoc topics (Entrepreneurship, Finance, Technology, Human Resources, Automation, Modernisation, Customer Retention and others). An article can be tagged "Connect My Business" and "Finance" with nothing to indicate one is a pillar and the other a topic. That is why the navigation could never be generated automatically from the content.</p>
+
+    <h3 class="sub">3. Nothing measures a conversion</h3>
+    <p class="sec-desc" style="margin-bottom:14px;">Analytics is installed via Site Kit and collecting page views. Beyond that, the configuration is empty. This is a pure organic site — no paid campaigns, no ad platforms in the mix — so the fix is entirely within GA4 itself:</p>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Setting</th><th>Current state</th><th>Consequence</th></tr>
+        <tr><td>GA4 event on template download</td><td><span class="pill b">Not configured</span></td><td>The best-converting content on the site produces zero visible outcomes in any report.</td></tr>
+        <tr><td>GA4 event on newsletter sign-up</td><td><span class="pill b">Not configured</span></td><td>Sign-ups happen but are not counted as a measurable goal.</td></tr>
+        <tr><td>Detected conversion events</td><td><span class="pill b">None</span></td><td>Nothing on the site is currently marked as an outcome, only as a page view.</td></tr>
+        <tr><td>Google Tag last synced</td><td><span class="pill w">September 2023</span></td><td>Tag configuration has not been revisited in three years.</td></tr>
+      </table>
+    </div>
+    <div class="callout warn">
+      <div class="t">We fixed this exact problem on our own platform this month</div>
+      <div class="d">On SME South Africa we found a funding-application conversion tag that had never fired once — the tracking code depended on a function that did not exist on the page. The funnel was genuinely converting at around 11% and every report believed it converted at zero. MTN's hub is in the same position: <b>the two things that demonstrably work — templates and sign-ups — are the two things no report can see.</b></div>
+    </div>
+
+    <h3 class="sub">4. Housekeeping worth doing while we are in there</h3>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Finding</th><th>Why it matters</th></tr>
+        <tr><td><b>Theme editor plugin is active</b></td><td>Allows editing live PHP from the browser. On a client site carrying MTN's brand this is an unnecessary security exposure. Disable it.</td></tr>
+        <tr><td><b>Two form systems running</b></td><td>Contact Form 7 (plus two companion plugins) is active alongside Fluent Forms. CF7 holds a single entry from 2023. Three plugins are loading on every page for a dead form.</td></tr>
+        <tr><td><b>Leftover developer content in production</b></td><td>A custom post type named <span class="mono">testsandile</span> holds two published posts. Test scaffolding should not be publicly reachable on a client site.</td></tr>
+        <tr><td><b>Two email paths</b></td><td>A Mailchimp integration runs alongside Fluent Forms' own handling. Worth confirming which one actually owns the subscriber list.</td></tr>
+        <tr><td><b>One case-study submission since 2023</b></td><td>The Case Study form has received exactly one submission, in May 2023. It is either broken, unreachable, or should be retired.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE MOCKUP ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">The redesign</div>
+    <h2 class="sec">The idea behind the mockup</h2>
+    <p class="sec-desc">The brief asked for elevated presentation of the same content. The mockup delivers that, but its more important move is structural: it introduces a commercial path the current site simply does not have. Here is the reasoning behind each decision.</p>
+
+    <h3 class="sub" style="margin-top:6px;">Move 1 — Make the navigation reflect the content that exists</h3>
+    <p class="sec-desc">A mega-menu exposes all five pillars directly, each with a plain-language descriptor ("Connect My Business — websites, funding, going online"). Nothing new has to be written for this to work: 87 of the 90 existing articles already sit in the three strong pillars. This converts a hidden archive into a browsable library on day one, and it is the cheapest meaningful win available.</p>
+
+    <h3 class="sub">Move 2 — Give "Insights" something to actually be</h3>
+    <p class="sec-desc">Today Insights is a nav item with an empty taxonomy behind it. The mockup splits it into Guides, Templates, Learning &amp; Development and Events. Two consequences worth noting: <b>Templates get promoted to a first-class destination</b> — the best-converting content on the site is currently not linked from the main navigation at all — and Events finally has a home, which is the nudge needed to publish those fourteen drafts.</p>
+
+    <h3 class="sub">Move 3 — Add Business Solutions as a top-level destination</h3>
+    <p class="sec-desc">This is the pivot. The hub currently talks about business problems and stops there. The mockup adds a product layer carrying the real MTN Business catalogue — Made For Business voice and data plans, Managed Firewall, SOC as a Service — so an SME reading about connectivity or cybersecurity has somewhere to go that is a product rather than another article.</p>
+
+    <h3 class="sub">Move 4 — The plan configurator, which is where leads are actually made</h3>
+    <p class="sec-desc">The configurator page is the most commercially significant screen in the set, and it is deliberately modelled on how MTN Business already sells:</p>
+    <div class="tbl-wrap" style="margin-bottom:18px;">
+      <table>
+        <tr><th>Element</th><th>Purpose</th></tr>
+        <tr><td>Contract term toggle (24 / 36 months)</td><td>Captures commercial intent, and changes the monthly figure live.</td></tr>
+        <tr><td>Device add-on with quantity stepper</td><td>Turns a plan enquiry into a sized deal. Quantity is a strong qualification signal — it tells a consultant the size of the business before they call.</td></tr>
+        <tr><td>Live receipt and monthly total</td><td>Removes the uncertainty that makes SMEs abandon telco enquiries.</td></tr>
+        <tr><td>Two blocking consent checkboxes</td><td>Apply stays disabled until both are ticked. POPIA consent captured at source, not assumed.</td></tr>
+        <tr><td>"No payment is taken on this site"</td><td>Sets expectation honestly — this is a qualified lead handover, not e-commerce.</td></tr>
+        <tr><td>Reference number on completion</td><td>Gives the SME something to quote, and the consultant something to look up. This is the field the API fills.</td></tr>
+      </table>
+    </div>
+    <p class="sec-desc">The sequence is the point: <b>content earns the attention, the template captures the identity, the configurator captures the intent.</b> A template download tells you a business exists and what it is worried about. A completed configuration tells you what it wants to buy, for how long, and at what scale. The first is a contact; the second is a lead a consultant can act on immediately.</p>
+
+    <div class="callout warn">
+      <div class="t">Three things to fix in the mockup before it is shown to MTN</div>
+      <div class="d">
+        <b>1. Invented statistics.</b> The lead-gen callout claims "4,200+ SMEs assisted this year" and a "15 min average callback time". Both are placeholders. Replace with real MTN figures or delete them — unverifiable numbers in a telco's own brand are a genuine risk, not a rounding error.<br><br>
+        <b>2. The corporate typeface.</b> The mockup renders in Inter because MTN Brighter Sans is a licensed font that is not web-available to us. This is a reasonable stand-in, but MTN should either supply the licensed web font files or formally approve the substitute before launch.<br><br>
+        <b>3. Plan pricing is hardcoded.</b> The page carries its own honest disclaimer — "confirm current terms with MTN Business before publishing live". That disclaimer is exactly the argument for the pricing API in the next section.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ API STRATEGY ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">The lead engine</div>
+    <h2 class="sec">API integration strategy</h2>
+    <p class="sec-desc">MTN Business already sells these products through its own channels. The hub should not rebuild that — it should feed it. The integration has four surfaces, and they are worth separating because they carry very different dependencies, risks and delivery timelines.</p>
+
+    <div class="callout warn">
+      <div class="t">Scope note</div>
+      <div class="d">Our current engagement on this site is organic — publishing content and managing the newsletter, no paid media of any kind. Everything below is <b>proposed forward strategy</b>, not work already in scope, and none of it depends on or assumes any ad spend. Phase 0 and 1 need nothing from MTN beyond a conversation and content sign-off; phases 3 and 4 (the lead API itself) would be a separate scope conversation once MTN Business confirms what it can expose.</div>
+    </div>
+
+    <div class="callout bad">
+      <div class="t">What happens without the API</div>
+      <div class="d">Prices are typed into WordPress by hand and drift out of date — a telco advertising a price it no longer offers. Leads land in a WordPress table and someone re-keys them into MTN's sales system, losing hours and dropping records. And because the handover breaks the data chain, <b>nobody can ever prove which article produced which sale</b> — which is precisely the number that renews a sponsorship budget.</div>
+    </div>
+
+    <div class="flow">
+      <div class="fnode">
+        <div class="rail"><div class="dot" style="background:#E8F0FE; color:#174EA6;">1</div><div class="line"></div></div>
+        <div class="body">
+          <h4>Catalogue &amp; pricing sync <span class="dir in">Inbound · scheduled</span></h4>
+          <p>Pull the live product and pricing catalogue from MTN Business on a schedule rather than maintaining it by hand.</p>
+          <ul>
+            <li>Store as a product post type with structured fields — the site already runs ACF Pro and Custom Post Type UI, so <b>no new stack is needed</b></li>
+            <li>Serve every page from the local copy, so page speed never depends on MTN's API responding</li>
+            <li>Stamp each price with an "as at" date so the source of truth is visible</li>
+            <li><b>Fail safe:</b> if a sync fails, keep serving the last known-good catalogue and raise an alert — never show a blank or a zero price</li>
+            <li>Retires the "confirm terms before publishing" risk permanently</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fnode">
+        <div class="rail"><div class="dot" style="background:var(--yellow); color:var(--ink);">2</div><div class="line"></div></div>
+        <div class="body">
+          <h4>Lead submission <span class="dir out">Outbound · real time</span></h4>
+          <p>The core of the engine. When an SME completes a configuration, the lead reaches a consultant's queue in seconds with the full configuration attached.</p>
+          <ul>
+            <li><b>Write locally first, then transmit.</b> The lead is committed to our own database before any external call. A lead is never lost because someone else's API was down</li>
+            <li><b>Idempotency key per submission</b> so a retry can never create a duplicate lead in MTN's CRM</li>
+            <li><b>Queue with backoff retry</b> — an MTN-side outage delays delivery, it does not destroy it</li>
+            <li>Store the returned case reference and show it to the SME — the reference field already in the mockup</li>
+            <li>Alert on repeated failure so a silent breakage cannot run for weeks</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fnode">
+        <div class="rail"><div class="dot" style="background:var(--good-tint); color:#106640;">3</div><div class="line"></div></div>
+        <div class="body">
+          <h4>Status callback <span class="dir hook">Inbound · webhook</span></h4>
+          <p>MTN Business posts lead progress back to the hub: contacted, qualified, quoted, won, lost.</p>
+          <ul>
+            <li>Signed requests (HMAC) plus IP allow-listing — this endpoint accepts commercial data and must be locked down</li>
+            <li>Updates the local lead record to close the loop</li>
+            <li><b>This is the difference between "the hub produced 200 leads" and "the hub produced R-value in contracted revenue."</b> Only the second one justifies a budget</li>
+            <li>If MTN cannot push, a scheduled pull against the reference IDs achieves the same result more slowly</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fnode">
+        <div class="rail"><div class="dot" style="background:var(--yellow-tint-2); color:#7A5F00;">4</div></div>
+        <div class="body">
+          <h4>Conversion reporting <span class="dir out">Outbound · analytics</span></h4>
+          <p>Feed real outcomes back into GA4 so the content team — not an ad platform — can see what is actually working.</p>
+          <ul>
+            <li>Fire a qualified-lead event with plan tier and value — only on a genuinely complete submission, never on a page view</li>
+            <li>Configure the two conversion events this report already flags as missing: template download and newsletter sign-up</li>
+            <li>Once a lead is marked <i>won</i>, log that outcome against the stored content path so we can say which article, template or guide it started from</li>
+            <li>This is a pure organic reporting loop — no ad platform is involved anywhere in this stack</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub">The lead payload — what a consultant actually receives</h3>
+    <p class="sec-desc" style="margin-bottom:6px;">Shape matters more than syntax here. The attribution block is the part that is usually left out and is the reason most content-to-sales handovers can never be measured.</p>
+<pre><span class="c">// Illustrative structure — field names to be agreed with MTN Business</span>
+{
+  <span class="k">"idempotency_key"</span>: <span class="s">"hub-2026-08-28-a91f3c"</span>,   <span class="c">// retry-safe, no duplicates</span>
+  <span class="k">"contact"</span>:  { name, business_name, phone, email, province },
+  <span class="k">"configuration"</span>: {
+     <span class="k">"product_sku"</span>: <span class="s">"MFB-L"</span>,               <span class="c">// from the synced catalogue</span>
+     <span class="k">"term_months"</span>: 36,
+     <span class="k">"device_required"</span>: true,
+     <span class="k">"device_quantity"</span>: 4,                 <span class="c">// implies business size</span>
+     <span class="k">"quoted_monthly"</span>: 499
+  },
+  <span class="k">"consent"</span>: {
+     <span class="k">"privacy_accepted_at"</span>: <span class="s">"2026-08-28T09:14:22+02:00"</span>,
+     <span class="k">"terms_accepted_at"</span>:   <span class="s">"2026-08-28T09:14:24+02:00"</span>,
+     <span class="k">"wording_version"</span>:     <span class="s">"v2.1"</span>        <span class="c">// POPIA: prove what they agreed to</span>
+  },
+  <span class="k">"attribution"</span>: {                          <span class="c">// the organic content case lives here</span>
+     <span class="k">"first_landing_page"</span>: <span class="s">"/business-advice/what-are-working-capital-loans"</span>,
+     <span class="k">"content_path"</span>: [<span class="s">"article:working-capital"</span>, <span class="s">"template:cash-flow"</span>],
+     <span class="k">"referral_source"</span>: <span class="s">"organic_search"</span>,        <span class="c">// or newsletter, or direct</span>
+     <span class="k">"days_from_first_visit"</span>: 6
+  }
+}</pre>
+
+    <h3 class="sub">Attribution is what turns the hub into a business case</h3>
+    <p class="sec-desc">Carrying that attribution block end to end lets MTN answer questions it currently cannot ask: which article produces the most Managed Firewall deals? Does a cash-flow template download predict a larger plan? How long does an SME take from first read to signed contract? Those answers reframe the hub from a marketing cost into a measurable acquisition channel with a cost per acquired customer.</p>
+    <p class="sec-desc">The template download is the pivotal moment in that chain — it is where an anonymous reader becomes a named business with a known problem. That is why expanding the template library is both the content recommendation and the lead-generation recommendation. They are the same recommendation.</p>
+
+    <h3 class="sub">Data protection</h3>
+    <p class="sec-desc">Consent is captured at source with a timestamp and the version of the wording agreed to, and travels with the lead. Only what MTN Business needs in order to make contact and quote is transmitted. Credentials live in server configuration, never in the repository and never in browser code. A retention period and deletion path are defined before launch, not after. The mockup's blocking consent checkboxes are already the correct pattern.</p>
+
+    <div class="proof">
+      <div class="pcard">
+        <div class="k">Already in production</div>
+        <h4>We have built this exact architecture</h4>
+        <p>On SME South Africa we run server-to-server lead submission into a funding partner's API — local-first write, retry queue, returned reference IDs. It removed the manual re-keying step and guaranteed attribution. This is not a theoretical design.</p>
+      </div>
+      <div class="pcard">
+        <div class="k">Already in production</div>
+        <h4>And the closed-loop tracking</h4>
+        <p>We log partner conversion callbacks server-side, and this month wired a qualified-lead conversion signal that only fires when a submission meets a real commercial bar — entirely organic, no ad platform involved. Steps 3 and 4 above are proven patterns for us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEQUENCE ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Delivery</div>
+    <h2 class="sec">Sequenced so value lands before the hard dependencies</h2>
+    <p class="sec-desc">The integration depends on MTN Business, and that dependency is outside our control. The order below is deliberately arranged so the work that needs nothing from MTN happens first.</p>
+
+    <div class="phase">
+      <div><div class="pnum">PHASE 0</div><span class="ptag p0">Dependency</span></div>
+      <div>
+        <h4>Establish what MTN Business can actually expose</h4>
+        <p>Not a build step — a conversation. Everything in phases 2 to 4 is shaped by the answers. Start it immediately and in parallel with phase 1, because it will take the longest and is the critical path.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div><div class="pnum">PHASE 1</div><span class="ptag p1">Do first</span></div>
+      <div>
+        <h4>Content, structure and measurement — zero external dependencies</h4>
+        <p>Merge the duplicate taxonomy and redirect. Introduce the pillar hierarchy. Ship the category-aware navigation. Promote Templates into the main nav. Publish the fourteen draft events. Configure GA4 conversion events for template downloads and newsletter sign-ups. Refresh the two high-impression, low-ranking funding guides flagged in the search demand section. Disable the theme editor, retire the dead form stack. <b>Every one of these is available now, needs no ad spend, and several are the highest-return items in this report.</b></p>
+      </div>
+    </div>
+    <div class="phase">
+      <div><div class="pnum">PHASE 2</div><span class="ptag p1">Do first</span></div>
+      <div>
+        <h4>Expand the template library</h4>
+        <p>The clearest evidence-backed action available. Four templates from 2023 drive a third of all conversions, and our own library confirms the same demand pattern with a longer list of proven titles — income statement, breakeven calculator, business budget, quotation, startup checklist. This needs no API and no MTN sign-off beyond content approval.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div><div class="pnum">PHASE 3</div><span class="ptag p2">On MTN readiness</span></div>
+      <div>
+        <h4>Lead submission API and the configurator</h4>
+        <p>Build the configurator against the synced catalogue, wire outbound lead submission with local-first durability and idempotency, surface real reference numbers. Ship behind a feature flag so the redesign can launch before the integration is signed off.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div><div class="pnum">PHASE 4</div><span class="ptag p2">On MTN readiness</span></div>
+      <div>
+        <h4>Closed-loop reporting</h4>
+        <p>Status webhook, won/lost outcomes flowing back, and a reporting view that shows content-to-revenue inside GA4 and our own dashboards. No ad platform is involved at any point — this is the phase that makes the hub defensible at budget time on its own organic merits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Phase 0</div>
+    <h2 class="sec">What we need to ask MTN Business</h2>
+    <p class="sec-desc">These determine the shape of the integration. I would put them in writing before committing to any delivery dates on phases 3 and 4.</p>
+    <div class="qlist">
+      <div class="qitem"><div><div class="qt">Is there a lead-intake API, and which system sits behind it?</div><div class="qd">Salesforce, Dynamics, Siebel or something in-house — each has a different integration pattern and a different effort profile.</div></div></div>
+      <div class="qitem"><div><div class="qt">Is there a product and pricing API, or is the catalogue maintained manually?</div><div class="qd">If manual, phase 1 needs an interim process for keeping prices honest, and a visible "as at" date becomes mandatory rather than nice to have.</div></div></div>
+      <div class="qitem"><div><div class="qt">What is the authentication model?</div><div class="qd">OAuth2 client credentials, mutual TLS, or a static API key. This drives credential storage, rotation and the security review.</div></div></div>
+      <div class="qitem"><div><div class="qt">Can MTN push status updates, or must we poll?</div><div class="qd">Push gives near-real-time closed-loop reporting. Polling works, more slowly, and needs rate limits agreed.</div></div></div>
+      <div class="qitem"><div><div class="qt">Is there a sandbox?</div><div class="qd">We will not test lead submission against a live sales queue. Without a sandbox the integration timeline lengthens materially.</div></div></div>
+      <div class="qitem"><div><div class="qt">How should we handle an SME who is already an MTN customer?</div><div class="qd">Deduplication rules, and whether an existing customer should be routed to account management instead of new business.</div></div></div>
+      <div class="qitem"><div><div class="qt">What are the rate limits and the support SLA?</div><div class="qd">Determines queue design, and who is called when leads stop arriving at 5pm on a Friday.</div></div></div>
+      <div class="qitem"><div><div class="qt">Who owns the lead once it is delivered?</div><div class="qd">Needs to be explicit for POPIA, and for reporting: if MTN never reports an outcome, the hub can never demonstrate its value.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section style="border-bottom:none;">
+  <div class="wrap">
+    <div class="sec-label">The argument</div>
+    <h2 class="sec">In one paragraph</h2>
+    <p class="sec-desc" style="font-size:15.5px; color:var(--ink); max-width:76ch;">MTN SME Hub has 90 genuinely useful articles, four templates that still convert three years after publication, and a demand pattern independently confirmed by a second SME audience. What it lacks is supply and structure: publishing has fallen by roughly 91%, the navigation hides the content, and nothing on the site counts a conversion — even though real organic search demand is sitting untapped on pages Google already shows tens of thousands of times a month. The redesign fixes the structure. Restarting content fixes the supply. Configuring GA4 properly fixes the measurement. All of it is achievable within our current organic scope — publishing and newsletter management — with no paid media anywhere in the plan. The API integration is a separate, larger opportunity worth proposing once MTN Business confirms what it can expose.</p>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="wrap">
+    <p>Prepared by SME South Africa for MTN SME Hub · Data pulled from the production install and Google Search Console on 28 August 2026 · Final draft, ready for client-facing use. GA4 access still pending on MTN's side; newsletter platform performance (opens/clicks) also pending, to be added when available.</p>
+  </div>
+</div>
+
+</body>
+</html>
