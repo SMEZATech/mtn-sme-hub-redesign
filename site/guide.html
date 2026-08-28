@@ -8,8 +8,93 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
+<style>
+  /* ===== Scroll progress rail ===== */
+  .scroll-rail{ position:fixed; top:0; left:0; height:3px; background:var(--yellow); z-index:400; width:0%; transition:width .1s linear; }
+
+  /* ===== Guide hero ===== */
+  .guide-hero{ background:var(--ink); color:#fff; padding:56px 0 40px; position:relative; overflow:hidden; }
+  .guide-hero::before{ content:""; position:absolute; top:-120px; right:-100px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.24) 0%, transparent 70%); }
+  .guide-hero::after{ content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.5px); background-size:22px 22px; }
+  .guide-hero .wrap{ position:relative; z-index:1; }
+  .guide-hero .gh-breadcrumb{ font-size:12px; color:rgba(255,255,255,.55); display:flex; gap:7px; align-items:center; margin-bottom:24px; flex-wrap:wrap; }
+  .guide-hero .gh-breadcrumb a{ color:rgba(255,255,255,.55); }
+  .guide-hero .gh-breadcrumb a:hover{ color:#fff; }
+  .guide-hero .gh-breadcrumb .cur{ color:#fff; font-weight:600; }
+  .guide-hero .eyebrow-label{ color:var(--yellow); }
+  .guide-hero .eyebrow-label::before{ background:var(--yellow); }
+  .guide-hero h1{ color:#fff; font-size:clamp(30px,4.6vw,48px); max-width:820px; margin-bottom:16px; }
+  .guide-hero .gh-sub{ color:rgba(255,255,255,.65); font-size:16px; max-width:640px; margin-bottom:32px; }
+  .gh-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:32px; max-width:680px; }
+  .gh-stats .cell{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:16px 10px; text-align:center; }
+  .gh-stats .cell b{ display:block; font-size:22px; font-weight:800; color:var(--yellow); }
+  .gh-stats .cell span{ font-size:10.5px; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:.05em; }
+  .gh-cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
+
+  /* ===== Sticky jump nav ===== */
+  .jump-nav{ position:sticky; top:73px; z-index:150; background:rgba(255,255,255,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+  .jump-nav .row{ display:flex; gap:8px; overflow-x:auto; padding:12px 0; scrollbar-width:none; }
+  .jump-nav .row::-webkit-scrollbar{ display:none; }
+  .jump-pill{ flex-shrink:0; font-size:12.5px; font-weight:700; color:var(--muted); background:var(--surface); border:1.5px solid var(--border); padding:8px 16px; border-radius:999px; white-space:nowrap; cursor:pointer; transition:background .15s, color .15s, border-color .15s; }
+  .jump-pill:hover{ border-color:var(--yellow); color:var(--ink); }
+  .jump-pill.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  /* ===== Step cards ===== */
+  .guide-steps{ display:flex; flex-direction:column; gap:18px; margin:32px 0; }
+  .step-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:26px; position:relative; overflow:hidden; scroll-margin-top:160px; transition:border-color .2s, box-shadow .2s; }
+  .step-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, var(--yellow) 0%, #FFE066 40%, transparent 100%); }
+  .step-card.done{ border-color:var(--yellow); background:var(--yellow-tint); }
+  .step-card .sc-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:14px; }
+  .step-card .sc-num-row{ display:flex; align-items:center; gap:14px; }
+  .step-card .num{ width:44px; height:44px; border-radius:12px; background:var(--yellow); color:var(--ink); display:grid; place-items:center; font-weight:800; font-size:17px; flex-shrink:0; }
+  .step-card.done .num{ background:var(--ink); color:var(--yellow); }
+  .step-card .sc-title h3{ font-size:18px; margin-bottom:3px; }
+  .step-card .sc-time{ font-size:11.5px; color:var(--muted); display:flex; align-items:center; gap:5px; }
+  .step-card .sc-time svg{ color:var(--yellow-shade); }
+  .mark-done{ flex-shrink:0; display:flex; align-items:center; gap:6px; font-size:11.5px; font-weight:700; color:var(--muted); background:#fff; border:1.5px solid var(--border); padding:7px 12px; border-radius:999px; cursor:pointer; white-space:nowrap; }
+  .mark-done:hover{ border-color:var(--yellow); }
+  .mark-done.done{ background:var(--ink); color:var(--yellow); border-color:var(--ink); }
+  .step-card p{ font-size:14.5px; color:#374151; line-height:1.7; margin-bottom:10px; }
+  .step-card .checklist{ display:flex; flex-direction:column; gap:7px; margin-top:10px; }
+  .step-card .checklist li{ list-style:none; font-size:13.5px; color:var(--ink); display:flex; gap:8px; align-items:flex-start; }
+  .step-card .checklist li svg{ color:var(--yellow-shade); flex-shrink:0; margin-top:2px; }
+
+  .pro-tip{ display:flex; gap:14px; background:var(--ink); color:#fff; border-radius:var(--radius); padding:22px 24px; margin:6px 0; }
+  .pro-tip .pt-ic{ width:36px; height:36px; border-radius:9px; background:rgba(255,197,2,.16); color:var(--yellow); display:grid; place-items:center; flex-shrink:0; }
+  .pro-tip .pt-label{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--yellow); margin-bottom:6px; }
+  .pro-tip p{ font-size:13.5px; color:rgba(255,255,255,.75); line-height:1.65; }
+
+  /* ===== Progress tracker (sidebar) ===== */
+  .progress-widget{ background:var(--ink); border-radius:var(--radius); padding:22px; color:#fff; margin-bottom:20px; }
+  .progress-widget h5{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--yellow); margin-bottom:12px; }
+  .progress-widget .pw-count{ font-size:26px; font-weight:800; margin-bottom:4px; }
+  .progress-widget .pw-count span{ font-size:14px; font-weight:600; color:rgba(255,255,255,.5); }
+  .progress-track{ height:8px; background:rgba(255,255,255,.14); border-radius:99px; overflow:hidden; margin:14px 0 6px; }
+  .progress-track .fill{ height:100%; background:var(--yellow); border-radius:99px; width:0%; transition:width .3s ease; }
+  .progress-widget .pw-note{ font-size:11.5px; color:rgba(255,255,255,.5); }
+
+  /* ===== Completion banner ===== */
+  .guide-complete{ background:var(--yellow); border-radius:var(--radius); padding:40px 36px; text-align:center; margin:40px 0; }
+  .guide-complete .gc-ic{ width:56px; height:56px; border-radius:50%; background:var(--ink); color:var(--yellow); display:grid; place-items:center; margin:0 auto 16px; }
+  .guide-complete h3{ font-size:22px; margin-bottom:10px; }
+  .guide-complete p{ font-size:14px; color:rgba(33,37,41,.7); max-width:440px; margin:0 auto 22px; }
+
+  /* ===== FAQ ===== */
+  .faq-item{ border-bottom:1px solid var(--border); }
+  .faq-item:first-child{ border-top:1px solid var(--border); }
+  .faq-q{ display:flex; align-items:center; justify-content:space-between; padding:18px 4px; cursor:pointer; font-weight:700; font-size:14.5px; }
+  .faq-q svg{ flex-shrink:0; transition:transform .2s; color:var(--muted); }
+  .faq-item.open .faq-q svg{ transform:rotate(180deg); }
+  .faq-a{ display:none; padding:0 4px 18px; font-size:13.5px; color:var(--muted); line-height:1.7; max-width:640px; }
+  .faq-item.open .faq-a{ display:block; }
+
+  @media(max-width:1100px){ .gh-stats{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:640px){ .jump-nav{ top:0; } }
+</style>
 </head>
 <body>
+
+<div class="scroll-rail" id="scroll-rail"></div>
 
 <header class="site">
   <div class="nav-row">
@@ -79,25 +164,43 @@
   </div>
 </div>
 
-<section style="padding-bottom:0; padding-top:36px;">
+<section class="guide-hero">
   <div class="wrap">
-    <div class="breadcrumb" style="margin-bottom:18px;"><a href="index.html">Home</a><span class="sep">/</span><a href="insights.html">Insights</a><span class="sep">/</span><a href="guides.html">Guides</a><span class="sep">/</span><span class="current">Registering a Business in SA</span></div>
+    <div class="gh-breadcrumb"><a href="index.html">Home</a><span>/</span><a href="insights.html">Insights</a><span>/</span><a href="guides.html">Guides</a><span>/</span><span class="cur">Registering a Business in SA</span></div>
+    <p class="eyebrow-label">Guide &middot; Connect My Business</p>
+    <h1>Complete Guide to Registering a Business in SA</h1>
+    <p class="gh-sub">Everything you need, in order: reserving your name, choosing a structure, registering with CIPC, and getting your first tax number. No steps skipped, no jargon.</p>
+    <div class="gh-stats">
+      <div class="cell"><b>7</b><span>Steps</span></div>
+      <div class="cell"><b>45</b><span>Min total</span></div>
+      <div class="cell"><b>R175</b><span>Est. cost</span></div>
+      <div class="cell"><b>Aug 26</b><span>Updated</span></div>
+    </div>
+    <div class="gh-cta-row">
+      <a class="btn btn-primary btn-lg" href="#step-1">Start the Guide</a>
+      <a class="btn btn-outline-light btn-lg" href="#" onclick="return false;">Download as PDF</a>
+    </div>
+  </div>
+</section>
 
+<div class="jump-nav">
+  <div class="wrap">
+    <div class="row" id="jump-row">
+      <span class="jump-pill" data-target="step-1">1. Reserve name</span>
+      <span class="jump-pill" data-target="step-2">2. Choose structure</span>
+      <span class="jump-pill" data-target="step-3">3. Register with CIPC</span>
+      <span class="jump-pill" data-target="step-4">4. Get your certificate</span>
+      <span class="jump-pill" data-target="step-5">5. Register for tax</span>
+      <span class="jump-pill" data-target="step-6">6. Open bank account</span>
+      <span class="jump-pill" data-target="step-7">7. Register as employer</span>
+    </div>
+  </div>
+</div>
+
+<section style="padding-top:40px;">
+  <div class="wrap">
     <div class="post-layout">
       <div>
-        <span class="tag" style="margin-bottom:14px; display:inline-block;">Guide</span>
-        <h1 style="font-size:clamp(28px,4vw,42px); margin-bottom:18px; max-width:760px;">Complete Guide to Registering a Business in SA</h1>
-        <div class="post-meta-row">
-          <div class="author"><div class="avatar"></div> MTN SME Hub Editorial</div>
-          <span class="divider">·</span>
-          <span class="meta-sub">Updated 6 Aug 2026</span>
-          <span class="divider">·</span>
-          <span class="meta-sub">12 min read</span>
-          <span class="divider">·</span>
-          <span class="meta-sub">7 steps</span>
-        </div>
-        <div class="post-hero-img" style="background-image:url('https://picsum.photos/seed/mtn-guide-registering/1200/750')"></div>
-
         <div class="guide-summary">
           <h5>What you'll need before you start</h5>
           <ul>
@@ -108,64 +211,104 @@
           </ul>
         </div>
 
-        <div class="post-body">
-          <p>Registering a business in South Africa is more straightforward than most first-time founders expect, provided you follow the steps in order. This guide walks through the full process, from reserving your company name to getting your first tax number, using CIPC's own current process.</p>
+        <div class="guide-steps">
+          <div class="step-card" id="step-1">
+            <div class="sc-top">
+              <div class="sc-num-row">
+                <div class="num">1</div>
+                <div class="sc-title"><h3>Reserve your company name</h3><div class="sc-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 5 min</div></div>
+              </div>
+              <button class="mark-done" data-step="step-1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Mark done</button>
+            </div>
+            <p>Submit up to four proposed names to CIPC for approval. Names are checked for uniqueness and against restricted words, so have a backup or two ready in case your first choice is taken.</p>
+          </div>
+
+          <div class="step-card" id="step-2">
+            <div class="sc-top">
+              <div class="sc-num-row">
+                <div class="num">2</div>
+                <div class="sc-title"><h3>Choose your business structure</h3><div class="sc-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 5 min</div></div>
+              </div>
+              <button class="mark-done" data-step="step-2"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Mark done</button>
+            </div>
+            <p>Most new SMEs register as a Private Company (Pty Ltd), which limits personal liability and is what most funders and clients expect to see. Sole proprietorship is simpler but offers no liability protection.</p>
+          </div>
+
+          <div class="pro-tip">
+            <div class="pt-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.6L5.7 21l2.3-7.1-6-4.5h7.6z"/></svg></div>
+            <div><div class="pt-label">Pro tip</div><p>Almost all SME funders, including grant programmes, only accept Pty Ltd applicants. If funding is on your roadmap at all, register Pty Ltd from the start rather than converting later.</p></div>
+          </div>
+
+          <div class="step-card" id="step-3">
+            <div class="sc-top">
+              <div class="sc-num-row">
+                <div class="num">3</div>
+                <div class="sc-title"><h3>Register with CIPC</h3><div class="sc-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 15 min</div></div>
+              </div>
+              <button class="mark-done" data-step="step-3"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Mark done</button>
+            </div>
+            <p>File your registration through the CIPC online portal. You'll need your approved name, ID details, and a registered address. Standard processing takes 5 to 10 working days.</p>
+            <ul class="checklist">
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Certified ID copy uploaded</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Registration fee paid</li>
+            </ul>
+          </div>
+
+          <div class="step-card" id="step-4">
+            <div class="sc-top">
+              <div class="sc-num-row">
+                <div class="num">4</div>
+                <div class="sc-title"><h3>Get your registration certificate and number</h3><div class="sc-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 2 min</div></div>
+              </div>
+              <button class="mark-done" data-step="step-4"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Mark done</button>
+            </div>
+            <p>Once approved, CIPC issues your Certificate of Incorporation and a unique registration number. This is what banks, funders, and clients will ask for as proof your business exists.</p>
+          </div>
+
+          <div class="step-card" id="step-5">
+            <div class="sc-top">
+              <div class="sc-num-row">
+                <div class="num">5</div>
+                <div class="sc-title"><h3>Register for tax with SARS</h3><div class="sc-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 10 min</div></div>
+              </div>
+              <button class="mark-done" data-step="step-5"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Mark done</button>
+            </div>
+            <p>CIPC registration automatically triggers a SARS tax reference number in most cases. Confirm this on eFiling, and register for VAT separately once you cross the R1 million turnover threshold.</p>
+          </div>
+
+          <div class="pro-tip">
+            <div class="pt-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.6L5.7 21l2.3-7.1-6-4.5h7.6z"/></svg></div>
+            <div><div class="pt-label">Pro tip</div><p>Don't wait for a SARS letter to confirm your tax number. Log into eFiling directly the day after CIPC approval. Registrations occasionally fail to sync automatically, and catching it early saves weeks.</p></div>
+          </div>
+
+          <div class="step-card" id="step-6">
+            <div class="sc-top">
+              <div class="sc-num-row">
+                <div class="num">6</div>
+                <div class="sc-title"><h3>Open a business bank account</h3><div class="sc-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 5 min</div></div>
+              </div>
+              <button class="mark-done" data-step="step-6"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Mark done</button>
+            </div>
+            <p>You'll need your Certificate of Incorporation, ID, and proof of address. Keeping business banking separate from personal accounts from day one makes bookkeeping, tax, and future funding applications far easier.</p>
+          </div>
+
+          <div class="step-card" id="step-7">
+            <div class="sc-top">
+              <div class="sc-num-row">
+                <div class="num">7</div>
+                <div class="sc-title"><h3>Register as an employer, if you're hiring</h3><div class="sc-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 5 min</div></div>
+              </div>
+              <button class="mark-done" data-step="step-7"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Mark done</button>
+            </div>
+            <p>If you plan to hire staff, register for PAYE and UIF with SARS before your first payday. See our guide on setting up payroll for the full process.</p>
+          </div>
         </div>
 
-        <div class="step-list">
-          <div class="step-item">
-            <div class="num">1</div>
-            <div>
-              <h3>Reserve your company name</h3>
-              <p>Submit up to four proposed names to CIPC for approval. Names are checked for uniqueness and against restricted words, so have a backup or two ready in case your first choice is taken.</p>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="num">2</div>
-            <div>
-              <h3>Choose your business structure</h3>
-              <p>Most new SMEs register as a Private Company (Pty Ltd), which limits personal liability and is what most funders and clients expect to see. Sole proprietorship is simpler but offers no liability protection.</p>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="num">3</div>
-            <div>
-              <h3>Register with CIPC</h3>
-              <p>File your registration through the CIPC online portal. You'll need your approved name, ID details, and a registered address. Standard processing takes 5 to 10 working days.</p>
-              <ul class="checklist">
-                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Certified ID copy uploaded</li>
-                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Registration fee paid</li>
-              </ul>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="num">4</div>
-            <div>
-              <h3>Get your registration certificate and number</h3>
-              <p>Once approved, CIPC issues your Certificate of Incorporation and a unique registration number. This is what banks, funders, and clients will ask for as proof your business exists.</p>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="num">5</div>
-            <div>
-              <h3>Register for tax with SARS</h3>
-              <p>CIPC registration automatically triggers a SARS tax reference number in most cases. Confirm this on eFiling, and register for VAT separately once you cross the R1 million turnover threshold.</p>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="num">6</div>
-            <div>
-              <h3>Open a business bank account</h3>
-              <p>You'll need your Certificate of Incorporation, ID, and proof of address. Keeping business banking separate from personal accounts from day one makes bookkeeping, tax, and future funding applications far easier.</p>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="num">7</div>
-            <div>
-              <h3>Register as an employer, if you're hiring</h3>
-              <p>If you plan to hire staff, register for PAYE and UIF with SARS before your first payday. See our guide on setting up payroll for the full process.</p>
-            </div>
-          </div>
+        <div class="guide-complete" id="guide-complete" style="display:none;">
+          <div class="gc-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3>You've completed the guide</h3>
+          <p>Your business is officially registered. Here's what most new founders sort out next: getting connected, and getting covered.</p>
+          <a class="btn btn-dark btn-lg" href="index.html#leadgen">Talk to MTN Business</a>
         </div>
 
         <div class="inline-promo">
@@ -173,9 +316,11 @@
           <a class="btn btn-primary btn-sm" href="business-solutions.html">Explore Tools</a>
         </div>
 
+        <p class="ad-fineprint">Advertisement</p>
         <div class="ad-wrap leaderboard">
           <a class="mtn-lb" href="product.html">
             <div class="lb-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+            <img class="lb-logo" src="assets/logo-white.png" alt="MTN">
             <div class="lb-txt">
               <div class="lb-eyebrow">MTN Business</div>
               <div class="lb-head">Stop intrusions before they start</div>
@@ -184,9 +329,27 @@
             <span class="lb-cta">Get a Quote</span>
           </a>
         </div>
-        <p class="ad-fineprint">Advertisement</p>
 
-        <div class="share-row">
+        <h2 style="font-size:19px; margin:40px 0 8px;">Frequently asked questions</h2>
+        <div id="faq">
+          <div class="faq-item">
+            <div class="faq-q">How long does business registration actually take?<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+            <div class="faq-a">Name reservation is usually same-day to 2 days. CIPC company registration itself takes 5 to 10 working days once submitted correctly. Budget two weeks in total if this is your first time.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Do I need a lawyer or accountant to register?<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+            <div class="faq-a">No. CIPC registration is designed to be done directly by the founder online. An accountant becomes useful once you're dealing with VAT, payroll, or more complex shareholding structures.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Can I register a business from home, without business premises?</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">What happens if my chosen name gets rejected?<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+            <div class="faq-a">CIPC will notify you and move to your second or third choice automatically, if you provided backups. If all four are rejected, you'll need to resubmit, which adds a few days.</div>
+          </div>
+        </div>
+
+        <div class="share-row" style="margin-top:32px;">
           <span style="font-size:12.5px; font-weight:700; color:var(--muted); display:flex; align-items:center; margin-right:4px;">Share:</span>
           <a href="#" aria-label="Share on Facebook"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
           <a href="#" aria-label="Share on X"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.7l-5.2-6.8L5.6 22H2.4l8.1-9.3L1.6 2h6.8l4.7 6.2z"/></svg></a>
@@ -196,17 +359,11 @@
       </div>
 
       <aside>
-        <div class="toc">
-          <h5>In this guide</h5>
-          <ul>
-            <li><a href="#">1. Reserve your company name</a></li>
-            <li><a href="#">2. Choose your business structure</a></li>
-            <li><a href="#">3. Register with CIPC</a></li>
-            <li><a href="#">4. Get your certificate and number</a></li>
-            <li><a href="#">5. Register for tax with SARS</a></li>
-            <li><a href="#">6. Open a business bank account</a></li>
-            <li><a href="#">7. Register as an employer</a></li>
-          </ul>
+        <div class="progress-widget">
+          <h5>Your progress</h5>
+          <div class="pw-count"><span id="pw-current">0</span> / 7 <span>steps complete</span></div>
+          <div class="progress-track"><div class="fill" id="pw-fill"></div></div>
+          <p class="pw-note">Tick off each step as you go. Nothing is saved, this is just for this visit.</p>
         </div>
 
         <div class="sidebar-widget">
@@ -219,6 +376,7 @@
           <div class="nl-success" style="margin-top:10px; box-shadow:none; border:1px solid var(--border); font-size:12.5px;"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Thanks! Check your inbox to confirm.</div>
         </div>
 
+        <p class="ad-fineprint">Advertisement</p>
         <div class="ad-wrap">
           <a class="mtn-sky" href="plan.html?plan=l">
             <div class="sky-top">
@@ -240,7 +398,6 @@
             </div>
           </a>
         </div>
-        <p class="ad-fineprint">Advertisement</p>
       </aside>
     </div>
   </div>
@@ -317,5 +474,64 @@
 </footer>
 
 <script src="assets/main.js"></script>
+<script>
+(function(){
+  var TOTAL = 7;
+  var doneCount = 0;
+
+  // Mark-done toggles
+  document.querySelectorAll('.mark-done').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var card = document.getElementById(btn.getAttribute('data-step'));
+      var isDone = btn.classList.toggle('done');
+      card.classList.toggle('done', isDone);
+      btn.innerHTML = isDone
+        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Done'
+        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Mark done';
+      doneCount += isDone ? 1 : -1;
+      document.getElementById('pw-current').textContent = doneCount;
+      document.getElementById('pw-fill').style.width = Math.round((doneCount / TOTAL) * 100) + '%';
+      document.getElementById('guide-complete').style.display = (doneCount === TOTAL) ? 'block' : 'none';
+    });
+  });
+
+  // Jump nav scroll + active state
+  var pills = document.querySelectorAll('.jump-pill');
+  pills.forEach(function(pill){
+    pill.addEventListener('click', function(){
+      var target = document.getElementById(pill.getAttribute('data-target'));
+      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.step-card'));
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          pills.forEach(function(p){ p.classList.remove('active'); });
+          var match = document.querySelector('.jump-pill[data-target="' + entry.target.id + '"]');
+          if (match) match.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-160px 0px -60% 0px' });
+    steps.forEach(function(s){ obs.observe(s); });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      q.closest('.faq-item').classList.toggle('open');
+    });
+  });
+
+  // Scroll progress rail
+  var rail = document.getElementById('scroll-rail');
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    rail.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  });
+})();
+</script>
 </body>
 </html>

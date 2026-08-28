@@ -336,7 +336,7 @@ footer.site{ background:var(--ink); color:rgba(255,255,255,.62); padding:64px 0 
 /* ===== MTN Business banner creatives ===== */
 .ad-wrap{ overflow-x:auto; margin-bottom:20px; }
 .ad-wrap.leaderboard{ margin:32px auto; display:flex; justify-content:center; }
-.ad-fineprint{ font-size:10px; color:var(--muted-2); text-align:center; margin-top:6px; }
+.ad-fineprint{ font-size:10px; color:var(--muted-2); text-align:center; letter-spacing:.04em; text-transform:uppercase; font-weight:700; margin:24px 0 8px; }
 
 /* -- 300x600 skyscraper -- */
 .mtn-sky{ width:300px; height:600px; flex-shrink:0; border-radius:var(--radius-sm); background:var(--ink); position:relative; overflow:hidden; color:#fff; display:flex; flex-direction:column; }
@@ -369,20 +369,9 @@ footer.site{ background:var(--ink); color:rgba(255,255,255,.62); padding:64px 0 
 .mtn-lb .lb-head{ font-size:15px; font-weight:800; line-height:1.25; }
 .mtn-lb .lb-sub{ font-size:11px; color:rgba(255,255,255,.55); }
 .mtn-lb .lb-cta{ position:relative; z-index:1; flex-shrink:0; background:var(--yellow); color:var(--ink); font-weight:800; font-size:13px; padding:10px 18px; border-radius:8px; white-space:nowrap; }
-.mtn-lb .lb-logo{ position:relative; z-index:1; height:14px; flex-shrink:0; opacity:.9; }
+.mtn-lb .lb-logo{ position:absolute; z-index:1; top:12px; right:16px; height:11px; opacity:.5; }
 @media(max-width:520px){ .mtn-lb .lb-sub{ display:none; } }
 
-/* ===== Guide step list ===== */
-.step-list{ display:flex; flex-direction:column; }
-.step-item{ display:grid; grid-template-columns:40px 1fr; gap:16px; padding:22px 0; border-bottom:1px solid var(--border); }
-.step-item:first-child{ padding-top:0; }
-.step-item:last-child{ border-bottom:none; }
-.step-item .num{ width:40px; height:40px; border-radius:10px; background:var(--yellow); color:var(--ink); display:grid; place-items:center; font-weight:800; font-size:15px; flex-shrink:0; }
-.step-item h3{ font-size:16.5px; margin-bottom:8px; }
-.step-item p{ font-size:14.5px; color:#374151; line-height:1.7; margin-bottom:10px; }
-.step-item .checklist{ display:flex; flex-direction:column; gap:7px; margin-top:8px; }
-.step-item .checklist li{ list-style:none; font-size:13.5px; color:var(--ink); display:flex; gap:8px; align-items:flex-start; }
-.step-item .checklist li svg{ color:var(--yellow-shade); flex-shrink:0; margin-top:2px; }
 .guide-summary{ background:var(--surface); border-radius:var(--radius-sm); padding:18px 20px; margin-bottom:8px; }
 .guide-summary h5{ font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:10px; }
 .guide-summary ul{ display:flex; flex-direction:column; gap:8px; }
