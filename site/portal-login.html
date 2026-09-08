@@ -3,46 +3,42 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Events | MTN SME Hub</title>
+<title>SMEHub Portal | MTN SME Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
 <style>
-  .event-hero{ background:var(--ink); border-radius:var(--radius); overflow:hidden; display:grid; grid-template-columns:1fr 1fr; position:relative; }
-  .event-hero::after{ content:""; position:absolute; inset:0; background:radial-gradient(circle at 90% 10%, rgba(255,197,2,.14) 0%, transparent 50%); pointer-events:none; }
-  .event-hero .img{ background-size:cover; background-position:center; min-height:280px; }
-  .event-hero .txt{ padding:36px 38px; color:#fff; position:relative; z-index:1; }
-  .event-hero .date-badge{ display:inline-flex; flex-direction:column; align-items:center; background:var(--yellow); color:var(--ink); border-radius:8px; padding:8px 14px; margin-bottom:18px; }
-  .event-hero .date-badge b{ font-size:20px; line-height:1; }
-  .event-hero .date-badge span{ font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
-  .event-hero h1{ color:#fff; font-size:clamp(22px,3vw,30px); margin-bottom:12px; }
-  .event-hero p{ color:rgba(255,255,255,.62); font-size:14px; margin-bottom:22px; max-width:420px; }
-  .event-hero .meta-row{ display:flex; gap:18px; margin-bottom:26px; flex-wrap:wrap; }
-  .event-hero .meta-row div{ font-size:12.5px; color:rgba(255,255,255,.7); display:flex; align-items:center; gap:7px; }
+  .pl-section{ padding:56px 0 80px; }
+  .pl-layout{ display:grid; grid-template-columns:1fr 1fr; gap:0; max-width:980px; margin:0 auto; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
+  .pl-visual{ background:var(--ink); color:#fff; padding:44px 40px; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:center; }
+  .pl-visual::before{ content:""; position:absolute; top:-100px; left:-60px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.24) 0%, transparent 70%); }
+  .pl-visual *{ position:relative; z-index:1; }
+  .pl-visual .eyebrow-label{ color:var(--yellow); }
+  .pl-visual .eyebrow-label::before{ background:var(--yellow); }
+  .pl-visual h2{ color:#fff; font-size:24px; margin-bottom:14px; }
+  .pl-visual p{ color:rgba(255,255,255,.65); font-size:13.5px; margin-bottom:22px; }
+  .pl-perk{ display:flex; gap:10px; align-items:flex-start; font-size:13px; color:rgba(255,255,255,.85); margin-bottom:12px; }
+  .pl-perk svg{ color:var(--yellow); flex-shrink:0; margin-top:2px; }
 
-  .event-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-  .event-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s; }
-  .event-card:hover{ box-shadow:var(--shadow-hover); transform:translateY(-3px); }
-  .event-card .img{ aspect-ratio:16/10; background-size:cover; background-position:center; position:relative; }
-  .event-card .img .date-chip{ position:absolute; top:12px; left:12px; background:#fff; border-radius:7px; padding:6px 10px; text-align:center; line-height:1.1; box-shadow:var(--shadow); }
-  .event-card .img .date-chip b{ display:block; font-size:15px; }
-  .event-card .img .date-chip span{ font-size:9px; font-weight:700; text-transform:uppercase; color:var(--muted); }
-  .event-card .bd{ padding:17px 18px; }
-  .event-card h4{ font-size:15px; margin:8px 0; line-height:1.3; }
-  .event-card .excerpt{ font-size:12.5px; color:var(--muted); line-height:1.6; margin-bottom:14px; }
-  .event-card .meta-row{ display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
-  .event-card .meta-row div{ font-size:12px; color:var(--muted); display:flex; align-items:center; gap:7px; }
-  .event-card .meta-row svg{ color:var(--yellow-shade); flex-shrink:0; }
+  .pl-form-side{ padding:44px 40px; background:#fff; }
+  .pl-tabs{ display:flex; gap:6px; background:var(--surface); border-radius:8px; padding:4px; margin-bottom:26px; }
+  .pl-tab{ flex:1; text-align:center; padding:9px; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; color:var(--muted); }
+  .pl-tab.active{ background:#fff; color:var(--ink); box-shadow:var(--shadow); }
+  .pl-field{ margin-bottom:16px; }
+  .pl-field label{ display:block; font-size:12.5px; font-weight:700; margin-bottom:7px; }
+  .pl-field input{ width:100%; padding:13px 15px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; font-family:inherit; outline:none; background:var(--surface); }
+  .pl-field input:focus{ border-color:var(--yellow); background:#fff; }
+  .pl-panel{ display:none; }
+  .pl-panel.active{ display:block; }
+  .pl-fine{ font-size:11px; color:var(--muted-2); text-align:center; margin-top:14px; line-height:1.6; }
 
-  .past-row{ display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid var(--border); }
-  .past-row .th{ width:64px; height:64px; border-radius:8px; background-size:cover; background-position:center; flex-shrink:0; filter:grayscale(40%); opacity:.85; }
-  .past-row .bd{ flex:1; min-width:0; }
-  .past-row h5{ font-size:14px; margin-bottom:3px; }
-  .past-row .meta{ font-size:12px; color:var(--muted-2); }
-
-  @media(max-width:1100px){ .event-hero{ grid-template-columns:1fr; } .event-hero .img{ min-height:200px; } .event-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media(max-width:640px){ .event-grid{ grid-template-columns:1fr; } .event-hero .txt{ padding:26px 22px; } }
+  .pl-done{ display:none; text-align:center; padding:20px 0; }
+  .pl-done.show{ display:block; }
+  .pl-done .ic{ width:56px; height:56px; border-radius:50%; background:var(--yellow-tint); display:grid; place-items:center; margin:0 auto 18px; color:var(--yellow-shade); }
+  .pl-done h3{ font-size:19px; margin-bottom:8px; }
+  .pl-done p{ font-size:13.5px; color:var(--muted); margin-bottom:20px; }
+  @media(max-width:800px){ .pl-layout{ grid-template-columns:1fr; } .pl-visual{ padding:36px 28px; } .pl-form-side{ padding:36px 28px; } }
 </style>
 </head>
 <body>
@@ -119,82 +115,49 @@
   </div>
 </div>
 
-<div class="page-head">
+<section class="pl-section">
   <div class="wrap">
-    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="current">Events</span></div>
-    <h1>Events</h1>
-    <p>Events for South African SMEs, hosted by MTN SME Hub and MTN Business.</p>
-  </div>
-</div>
+    <div class="pl-layout">
+      <div class="pl-visual">
+        <p class="eyebrow-label">SMEHub Portal</p>
+        <h2>Free membership, built around your business.</h2>
+        <p>One profile that follows you across content, tools, and MTN Business, kept separate from any purchase until you're ready.</p>
+        <div class="pl-perk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Track guides, templates and events you've used</div>
+        <div class="pl-perk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Member-only rewards and funding opportunities</div>
+        <div class="pl-perk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> One profile across partner tools and services</div>
+      </div>
 
-<section style="padding-top:44px;">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="eyebrow-label">Next up</p><h2 class="sec-title" style="font-size:22px;">Don't miss this one</h2></div>
-    </div>
-    <div class="event-hero">
-      <div class="img" style="background-image:url('https://picsum.photos/seed/mtn-event-hero/700/560')"></div>
-      <div class="txt">
-        <div class="date-badge"><b>10</b><span>Sep</span></div>
-        <h1>Funding Your Business in 2026</h1>
-        <p>A live session on grants, loans, and MTN Business support options, with time for audience Q&amp;A.</p>
-        <div class="meta-row">
-          <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 10:00 – 11:30 SAST</div>
-          <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.6 7-12a7 7 0 10-14 0c0 5.4 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg> In Person, MTN Innovation Centre, Fairland</div>
+      <div class="pl-form-side">
+        <div id="pl-form-wrap">
+          <div class="pl-tabs">
+            <div class="pl-tab active" data-tab="login">Log in</div>
+            <div class="pl-tab" data-tab="signup">Create free account</div>
+          </div>
+
+          <div class="pl-panel active" data-panel="login">
+            <div class="pl-field"><label>eMail address</label><input type="email" placeholder="thabo@nkositrading.co.za"></div>
+            <div class="pl-field"><label>Password</label><input type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"></div>
+            <button class="btn btn-primary btn-block btn-lg" id="pl-login-btn">Log in</button>
+            <p class="pl-fine">Forgot your password? <a href="#" onclick="return false;" style="text-decoration:underline; color:var(--ink);">Reset it</a></p>
+          </div>
+
+          <div class="pl-panel" data-panel="signup">
+            <div class="pl-field"><label>Full name</label><input type="text" placeholder="Thabo Nkosi"></div>
+            <div class="pl-field"><label>Business name</label><input type="text" placeholder="Nkosi Trading CC"></div>
+            <div class="pl-field"><label>eMail address</label><input type="email" placeholder="thabo@nkositrading.co.za"></div>
+            <div class="pl-field"><label>Password</label><input type="password" placeholder="Create a password"></div>
+            <button class="btn btn-primary btn-block btn-lg" id="pl-signup-btn">Create my free account</button>
+            <p class="pl-fine">Free to join. No purchase required. By continuing, you agree to MTN's Privacy Policy and Terms of Service.</p>
+          </div>
         </div>
-        <a class="btn btn-primary btn-lg" href="event.html">Register Free</a>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section style="background:var(--surface);">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="eyebrow-label">Past events</p><h2 class="sec-title" style="font-size:22px;">Recent recaps</h2></div>
-    </div>
-    <div class="panel" style="background:#fff;">
-      <div class="past-row">
-        <div class="th" style="background-image:url('https://picsum.photos/seed/mtn-past-6/120/120')"></div>
-        <div class="bd"><h5>Ecommerce Trends Going Into 2027</h5><div class="meta">In Person · 26 Aug 2026 · 204 attended</div></div>
-        <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
+        <div class="pl-done" id="pl-done">
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3>Welcome to SMEHub</h3>
+          <p>Your free membership is active.</p>
+          <a class="btn btn-primary btn-block btn-lg" href="portal-dashboard.html">Go to your Portal</a>
+        </div>
       </div>
-      <div class="past-row">
-        <div class="th" style="background-image:url('https://picsum.photos/seed/mtn-past-5/120/120')"></div>
-        <div class="bd"><h5>MTN SME Excellence Awards 2026</h5><div class="meta">Awards · 12 Aug 2026 · 340 attended</div></div>
-        <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
-      </div>
-      <div class="past-row">
-        <div class="th" style="background-image:url('https://picsum.photos/seed/mtn-past-1/120/120')"></div>
-        <div class="bd"><h5>How to Win Your First Government Tender</h5><div class="meta">In Person · 14 Aug 2026 · 312 attended</div></div>
-        <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
-      </div>
-      <div class="past-row">
-        <div class="th" style="background-image:url('https://picsum.photos/seed/mtn-past-4/120/120')"></div>
-        <div class="bd"><h5>Understanding Working Capital &amp; Funding</h5><div class="meta">Workshop · 5 Aug 2026 · 88 attended</div></div>
-        <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
-      </div>
-      <div class="past-row">
-        <div class="th" style="background-image:url('https://picsum.photos/seed/mtn-past-2/120/120')"></div>
-        <div class="bd"><h5>MTN SME JumpStarter: Gauteng Pitch Day</h5><div class="meta">Roadshow · 2 Aug 2026 · 180 attended</div></div>
-        <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
-      </div>
-      <div class="past-row" style="border-bottom:none;">
-        <div class="th" style="background-image:url('https://picsum.photos/seed/mtn-past-3/120/120')"></div>
-        <div class="bd"><h5>Cash Flow Clinic: Ask the Experts</h5><div class="meta">Workshop · 19 Jul 2026 · 96 attended</div></div>
-        <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
-      </div>
-    </div>
-    <p class="sample-note">Event listings on this page are illustrative sample content. MTN runs SME events occasionally, not on a packed calendar, so this page favours a recap archive over a long upcoming list.</p>
-  </div>
-</section>
-
-<section class="newsletter">
-  <div class="wrap">
-    <div class="nl-inner">
-      <div><h3>Never miss an event</h3><p>Get notified about new webinars, workshops and roadshows near you.</p></div>
-      <form class="nl-form"><input type="email" placeholder="you@yourbusiness.co.za" required /><button class="btn btn-dark" type="submit">Subscribe</button></form>
-      <div class="nl-success"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Thanks! Check your inbox to confirm.</div>
     </div>
   </div>
 </section>
@@ -233,5 +196,21 @@
 </footer>
 
 <script src="assets/main.js"></script>
+<script>
+  document.querySelectorAll('.pl-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('.pl-tab').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.pl-panel').forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.querySelector('.pl-panel[data-panel="' + tab.getAttribute('data-tab') + '"]').classList.add('active');
+    });
+  });
+  function completeAuth(){
+    document.getElementById('pl-form-wrap').style.display = 'none';
+    document.getElementById('pl-done').classList.add('show');
+  }
+  document.getElementById('pl-login-btn').addEventListener('click', completeAuth);
+  document.getElementById('pl-signup-btn').addEventListener('click', completeAuth);
+</script>
 </body>
 </html>
