@@ -3,29 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Partner Ecosystem | MTN SME Hub</title>
+<title>Partners &amp; Stakeholders | MTN SME Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
 <style>
-  .eco-block{ margin-bottom:52px; }
-  .eco-block:last-child{ margin-bottom:0; }
-  .eco-head{ display:flex; gap:16px; align-items:flex-start; margin-bottom:22px; }
-  .eco-head .ic{ width:48px; height:48px; border-radius:12px; background:var(--ink); color:var(--yellow); display:grid; place-items:center; flex-shrink:0; }
-  .eco-head h2{ font-size:21px; margin-bottom:6px; }
-  .eco-head p{ font-size:13.5px; color:var(--muted); max-width:640px; }
-  .eco-body{ display:grid; grid-template-columns:1.1fr 1.4fr; gap:0; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:#fff; }
-  .eco-partners{ padding:22px 24px; border-right:1px solid var(--border); }
-  .eco-partners h5{ font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted-2); margin-bottom:12px; }
-  .partner-pills{ display:flex; flex-wrap:wrap; gap:8px; }
-  .partner-pills span{ font-size:12.5px; font-weight:700; background:var(--surface); border:1px solid var(--border); padding:6px 12px; border-radius:999px; }
-  .eco-journey{ padding:22px 24px; background:var(--yellow-tint); }
-  .eco-journey h5{ font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow-shade); margin-bottom:12px; }
-  .journey-steps{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
-  .journey-steps span{ font-size:12.5px; font-weight:700; color:var(--ink); }
-  .journey-steps .arrow{ color:var(--yellow-shade); font-weight:400; }
-  @media(max-width:900px){ .eco-body{ grid-template-columns:1fr; } .eco-partners{ border-right:none; border-bottom:1px solid var(--border); } }
+  .partner-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .partner-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:24px 22px; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s, border-color .15s; }
+  .partner-card:hover{ box-shadow:var(--shadow-hover); transform:translateY(-3px); border-color:var(--yellow); }
+  .partner-card .mark{ width:44px; height:44px; border-radius:10px; background:var(--ink); color:var(--yellow); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; margin-bottom:16px; }
+  .partner-card h4{ font-size:15px; margin-bottom:6px; }
+  .partner-card .role{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--yellow-shade); margin-bottom:10px; }
+  .partner-card p{ font-size:12.5px; color:var(--muted); line-height:1.6; }
+  .category-block{ margin-bottom:52px; }
+  .category-block:last-child{ margin-bottom:0; }
 </style>
 </head>
 <body>
@@ -53,13 +45,11 @@
           <a href="events.html">Events</a>
         </div>
       </div>
-      <div class="nav-item"><a href="business-solutions.html">Shop</a></div>
-      <div class="nav-item"><a href="sales-advisor.html">Sales Advisor</a></div>
+      <div class="nav-item"><a href="business-solutions.html">Business Solutions</a></div>
       <div class="nav-item"><a href="about.html">About</a></div>
     </nav>
     <div class="nav-cta">
       <div class="nav-search"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-      <a class="nav-search" href="portal-login.html" aria-label="SMEHub Portal login"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6"/></svg></a>
       <a class="btn btn-primary btn-sm" href="index.html#leadgen">Talk to MTN Business</a>
       <div class="nav-burger"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
     </div>
@@ -91,109 +81,106 @@
         <a href="events.html">Events</a>
       </div>
     </div>
-    <div class="mdrawer-group"><a href="business-solutions.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Shop</a></div>
-    <div class="mdrawer-group"><a href="sales-advisor.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Sales Advisor</a></div>
-    <div class="mdrawer-group"><a href="portal-login.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">SMEHub Portal</a></div>
+    <div class="mdrawer-group"><a href="business-solutions.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Business Solutions</a></div>
     <div class="mdrawer-group"><a href="about.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">About</a></div>
     <div class="cta-block">
       <a class="btn btn-primary btn-block" href="index.html#leadgen">Talk to MTN Business</a>
-      <a class="btn btn-outline btn-block" href="business-solutions.html">Browse Shop</a>
+      <a class="btn btn-outline btn-block" href="business-solutions.html">Browse Business Solutions</a>
     </div>
   </div>
 </div>
 
 <div class="page-head">
   <div class="wrap">
-    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="about.html">About</a><span class="sep">/</span><span class="current">Partner Ecosystem</span></div>
-    <h1>Partner Ecosystem</h1>
-    <p>SMEHub connects members to the funders, tools, advisors, and networks that help a business grow, in five roles, each with a defined journey inside the hub.</p>
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="about.html">About</a><span class="sep">/</span><span class="current">Partners and Stakeholders</span></div>
+    <h1>Partners and Stakeholders</h1>
+    <p>MTN SME Hub sits inside a wider support network. These are the funders, agencies, and institutions whose programmes the advice on this hub can point SMEs toward.</p>
   </div>
 </div>
 
 <section>
   <div class="wrap">
 
-    <div class="eco-block">
-      <div class="eco-head">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg></div>
-        <div><h2>Fund &amp; Bank</h2><p>Browse funding options, check eligibility, apply or refer, and track the next step, all from inside the hub.</p></div>
+    <div class="category-block">
+      <div class="sec-head">
+        <div><p class="eyebrow-label">Funding and finance</p><h2 class="sec-title" style="font-size:22px;">Where SMEs can access capital</h2></div>
       </div>
-      <div class="eco-body">
-        <div class="eco-partners">
-          <h5>Potential partners</h5>
-          <div class="partner-pills"><span>African Bank</span><span>SEDFA</span><span>IDC</span><span>NEF</span><span>Business Partners</span><span>Standard Bank</span><span>FNB</span><span>Nedbank</span></div>
+      <div class="partner-grid">
+        <div class="partner-card">
+          <div class="mark">AB</div>
+          <h4>African Bank</h4>
+          <div class="role">Banking Partner</div>
+          <p>Business banking and working capital finance for South African SMEs.</p>
         </div>
-        <div class="eco-journey">
-          <h5>SMEHub journey</h5>
-          <div class="journey-steps"><span>Browse funding options</span><span class="arrow">&rarr;</span><span>Check eligibility</span><span class="arrow">&rarr;</span><span>Apply / refer</span><span class="arrow">&rarr;</span><span>Track next step</span></div>
+        <div class="partner-card">
+          <div class="mark">SB</div>
+          <h4>Standard Bank</h4>
+          <div class="role">Banking Partner</div>
+          <p>Business accounts, overdraft facilities, and SME lending products.</p>
         </div>
-      </div>
-    </div>
-
-    <div class="eco-block">
-      <div class="eco-head">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16M10 4v16"/></svg></div>
-        <div><h2>Operate &amp; Digitise</h2><p>Subscription-based tools an SME runs the business on, browsed and bought without leaving the hub.</p></div>
-      </div>
-      <div class="eco-body">
-        <div class="eco-partners">
-          <h5>Potential partners</h5>
-          <div class="partner-pills"><span>Microsoft</span><span>Sage</span><span>Yoco</span><span>Mobiz</span><span>Everlytic</span><span>Wix</span><span>Shopify</span><span>BoxCommerce</span></div>
+        <div class="partner-card">
+          <div class="mark">sefa</div>
+          <h4>Small Enterprise Finance Agency</h4>
+          <div class="role">Development Finance</div>
+          <p>State-owned finance institution providing loans to qualifying small businesses.</p>
         </div>
-        <div class="eco-journey">
-          <h5>SMEHub journey</h5>
-          <div class="journey-steps"><span>Browse &amp; buy subscriptions</span><span class="arrow">&rarr;</span><span>Compare bundles</span><span class="arrow">&rarr;</span><span>Activate trials</span><span class="arrow">&rarr;</span><span>Buy or request support</span></div>
+        <div class="partner-card">
+          <div class="mark">IDC</div>
+          <h4>Industrial Development Corporation</h4>
+          <div class="role">Development Finance</div>
+          <p>Funding for industrial and productive-sector SMEs across South Africa.</p>
         </div>
       </div>
     </div>
 
-    <div class="eco-block">
-      <div class="eco-head">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div>
-        <div><h2>Advise &amp; Develop</h2><p>Independent guidance and structured development support for founders who need more than an article.</p></div>
+    <div class="category-block">
+      <div class="sec-head">
+        <div><p class="eyebrow-label">Enterprise development</p><h2 class="sec-title" style="font-size:22px;">Agencies and programmes</h2></div>
       </div>
-      <div class="eco-body">
-        <div class="eco-partners">
-          <h5>Potential partners</h5>
-          <div class="partner-pills"><span>NSBC</span><span>Incubators</span><span>Universities</span><span>Accountants</span><span>Legal &amp; tax networks</span></div>
+      <div class="partner-grid">
+        <div class="partner-card">
+          <div class="mark">SEDA</div>
+          <h4>Small Enterprise Development Agency</h4>
+          <div class="role">Government Agency</div>
+          <p>Business advisory, incubation, and support services for small businesses.</p>
         </div>
-        <div class="eco-journey">
-          <h5>SMEHub journey</h5>
-          <div class="journey-steps"><span>Book an adviser</span><span class="arrow">&rarr;</span><span>Attend virtual consultations</span><span class="arrow">&rarr;</span><span>Access playbooks</span><span class="arrow">&rarr;</span><span>Complete business assessments</span></div>
+        <div class="partner-card">
+          <div class="mark">NYDA</div>
+          <h4>National Youth Development Agency</h4>
+          <div class="role">Government Agency</div>
+          <p>Funding and support programmes for young entrepreneurs under 35.</p>
         </div>
-      </div>
-    </div>
-
-    <div class="eco-block">
-      <div class="eco-head">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z"/></svg></div>
-        <div><h2>Access Markets</h2><p>Routes into procurement and enterprise supply chains that most SMEs would otherwise never see.</p></div>
-      </div>
-      <div class="eco-body">
-        <div class="eco-partners">
-          <h5>Potential partners</h5>
-          <div class="partner-pills"><span>MTN Procurement</span><span>Corporate ESD programmes</span><span>Public procurement portals</span><span>Ayoba</span></div>
+        <div class="partner-card">
+          <div class="mark">DSBD</div>
+          <h4>Dept. of Small Business Development</h4>
+          <div class="role">Government Department</div>
+          <p>National policy and support programmes for South African SMMEs.</p>
         </div>
-        <div class="eco-journey">
-          <h5>SMEHub journey</h5>
-          <div class="journey-steps"><span>View opportunities</span><span class="arrow">&rarr;</span><span>Improve supplier readiness</span><span class="arrow">&rarr;</span><span>Create a storefront</span><span class="arrow">&rarr;</span><span>Reach customers</span></div>
+        <div class="partner-card">
+          <div class="mark">GEP</div>
+          <h4>Gauteng Enterprise Propeller</h4>
+          <div class="role">Provincial Agency</div>
+          <p>Provincial funding and business support for Gauteng-based SMEs.</p>
         </div>
       </div>
     </div>
 
-    <div class="eco-block">
-      <div class="eco-head">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
-        <div><h2>Learn &amp; Inspire</h2><p>The content layer that keeps members coming back between funding rounds and purchases.</p></div>
+    <div class="category-block">
+      <div class="sec-head">
+        <div><p class="eyebrow-label">Technology and payments</p><h2 class="sec-title" style="font-size:22px;">Tools referenced in Business Solutions</h2></div>
       </div>
-      <div class="eco-body">
-        <div class="eco-partners">
-          <h5>Potential partners</h5>
-          <div class="partner-pills"><span>Microsoft Learn</span><span>LinkedIn Learning</span><span>Coursera</span><span>SME media &amp; founder networks</span></div>
+      <div class="partner-grid">
+        <div class="partner-card">
+          <div class="mark">MTN</div>
+          <h4>MTN Business</h4>
+          <div class="role">Connectivity and Security</div>
+          <p>Mobile, data, and Managed Security Solutions for South African SMEs.</p>
         </div>
-        <div class="eco-journey">
-          <h5>SMEHub journey</h5>
-          <div class="journey-steps"><span>Masterclasses</span><span class="arrow">&rarr;</span><span>Podcasts</span><span class="arrow">&rarr;</span><span>SME Spotlight</span><span class="arrow">&rarr;</span><span>Expert Q&amp;A</span></div>
+        <div class="partner-card">
+          <div class="mark">MF</div>
+          <h4>MTN Foundation</h4>
+          <div class="role">Corporate Social Investment</div>
+          <p>Skills development and community investment programmes linked to MTN.</p>
         </div>
       </div>
     </div>
@@ -230,7 +217,7 @@
       </div>
       <div>
         <h5>Insights</h5>
-        <ul><li><a href="guides.html">Guides</a></li><li><a href="templates.html">Templates</a></li><li><a href="events.html">Events</a></li><li><a href="business-solutions.html">Shop</a></li><li><a href="stakeholders.html">Partner Ecosystem</a></li></ul>
+        <ul><li><a href="guides.html">Guides</a></li><li><a href="templates.html">Templates</a></li><li><a href="events.html">Events</a></li><li><a href="business-solutions.html">Business Solutions</a></li><li><a href="stakeholders.html">Partners and Stakeholders</a></li></ul>
       </div>
       <div>
         <h5>Contact</h5>
