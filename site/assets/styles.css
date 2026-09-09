@@ -157,6 +157,8 @@ section{ padding:76px 0; }
 .path-card .path-list li{ list-style:none; display:flex; gap:8px; align-items:flex-start; font-size:12.5px; }
 .path-card .path-list li svg{ flex-shrink:0; margin-top:2px; }
 .path-card .btn{ align-self:flex-start; }
+.path-note{ display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:700; color:rgba(255,255,255,.85); }
+.path-note:hover{ color:#fff; }
 .path-card.buy{ background:var(--yellow-tint); border:1px solid var(--yellow-tint-2); }
 .path-card.buy .path-kicker{ color:var(--yellow-shade); }
 .path-card.buy p{ color:#5A4A00; }
