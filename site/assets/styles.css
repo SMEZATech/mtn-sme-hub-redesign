@@ -131,7 +131,11 @@ section{ padding:76px 0; }
 .app-orbit .chip.powerpoint{ background:#D24726; bottom:4%; right:20%; }
 .app-orbit .chip.sharepoint{ background:#03787C; bottom:0%; left:22%; }
 .app-orbit .chip.onedrive{ background:#0364B8; bottom:18%; left:0%; }
-@media(max-width:900px){ .deal-banner{ grid-template-columns:1fr; padding:28px; } .deal-banner .visual{ aspect-ratio:16/10; } }
+.deal-banner.hero-single{ grid-template-columns:1fr .8fr; gap:44px; padding:52px 56px; }
+.deal-banner.hero-single .txt h2{ font-size:clamp(28px,3.6vw,42px); }
+.deal-banner.hero-single .txt p{ font-size:15.5px; max-width:44ch; }
+.deal-banner.hero-single .visual{ aspect-ratio:1/1; max-width:360px; margin-left:auto; }
+@media(max-width:900px){ .deal-banner{ grid-template-columns:1fr; padding:28px; } .deal-banner .visual{ aspect-ratio:16/10; } .deal-banner.hero-single{ grid-template-columns:1fr; padding:28px; } .deal-banner.hero-single .visual{ max-width:none; margin-left:0; } }
 
 .hero-side{ display:flex; flex-direction:column; gap:14px; }
 .side-card{ display:flex; gap:14px; background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s; }
