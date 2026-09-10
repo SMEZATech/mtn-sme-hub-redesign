@@ -1,0 +1,147 @@
+/* ==========================================================================
+   MTN SME Hub — Sales Advisor components (shared across advisor V1/V2/V3)
+   Built against the brief's Sales Advisor pillar: progressive survey,
+   predictive custom quote with a next-best action, calendar scheduling,
+   trackable sales actions, and recovery of abandoned journeys.
+   ========================================================================== */
+
+/* ----- Custom quote with line items ----- */
+.quote-doc{ border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:#fff; box-shadow:var(--shadow); }
+.quote-hd{ background:var(--ink); color:#fff; padding:20px 24px; position:relative; overflow:hidden; }
+.quote-hd::before{ content:""; position:absolute; top:-70px; right:-50px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.26) 0%, transparent 70%); }
+.quote-hd > *{ position:relative; z-index:1; }
+.quote-hd .lbl{ font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--yellow); margin-bottom:6px; }
+.quote-hd h3{ color:#fff; font-size:19px; margin-bottom:4px; }
+.quote-hd .ref{ font-size:11.5px; color:rgba(255,255,255,.55); font-family:ui-monospace,Menlo,monospace; }
+.quote-lines{ padding:6px 24px; }
+.q-line{ display:grid; grid-template-columns:1fr auto; gap:14px; padding:14px 0; border-bottom:1px solid var(--border); align-items:start; }
+.q-line:last-of-type{ border-bottom:none; }
+.q-line .nm{ font-size:13.5px; font-weight:700; margin-bottom:3px; }
+.q-line .cfg{ font-size:11.5px; color:var(--muted); line-height:1.5; }
+.q-line .amt{ text-align:right; white-space:nowrap; }
+.q-line .amt b{ font-size:14px; }
+.q-line .amt span{ display:block; font-size:10.5px; color:var(--muted-2); }
+.q-tot{ background:var(--surface); padding:16px 24px; border-top:1px solid var(--border); }
+.q-tot .row{ display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted); padding:3px 0; }
+.q-tot .row.big{ font-size:16px; font-weight:800; color:var(--ink); padding-top:9px; margin-top:6px; border-top:1px solid var(--border); }
+.q-foot{ padding:14px 24px; font-size:10.5px; color:var(--muted-2); line-height:1.5; border-top:1px solid var(--border); }
+
+/* ----- Next best action ----- */
+.nba-box{ display:flex; gap:13px; align-items:flex-start; background:var(--yellow-tint); border:1px solid var(--yellow-tint-2); border-radius:var(--radius-sm); padding:16px 18px; }
+.nba-box .ic{ width:34px; height:34px; border-radius:9px; background:var(--yellow); color:var(--ink); display:grid; place-items:center; flex-shrink:0; }
+.nba-box b{ display:block; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow-shade); margin-bottom:4px; }
+.nba-box p{ font-size:13.5px; font-weight:600; color:var(--ink); line-height:1.5; }
+
+/* ----- Calendar scheduling ----- */
+.cal{ border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; background:#fff; }
+.cal .adviser{ display:flex; align-items:center; gap:13px; padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid var(--border); }
+.cal .adviser .av{ width:44px; height:44px; border-radius:50%; background:var(--ink); color:var(--yellow); display:grid; place-items:center; font-weight:800; font-size:15px; flex-shrink:0; }
+.cal .adviser b{ display:block; font-size:14px; }
+.cal .adviser span{ font-size:11.5px; color:var(--muted); }
+.cal h5{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--muted-2); margin-bottom:11px; }
+.cal-days{ display:grid; grid-template-columns:repeat(5,1fr); gap:7px; margin-bottom:18px; }
+.cal-day{ text-align:center; border:1.5px solid var(--border); border-radius:8px; padding:9px 4px; cursor:pointer; transition:border-color .15s, background .15s; }
+.cal-day:hover{ border-color:var(--yellow); }
+.cal-day.sel{ background:var(--ink); border-color:var(--ink); color:#fff; }
+.cal-day .dw{ font-size:10px; text-transform:uppercase; letter-spacing:.05em; opacity:.65; }
+.cal-day .dn{ font-size:16px; font-weight:800; margin-top:2px; }
+.cal-times{ display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
+.cal-time{ text-align:center; border:1.5px solid var(--border); border-radius:8px; padding:9px 4px; font-size:12.5px; font-weight:700; cursor:pointer; }
+.cal-time:hover{ border-color:var(--yellow); }
+.cal-time.sel{ background:var(--yellow); border-color:var(--yellow); }
+.cal-time.gone{ opacity:.4; cursor:not-allowed; text-decoration:line-through; }
+@media(max-width:640px){ .cal-days{ grid-template-columns:repeat(3,1fr); } .cal-times{ grid-template-columns:repeat(2,1fr); } }
+
+/* ----- Traceable lead / owner assignment ----- */
+.lead-card{ border:1px dashed var(--border); border-radius:var(--radius-sm); padding:16px 18px; background:var(--surface); }
+.lead-card h5{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--muted-2); margin-bottom:12px; }
+.lead-row{ display:flex; justify-content:space-between; gap:12px; font-size:12.5px; padding:5px 0; }
+.lead-row span{ color:var(--muted); }
+.lead-row b{ font-weight:700; text-align:right; }
+.lead-row .mono{ font-family:ui-monospace,Menlo,monospace; font-size:12px; }
+
+/* ----- Journey recovery ----- */
+.recover{ display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px 18px; }
+.recover p{ font-size:12.5px; color:var(--muted); }
+.recover p b{ color:var(--ink); }
+
+/* ----- Trackable action feed ----- */
+.track{ border:1px solid var(--border); border-radius:var(--radius-sm); background:#fff; overflow:hidden; }
+.track .hd{ background:var(--surface); padding:11px 16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.track .hd h5{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--muted-2); }
+.track .hd .dot{ width:7px; height:7px; border-radius:50%; background:#1B8A5A; }
+.track ul{ list-style:none; max-height:190px; overflow-y:auto; }
+.track li{ padding:9px 16px; border-bottom:1px solid var(--border); font-size:11.5px; color:var(--muted); display:flex; gap:9px; }
+.track li:last-child{ border-bottom:none; }
+.track li .t{ font-family:ui-monospace,Menlo,monospace; color:var(--muted-2); flex-shrink:0; }
+.track li b{ color:var(--ink); font-weight:700; }
+.track .empty{ padding:16px; font-size:11.5px; color:var(--muted-2); text-align:center; }
+
+/* ==========================================================================
+   ADVISOR V2 — conversational
+   ========================================================================== */
+.chat-shell{ display:grid; grid-template-columns:1fr 380px; gap:24px; align-items:start; }
+.chat{ border:1px solid var(--border); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow); display:flex; flex-direction:column; min-height:520px; }
+.chat-hd{ display:flex; align-items:center; gap:12px; padding:16px 20px; border-bottom:1px solid var(--border); }
+.chat-hd .av{ width:38px; height:38px; border-radius:50%; background:var(--yellow); color:var(--ink); display:grid; place-items:center; font-weight:800; font-size:13px; }
+.chat-hd b{ display:block; font-size:14px; }
+.chat-hd span{ font-size:11.5px; color:#1B8A5A; font-weight:600; }
+.chat-log{ flex:1; padding:20px; display:flex; flex-direction:column; gap:14px; overflow-y:auto; max-height:440px; }
+.msg{ max-width:78%; font-size:13.5px; line-height:1.55; padding:12px 15px; border-radius:14px; }
+.msg.bot{ background:var(--surface); border:1px solid var(--border); border-bottom-left-radius:4px; align-self:flex-start; }
+.msg.me{ background:var(--ink); color:#fff; border-bottom-right-radius:4px; align-self:flex-end; }
+.msg.typing{ display:flex; gap:4px; align-items:center; }
+.msg.typing i{ width:6px; height:6px; border-radius:50%; background:var(--muted-2); display:inline-block; animation:chatBlink 1.2s infinite; }
+.msg.typing i:nth-child(2){ animation-delay:.2s; }
+.msg.typing i:nth-child(3){ animation-delay:.4s; }
+@keyframes chatBlink{ 0%,60%,100%{ opacity:.25; } 30%{ opacity:1; } }
+.chat-reply{ border-top:1px solid var(--border); padding:14px 20px; display:flex; gap:8px; flex-wrap:wrap; }
+.reply-chip{ border:1.5px solid var(--border); background:#fff; border-radius:999px; padding:9px 16px; font-family:inherit; font-size:12.5px; font-weight:700; cursor:pointer; color:var(--ink); }
+.reply-chip:hover{ border-color:var(--yellow); background:var(--yellow-tint); }
+.chat-side{ position:sticky; top:88px; display:flex; flex-direction:column; gap:14px; }
+.side-empty{ border:1px dashed var(--border); border-radius:var(--radius); padding:26px 22px; text-align:center; }
+.side-empty p{ font-size:12.5px; color:var(--muted-2); line-height:1.6; }
+@media(max-width:1000px){ .chat-shell{ grid-template-columns:1fr; } .chat-side{ position:static; } }
+
+/* ==========================================================================
+   ADVISOR V3 — solutions browser with persistent quote rail
+   ========================================================================== */
+.browse-shell{ display:grid; grid-template-columns:1fr 340px; gap:24px; align-items:start; }
+.sol-filters{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+.sol-filter{ border:1.5px solid var(--border); background:#fff; border-radius:999px; padding:8px 16px; font-family:inherit; font-size:12.5px; font-weight:700; cursor:pointer; color:var(--muted); }
+.sol-filter:hover{ border-color:var(--yellow); color:var(--ink); }
+.sol-filter.on{ background:var(--ink); border-color:var(--ink); color:#fff; }
+.sol-list{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+.sol{ border:1px solid var(--border); border-radius:var(--radius); padding:20px; background:#fff; position:relative; overflow:hidden; }
+.sol::after{ content:""; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--yellow) 0%, #FFE066 60%, transparent 100%); }
+.sol .cat{ font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--muted-2); margin-bottom:7px; }
+.sol h4{ font-size:15px; margin-bottom:7px; }
+.sol p{ font-size:12.5px; color:var(--muted); line-height:1.5; margin-bottom:12px; }
+.sol .pr{ display:flex; align-items:baseline; gap:5px; margin-bottom:14px; }
+.sol .pr b{ font-size:18px; font-weight:800; }
+.sol .pr span{ font-size:11px; color:var(--muted); }
+.sol .acts{ display:flex; gap:7px; align-items:center; flex-wrap:wrap; }
+.add-btn{ border:1.5px solid var(--ink); background:#fff; color:var(--ink); border-radius:8px; padding:8px 14px; font-family:inherit; font-size:12px; font-weight:800; cursor:pointer; }
+.add-btn:hover{ background:var(--ink); color:#fff; }
+.add-btn.added{ background:var(--yellow); border-color:var(--yellow); color:var(--ink); }
+.rail{ position:sticky; top:88px; display:flex; flex-direction:column; gap:14px; }
+.rail-quote{ border:1px solid var(--border); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow); overflow:hidden; }
+.rail-quote .hd{ background:var(--ink); color:#fff; padding:15px 18px; display:flex; justify-content:space-between; align-items:center; }
+.rail-quote .hd h4{ color:#fff; font-size:14px; }
+.rail-quote .hd .cnt{ background:var(--yellow); color:var(--ink); font-size:11px; font-weight:800; border-radius:999px; padding:2px 9px; }
+.rail-items{ padding:6px 18px; max-height:260px; overflow-y:auto; }
+.rail-item{ display:flex; justify-content:space-between; gap:10px; padding:11px 0; border-bottom:1px solid var(--border); font-size:12.5px; align-items:start; }
+.rail-item:last-child{ border-bottom:none; }
+.rail-item b{ display:block; font-size:12.5px; margin-bottom:2px; }
+.rail-item span{ font-size:11px; color:var(--muted); }
+.rail-item .rm{ border:none; background:none; color:var(--muted-2); cursor:pointer; font-size:15px; line-height:1; padding:0 2px; }
+.rail-item .rm:hover{ color:#C0392B; }
+.rail-foot{ padding:16px 18px; border-top:1px solid var(--border); background:var(--surface); }
+.rail-foot .tot{ display:flex; justify-content:space-between; font-size:15px; font-weight:800; margin-bottom:13px; }
+.rail-empty{ padding:26px 18px; text-align:center; font-size:12.5px; color:var(--muted-2); line-height:1.6; }
+@media(max-width:1100px){ .browse-shell{ grid-template-columns:1fr; } .rail{ position:static; } .sol-list{ grid-template-columns:1fr; } }
+
+.rail-item .ri-right{ display:flex; align-items:center; gap:9px; flex-shrink:0; }
+.rail-item .ri-right b{ margin-bottom:0; white-space:nowrap; font-size:12.5px; }
+.track li .t{ min-width:34px; }
+.track li span:last-child{ line-height:1.45; }

@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sales Advisor | MTN SME Hub</title>
+<title>V1 Guided survey | Sales Advisor | MTN SME Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
+<link rel="stylesheet" href="assets/versions.css" />
+<link rel="stylesheet" href="assets/advisor.css" />
 <style>
   .sa-hero{ background:var(--ink); color:#fff; padding:52px 0 56px; position:relative; overflow:hidden; }
   .sa-hero::before{ content:""; position:absolute; top:-120px; right:-80px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.24) 0%, transparent 70%); }
@@ -86,6 +88,18 @@
 </style>
 </head>
 <body>
+
+<div class="ver-bar">
+  <div class="wrap">
+    <span class="lbl">Advisor version</span>
+    <span class="opts">
+      <a href="sales-advisor.html" class="on">V1 Guided survey</a>
+      <a href="sales-advisor-v2.html" >V2 Conversational</a>
+      <a href="sales-advisor-v3.html" >V3 Solutions browser</a>
+    </span>
+    <span class="note">Progressive survey to a line-item quote, then a booked consultation</span>
+  </div>
+</div>
 
 <header class="site">
   <div class="nav-row">
@@ -249,32 +263,80 @@
 
       <div class="sa-done" id="sa-result">
         <div style="text-align:left;">
-          <span class="sa-result-tag">Your recommendation</span>
-          <div class="sa-quote">
-            <div class="lbl">MTN Business recommends</div>
-            <h3 id="sa-r-title">Managed Firewall</h3>
-            <p id="sa-r-desc">Based on your answers, this is the closest match for a business your size, at your budget.</p>
-            <div class="price" id="sa-r-price">From R899<span> pm, 36 months</span></div>
-          </div>
-          <div class="sa-nba">
-            <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div>
-            <div><b>Next best action</b><span id="sa-r-nba">Speak to an MTN Business advisor to confirm fit and get a formal quote.</span></div>
+          <span class="sa-result-tag">Your custom quote</span>
+
+          <div class="quote-doc" style="margin-bottom:16px;">
+            <div class="quote-hd">
+              <div class="lbl">Prepared for <span id="q-biz">your business</span></div>
+              <h3 id="q-title">Managed Firewall</h3>
+              <div class="ref">Quote <span id="q-ref">MTN-Q-000000</span> &middot; valid 14 days</div>
+            </div>
+            <div class="quote-lines" id="q-lines"></div>
+            <div class="q-tot">
+              <div class="row"><span>Monthly subtotal</span><span id="q-sub">R0</span></div>
+              <div class="row"><span>Once-off setup</span><span id="q-once">R0</span></div>
+              <div class="row"><span>Contract term</span><span id="q-term">36 months</span></div>
+              <div class="row big"><span>Monthly total</span><span id="q-total">R0</span></div>
+            </div>
+            <div class="q-foot">Indicative pricing based on your answers, excluding VAT. An advisor confirms final pricing, availability and coverage before anything is signed.</div>
           </div>
 
-          <div class="sa-book">
-            <h5>Your action plan</h5>
-            <ol class="sa-plan" id="sa-plan">
-              <li>Review the recommendation above against your budget and team size.</li>
-              <li>Speak to an MTN Business advisor to confirm the fit and get a formal quote.</li>
-              <li>Once confirmed, we'll help you get set up through the Shop.</li>
-            </ol>
-            <a class="btn btn-primary btn-block" id="sa-advisor-link" href="#" target="_blank" rel="noopener">Speak to an MTN Business Advisor</a>
-            <p class="sa-book-fine" id="sa-book-fine">Opens MTN's own advisor request form in a new tab.</p>
+          <div class="nba-box" style="margin-bottom:16px;">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div>
+            <div><b>Next best action</b><p id="q-nba">Book 15 minutes with a product and sales advisor to confirm fit and firm up this quote.</p></div>
+          </div>
+
+          <div class="cal" style="margin-bottom:16px;">
+            <div class="adviser">
+              <div class="av">LM</div>
+              <div><b>Lerato Mokoena</b><span>MTN Business product &amp; sales advisor</span></div>
+            </div>
+            <h5>Pick a day</h5>
+            <div class="cal-days" id="cal-days">
+              <div class="cal-day" data-day="Mon 15 Sep"><div class="dw">Mon</div><div class="dn">15</div></div>
+              <div class="cal-day" data-day="Tue 16 Sep"><div class="dw">Tue</div><div class="dn">16</div></div>
+              <div class="cal-day" data-day="Wed 17 Sep"><div class="dw">Wed</div><div class="dn">17</div></div>
+              <div class="cal-day" data-day="Thu 18 Sep"><div class="dw">Thu</div><div class="dn">18</div></div>
+              <div class="cal-day" data-day="Fri 19 Sep"><div class="dw">Fri</div><div class="dn">19</div></div>
+            </div>
+            <h5>Pick a time</h5>
+            <div class="cal-times" id="cal-times">
+              <div class="cal-time" data-time="09:00">09:00</div>
+              <div class="cal-time gone">10:00</div>
+              <div class="cal-time" data-time="11:00">11:00</div>
+              <div class="cal-time" data-time="13:00">13:00</div>
+              <div class="cal-time" data-time="14:00">14:00</div>
+              <div class="cal-time gone">15:00</div>
+              <div class="cal-time" data-time="16:00">16:00</div>
+              <div class="cal-time" data-time="16:30">16:30</div>
+            </div>
+            <button class="btn btn-primary btn-block btn-lg" id="cal-confirm" disabled style="margin-top:18px;">Select a day and time</button>
+            <p style="font-size:10.5px; color:var(--muted-2); text-align:center; margin-top:10px;">Prefer MTN's own form? <a href="https://www.mtn.co.za/business/contact-form?title=My%20EBU&product_name=dedicated-firewall" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:700; color:var(--muted);">Request contact there instead</a></p>
+          </div>
+
+          <div class="recover" id="sa-recover-wrap">
+            <p><b>Not ready to book?</b> We'll email this quote so you can pick it up later.</p>
+            <button class="btn btn-outline btn-sm" id="sa-recover">Email me this quote</button>
           </div>
         </div>
       </div>
 
-      <div class="sa-recover" id="sa-recover-wrap"><a id="sa-recover">Not ready to finish? Email me my progress instead</a></div>
+      <div class="sa-done" id="sa-booked">
+        <div style="text-align:left;">
+          <span class="sa-result-tag">Consultation booked</span>
+          <h3 style="font-size:20px; margin:10px 0 8px;">You're booked in with Lerato</h3>
+          <p style="font-size:13.5px; color:var(--muted); margin-bottom:20px;" id="booked-when">Your advisor will call you at the time you selected.</p>
+          <div class="lead-card" style="margin-bottom:16px;">
+            <h5>Lead record created</h5>
+            <div class="lead-row"><span>Lead reference</span><b class="mono" id="lead-ref">MTN-L-000000</b></div>
+            <div class="lead-row"><span>Quote attached</span><b class="mono" id="lead-quote">MTN-Q-000000</b></div>
+            <div class="lead-row"><span>Assigned owner</span><b>Lerato Mokoena &middot; SME Desk</b></div>
+            <div class="lead-row"><span>Source</span><b>SMEHub Sales Advisor</b></div>
+            <div class="lead-row"><span>Status</span><b>Consultation scheduled</b></div>
+          </div>
+          <a class="btn btn-outline btn-block" href="business-solutions.html">Browse the Shop while you wait</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -361,68 +423,108 @@
     }, 1400);
   });
 
-  // Where "Speak to an MTN Business Advisor" sends people: MTN's own live
-  // contact form (mtn.co.za/business/contact-form), parameterised per
-  // product, rather than a booking flow built into SMEHub.
-  var CATALOGUE = {
-    online: {
-      title: 'Business Website Starter Kit', desc: 'A guided package to get a small team trading online, matched to your team size and budget.', price: 'From R499<span> once-off setup</span>',
-      nba: 'Speak to an MTN Business advisor to walk through the setup.', ctaLabel: 'Speak to an MTN Business Advisor',
-      advisorUrl: 'https://www.mtn.co.za/business/contact-form?title=My%20EBU&product_name=microsoft-365&business_service_products=microsoft-365',
-      plan: ['Review the recommendation above against your budget and team size.', 'Speak to an MTN Business advisor to confirm the setup.', 'Once confirmed, we\'ll help you get started through the Shop.']
-    },
-    security: {
-      title: 'Managed Firewall', desc: 'Deployment, patching and 24/7 monitoring, sized for a business your size.', price: 'From R899<span> pm, 36 months</span>',
-      nba: 'Speak to an MTN Business advisor to confirm coverage and get a formal quote.', ctaLabel: 'Speak to an MTN Business Advisor',
-      advisorUrl: 'https://www.mtn.co.za/business/contact-form?title=My%20EBU&product_name=dedicated-firewall&business_service_products=dedicated-firewall',
-      plan: ['Review the recommendation above against your budget and team size.', 'Speak to an MTN Business advisor to confirm coverage and get a formal quote.', 'Once confirmed, we\'ll help you get set up through the Shop.']
-    },
-    connect: {
-      title: 'Made For Business L', desc: '23GB data and 1,000 minutes, built for a growing team that needs to stay connected.', price: 'From R499<span> pm, 36 months</span>',
-      nba: 'This plan is ready to buy directly, no advisor call needed.', ctaLabel: 'View This Plan', internalUrl: 'plan.html?plan=l',
-      plan: ['Review the recommendation above against your budget and team size.', 'View the plan and confirm it fits your team.', 'Buy directly through the Shop, no consultation required.']
-    },
-    customers: {
-      title: 'MTN Business Cloud Marketing Tools', desc: 'Reach more customers with bundled marketing and CRM tools for SMEs.', price: 'From R349<span> pm</span>',
-      nba: 'Speak to an MTN Business advisor to see a short demo before you commit.', ctaLabel: 'Speak to an MTN Business Advisor',
-      advisorUrl: 'https://www.mtn.co.za/business/contact-form?title=My%20EBU&product_name=microsoft-365&business_service_products=microsoft-365',
-      plan: ['Review the recommendation above against your budget and team size.', 'Speak to an MTN Business advisor to see a short demo.', 'Once confirmed, we\'ll help you get set up through the Shop.']
-    }
+  // Quote is assembled from the answers: a base solution matched to the stated
+  // need, then line items sized by team count, with the term set by budget.
+  var SEATS = { solo: 1, small: 6, mid: 24, large: 60 };
+  var TERM  = { lite: 24, mid: 36, grow: 36, flex: 36 };
+
+  var BASE = {
+    online:    { title: 'Business Website & Online Starter', nba: 'Book 15 minutes to scope the build and confirm what content you already have.',
+                 lines: [ {nm:'Website starter build', cfg:'Up to 5 pages, mobile responsive, contact form', once:4999},
+                          {nm:'MTN Microsoft 365 Business Standard', cfg:'Per user, per month', unit:189},
+                          {nm:'Domain & managed hosting', cfg:'Annual, billed monthly', month:149} ] },
+    security:  { title: 'Managed Firewall & Monitoring', nba: 'Book 15 minutes to confirm site count and coverage before we firm up pricing.',
+                 lines: [ {nm:'Managed Firewall', cfg:'Deployment, patching, 24/7 monitoring', month:899},
+                          {nm:'Managed EDR endpoint protection', cfg:'Per device, per month', unit:79},
+                          {nm:'Cybersecurity awareness training', cfg:'Per user, once-off onboarding', unitOnce:120} ] },
+    connect:   { title: 'Made For Business Connectivity', nba: 'These plans are transactable. Buy directly, or book a call if you want the mix checked first.',
+                 lines: [ {nm:'Made For Business L', cfg:'23GB data + 1,000 minutes, per line', unit:499},
+                          {nm:'Business Uncapped Wireless', cfg:'Up to 50 Mbps, router included', month:499},
+                          {nm:'SIM activation & delivery', cfg:'Once-off, per line', unitOnce:0} ] },
+    customers: { title: 'Reach & Sell Online Bundle', nba: 'Book 15 minutes for a short demo before you commit to the marketing tools.',
+                 lines: [ {nm:'Online storefront setup', cfg:'Partner build via Shopify or BoxCommerce', once:3499},
+                          {nm:'Marketing & CRM tools', cfg:'Per user, per month', unit:349},
+                          {nm:'Card payments & POS', cfg:'Via Yoco, per device once-off', unitOnce:499} ] }
   };
 
-  function renderResult(){
-    var pick = CATALOGUE[answers.q1] || CATALOGUE.connect;
-    document.getElementById('sa-r-title').textContent = pick.title;
-    document.getElementById('sa-r-desc').textContent = pick.desc;
-    document.getElementById('sa-r-price').innerHTML = pick.price;
-    document.getElementById('sa-r-nba').textContent = pick.nba;
+  function rands(n){ return 'R' + n.toLocaleString('en-ZA'); }
 
-    var planEl = document.getElementById('sa-plan');
-    planEl.innerHTML = '';
-    pick.plan.forEach(function(step){
-      var li = document.createElement('li');
-      li.textContent = step;
-      planEl.appendChild(li);
+  var quoteRef = '';
+
+  function renderResult(){
+    var pick = BASE[answers.q1] || BASE.connect;
+    var seats = SEATS[answers.q2] || 6;
+    var term  = TERM[answers.q3] || 36;
+
+    quoteRef = 'MTN-Q-' + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('q-ref').textContent = quoteRef;
+    document.getElementById('q-title').textContent = pick.title;
+    document.getElementById('q-term').textContent = term + ' months';
+    var biz = (document.getElementById('sa-business') || {}).value;
+    document.getElementById('q-biz').textContent = biz && biz.trim() ? biz.trim() : 'your business';
+    document.getElementById('q-nba').textContent = pick.nba;
+
+    var monthly = 0, once = 0, html = '';
+    pick.lines.forEach(function(l){
+      var lineMonth = 0, lineOnce = 0, qty = '';
+      if (l.month) { lineMonth = l.month; }
+      if (l.unit)  { lineMonth = l.unit * seats; qty = seats + ' × ' + rands(l.unit) + ' pm'; }
+      if (l.once)  { lineOnce = l.once; }
+      if (l.unitOnce !== undefined) { lineOnce = l.unitOnce * seats; qty = seats + ' × ' + rands(l.unitOnce); }
+      monthly += lineMonth; once += lineOnce;
+
+      var amt = lineMonth ? '<b>' + rands(lineMonth) + '</b><span>per month</span>'
+                          : (lineOnce ? '<b>' + rands(lineOnce) + '</b><span>once-off</span>'
+                                      : '<b>Included</b><span>no charge</span>');
+      html += '<div class="q-line"><div><div class="nm">' + l.nm + '</div><div class="cfg">' + l.cfg +
+              (qty ? ' &middot; ' + qty : '') + '</div></div><div class="amt">' + amt + '</div></div>';
     });
 
-    var link = document.getElementById('sa-advisor-link');
-    var fine = document.getElementById('sa-book-fine');
-    link.textContent = pick.ctaLabel;
-    if (pick.internalUrl) {
-      link.href = pick.internalUrl;
-      link.removeAttribute('target');
-      link.removeAttribute('rel');
-      fine.textContent = 'Takes you straight to this plan in the Shop.';
-    } else {
-      link.href = pick.advisorUrl;
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener');
-      fine.textContent = "Opens MTN's own advisor request form in a new tab.";
-    }
+    document.getElementById('q-lines').innerHTML = html;
+    document.getElementById('q-sub').textContent = rands(monthly);
+    document.getElementById('q-once').textContent = once ? rands(once) : 'None';
+    document.getElementById('q-total').textContent = rands(monthly) + ' pm';
   }
 
+  // --- Calendar scheduling ---
+  var pickedDay = null, pickedTime = null;
+  function refreshBook(){
+    var btn = document.getElementById('cal-confirm');
+    if (pickedDay && pickedTime) {
+      btn.disabled = false; btn.classList.add('ready');
+      btn.textContent = 'Confirm ' + pickedDay + ' at ' + pickedTime;
+    } else {
+      btn.disabled = true;
+      btn.textContent = 'Select a day and time';
+    }
+  }
+  document.querySelectorAll('#cal-days .cal-day').forEach(function(d){
+    d.addEventListener('click', function(){
+      document.querySelectorAll('#cal-days .cal-day').forEach(function(x){ x.classList.remove('sel'); });
+      d.classList.add('sel'); pickedDay = d.getAttribute('data-day'); refreshBook();
+    });
+  });
+  document.querySelectorAll('#cal-times .cal-time').forEach(function(t){
+    if (t.classList.contains('gone')) return;
+    t.addEventListener('click', function(){
+      document.querySelectorAll('#cal-times .cal-time').forEach(function(x){ x.classList.remove('sel'); });
+      t.classList.add('sel'); pickedTime = t.getAttribute('data-time'); refreshBook();
+    });
+  });
+
+  document.getElementById('cal-confirm').addEventListener('click', function(){
+    if (this.disabled) return;
+    document.getElementById('sa-result').classList.remove('show');
+    document.getElementById('booked-when').textContent =
+      'Lerato will call you on ' + pickedDay + ' at ' + pickedTime + '. The quote below is attached to the booking.';
+    document.getElementById('lead-ref').textContent = 'MTN-L-' + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('lead-quote').textContent = quoteRef;
+    document.getElementById('sa-booked').classList.add('show');
+  });
+
   document.getElementById('sa-recover').addEventListener('click', function(){
-    this.textContent = "Thanks, we've emailed you a link to pick this back up any time.";
+    this.textContent = 'Sent, check your inbox';
+    this.disabled = true;
   });
 })();
 </script>
