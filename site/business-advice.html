@@ -3,56 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Your Portal | MTN SME Hub</title>
+<title>Business Advice | MTN SME Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
-<style>
-  .db-hero{ background:var(--ink); color:#fff; padding:40px 0; position:relative; overflow:hidden; }
-  .db-hero::before{ content:""; position:absolute; top:-100px; right:-60px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); }
-  .db-hero .wrap{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
-  .db-hero .who{ display:flex; align-items:center; gap:16px; }
-  .db-hero .avatar{ width:56px; height:56px; border-radius:50%; background:var(--yellow); color:var(--ink); display:grid; place-items:center; font-weight:800; font-size:19px; flex-shrink:0; }
-  .db-hero h1{ color:#fff; font-size:22px; margin-bottom:4px; }
-  .db-hero .sub{ font-size:13px; color:rgba(255,255,255,.6); }
-  .db-hero .tier{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow); background:rgba(255,197,2,.12); border:1px solid rgba(255,197,2,.3); padding:6px 13px; border-radius:999px; }
-
-  .db-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:-28px 0 36px; position:relative; z-index:2; }
-  .db-stat{ background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:18px 20px; box-shadow:var(--shadow); }
-  .db-stat b{ display:block; font-size:24px; font-weight:800; margin-bottom:2px; }
-  .db-stat span{ font-size:11.5px; color:var(--muted); }
-
-  .db-layout{ display:grid; grid-template-columns:1fr 320px; gap:32px; align-items:start; }
-  .db-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:24px; margin-bottom:22px; }
-  .db-card h3{ font-size:16px; margin-bottom:16px; }
-  .activity-row{ display:flex; align-items:center; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
-  .activity-row:last-child{ border-bottom:none; }
-  .activity-row .ic{ width:36px; height:36px; border-radius:9px; background:var(--yellow-tint); color:var(--yellow-shade); display:grid; place-items:center; flex-shrink:0; }
-  .activity-row .txt b{ display:block; font-size:13.5px; margin-bottom:2px; }
-  .activity-row .txt span{ font-size:11.5px; color:var(--muted); }
-  .activity-row .when{ margin-left:auto; font-size:11.5px; color:var(--muted-2); flex-shrink:0; }
-
-  .fund-item{ display:flex; justify-content:space-between; align-items:center; padding:13px 0; border-bottom:1px solid var(--border); gap:12px; }
-  .fund-item:last-child{ border-bottom:none; }
-  .fund-item b{ font-size:13.5px; display:block; }
-  .fund-item span{ font-size:11.5px; color:var(--muted); }
-  .fund-item a{ flex-shrink:0; font-size:12px; font-weight:700; color:var(--yellow-shade); text-decoration:underline; }
-
-  .reward-strip{ display:flex; gap:12px; overflow-x:auto; padding-bottom:4px; }
-  .reward-card{ flex-shrink:0; width:180px; border:1px solid var(--border); border-radius:10px; padding:16px; }
-  .reward-card .ic{ width:32px; height:32px; border-radius:8px; background:var(--yellow); color:var(--ink); display:grid; place-items:center; margin-bottom:10px; }
-  .reward-card b{ display:block; font-size:12.5px; margin-bottom:4px; }
-  .reward-card span{ font-size:11px; color:var(--muted); }
-
-  .convert-card{ background:var(--ink); color:#fff; border-radius:var(--radius); padding:22px; position:relative; overflow:hidden; }
-  .convert-card::before{ content:""; position:absolute; top:-60px; right:-40px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.28) 0%, transparent 70%); }
-  .convert-card *{ position:relative; z-index:1; }
-  .convert-card h4{ font-size:15px; margin-bottom:8px; }
-  .convert-card p{ font-size:12.5px; color:rgba(255,255,255,.65); margin-bottom:16px; }
-
-  @media(max-width:1000px){ .db-layout{ grid-template-columns:1fr; } .db-stats{ grid-template-columns:repeat(2,1fr); } }
-</style>
 </head>
 <body>
 
@@ -84,7 +39,6 @@
     </nav>
     <div class="nav-cta">
       <div class="nav-search"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-      <a class="nav-search" href="portal-dashboard.html" aria-label="Your Portal" style="background:var(--yellow-tint); border-color:var(--yellow);"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6"/></svg></a>
       <div class="nav-burger"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
     </div>
   </div>
@@ -124,78 +78,105 @@
   </div>
 </div>
 
-<section class="db-hero">
+<div class="page-head">
   <div class="wrap">
-    <div class="who">
-      <div class="avatar">TN</div>
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="current">Business Advice</span></div>
+    <h1>Business Advice</h1>
+    <p>Practical guidance for South African businesses, organised by what you are trying to get done.</p>
+  </div>
+</div>
+
+<section style="padding-top:48px;">
+  <div class="wrap">
+    <div class="sec-head">
       <div>
-        <h1>Welcome back, Thabo</h1>
-        <div class="sub">Nkosi Trading CC &middot; Member since Aug 2026</div>
+        <p class="eyebrow-label">Categories</p>
+        <h2 class="sec-title">Start with what you are working on</h2>
+        <p class="sec-desc">Every article sits under one of five categories, so you can go straight to the part of the business you are trying to fix.</p>
       </div>
     </div>
-    <span class="tier">Free SMEHub Member</span>
+    <div class="pillar-grid">
+      <a class="pillar-card" href="category.html">
+        <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx='12' cy='12' r='9'/><path d='M12 7v5l3 3'/></svg></div>
+        <h4>Connect My Business</h4>
+        <p>Getting online: websites, payment gateways and the funding behind them.</p>
+        <span class="go">Explore <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="pillar-card" href="category.html">
+        <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d='M5 19V9m7 10V5m7 14v-7'/></svg></div>
+        <h4>Build My Business</h4>
+        <p>Growth strategy, entrepreneurship and where the market is heading.</p>
+        <span class="go">Explore <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="pillar-card" href="category.html">
+        <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d='M3 3v18h18'/><path d='M7 15l4-5 3 3 5-7'/></svg></div>
+        <h4>Manage My Business</h4>
+        <p>Cash flow, inventory, budgeting and staying compliant.</p>
+        <span class="go">Explore <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="pillar-card" href="category.html">
+        <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d='M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z'/></svg></div>
+        <h4>Feature My Business</h4>
+        <p>SME spotlights, awards and the stories behind them.</p>
+        <span class="go">Explore <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="pillar-card" href="category.html">
+        <div class="ic"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx='9' cy='20' r='1.4'/><circle cx='18' cy='20' r='1.4'/><path d='M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6'/></svg></div>
+        <h4>Ecommerce</h4>
+        <p>Online stores, digital sales and getting orders out the door.</p>
+        <span class="go">Explore <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
   </div>
 </section>
 
-<section style="padding-top:0;">
+<section style="background:var(--surface);">
   <div class="wrap">
-    <div class="db-stats">
-      <div class="db-stat"><b>4</b><span>Guides read</span></div>
-      <div class="db-stat"><b>2</b><span>Templates downloaded</span></div>
-      <div class="db-stat"><b>1</b><span>Events attended</span></div>
-      <div class="db-stat"><b>1</b><span>Advisor consultation</span></div>
-    </div>
-
-    <div class="db-layout">
+    <div class="sec-head">
       <div>
-        <div class="db-card">
-          <h3>Your activity</h3>
-          <div class="activity-row">
-            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
-            <div class="txt"><b>Booked a SME Advisor consultation</b><span>Managed Firewall &middot; Tue 10:00</span></div>
-            <div class="when">2 days ago</div>
-          </div>
-          <div class="activity-row">
-            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-            <div class="txt"><b>Downloaded Cash Flow Projection Template</b><span>Templates</span></div>
-            <div class="when">5 days ago</div>
-          </div>
-          <div class="activity-row">
-            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
-            <div class="txt"><b>Completed Complete Guide to Registering a Business in SA</b><span>Guides</span></div>
-            <div class="when">1 week ago</div>
-          </div>
-          <div class="activity-row">
-            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-            <div class="txt"><b>Registered for Funding Your Business in 2026</b><span>Events</span></div>
-            <div class="when">2 weeks ago</div>
-          </div>
-        </div>
-
-        <div class="db-card">
-          <h3>Funding opportunities for you</h3>
-          <div class="fund-item"><div><b>SEDFA Small Business Loan</b><span>Based on your SME Advisor answers</span></div><a href="stakeholders.html">View</a></div>
-          <div class="fund-item"><div><b>African Bank Business Overdraft</b><span>For businesses trading 12+ months</span></div><a href="stakeholders.html">View</a></div>
-          <div class="fund-item"><div><b>NEF uMastandi Fund</b><span>Youth and women-owned businesses</span></div><a href="stakeholders.html">View</a></div>
-        </div>
+        <p class="eyebrow-label">Latest</p>
+        <h2 class="sec-title">Fresh across every category</h2>
       </div>
+      <a class="btn btn-outline" href="category.html">View all articles</a>
+    </div>
+    <div class="card-grid" style="grid-template-columns:repeat(3,1fr);">
+      <a class="article-card" href="article.html">
+        <div class="img ph-web"></div>
+        <div class="bd"><div class="tags"><span class="tag">Connect &middot; Ecommerce</span></div><h4>How To Drive Traffic To Your eCommerce Website</h4><p class="excerpt">Getting relevant visitors is the hard part once your store is live. Start with the channels you already own.</p><div class="meta"><span>2 Aug 2026</span><span>&middot;</span><span>5 min read</span></div></div>
+      </a>
+      <a class="article-card" href="article.html">
+        <div class="img ph-pay"></div>
+        <div class="bd"><div class="tags"><span class="tag">Connect &middot; Ecommerce</span></div><h4>Why Your Business Needs a Payment Gateway</h4><p class="excerpt">Taking card and instant EFT payments properly, and what the transaction fees actually cost you.</p><div class="meta"><span>28 Jul 2026</span><span>&middot;</span><span>4 min read</span></div></div>
+      </a>
+      <a class="article-card" href="article.html">
+        <div class="img ph-cash"></div>
+        <div class="bd"><div class="tags"><span class="tag">Manage &middot; Finance</span></div><h4>Everything You Need To Know About Cash Flow</h4><p class="excerpt">Healthy cash flow is not the same thing as profit. Here is why the difference matters most.</p><div class="meta"><span>20 Jul 2026</span><span>&middot;</span><span>7 min read</span></div></div>
+      </a>
+      <a class="article-card" href="article.html">
+        <div class="img ph-fund"></div>
+        <div class="bd"><div class="tags"><span class="tag">Connect &middot; Finance</span></div><h4>NYDA Business Funding for SMEs in SA</h4><p class="excerpt">How the National Youth Development Agency supports small businesses, and what to prepare first.</p><div class="meta"><span>14 Jul 2026</span><span>&middot;</span><span>5 min read</span></div></div>
+      </a>
+      <a class="article-card" href="article.html">
+        <div class="img ph-retail"></div>
+        <div class="bd"><div class="tags"><span class="tag">Manage &middot; Ecommerce</span></div><h4>Choosing Stock That Actually Sells</h4><p class="excerpt">A practical approach to range planning when your working capital is tied up in inventory.</p><div class="meta"><span>7 Jul 2026</span><span>&middot;</span><span>6 min read</span></div></div>
+      </a>
+      <a class="article-card" href="article.html">
+        <div class="img ph-mobile"></div>
+        <div class="bd"><div class="tags"><span class="tag">Manage &middot; Connectivity</span></div><h4>What Fibre Really Costs a Small Office</h4><p class="excerpt">Line rental, installation, contention ratios and the questions to ask before you sign.</p><div class="meta"><span>1 Jul 2026</span><span>&middot;</span><span>5 min read</span></div></div>
+      </a>
+    </div>
+  </div>
+</section>
 
-      <aside>
-        <div class="db-card">
-          <h3>Member rewards</h3>
-          <div class="reward-strip">
-            <div class="reward-card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div><b>10% off setup</b><span>Business Website Starter Kit</span></div>
-            <div class="reward-card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 010-4h12v4"/><path d="M4 6v12a2 2 0 002 2h14v-4"/></svg></div><b>First month free</b><span>Managed Firewall</span></div>
-            <div class="reward-card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><b>Priority booking</b><span>SME Advisor consultations</span></div>
-          </div>
-        </div>
-
-        <div class="convert-card">
-          <h4>Ready to become an MTN Business customer?</h4>
-          <p>Your Portal activity and SME Advisor answers carry straight across, no forms to redo.</p>
-          <a class="btn btn-primary btn-block" href="business-solutions.html">Browse the Shop</a>
-        </div>
-      </aside>
+<section class="leadgen">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow-label">MTN Business</p>
+        <h2 class="sec-title">Not sure which solution fits?</h2>
+        <p class="sec-desc">Answer a few questions about how your business runs and the SME Advisor will build a costed recommendation you can take to a consultation.</p>
+      </div>
+      <a class="btn btn-primary" href="sales-advisor.html">Get a tailored quote</a>
     </div>
   </div>
 </section>
