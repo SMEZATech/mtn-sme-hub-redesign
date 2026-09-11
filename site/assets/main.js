@@ -1,4 +1,4 @@
-// MTN SME Hub — Redesign Mockup — shared behaviour (mobile nav, accordions)
+// MTN SME Hub, Redesign Mockup, shared behaviour (mobile nav, accordions)
 document.addEventListener('DOMContentLoaded', function () {
   var burger = document.querySelector('.nav-burger');
   var drawer = document.querySelector('.mobile-drawer');

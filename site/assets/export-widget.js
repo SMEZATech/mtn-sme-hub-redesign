@@ -1,4 +1,4 @@
-// MTN SME Hub — self-contained "Export as PDF / PPT" widget.
+// MTN SME Hub, self-contained "Export as PDF / PPT" widget.
 // Include on document-style pages only (strategy report, brand CI).
 // Injects its own styles, derives the PptxGenJS path from its own URL,
 // and builds a branded, editable deck from the page's headings and text.
@@ -141,7 +141,7 @@
     if (b.classList.contains('callout')) {
       var t = clean((b.querySelector('.t') || {}).textContent || '');
       var d = clean((b.querySelector('.d') || {}).textContent || '');
-      return t && d ? (t + ' — ' + d) : (t || d);
+      return t && d ? (t + ': ' + d) : (t || d);
     }
     if (b.classList.contains('dcol')) {
       var v = clean((b.querySelector('span') || {}).textContent || '');
@@ -153,7 +153,7 @@
       if (b.classList.contains('head')) return '';
       var nn = clean((b.querySelector('.tmpl-n') || {}).textContent || '');
       var vv = clean((b.querySelector('.tmpl-v') || {}).textContent || '');
-      return nn ? (nn + (vv ? ' — ' + vv : '')) : clean(b.textContent);
+      return nn ? (nn + (vv ? ': ' + vv : '')) : clean(b.textContent);
     }
     return clean(b.textContent);
   }
@@ -190,7 +190,7 @@
         Array.prototype.forEach.call(b.querySelectorAll('tr'), function (tr, idx) {
           if (idx === 0 && tr.querySelector('th')) return;
           var cells = Array.prototype.map.call(tr.querySelectorAll('th,td'), function (c) { return clean(c.textContent); }).filter(Boolean);
-          if (cells.length) pushBullet(owner, cells.join('  —  '));
+          if (cells.length) pushBullet(owner, cells.join('  ·  '));
         });
       } else {
         pushBullet(owner, blockToText(b));
