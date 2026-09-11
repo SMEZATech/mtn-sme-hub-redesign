@@ -26,6 +26,52 @@
   .journey-steps span{ font-size:12.5px; font-weight:700; color:var(--ink); }
   .journey-steps .arrow{ color:var(--yellow-shade); font-weight:400; }
   @media(max-width:900px){ .eco-body{ grid-template-columns:1fr; } .eco-partners{ border-right:none; border-bottom:1px solid var(--border); } }
+
+  /* ---- Starting the journey on the Hub ---- */
+  .eco-start{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:14px; }
+  .eco-start .note{ font-size:12px; color:var(--muted-2); }
+  .eco-form{ margin-top:16px; border:1px solid var(--border); border-radius:var(--radius); background:#fff; padding:24px 26px; box-shadow:var(--shadow); position:relative; overflow:hidden; }
+  .eco-form::before{ content:""; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--yellow) 0%, #FFE066 60%, transparent 100%); }
+  .eco-q{ margin-bottom:20px; }
+  .eco-q h5{ font-size:13.5px; margin-bottom:10px; }
+  .eco-opts{ display:flex; flex-wrap:wrap; gap:8px; }
+  .eco-opt{ border:1.5px solid var(--border); background:#fff; border-radius:999px; padding:9px 16px; font-family:inherit; font-size:12.5px; font-weight:700; color:var(--muted); cursor:pointer; transition:border-color .15s, background .15s, color .15s; }
+  .eco-opt:hover{ border-color:var(--yellow); color:var(--ink); }
+  .eco-opt.sel{ border-color:var(--yellow); background:var(--yellow-tint); color:var(--ink); }
+  .eco-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0 18px; padding-top:20px; border-top:1px solid var(--border); }
+  .eco-field label{ font-size:12px; font-weight:700; display:block; margin-bottom:6px; }
+  .eco-field input{ width:100%; padding:11px 13px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-size:13.5px; font-family:inherit; background:var(--surface); outline:none; }
+  .eco-field input:focus{ border-color:var(--yellow); background:#fff; }
+  .eco-fine{ grid-column:1 / -1; font-size:11.5px; color:var(--muted); line-height:1.55; }
+
+  .eco-result{ margin-top:16px; border-radius:var(--radius); background:var(--ink); color:#fff; padding:26px 28px; position:relative; overflow:hidden; }
+  .eco-result::before{ content:""; position:absolute; top:-120px; right:-90px; width:360px; height:360px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); pointer-events:none; }
+  .eco-result > *{ position:relative; z-index:1; }
+  .eco-result .tag{ display:inline-flex; align-items:center; gap:7px; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-hex); background:var(--yellow); padding:5px 11px; border-radius:5px; margin-bottom:14px; }
+  .eco-result h4{ color:#fff; font-size:19px; margin-bottom:8px; }
+  .eco-result > p{ font-size:13px; color:rgba(255,255,255,.66); line-height:1.6; max-width:62ch; margin-bottom:18px; }
+  .eco-refs{ display:flex; gap:26px; flex-wrap:wrap; padding:16px 0; border-top:1px solid rgba(255,255,255,.12); border-bottom:1px solid rgba(255,255,255,.12); margin-bottom:18px; }
+  .eco-refs div span{ display:block; font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; color:rgba(255,255,255,.45); margin-bottom:4px; }
+  .eco-refs div b{ font-family:monospace; font-size:14px; color:var(--yellow); }
+  .eco-matched h5{ font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:10px; }
+  .eco-matched .m{ display:flex; align-items:flex-start; gap:11px; padding:9px 0; font-size:13px; }
+  .eco-matched .m i{ width:18px; height:18px; border-radius:50%; background:rgba(255,197,2,.18); color:var(--yellow); display:grid; place-items:center; flex-shrink:0; margin-top:2px; font-style:normal; font-size:10px; font-weight:800; }
+  .eco-matched .m b{ color:#fff; font-weight:700; }
+  .eco-matched .m span{ color:rgba(255,255,255,.55); }
+
+  /* ---- Tray of journeys started ---- */
+  .eco-tray{ display:none; border:1px solid var(--yellow-tint-2); background:var(--yellow-tint); border-radius:var(--radius); padding:18px 22px; margin-bottom:36px; }
+  .eco-tray.show{ display:block; }
+  .eco-tray h4{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--yellow-shade); margin-bottom:12px; }
+  .eco-tray .row{ display:flex; justify-content:space-between; align-items:center; gap:14px; padding:8px 0; border-bottom:1px solid var(--yellow-tint-2); font-size:13px; }
+  .eco-tray .row:last-child{ border-bottom:none; }
+  .eco-tray .row b{ font-family:monospace; }
+  .eco-tray .row .st{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--yellow-shade); }
+
+  @media(max-width:700px){
+    .eco-grid{ grid-template-columns:1fr; }
+    .eco-refs{ gap:18px; }
+  }
 </style>
 </head>
 <body>
@@ -108,7 +154,12 @@
 <section>
   <div class="wrap">
 
-    <div class="eco-block">
+    <div class="eco-tray" id="eco-tray">
+      <h4>Journeys you have started on the Hub</h4>
+      <div id="eco-tray-list"></div>
+    </div>
+
+    <div class="eco-block" data-role="fund">
       <div class="eco-head">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg></div>
         <div><h2>Fund &amp; Bank</h2><p>Browse funding options, check eligibility, apply or refer, and track the next step, all from inside the hub.</p></div>
@@ -125,7 +176,7 @@
       </div>
     </div>
 
-    <div class="eco-block">
+    <div class="eco-block" data-role="operate">
       <div class="eco-head">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16M10 4v16"/></svg></div>
         <div><h2>Operate &amp; Digitise</h2><p>Subscription-based tools an SME runs the business on, browsed and bought without leaving the hub.</p></div>
@@ -142,7 +193,7 @@
       </div>
     </div>
 
-    <div class="eco-block">
+    <div class="eco-block" data-role="advise">
       <div class="eco-head">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div>
         <div><h2>Advise &amp; Develop</h2><p>Independent guidance and structured development support for founders who need more than an article.</p></div>
@@ -159,7 +210,7 @@
       </div>
     </div>
 
-    <div class="eco-block">
+    <div class="eco-block" data-role="markets">
       <div class="eco-head">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z"/></svg></div>
         <div><h2>Access Markets</h2><p>Routes into procurement and enterprise supply chains that most SMEs would otherwise never see.</p></div>
@@ -176,7 +227,7 @@
       </div>
     </div>
 
-    <div class="eco-block">
+    <div class="eco-block" data-role="learn">
       <div class="eco-head">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
         <div><h2>Learn &amp; Inspire</h2><p>The content layer that keeps members coming back between funding rounds and purchases.</p></div>
@@ -240,5 +291,276 @@
 </footer>
 
 <script src="assets/main.js"></script>
+<script>
+(function(){
+  // Every partner journey starts and finishes on the Hub. Nothing links out:
+  // each one raises an MTN-A application and routes it as an MTN-L lead.
+  var ROLES = {
+    fund: {
+      label: 'Fund & Bank',
+      cta: 'Check eligibility and apply',
+      note: 'Nothing leaves the Hub. You get an application reference you can track.',
+      done: 'Application started',
+      next: 'A funding specialist checks your eligibility against each funder and comes back within two working days. Nothing is submitted to a lender until you approve it.',
+      questions: [
+        { id:'trading', q:'How long have you been trading?', opts:[
+          ['pre','Not yet trading'], ['lt1','Under a year'], ['y13','1 to 3 years'], ['gt3','More than 3 years'] ] },
+        { id:'turnover', q:'What is your annual turnover?', opts:[
+          ['none','Pre-revenue'], ['u1m','Under R1 million'], ['m15','R1m to R5m'], ['gt5','Over R5 million'] ] },
+        { id:'records', q:'What financial records can you produce?', opts:[
+          ['audited','Audited statements'], ['books','Bookkeeping up to date'], ['informal','Informal records'], ['none','None yet'] ] }
+      ],
+      match: function(a){
+        if (a.records === 'audited' && (a.turnover === 'gt5' || a.turnover === 'm15'))
+          return [['Business Partners','Equity and term loans for established businesses'],
+                  ['Standard Bank','Revolving credit and asset finance'],
+                  ['Nedbank','Overdraft and term lending'],
+                  ['FNB','Business lending against signed off statements']];
+        if (a.records === 'books')
+          return [['SEDFA','State small enterprise funding, no audit required'],
+                  ['IDC','Development finance for manufacturing and job creation'],
+                  ['African Bank','Business overdraft on 12 months of statements']];
+        if (a.records === 'informal')
+          return [['SEDFA','Funding with development support attached'],
+                  ['NEF','National Empowerment Fund, black owned businesses']];
+        return [['NSBC','Readiness programme to get your records fundable'],
+                ['SEDFA','Worth approaching once you have clean records']];
+      }
+    },
+    operate: {
+      label: 'Operate & Digitise',
+      cta: 'Set up my tools',
+      note: 'Trials and bundles are arranged here. No separate sign-up elsewhere.',
+      done: 'Activation requested',
+      next: 'A partner specialist sets up your trial, confirms bundle pricing against your team size, and calls to walk you through the first week.',
+      questions: [
+        { id:'need', q:'What do you need first?', opts:[
+          ['sell','Sell online'], ['admin','Run admin and accounts'], ['market','Market to customers'], ['collab','Work together as a team'] ] },
+        { id:'seats', q:'How many people need access?', opts:[
+          ['solo','Just me'], ['small','2 to 10'], ['mid','11 to 50'], ['large','More than 50'] ] },
+        { id:'replace', q:'Are you replacing something?', opts:[
+          ['fresh','Starting fresh'], ['free','Replacing free tools'], ['paid','Switching from a paid product'], ['unsure','Not sure yet'] ] }
+      ],
+      match: function(a){
+        if (a.need === 'sell')  return [['Shopify','Online store with payments and shipping'],
+                                        ['BoxCommerce','Store built and managed for you'],
+                                        ['Yoco','Card payments in person and online']];
+        if (a.need === 'admin') return [['Sage','Accounting, invoicing and payroll'],
+                                        ['Microsoft','Microsoft 365 for mail, files and documents']];
+        if (a.need === 'market')return [['Mobiz','Mobile campaigns to your customer list'],
+                                        ['Everlytic','eMail and SMS marketing automation'],
+                                        ['Wix','A site and landing pages to send traffic to']];
+        return [['Microsoft','Microsoft 365 with Teams, mail and shared files'],
+                ['Sage','Shared books once the team is working together']];
+      }
+    },
+    advise: {
+      label: 'Advise & Develop',
+      cta: 'Book an adviser',
+      done: 'Consultation requested',
+      note: 'Advisers are booked through the Hub and confirmed by eMail.',
+      next: 'An adviser confirms a slot that suits you and sends the playbook for your topic beforehand, so the session starts with the hard questions.',
+      questions: [
+        { id:'topic', q:'What do you need help with?', opts:[
+          ['start','Starting up'], ['grow','Growing the business'], ['tax','Tax and compliance'], ['legal','Contracts and legal'] ] },
+        { id:'mode', q:'How would you like to meet?', opts:[
+          ['virtual','Virtual'], ['person','In person'], ['either','Either works'] ] },
+        { id:'when', q:'How soon?', opts:[
+          ['week','This week'], ['month','This month'], ['later','Next few months'] ] }
+      ],
+      match: function(a){
+        if (a.topic === 'tax')   return [['Accountants network','Registered practitioners for tax and payroll'],
+                                         ['NSBC','Compliance clinics and templates']];
+        if (a.topic === 'legal') return [['Legal and tax networks','Contracts, terms and company structure'],
+                                         ['NSBC','Member legal helpline']];
+        if (a.topic === 'start') return [['Incubators','Structured start-up programmes'],
+                                         ['Universities','Enterprise development units and mentorship'],
+                                         ['NSBC','Start-up toolkits and clinics']];
+        return [['NSBC','Growth clinics and peer networks'],
+                ['Incubators','Scale-up programmes with mentorship'],
+                ['Universities','Applied research and student project support']];
+      }
+    },
+    markets: {
+      label: 'Access Markets',
+      cta: 'Start a supplier profile',
+      note: 'Your readiness is assessed here, and opportunities come back to you.',
+      done: 'Supplier profile started',
+      next: 'A procurement specialist reviews your readiness, lists the opportunities you already qualify for, and tells you exactly which documents are missing for the rest.',
+      questions: [
+        { id:'supply', q:'What do you supply?', opts:[
+          ['goods','Goods'], ['services','Services'], ['both','Both'] ] },
+        { id:'ready', q:'Are you supplier ready?', opts:[
+          ['full','BBBEE certificate, tax clearance and CSD registered'], ['partial','Some of those documents'], ['none','Not yet'], ['unsure','Not sure what is needed'] ] },
+        { id:'reach', q:'Who do you want to reach?', opts:[
+          ['corp','Corporate supply chains'], ['gov','Public procurement'], ['consumer','Consumers directly'], ['all','All of them'] ] }
+      ],
+      match: function(a){
+        var out = [];
+        if (a.reach === 'corp' || a.reach === 'all')
+          out.push(['MTN Procurement','Supplier opportunities inside MTN'],
+                   ['Corporate ESD programmes','Enterprise and supplier development places']);
+        if (a.reach === 'gov' || a.reach === 'all')
+          out.push(['Public procurement portals','Tenders matched to what you supply']);
+        if (a.reach === 'consumer' || a.reach === 'all')
+          out.push(['Ayoba','Reach customers on the MTN messaging platform']);
+        if (a.ready === 'none' || a.ready === 'unsure')
+          out.push(['Supplier readiness support','Get the documents in place first']);
+        return out;
+      }
+    },
+    learn: {
+      label: 'Learn & Inspire',
+      cta: 'Enrol me',
+      note: 'Programmes are enrolled here and the first session comes by eMail.',
+      done: 'Enrolment started',
+      next: 'We send your first masterclass, hold your place on the programme, and let you know when a live session covers the topic you picked.',
+      questions: [
+        { id:'skill', q:'What do you want to get better at?', opts:[
+          ['digital','Digital and tech'], ['finance','Money and finance'], ['sales','Sales and marketing'], ['leadership','Leading a team'] ] },
+        { id:'time', q:'How much time can you give it?', opts:[
+          ['short','Under an hour a week'], ['medium','1 to 3 hours a week'], ['deep','A structured programme'] ] },
+        { id:'story', q:'Would you share your story?', opts:[
+          ['yes','Yes, feature my business'], ['maybe','Maybe later'], ['no','Not for now'] ] }
+      ],
+      match: function(a){
+        var out = [];
+        if (a.skill === 'digital') out.push(['Microsoft Learn','Free paths on Microsoft 365 and cloud basics']);
+        if (a.skill === 'finance') out.push(['Coursera','Small business finance and bookkeeping courses']);
+        if (a.skill === 'sales' || a.skill === 'leadership')
+          out.push(['LinkedIn Learning','Short courses on selling and managing people']);
+        if (a.time === 'deep') out.push(['Coursera','Certificate programmes you can finish in a term']);
+        if (a.story === 'yes') out.push(['SME Spotlight','Your business considered for a founder feature']);
+        out.push(['SME media and founder networks','Podcasts, founder stories and expert Q&A']);
+        return out;
+      }
+    }
+  };
+
+  var ARROW = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var TICK  = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M20 6L9 17l-5-5"/></svg>';
+  var started = [];
+
+  function ref(prefix){ return prefix + Math.floor(100000 + Math.random() * 900000); }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function addToTray(role, appRef){
+    var tray = document.getElementById('eco-tray');
+    var row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = '<span>' + esc(ROLES[role].label) + '</span><b>' + appRef +
+                    '</b><span class="st">' + esc(ROLES[role].done) + '</span>';
+    document.getElementById('eco-tray-list').appendChild(row);
+    tray.classList.add('show');
+  }
+
+  function buildBlock(block){
+    var role = block.getAttribute('data-role');
+    var cfg = ROLES[role];
+    if (!cfg) return;
+    var answers = {};
+
+    var strip = document.createElement('div');
+    strip.className = 'eco-start';
+    strip.innerHTML = '<button type="button" class="btn btn-primary btn-sm">' + esc(cfg.cta) + ' ' + ARROW +
+                      '</button><span class="note">' + esc(cfg.note) + '</span>';
+    block.appendChild(strip);
+
+    var form = document.createElement('div');
+    form.className = 'eco-form';
+    form.hidden = true;
+    var html = '';
+    for (var i = 0; i < cfg.questions.length; i++){
+      var q = cfg.questions[i];
+      html += '<div class="eco-q" data-q="' + q.id + '"><h5>' + esc(q.q) + '</h5><div class="eco-opts">';
+      for (var j = 0; j < q.opts.length; j++){
+        html += '<button type="button" class="eco-opt" data-val="' + q.opts[j][0] + '">' + esc(q.opts[j][1]) + '</button>';
+      }
+      html += '</div></div>';
+    }
+    html += '<div class="eco-grid">' +
+      '<div class="eco-field"><label>Full name</label><input type="text" data-f="name" placeholder="Thabo Nkosi"></div>' +
+      '<div class="eco-field"><label>Business name</label><input type="text" data-f="biz" placeholder="Nkosi Trading CC"></div>' +
+      '<div class="eco-field"><label>eMail address</label><input type="email" data-f="email" placeholder="thabo@nkositrading.co.za"></div>' +
+      '<div class="eco-field"><label>Contact number</label><input type="tel" data-f="phone" placeholder="082 000 0000"></div>' +
+      '<p class="eco-fine">MTN Business uses these details to progress this application and contact you about it. Nothing is charged and no account is created.</p>' +
+      '</div>' +
+      '<button type="button" class="btn btn-primary btn-block eco-submit" disabled>Answer every question to continue</button>';
+    form.innerHTML = html;
+    block.appendChild(form);
+
+    var result = document.createElement('div');
+    result.className = 'eco-result';
+    result.hidden = true;
+    block.appendChild(result);
+
+    var submit = form.querySelector('.eco-submit');
+
+    function refresh(){
+      var done = true;
+      for (var i = 0; i < cfg.questions.length; i++) if (!answers[cfg.questions[i].id]) done = false;
+      var fields = form.querySelectorAll('[data-f]');
+      for (var k = 0; k < fields.length; k++) if (!fields[k].value.trim()) done = false;
+      var mail = form.querySelector('[data-f="email"]').value.trim();
+      if (mail.indexOf('@') < 1 || mail.indexOf('.') < 0) done = false;
+      submit.disabled = !done;
+      submit.textContent = done ? cfg.cta : 'Answer every question to continue';
+    }
+
+    var opts = form.querySelectorAll('.eco-opt');
+    for (var o = 0; o < opts.length; o++){
+      opts[o].addEventListener('click', function(){
+        var group = this.parentNode;
+        var sibs = group.querySelectorAll('.eco-opt');
+        for (var s = 0; s < sibs.length; s++) sibs[s].classList.remove('sel');
+        this.classList.add('sel');
+        answers[group.parentNode.getAttribute('data-q')] = this.getAttribute('data-val');
+        refresh();
+      });
+    }
+    var inputs = form.querySelectorAll('[data-f]');
+    for (var f = 0; f < inputs.length; f++) inputs[f].addEventListener('input', refresh);
+
+    strip.querySelector('button').addEventListener('click', function(){
+      form.hidden = !form.hidden;
+      this.innerHTML = (form.hidden ? esc(cfg.cta) + ' ' + ARROW : 'Close');
+    });
+
+    submit.addEventListener('click', function(){
+      if (submit.disabled) return;
+      var appRef = ref('MTN-A-'), leadRef = ref('MTN-L-');
+      // Two rules can land on the same partner, so keep the first mention only.
+      var raw = cfg.match(answers), seen = {}, matched = [];
+      for (var r = 0; r < raw.length; r++){
+        if (seen[raw[r][0]]) continue;
+        seen[raw[r][0]] = 1;
+        matched.push(raw[r]);
+      }
+      var m = '';
+      for (var i = 0; i < matched.length; i++){
+        m += '<div class="m"><i>' + TICK + '</i><div><b>' + esc(matched[i][0]) + '</b> <span>' + esc(matched[i][1]) + '</span></div></div>';
+      }
+      result.innerHTML =
+        '<span class="tag">' + TICK + ' ' + esc(cfg.done) + '</span>' +
+        '<h4>' + esc(cfg.label) + ', started on the Hub</h4>' +
+        '<p>' + esc(cfg.next) + '</p>' +
+        '<div class="eco-refs"><div><span>Application</span><b>' + appRef + '</b></div>' +
+        '<div><span>Routed as lead</span><b>' + leadRef + '</b></div>' +
+        '<div><span>Owner</span><b>SME desk</b></div></div>' +
+        '<div class="eco-matched"><h5>Matched to your answers</h5>' + m + '</div>';
+      result.hidden = false;
+      form.hidden = true;
+      strip.querySelector('button').innerHTML = 'Started ' + TICK;
+      strip.querySelector('button').disabled = true;
+      strip.querySelector('.note').textContent = 'Application ' + appRef + ' is open. We will be in touch.';
+      started.push({ role: role, ref: appRef, lead: leadRef });
+      addToTray(role, appRef);
+    });
+  }
+
+  var blocks = document.querySelectorAll('.eco-block[data-role]');
+  for (var b = 0; b < blocks.length; b++) buildBlock(blocks[b]);
+})();
+</script>
 </body>
 </html>
