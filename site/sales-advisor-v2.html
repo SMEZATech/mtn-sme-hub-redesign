@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>V2 Readiness assessment | SME Advisor | MTN SME Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+<link rel="stylesheet" href="assets/versions.css" />
+<link rel="stylesheet" href="assets/advisor.css" />
+</head>
+<body>
+
+<div class="ver-bar">
+  <div class="wrap">
+    <span class="lbl">Advisor version</span>
+    <span class="opts">
+      <a href="sales-advisor.html">V1 Guided survey</a>
+      <a href="sales-advisor-v2.html" class="on">V2 Readiness assessment</a>
+      <a href="sales-advisor-v3.html">V3 Solutions browser</a>
+    </span>
+    <span class="note">Scores five parts of the business, then prices the two weakest gaps</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="nav-row">
+    <a href="index.html" class="logo"><img src="assets/logo-black.png" alt="MTN SME Hub"></a>
+    <nav class="nav-main">
+      <div class="nav-item">
+        <a href="business-advice.html">Business Advice <svg class="icon chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega mega-pillars">
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div><b>Connect My Business</b><span>Websites, funding, going online</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 19V9m7 10V5m7 14v-7"/></svg></div><div><b>Build My Business</b><span>Growth, trends, entrepreneurship</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><div><b>Manage My Business</b><span>Cash flow, inventory, compliance</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div><div><b>Feature My Business</b><span>SME spotlights &amp; success stories</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6"/></svg></div><div><b>Ecommerce</b><span>Online stores &amp; digital sales</span></div></a>
+          <a class="mega-link" href="index.html#leadgen"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></div><div><b>MTN Business</b><span>Products for your business</span></div></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="insights.html">Insights <svg class="icon chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega mega-simple">
+          <a href="guides.html">Guides</a>
+          <a href="templates.html">Templates</a>
+          <a href="events.html">Events</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="sales-advisor.html">SME Advisor</a></div>
+      <div class="nav-item"><a href="business-solutions.html">Shop</a></div>
+    </nav>
+    <div class="nav-cta">
+      <div class="nav-search"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+      <div class="nav-burger"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-drawer">
+  <div class="scrim"></div>
+  <div class="panel">
+    <div class="top">
+      <img src="assets/logo-black.png" alt="MTN SME Hub" style="height:24px;">
+      <div class="close"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+    </div>
+    <div class="mdrawer-group">
+      <div class="mlabel">Business Advice <svg class="icon chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="mdrawer-sub">
+        <a href="category.html">Connect My Business</a>
+        <a href="category.html">Build My Business</a>
+        <a href="category.html">Manage My Business</a>
+        <a href="category.html">Feature My Business</a>
+        <a href="category.html">Ecommerce</a>
+      </div>
+    </div>
+    <div class="mdrawer-group">
+      <div class="mlabel">Insights <svg class="icon chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="mdrawer-sub">
+        <a href="guides.html">Guides</a>
+        <a href="templates.html">Templates</a>
+        <a href="events.html">Events</a>
+      </div>
+    </div>
+    <div class="mdrawer-group"><a href="sales-advisor.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">SME Advisor</a></div>
+    <div class="mdrawer-group"><a href="business-solutions.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Shop</a></div>
+    <div class="mdrawer-group"><a href="about.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">About</a></div>
+    <div class="cta-block">
+      <a class="btn btn-primary btn-block" href="sales-advisor.html">Get a tailored quote</a>
+    </div>
+  </div>
+</div>
+
+<section class="adv-hero">
+  <div class="wrap">
+    <h1>Score your business, then see what closing the gaps costs.</h1>
+    <p class="lede">A readiness check across connectivity, security, online presence, tools and funding. You get a scorecard, a costed plan for your weakest areas, and the funding partners you can apply to without leaving the Hub.</p>
+    <div class="adv-trust">
+      <div>
+        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></span>
+        <div><b>A readiness score</b><span>Five parts of the business, scored as you answer.</span></div>
+      </div>
+      <div>
+        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>
+        <div><b>Funding you can start here</b><span>Applications begin on the Hub and are tracked by reference.</span></div>
+      </div>
+      <div>
+        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <div><b>A costed plan</b><span>Real MTN products priced against your two weakest areas.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:34px;">
+  <div class="wrap">
+
+    <div class="qc-resume" id="qc-resume">
+      <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9 9 9 0 00-6.4 2.7L3 8"/><path d="M3 3v5h5"/></svg></span>
+      <p><b>Your assessment is part done</b><span id="qc-resume-txt">We kept your answers on this device.</span></p>
+      <span class="acts">
+        <button class="btn btn-primary btn-sm" id="qc-resume-go">Carry on scoring</button>
+        <button class="btn btn-outline btn-sm" id="qc-resume-clear">Start over</button>
+      </span>
+    </div>
+
+    <div class="qc">
+      <!-- ============ ASSESSMENT ============ -->
+      <div class="qc-card">
+        <div class="qc-main">
+
+          <div class="qc-prog" id="qc-prog">
+            <div class="qc-segs"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="pl"><span id="qc-prog-step">Step 1 of 7</span><span id="qc-prog-name">Connectivity</span></div>
+          </div>
+
+          <!-- 1 connectivity -->
+          <div class="qc-step active" data-step="1">
+            <h2>How does your team get online?</h2>
+            <p class="hint">Be honest about the bad days, not the good ones.</p>
+            <div class="qc-opts">
+              <button class="qc-opt" data-val="redundant"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></span><span><b>Business fibre with a backup line</b><span>If one drops, we keep working.</span></span></button>
+              <button class="qc-opt" data-val="single"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 12h.01M11 12h6"/></svg></span><span><b>One business line, no backup</b><span>Fine until it goes down.</span></span></button>
+              <button class="qc-opt" data-val="mobile"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 19h2"/></svg></span><span><b>Mobile data and hotspots</b><span>We top up when it runs out.</span></span></button>
+              <button class="qc-opt" data-val="poor"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg></span><span><b>It drops often and we lose work</b><span>Connectivity is costing us jobs.</span></span></button>
+            </div>
+            <div class="qc-nav"><button class="qc-go" data-next="2" disabled>Continue</button></div>
+          </div>
+
+          <!-- 2 security -->
+          <div class="qc-step" data-step="2">
+            <h2>What protects your business data?</h2>
+            <p class="hint">Most small businesses are further back here than they expect.</p>
+            <div class="qc-opts">
+              <button class="qc-opt" data-val="managed"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-3.4 8.3-8 9-4.6-.7-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span><b>Managed firewall with monitoring</b><span>Someone watches it for us.</span></span></button>
+              <button class="qc-opt" data-val="basic"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span><span><b>Antivirus on each machine</b><span>Nothing at the network level.</span></span></button>
+              <button class="qc-opt" data-val="none"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg></span><span><b>Nothing formal</b><span>We have not got to it yet.</span></span></button>
+              <button class="qc-opt" data-val="unsure"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 015 1c0 1.7-2.5 2-2.5 4"/><path d="M12 18h.01"/></svg></span><span><b>I am not sure what we have</b><span>It was set up by someone else.</span></span></button>
+            </div>
+            <div class="qc-nav"><button class="qc-back" data-back="1" aria-label="Back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button><button class="qc-go" data-next="3" disabled>Continue</button></div>
+          </div>
+
+          <!-- 3 online presence -->
+          <div class="qc-step" data-step="3">
+            <h2>Where do customers find you?</h2>
+            <p class="hint">This decides whether you need a site, a store, or neither.</p>
+            <div class="qc-opts">
+              <button class="qc-opt" data-val="store"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6"/></svg></span><span><b>Our own site with an online store</b><span>We take orders and payments online.</span></span></button>
+              <button class="qc-opt" data-val="site"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></span><span><b>A website, but no online selling</b><span>It is a brochure, not a shop.</span></span></button>
+              <button class="qc-opt" data-val="social"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><span><b>Social media only</b><span>Everything runs through a business page.</span></span></button>
+              <button class="qc-opt" data-val="none"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/><circle cx="12" cy="9" r="2.4"/></svg></span><span><b>Word of mouth only</b><span>No digital presence at all.</span></span></button>
+            </div>
+            <div class="qc-nav"><button class="qc-back" data-back="2" aria-label="Back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button><button class="qc-go" data-next="4" disabled>Continue</button></div>
+          </div>
+
+          <!-- 4 tools -->
+          <div class="qc-step" data-step="4">
+            <h2>What does your team work in day to day?</h2>
+            <p class="hint">Licences, or whatever is free and to hand.</p>
+            <div class="qc-opts">
+              <button class="qc-opt" data-val="licensed"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span><b>Licensed Microsoft 365 for everyone</b><span>Proper mail, files and calendars.</span></span></button>
+              <button class="qc-opt" data-val="partial"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></span><span><b>Some licences, some free tools</b><span>It depends who you ask.</span></span></button>
+              <button class="qc-opt" data-val="free"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg></span><span><b>Free email and WhatsApp</b><span>Nothing we actually pay for.</span></span></button>
+              <button class="qc-opt" data-val="paper"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></span><span><b>Mostly paper and spreadsheets</b><span>Records live on one laptop.</span></span></button>
+            </div>
+            <div class="qc-nav"><button class="qc-back" data-back="3" aria-label="Back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button><button class="qc-go" data-next="5" disabled>Continue</button></div>
+          </div>
+
+          <!-- 5 funding readiness -->
+          <div class="qc-step" data-step="5">
+            <h2>How ready are your financials for a funding application?</h2>
+            <p class="hint">This decides which funders you actually qualify to approach.</p>
+            <div class="qc-opts">
+              <button class="qc-opt" data-val="audited"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Audited statements and 12 months of bank records</b><span>We could apply this week.</span></span></button>
+              <button class="qc-opt" data-val="records"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span><span><b>Bookkeeping is up to date, no audit</b><span>Clean records, nothing signed off.</span></span></button>
+              <button class="qc-opt" data-val="informal"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></span><span><b>Records are informal</b><span>Invoices and a bank account, not much else.</span></span></button>
+              <button class="qc-opt" data-val="none"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg></span><span><b>No proper records yet</b><span>We would need help getting there.</span></span></button>
+            </div>
+            <div class="qc-nav"><button class="qc-back" data-back="4" aria-label="Back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button><button class="qc-go" data-next="6" disabled>Continue</button></div>
+          </div>
+
+          <!-- 6 team size -->
+          <div class="qc-step" data-step="6">
+            <h2>How many people would this cover?</h2>
+            <p class="hint">This sets the per user pricing on your plan.</p>
+            <div class="qc-opts">
+              <button class="qc-opt" data-val="solo"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6"/></svg></span><span><b>Just me</b><span>Owner run, priced for one user.</span></span></button>
+              <button class="qc-opt" data-val="small"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.4"/><circle cx="17" cy="9" r="2.6"/><path d="M2 20c0-3.2 3.1-5.6 7-5.6s7 2.4 7 5.6"/></svg></span><span><b>2 to 10 people</b><span>Priced for a team of six.</span></span></button>
+              <button class="qc-opt" data-val="mid"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="7" height="12" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/></svg></span><span><b>11 to 50 people</b><span>Priced for a team of twenty four.</span></span></button>
+              <button class="qc-opt" data-val="large"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V9l7-5 7 5v12"/><path d="M9 21v-6h4v6"/><path d="M17 13h4v8h-4"/></svg></span><span><b>More than 50 people</b><span>Priced for sixty, with volume terms to confirm.</span></span></button>
+            </div>
+            <div class="qc-nav"><button class="qc-back" data-back="5" aria-label="Back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button><button class="qc-go" data-next="7" disabled>Continue</button></div>
+          </div>
+
+          <!-- 7 contact -->
+          <div class="qc-step" data-step="7">
+            <h2>Where should the scorecard and plan go?</h2>
+            <p class="hint">Your quote and any funding applications are issued against these details.</p>
+            <div class="qc-fields">
+              <div class="qc-field"><label for="qc-name">Full name</label><input type="text" id="qc-name" placeholder="Thabo Nkosi"></div>
+              <div class="qc-field"><label for="qc-biz">Business name</label><input type="text" id="qc-biz" placeholder="Nkosi Trading CC"></div>
+              <div class="qc-field"><label for="qc-email">eMail address</label><input type="email" id="qc-email" placeholder="thabo@nkositrading.co.za"></div>
+              <div class="qc-field"><label for="qc-phone">Contact number</label><input type="tel" id="qc-phone" placeholder="082 000 0000"></div>
+              <p class="qc-consent">MTN Business uses these details to prepare your scorecard, your plan and any funding application you start here. Nothing is charged and no account is created at this step.</p>
+            </div>
+            <div class="qc-nav"><button class="qc-back" data-back="6" aria-label="Back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button><button class="qc-go" id="qc-submit" disabled>Score my business</button></div>
+          </div>
+
+          <!-- vetting pass -->
+          <div class="qc-step" data-step="vet">
+            <div class="qc-vet">
+              <h3>Scoring your answers</h3>
+              <p class="sub">This is the qualification MTN's sales desk would otherwise do by phone.</p>
+              <div class="qc-check" data-check="connect"><span class="cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cl">Connectivity scored</span><span class="cv" data-cv="connect">checking</span></div>
+              <div class="qc-check" data-check="secure"><span class="cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cl">Security scored</span><span class="cv" data-cv="secure">checking</span></div>
+              <div class="qc-check" data-check="online"><span class="cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cl">Online presence scored</span><span class="cv" data-cv="online">checking</span></div>
+              <div class="qc-check" data-check="tools"><span class="cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cl">Tools scored</span><span class="cv" data-cv="tools">checking</span></div>
+              <div class="qc-check" data-check="funding"><span class="cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cl">Funding eligibility checked</span><span class="cv" data-cv="funding">checking</span></div>
+
+              <div class="qc-grade" id="qc-grade">
+                <div class="gt"><b id="qc-grade-t">Lead priority</b><i id="qc-grade-b">Grade</i></div>
+                <div class="gbar"><em id="qc-grade-bar"></em></div>
+                <p id="qc-grade-p"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- result -->
+          <div class="qc-res" id="qc-res">
+            <span class="qc-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Scorecard ready</span>
+
+            <div class="as-verdict">
+              <h3 id="as-verdict-t">Your weakest areas</h3>
+              <p class="vs" id="as-verdict-p">These are the two areas costing you the most, and what the plan in the rail is priced against.</p>
+              <div class="as-gaps" id="as-gaps"></div>
+            </div>
+
+            <div class="qc-nba">
+              <span class="ni"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span>
+              <div><b>Next best action</b><p id="qc-nba">Book fifteen minutes to confirm fit and firm up this plan.</p></div>
+            </div>
+
+            <div class="as-partners" id="as-partners">
+              <h4>Funding you can apply for</h4>
+              <p class="ph" id="as-partners-p">Matched to the financial records you told us about. Applications start here on the Hub and are tracked by reference, so nothing hands you off to another site.</p>
+              <div id="as-partner-list"></div>
+            </div>
+
+            <div class="as-refs" id="as-refs">
+              <h5>Applications started on the Hub</h5>
+              <div id="as-refs-list"></div>
+            </div>
+
+            <div class="qc-cal" id="qc-cal">
+              <div class="qc-adv">
+                <span class="av">LM</span>
+                <div><b>Lerato Mokoena</b><span>MTN Business product and sales advisor, SME desk</span></div>
+              </div>
+              <h5>Pick a day</h5>
+              <div class="qc-days" id="qc-days">
+                <div class="qc-day" data-day="Mon 15 Sep"><div class="dw">Mon</div><div class="dn">15</div></div>
+                <div class="qc-day" data-day="Tue 16 Sep"><div class="dw">Tue</div><div class="dn">16</div></div>
+                <div class="qc-day" data-day="Wed 17 Sep"><div class="dw">Wed</div><div class="dn">17</div></div>
+                <div class="qc-day" data-day="Thu 18 Sep"><div class="dw">Thu</div><div class="dn">18</div></div>
+                <div class="qc-day" data-day="Fri 19 Sep"><div class="dw">Fri</div><div class="dn">19</div></div>
+              </div>
+              <h5>Pick a time</h5>
+              <div class="qc-times" id="qc-times">
+                <div class="qc-time" data-time="09:00">09:00</div>
+                <div class="qc-time gone">10:00</div>
+                <div class="qc-time" data-time="11:00">11:00</div>
+                <div class="qc-time" data-time="13:00">13:00</div>
+                <div class="qc-time" data-time="14:00">14:00</div>
+                <div class="qc-time gone">15:00</div>
+                <div class="qc-time" data-time="16:00">16:00</div>
+                <div class="qc-time" data-time="16:30">16:30</div>
+              </div>
+              <button class="btn btn-primary btn-block btn-lg" id="qc-confirm" disabled style="margin-top:18px;">Select a day and time</button>
+            </div>
+
+            <div class="qc-recover" id="qc-recover">
+              <p><b>Not ready to book?</b> We will hold the scorecard and plan against your reference so you can pick it up later.</p>
+              <button class="btn btn-outline btn-sm" id="qc-email">eMail me my scorecard</button>
+            </div>
+          </div>
+
+          <!-- booked -->
+          <div class="qc-res" id="qc-booked">
+            <span class="qc-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Consultation booked</span>
+            <h2 style="font-size:22px; margin:8px 0 8px;">You are booked in with Lerato</h2>
+            <p style="font-size:13.5px; color:var(--muted); margin-bottom:20px;" id="qc-booked-when">Your advisor will call you at the time you selected.</p>
+
+            <div class="qc-lead">
+              <h5>Lead record created</h5>
+              <div class="qc-lrow"><span>Lead reference</span><b class="mono" id="qc-lead-ref">MTN-L-000000</b></div>
+              <div class="qc-lrow"><span>Quote attached</span><b class="mono" id="qc-lead-quote">MTN-Q-000000</b></div>
+              <div class="qc-lrow"><span>Readiness score</span><b id="qc-lead-score">0 of 100</b></div>
+              <div class="qc-lrow"><span>Lead priority</span><b id="qc-lead-grade">Standard</b></div>
+              <div class="qc-lrow"><span>Funding applications</span><b id="qc-lead-apps">None started</b></div>
+              <div class="qc-lrow"><span>Assigned owner</span><b>Lerato Mokoena, SME desk</b></div>
+              <div class="qc-lrow"><span>Source</span><b>SMEHub SME Advisor, V2 assessment</b></div>
+              <div class="qc-lrow"><span>Status</span><b>Consultation scheduled</b></div>
+            </div>
+
+            <div class="qc-hand">
+              <span class="hi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6"/></svg></span>
+              <div>
+                <b>Your plan carries into the Shop</b>
+                <p>Open the Shop and your quote reference travels with you, so anything you add is priced against the same scorecard.</p>
+              </div>
+              <a class="btn btn-dark btn-sm" id="qc-shop" href="business-solutions.html">Continue in the Shop</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ RAIL: SCORECARD + PLAN ============ -->
+      <aside class="qc-rail">
+        <div class="qc-card">
+          <div class="qc-rail-in">
+            <h4>Your scorecard</h4>
+            <div class="qsol" id="qc-sol">Scores as you answer</div>
+            <div class="ref" id="qc-ref">Reference issued when complete</div>
+
+            <div class="as-score">
+              <div class="as-dim pending" data-dim="connect"><div class="dh"><b>Connectivity</b><span data-dv="connect">Not scored</span></div><div class="db"><em></em></div></div>
+              <div class="as-dim pending" data-dim="secure"><div class="dh"><b>Security</b><span data-dv="secure">Not scored</span></div><div class="db"><em></em></div></div>
+              <div class="as-dim pending" data-dim="online"><div class="dh"><b>Online presence</b><span data-dv="online">Not scored</span></div><div class="db"><em></em></div></div>
+              <div class="as-dim pending" data-dim="tools"><div class="dh"><b>Tools</b><span data-dv="tools">Not scored</span></div><div class="db"><em></em></div></div>
+              <div class="as-dim pending" data-dim="funding"><div class="dh"><b>Funding readiness</b><span data-dv="funding">Not scored</span></div><div class="db"><em></em></div></div>
+              <div class="as-overall"><span>Overall readiness</span><b id="as-overall">0</b></div>
+            </div>
+
+            <div class="qc-lines" id="qc-lines">
+              <div class="qc-skel">
+                <i></i><i></i><i></i>
+                <p>Once your weakest areas are clear, the products and pricing to close them appear here.</p>
+              </div>
+            </div>
+
+            <div class="qc-tot" id="qc-tot" hidden>
+              <div class="tr"><span>Monthly subtotal</span><span id="qc-sub">R0</span></div>
+              <div class="tr"><span>Once-off</span><span id="qc-once">None</span></div>
+              <div class="tr"><span>Contract term</span><span id="qc-term">36 months</span></div>
+              <div class="tr big"><span>Monthly total</span><span id="qc-total">R0</span></div>
+            </div>
+
+            <p class="qc-foot">Indicative pricing on real MTN Business products, excluding VAT. An advisor confirms final pricing, availability and coverage before anything is signed.</p>
+
+            <div class="qc-log">
+              <h5><i></i>Tracked sales activity</h5>
+              <ol id="qc-log"><li class="none">Nothing tracked yet.</li></ol>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--surface);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow-label">Partner ecosystem</p><h2 class="sec-title">Fund, digitise, advise, access markets, learn</h2><p class="sec-desc">Every partner journey starts on the Hub. You browse, check eligibility and apply here, and the application is tracked by reference rather than handed off elsewhere.</p></div>
+      <a class="btn btn-outline" href="stakeholders.html">See the partner ecosystem</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="assets/logo-white.png" alt="MTN SME Hub">
+        <p>MTN SME Hub is a daily online resource that provides strategic business content and tools to help South African SMMEs grow.</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/MTNBusinessZA/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+          <a href="https://x.com/MTNBusinessZA" target="_blank" rel="noopener" aria-label="X"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.7l-5.2-6.8L5.6 22H2.4l8.1-9.3L1.6 2h6.8l4.7 6.2z"/></svg></a>
+          <a href="https://www.linkedin.com/company/mtn-business-south-africa/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21H9z"/></svg></a>
+          <a href="https://www.instagram.com/mtnza/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Business Advice</h5>
+        <ul><li><a href="category.html">Connect My Business</a></li><li><a href="category.html">Build My Business</a></li><li><a href="category.html">Manage My Business</a></li><li><a href="category.html">Feature My Business</a></li><li><a href="category.html">Ecommerce</a></li></ul>
+      </div>
+      <div>
+        <h5>Insights</h5>
+        <ul><li><a href="guides.html">Guides</a></li><li><a href="templates.html">Templates</a></li><li><a href="events.html">Events</a></li><li><a href="business-solutions.html">Shop</a></li><li><a href="stakeholders.html">Partner Ecosystem</a></li></ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul><li>Innovation Centre, 216 14th Avenue,<br>Fairland, Gauteng, 2195</li><li>info@mtnsmehub.co.za</li><li>www.mtnsmehub.co.za</li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 MTN SME Hub. All rights reserved. Built and managed by <a class="credit" href="https://smesouthafrica.co.za" target="_blank" rel="noopener">SME South Africa</a>.</span>
+      <div class="links"><a href="https://www.mtn.co.za/home/help/content/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a><a href="https://www.mtn.co.za/business/terms-and-conditions" target="_blank" rel="noopener">Terms of Use</a><a href="index.html#leadgen">MTN Business</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+(function(){
+  var STORE = 'smehub.advisor.v2';
+  var HANDOFF = 'smehub.quote';
+
+  var DIMS = ['connect','secure','online','tools','funding'];
+  var DIM_LABEL = { connect:'Connectivity', secure:'Security', online:'Online presence',
+                    tools:'Tools', funding:'Funding readiness' };
+  var STEPNAME = { '1':'Connectivity', '2':'Security', '3':'Online presence', '4':'Tools',
+                   '5':'Funding readiness', '6':'Team size', '7':'Your details' };
+  var STEP_DIM = { '1':'connect', '2':'secure', '3':'online', '4':'tools', '5':'funding' };
+
+  // Answer scores, 0 to 100 per dimension.
+  var SCORES = {
+    connect: { redundant:100, single:70, mobile:35, poor:0 },
+    secure:  { managed:100, basic:60, none:20, unsure:0 },
+    online:  { store:100, site:65, social:35, none:0 },
+    tools:   { licensed:100, partial:60, free:30, paper:0 },
+    funding: { audited:100, records:75, informal:45, none:20 }
+  };
+  var ANSWER_LABEL = {
+    connect: { redundant:'Fibre with backup', single:'Single line', mobile:'Mobile data', poor:'Unreliable' },
+    secure:  { managed:'Managed firewall', basic:'Antivirus only', none:'Nothing formal', unsure:'Unknown' },
+    online:  { store:'Site and online store', site:'Website only', social:'Social only', none:'None' },
+    tools:   { licensed:'Fully licensed', partial:'Part licensed', free:'Free tools', paper:'Paper based' },
+    funding: { audited:'Audited statements', records:'Books up to date', informal:'Informal records', none:'No records' }
+  };
+
+  // Real MTN Business products, keyed to the gap they close. Quote maths convention:
+  //   unit = x seats monthly, month = flat monthly, once = flat once-off,
+  //   unitonce = x seats once-off.
+  var REMEDY = {
+    connect: { title:'Connectivity', why:'A dropped line stops the whole team, so this is priced with a backup path.', lines:[
+      { nm:'Made For Business L', cfg:'23GB data and 1,000 minutes, per line', unit:499 },
+      { nm:'Business Uncapped Wireless', cfg:'Up to 50 Mbps, router included', month:499 } ] },
+    secure: { title:'Security', why:'Nothing at the network level means one bad click reaches everything.', lines:[
+      { nm:'Managed Firewall', cfg:'Deployment, patching, 24/7 monitoring', month:899 },
+      { nm:'Managed EDR endpoint protection', cfg:'Per device, per month', unit:79 } ] },
+    online: { title:'Online presence', why:'Customers who cannot find you online are going to a competitor who is there.', lines:[
+      { nm:'Website starter build', cfg:'Up to 5 pages, mobile responsive, contact form', once:4999 },
+      { nm:'Domain and managed hosting', cfg:'Annual, billed monthly', month:149 } ] },
+    tools: { title:'Tools', why:'Free tools cost you later in lost files, lost mail and no way to hand over.', lines:[
+      { nm:'MTN Microsoft 365 Business Standard', cfg:'Per user, per month', unit:189 } ] }
+  };
+
+  // Slide 11 FUND & BANK, matched to the records the business actually has.
+  var FUNDERS = {
+    audited: [
+      { nm:'Business Partners', ini:'BP', note:'Equity and term loans from R500 000, for established businesses with signed off statements.', fit:'strong' },
+      { nm:'Standard Bank', ini:'SB', note:'Business revolving credit and asset finance against audited financials.', fit:'strong' },
+      { nm:'Nedbank', ini:'NB', note:'Overdraft and term lending, needs 12 months of trading history.', fit:'good' } ],
+    records: [
+      { nm:'SEDFA', ini:'SE', note:'State small enterprise funding, from R50 000, bookkeeping accepted without an audit.', fit:'strong' },
+      { nm:'IDC', ini:'ID', note:'Industrial development finance for manufacturing and job creating projects.', fit:'good' },
+      { nm:'African Bank', ini:'AB', note:'Business overdraft, requires 12 months of bank statements.', fit:'good' } ],
+    informal: [
+      { nm:'SEDFA', ini:'SE', note:'Small enterprise funding with development support attached, informal records considered.', fit:'good' },
+      { nm:'NEF', ini:'NE', note:'National Empowerment Fund, black owned businesses, from R250 000.', fit:'good' } ],
+    none: [
+      { nm:'NSBC', ini:'NS', note:'Start with a readiness programme to get your records to a fundable standard.', fit:'strong' },
+      { nm:'SEDFA', ini:'SE', note:'Worth approaching once you have a few months of clean records behind you.', fit:'good' } ]
+  };
+
+  var SEATS = { solo:1, small:6, mid:24, large:60 };
+  var TERM  = { solo:24, small:24, mid:36, large:36 };
+  var SEAT_W = { solo:25, small:60, mid:90, large:100 };
+  var FUND_W = { audited:100, records:75, informal:45, none:20 };
+
+  var answers = {};
+  var quoteRef = '', leadGrade = '', apps = [], logged = {}, gaps = [];
+  var pickedDay = null, pickedTime = null;
+
+  function $(id){ return document.getElementById(id); }
+  function rands(n){ return 'R' + Number(n).toLocaleString('en-ZA'); }
+  function seatCount(){ return SEATS[answers.q6] || 6; }
+  function seatLabel(){ var n = seatCount(); return n + (n === 1 ? ' user' : ' users'); }
+
+  function save(){ try{ window.localStorage.setItem(STORE, JSON.stringify({ a:answers })); }catch(e){} }
+  function wipe(){ try{ window.localStorage.removeItem(STORE); }catch(e){} }
+  function load(){ try{ var r = window.localStorage.getItem(STORE); return r ? JSON.parse(r) : null; }catch(e){ return null; } }
+
+  function track(text, key){
+    if (key) { if (logged[key]) return; logged[key] = true; }
+    var ol = $('qc-log'), none = ol.querySelector('.none');
+    if (none) ol.removeChild(none);
+    var li = document.createElement('li');
+    li.innerHTML = text;
+    ol.appendChild(li);
+  }
+
+  /* ---------- scoring ---------- */
+  function dimScore(dim){
+    var step = null;
+    for (var k in STEP_DIM) if (STEP_DIM[k] === dim) step = k;
+    var val = answers['q' + step];
+    return val === undefined ? null : SCORES[dim][val];
+  }
+  function answered(){
+    var n = 0;
+    for (var i=0; i<DIMS.length; i++) if (dimScore(DIMS[i]) !== null) n++;
+    return n;
+  }
+  function overall(){
+    var t = 0, n = 0;
+    for (var i=0; i<DIMS.length; i++){
+      var s = dimScore(DIMS[i]);
+      if (s !== null) { t += s; n++; }
+    }
+    return n ? Math.round(t / n) : 0;
+  }
+
+  function renderScorecard(){
+    for (var i=0; i<DIMS.length; i++){
+      var dim = DIMS[i], s = dimScore(dim);
+      var row = document.querySelector('.as-dim[data-dim="' + dim + '"]');
+      var lbl = row.querySelector('[data-dv="' + dim + '"]');
+      if (s === null) { row.className = 'as-dim pending'; continue; }
+      row.className = 'as-dim' + (s < 50 ? ' weak' : '');
+      row.querySelector('.db em').style.width = s + '%';
+      var step = null;
+      for (var k in STEP_DIM) if (STEP_DIM[k] === dim) step = k;
+      lbl.textContent = ANSWER_LABEL[dim][answers['q' + step]] + ' · ' + s;
+    }
+    $('as-overall').textContent = overall();
+    var n = answered();
+    $('qc-sol').textContent = n < 5 ? ('Scored ' + n + ' of 5 areas') : ('Overall readiness ' + overall() + ' of 100');
+  }
+
+  // The two weakest product areas are what the plan gets priced against.
+  function weakest(){
+    var list = [];
+    for (var d in REMEDY){
+      var s = dimScore(d);
+      if (s !== null && s < 100) list.push({ dim:d, score:s });
+    }
+    list.sort(function(a,b){ return a.score - b.score; });
+    return list.slice(0, 2);
+  }
+
+  function renderPlan(){
+    gaps = weakest();
+    var box = $('qc-lines');
+    if (!gaps.length) {
+      box.innerHTML = '<div class="qc-skel"><p>No product gaps found on your answers. An advisor can still review what you are paying for today.</p></div>';
+      $('qc-tot').hidden = true;
+      return;
+    }
+    box.innerHTML = '';
+    var seats = seatCount();
+    for (var g=0; g<gaps.length; g++){
+      var lines = REMEDY[gaps[g].dim].lines;
+      for (var i=0; i<lines.length; i++){
+        var l = lines[i], row = document.createElement('div');
+        row.className = 'qc-line';
+        var qty = '', amount = '', sub = '';
+        if (l.month !== undefined) {
+          row.setAttribute('data-month', l.month); amount = rands(l.month); sub = 'per month';
+        } else if (l.unit !== undefined) {
+          row.setAttribute('data-unit', l.unit);
+          qty = seats + ' × ' + rands(l.unit) + ' pm';
+          amount = rands(l.unit * seats); sub = 'per month';
+        } else if (l.once !== undefined) {
+          row.setAttribute('data-once', l.once); amount = rands(l.once); sub = 'once-off';
+        } else if (l.unitonce !== undefined) {
+          row.setAttribute('data-unitonce', l.unitonce);
+          qty = seats + ' × ' + rands(l.unitonce);
+          amount = l.unitonce ? rands(l.unitonce * seats) : 'Included';
+          sub = l.unitonce ? 'once-off' : 'no charge';
+        }
+        row.innerHTML = '<div><div class="ln">' + l.nm + '</div><div class="lc">' + l.cfg +
+                        (qty ? ' &middot; ' + qty : '') + '</div></div>' +
+                        '<div class="la"><b>' + amount + '</b><span>' + sub + '</span></div>';
+        box.appendChild(row);
+      }
+    }
+    $('qc-tot').hidden = false;
+    totals();
+  }
+
+  // Totals read back off the rendered data attributes, so the plan and the
+  // arithmetic cannot drift apart.
+  function totals(){
+    var seats = seatCount(), monthly = 0, once = 0;
+    var rows = document.querySelectorAll('#qc-lines .qc-line');
+    for (var i=0; i<rows.length; i++){
+      var r = rows[i];
+      if (r.hasAttribute('data-unit'))     monthly += Number(r.getAttribute('data-unit')) * seats;
+      if (r.hasAttribute('data-month'))    monthly += Number(r.getAttribute('data-month'));
+      if (r.hasAttribute('data-once'))     once    += Number(r.getAttribute('data-once'));
+      if (r.hasAttribute('data-unitonce')) once    += Number(r.getAttribute('data-unitonce')) * seats;
+    }
+    $('qc-sub').textContent = rands(monthly);
+    $('qc-once').textContent = once ? rands(once) : 'None';
+    $('qc-term').textContent = (TERM[answers.q6] || 36) + ' months';
+    countTo($('qc-total'), monthly);
+    return { monthly: monthly, once: once };
+  }
+
+  // Correct figure first, animation second, so a throttled frame loop can never
+  // leave a wrong total on screen.
+  function countTo(el, target){
+    var final = rands(target) + ' pm';
+    el.textContent = final;
+    if (document.hidden) return;
+    var t0 = null, dur = 520;
+    function frame(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = p < 1 ? rands(Math.round(target * eased)) + ' pm' : final;
+      if (p < 1) window.requestAnimationFrame(frame);
+    }
+    window.requestAnimationFrame(frame);
+  }
+
+  /* ---------- steps ---------- */
+  function showStep(step){
+    var steps = document.querySelectorAll('.qc-step');
+    for (var i=0; i<steps.length; i++){
+      steps[i].classList.toggle('active', steps[i].getAttribute('data-step') === String(step));
+    }
+    var n = parseInt(step, 10);
+    if (!isNaN(n)) {
+      var segs = document.querySelectorAll('.qc-segs i');
+      for (var s=0; s<segs.length; s++){
+        segs[s].classList.remove('on','done');
+        if (s < n-1) segs[s].classList.add('done');
+        if (s === n-1) segs[s].classList.add('on');
+      }
+      $('qc-prog-step').textContent = 'Step ' + n + ' of 7';
+      $('qc-prog-name').textContent = STEPNAME[String(n)] || '';
+    }
+  }
+
+  function onAnswer(step){
+    track('Assessment started', 'start');
+    renderScorecard();
+    if (STEP_DIM[step]) {
+      var dim = STEP_DIM[step];
+      track(DIM_LABEL[dim] + ': <b>' + ANSWER_LABEL[dim][answers['q'+step]] + '</b>, scored ' + dimScore(dim), 'dim-' + dim);
+      if (answered() >= 2) renderPlan();
+    }
+    if (step === '6') {
+      track('Team size captured: <b>' + seatLabel() + '</b>', 'seats');
+      renderPlan();
+    }
+  }
+
+  function bindStep(stepEl){
+    var step = stepEl.getAttribute('data-step');
+    var opts = stepEl.querySelectorAll('.qc-opt');
+    for (var i=0; i<opts.length; i++){
+      opts[i].addEventListener('click', function(){
+        var all = stepEl.querySelectorAll('.qc-opt');
+        for (var j=0; j<all.length; j++) all[j].classList.remove('sel');
+        this.classList.add('sel');
+        answers['q' + step] = this.getAttribute('data-val');
+        var go = stepEl.querySelector('.qc-go');
+        if (go) { go.disabled = false; go.classList.add('ready'); }
+        onAnswer(step);
+        save();
+      });
+    }
+    var back = stepEl.querySelector('.qc-back');
+    if (back) back.addEventListener('click', function(){ showStep(back.getAttribute('data-back')); });
+    var next = stepEl.querySelector('.qc-go[data-next]');
+    if (next) next.addEventListener('click', function(){
+      if (this.disabled) return;
+      showStep(this.getAttribute('data-next'));
+    });
+  }
+  var stepEls = document.querySelectorAll('.qc-step');
+  for (var s=0; s<stepEls.length; s++) bindStep(stepEls[s]);
+
+  /* ---------- contact ---------- */
+  var fields = ['qc-name','qc-biz','qc-email','qc-phone'];
+  function checkContact(){
+    var ok = true;
+    for (var i=0; i<fields.length; i++) if (!$(fields[i]).value.trim()) ok = false;
+    var mail = $('qc-email').value.trim();
+    if (mail.indexOf('@') < 1 || mail.indexOf('.') < 0) ok = false;
+    $('qc-submit').disabled = !ok;
+    $('qc-submit').classList.toggle('ready', ok);
+  }
+  for (var f=0; f<fields.length; f++) $(fields[f]).addEventListener('input', checkContact);
+
+  /* ---------- vetting ---------- */
+  function priority(){
+    var gap = 100 - overall();
+    return Math.round(gap * 0.6 + (SEAT_W[answers.q6] || 60) * 0.2 + (FUND_W[answers.q5] || 45) * 0.2);
+  }
+
+  function runVetting(done){
+    var i = 0;
+    (function tick(){
+      if (i >= DIMS.length) { window.setTimeout(done, 380); return; }
+      var dim = DIMS[i++];
+      var row = document.querySelector('.qc-check[data-check="' + dim + '"]');
+      row.classList.add('on');
+      row.querySelector('[data-cv="' + dim + '"]').textContent = dimScore(dim) + ' of 100';
+      window.setTimeout(tick, 320);
+    })();
+  }
+
+  function gradeLead(){
+    var p = priority(), band, label, blurb, nba, showCal;
+    if (p >= 60) {
+      band = 'hot'; label = 'Priority lead';
+      blurb = 'Sizeable gaps, a team big enough to matter and records good enough to transact. This goes to Lerato ahead of the queue with the plan attached.';
+      nba = 'Book fifteen minutes with Lerato. She will have your scorecard and line items open, and can confirm coverage at your address.';
+      showCal = true;
+    } else if (p >= 35) {
+      band = 'warm'; label = 'Standard lead';
+      blurb = 'Real gaps worth fixing, but either the team is small or the financials need work before anything large gets signed.';
+      nba = 'Book a short call to agree which of the two gaps to close first, so you are not paying for both at once.';
+      showCal = true;
+    } else {
+      band = 'cool'; label = 'Nurture';
+      blurb = 'You are in good shape already, or too early to put through a sales call. The scorecard is yours to keep and we hold the reference.';
+      nba = 'Keep the scorecard and work through the readiness steps. When something changes, come back to this reference and an advisor picks it up.';
+      showCal = false;
+    }
+    leadGrade = label;
+    var g = $('qc-grade');
+    g.className = 'qc-grade show ' + band;
+    $('qc-grade-t').textContent = 'Lead priority ' + p + ' of 100';
+    $('qc-grade-b').textContent = label;
+    $('qc-grade-p').textContent = blurb;
+    window.setTimeout(function(){ $('qc-grade-bar').style.width = p + '%'; }, 60);
+    $('qc-nba').textContent = nba;
+    $('qc-cal').style.display = showCal ? 'block' : 'none';
+    track('Lead priority: <b>' + label + '</b>, ' + p + ' of 100', 'grade');
+    return p;
+  }
+
+  /* ---------- gaps and funders ---------- */
+  function renderGaps(){
+    var box = $('as-gaps');
+    box.innerHTML = '';
+    if (!gaps.length) {
+      $('as-verdict-t').textContent = 'No product gaps found';
+      $('as-verdict-p').textContent = 'Every area you scored is already covered. An advisor can review what you pay for today and look for savings instead.';
+      return;
+    }
+    for (var i=0; i<gaps.length; i++){
+      var r = REMEDY[gaps[i].dim], d = document.createElement('div');
+      d.className = 'as-gap';
+      d.innerHTML = '<div class="gl">Gap ' + (i+1) + ' &middot; scored ' + gaps[i].score + '</div>' +
+                    '<b>' + r.title + '</b><span>' + r.why + '</span>';
+      box.appendChild(d);
+    }
+  }
+
+  function renderFunders(){
+    var band = answers.q5 || 'informal';
+    var list = FUNDERS[band], box = $('as-partner-list');
+    box.innerHTML = '';
+    for (var i=0; i<list.length; i++){
+      (function(p){
+        var row = document.createElement('div');
+        row.className = 'as-partner';
+        row.innerHTML = '<span class="pi">' + p.ini + '</span>' +
+          '<span class="pm"><b>' + p.nm + '</b><span>' + p.note + '</span>' +
+          '<span class="fit' + (p.fit === 'strong' ? ' strong' : '') + '">' +
+          (p.fit === 'strong' ? 'Strong match' : 'Worth applying') + '</span></span>';
+        var btn = document.createElement('button');
+        btn.className = 'as-apply';
+        btn.type = 'button';
+        btn.textContent = 'Start application';
+        btn.addEventListener('click', function(){
+          if (btn.classList.contains('done')) return;
+          var ref = 'MTN-A-' + Math.floor(100000 + Math.random() * 900000);
+          apps.push({ partner: p.nm, ref: ref });
+          btn.classList.add('done');
+          btn.textContent = 'Started';
+          var refs = $('as-refs');
+          refs.classList.add('show');
+          var rr = document.createElement('div');
+          rr.className = 'rr';
+          rr.innerHTML = '<span>' + p.nm + '</span><b>' + ref + '</b>';
+          $('as-refs-list').appendChild(rr);
+          track('Funding application started: <b>' + p.nm + '</b>, ' + ref);
+        });
+        row.appendChild(btn);
+        box.appendChild(row);
+      })(list[i]);
+    }
+    $('as-partners-p').textContent = band === 'none'
+      ? 'Your records are not fundable yet, so these are the readiness routes rather than lenders. Applications start here on the Hub and are tracked by reference.'
+      : 'Matched to the financial records you told us about. Applications start here on the Hub and are tracked by reference, so nothing hands you off to another site.';
+  }
+
+  function issueQuote(){
+    var t = totals();
+    quoteRef = 'MTN-Q-' + Math.floor(100000 + Math.random() * 900000);
+    $('qc-ref').textContent = quoteRef + ' · valid 14 days';
+    track('Quote <b>' + quoteRef + '</b> issued, ' + rands(t.monthly) + ' pm', 'quote');
+    try {
+      window.sessionStorage.setItem(HANDOFF, JSON.stringify({
+        ref: quoteRef, solution: gaps.length ? REMEDY[gaps[0].dim].title + ' and ' + (gaps[1] ? REMEDY[gaps[1].dim].title : 'review') : 'Review',
+        monthly: t.monthly, once: t.once, seats: seatCount(),
+        readiness: overall(), grade: leadGrade, source: 'sme-advisor-v2'
+      }));
+    } catch(e){}
+    $('qc-shop').setAttribute('href', 'business-solutions.html?quote=' + quoteRef);
+  }
+
+  $('qc-submit').addEventListener('click', function(){
+    if (this.disabled) return;
+    renderPlan();
+    showStep('vet');
+    runVetting(function(){
+      var p = gradeLead();
+      renderGaps();
+      renderFunders();
+      issueQuote();
+      window.setTimeout(function(){
+        document.querySelector('.qc-step[data-step="vet"]').classList.remove('active');
+        $('qc-prog').style.display = 'none';
+        $('qc-res').classList.add('show');
+      }, p >= 35 ? 1500 : 2200);
+    });
+  });
+
+  /* ---------- scheduling ---------- */
+  function refreshConfirm(){
+    var btn = $('qc-confirm');
+    if (pickedDay && pickedTime) {
+      btn.disabled = false;
+      btn.textContent = 'Confirm ' + pickedDay + ' at ' + pickedTime;
+    } else {
+      btn.disabled = true;
+      btn.textContent = 'Select a day and time';
+    }
+  }
+  var days = document.querySelectorAll('#qc-days .qc-day');
+  for (var d=0; d<days.length; d++){
+    days[d].addEventListener('click', function(){
+      for (var k=0; k<days.length; k++) days[k].classList.remove('sel');
+      this.classList.add('sel'); pickedDay = this.getAttribute('data-day'); refreshConfirm();
+    });
+  }
+  var times = document.querySelectorAll('#qc-times .qc-time');
+  for (var t2=0; t2<times.length; t2++){
+    if (times[t2].classList.contains('gone')) continue;
+    times[t2].addEventListener('click', function(){
+      for (var k=0; k<times.length; k++) times[k].classList.remove('sel');
+      this.classList.add('sel'); pickedTime = this.getAttribute('data-time'); refreshConfirm();
+    });
+  }
+
+  $('qc-confirm').addEventListener('click', function(){
+    if (this.disabled) return;
+    var leadRef = 'MTN-L-' + Math.floor(100000 + Math.random() * 900000);
+    $('qc-res').classList.remove('show');
+    $('qc-booked-when').textContent = 'Lerato will call you on ' + pickedDay + ' at ' + pickedTime +
+      '. Quote ' + quoteRef + ' and your scorecard are attached to the booking.';
+    $('qc-lead-ref').textContent = leadRef;
+    $('qc-lead-quote').textContent = quoteRef;
+    $('qc-lead-score').textContent = overall() + ' of 100';
+    $('qc-lead-grade').textContent = leadGrade;
+    if (apps.length) {
+      var names = [];
+      for (var i=0; i<apps.length; i++) names.push(apps[i].partner + ' (' + apps[i].ref + ')');
+      $('qc-lead-apps').textContent = names.join(', ');
+    }
+    track('Consultation booked: <b>' + pickedDay + ', ' + pickedTime + '</b>', 'booked');
+    track('Lead <b>' + leadRef + '</b> created against ' + quoteRef, 'lead');
+    $('qc-booked').classList.add('show');
+    wipe();
+  });
+
+  $('qc-email').addEventListener('click', function(){
+    this.textContent = 'Sent, check your inbox';
+    this.disabled = true;
+    track('Scorecard emailed for later pick-up', 'emailed');
+  });
+  $('qc-shop').addEventListener('click', function(){
+    track('Handed off to Shop with ' + quoteRef, 'handoff');
+  });
+
+  /* ---------- journey recovery ---------- */
+  var prior = load();
+  if (prior && prior.a && prior.a.q1) {
+    var have = 0;
+    for (var q=1; q<=6; q++) if (prior.a['q'+q]) have++;
+    $('qc-resume-txt').textContent = ' We kept ' + have + ' of your answers on this device.';
+    $('qc-resume').classList.add('show');
+
+    $('qc-resume-go').addEventListener('click', function(){
+      answers = prior.a;
+      var last = 1;
+      for (var q2=1; q2<=6; q2++){
+        if (!answers['q'+q2]) break;
+        var el = document.querySelector('.qc-step[data-step="' + q2 + '"]');
+        var opt = el.querySelector('.qc-opt[data-val="' + answers['q'+q2] + '"]');
+        if (opt) opt.classList.add('sel');
+        var go = el.querySelector('.qc-go');
+        if (go) { go.disabled = false; go.classList.add('ready'); }
+        last = q2;
+      }
+      renderScorecard();
+      renderPlan();
+      for (var r=1; r<=last; r++) onAnswer(String(r));
+      track('Assessment recovered from a previous visit', 'recovered');
+      showStep(String(Math.min(7, last + 1)));
+      $('qc-resume').classList.remove('show');
+    });
+    $('qc-resume-clear').addEventListener('click', function(){
+      wipe(); $('qc-resume').classList.remove('show');
+    });
+  }
+})();
+</script>
+</body>
+</html>
