@@ -113,8 +113,9 @@ section{ padding:76px 0; }
 .deal-banner .txt .go-link{ display:inline-flex; align-items:center; gap:8px; font-weight:800; font-size:14px; color:var(--ink); }
 .deal-banner .txt .go-link svg{ transition:transform .15s; }
 .deal-banner:hover .txt .go-link svg{ transform:translateX(4px); }
-/* object-position sits low because the MTN asset has empty wall above the subject. */
-.deal-banner .visual .hero-photo{ width:100%; height:100%; object-fit:cover; object-position:center bottom; display:block; }
+/* object-position sits right because the MTN asset keeps its subject on the right
+   and leaves the left half as empty wall for their own headline. */
+.deal-banner .visual .hero-photo{ width:100%; height:100%; object-fit:cover; object-position:97% center; display:block; }
 .deal-banner .visual{ position:relative; aspect-ratio:4/3; border-radius:var(--radius-sm); overflow:hidden; background-size:cover; background-position:center; background-color:var(--yellow-tint); }
 .deal-banner.dark{ background:var(--ink); color:#fff; border-color:rgba(255,255,255,.1); }
 .deal-banner.dark::before{ content:""; position:absolute; top:-190px; right:-130px; width:540px; height:540px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.24) 0%, transparent 70%); pointer-events:none; }
@@ -144,10 +145,10 @@ section{ padding:76px 0; }
 .deal-banner.hero-single .txt p{ font-size:15.5px; max-width:44ch; }
 /* width:100% is load-bearing: margin-left:auto cancels grid stretch, and the
    only children are absolutely positioned, so the box would collapse to 0. */
-/* 480/329 crops the empty wall off the top of the MTN asset, so the subject and
-   every app icon sit large in frame. Paired with object-position:center bottom. */
-.deal-banner.hero-single .visual{ aspect-ratio:480/329; width:100%; max-width:none; border-radius:var(--radius); box-shadow:0 18px 40px rgba(0,0,0,.28); }
-@media(max-width:900px){ .deal-banner{ grid-template-columns:1fr; padding:28px; } .deal-banner .visual{ aspect-ratio:16/10; } .deal-banner.hero-single{ grid-template-columns:1fr; padding:28px; } .deal-banner.hero-single .visual{ aspect-ratio:480/329; max-width:none; margin-left:0; box-shadow:0 12px 26px rgba(0,0,0,.24); } }
+/* 13/10 against a 1025x442 source shows ~574px of it, which is just wide enough
+   for the desk and every app icon. Anything wider and the subject reads small. */
+.deal-banner.hero-single .visual{ aspect-ratio:13/10; width:100%; max-width:none; border-radius:var(--radius); box-shadow:0 18px 40px rgba(0,0,0,.28); }
+@media(max-width:900px){ .deal-banner{ grid-template-columns:1fr; padding:28px; } .deal-banner .visual{ aspect-ratio:16/10; } .deal-banner.hero-single{ grid-template-columns:1fr; padding:28px; } .deal-banner.hero-single .visual{ aspect-ratio:13/10; max-width:none; margin-left:0; box-shadow:0 12px 26px rgba(0,0,0,.24); } }
 
 .hero-side{ display:flex; flex-direction:column; gap:14px; }
 .side-card{ display:flex; gap:14px; background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s; }

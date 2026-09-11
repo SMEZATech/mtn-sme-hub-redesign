@@ -34,6 +34,14 @@
 .deal.lead .month{ color:var(--yellow); }
 .deal.lead h3{ color:#fff; font-size:26px; }
 .deal.lead p{ color:rgba(255,255,255,.62); }
+.deal.lead .pricing .was{ color:rgba(255,255,255,.42); }
+.deal.lead .pricing .now{ color:#fff; font-size:30px; }
+.deal.lead .pricing .per{ color:rgba(255,255,255,.6); }
+.deal.lead .fine{ font-size:11.5px; color:rgba(255,255,255,.45); margin-bottom:0; max-width:34ch; }
+/* Supporting deals navigate, they do not compete with the section's one CTA. */
+.deal .go{ display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:800; color:var(--ink); align-self:flex-start; }
+.deal .go svg{ transition:transform .15s; }
+.deal:hover .go svg{ transform:translateX(3px); }
 .deal .apps{ display:flex; gap:6px; margin-bottom:16px; }
 .deal .apps span{ width:28px; height:28px; border-radius:7px; display:grid; place-items:center; font-size:11px; font-weight:800; color:#fff; }
 @media(max-width:1000px){ .deals-rail{ grid-template-columns:1fr; } }
