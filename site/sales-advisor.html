@@ -11,80 +11,207 @@
 <link rel="stylesheet" href="assets/versions.css" />
 <link rel="stylesheet" href="assets/advisor.css" />
 <style>
-  .sa-hero{ background:var(--ink); color:#fff; padding:52px 0 56px; position:relative; overflow:hidden; }
-  .sa-hero::before{ content:""; position:absolute; top:-120px; right:-80px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.24) 0%, transparent 70%); }
-  .sa-hero .wrap{ position:relative; z-index:1; text-align:center; }
-  .sa-hero .eyebrow-label{ color:var(--yellow); justify-content:center; }
+  /* ===== Hero ===== */
+  .sa-hero{ background:var(--ink); color:#fff; padding:54px 0 58px; position:relative; overflow:hidden; }
+  .sa-hero::before{ content:""; position:absolute; top:-160px; right:-100px; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); }
+  .sa-hero::after{ content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size:22px 22px; opacity:.5; pointer-events:none; }
+  .sa-hero .wrap{ position:relative; z-index:1; }
+  .sa-hero .eyebrow-label{ color:var(--yellow); }
   .sa-hero .eyebrow-label::before{ background:var(--yellow); }
-  .sa-hero h1{ color:#fff; font-size:clamp(28px,4vw,40px); max-width:640px; margin:10px auto 14px; }
-  .sa-hero p{ color:rgba(255,255,255,.65); font-size:15px; max-width:520px; margin:0 auto; }
+  .sa-hero h1{ color:#fff; font-size:clamp(28px,4vw,42px); max-width:620px; margin:10px 0 14px; }
+  .sa-hero p.lede{ color:rgba(255,255,255,.66); font-size:15.5px; max-width:540px; }
+  .sa-trust{ display:flex; gap:30px; margin-top:30px; flex-wrap:wrap; }
+  .sa-trust > div{ display:flex; align-items:flex-start; gap:10px; max-width:250px; }
+  .sa-trust .tk{ width:26px; height:26px; border-radius:7px; background:rgba(255,197,2,.16); color:var(--yellow); display:grid; place-items:center; flex-shrink:0; }
+  .sa-trust b{ display:block; color:#fff; font-size:13px; margin-bottom:2px; }
+  .sa-trust span{ font-size:11.5px; color:rgba(255,255,255,.5); line-height:1.5; }
 
+  /* ===== Resume banner (journey recovery) ===== */
+  .qc-resume{ display:none; background:var(--yellow-tint); border:1px solid var(--yellow-tint-2); border-radius:var(--radius); padding:16px 18px; margin-bottom:20px; align-items:center; gap:16px; }
+  .qc-resume.show{ display:flex; }
+  .qc-resume .ic{ width:34px; height:34px; border-radius:9px; background:var(--yellow); color:var(--ink-hex); display:grid; place-items:center; flex-shrink:0; }
+  .qc-resume p{ flex:1; font-size:13px; color:var(--ink); }
+  .qc-resume p b{ display:block; font-size:13.5px; margin-bottom:2px; }
+  .qc-resume .acts{ display:flex; gap:8px; flex-shrink:0; }
+
+  /* ===== Cockpit shell ===== */
+  .qc{ display:grid; grid-template-columns:1fr 372px; gap:22px; align-items:start; }
+  .qc-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); position:relative; overflow:hidden; }
+  .qc-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--yellow) 0%, #FFE066 60%, transparent 100%); }
+  .qc-main{ padding:30px 32px 28px; }
+
+  /* progress */
+  .qc-prog{ margin-bottom:26px; }
+  .qc-segs{ display:flex; gap:5px; margin-bottom:9px; }
+  .qc-segs i{ flex:1; height:4px; border-radius:2px; background:var(--surface-2); transition:background .25s; }
+  .qc-segs i.on{ background:var(--yellow); }
+  .qc-segs i.done{ background:var(--yellow-shade); }
+  .qc-prog .pl{ display:flex; justify-content:space-between; font-size:11px; color:var(--muted-2); font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+
+  /* steps */
+  .qc-step{ display:none; }
+  .qc-step.active{ display:block; animation:qcIn .28s ease both; }
+  @keyframes qcIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
+  .qc-step h2{ font-size:clamp(19px,2.2vw,25px); margin-bottom:6px; letter-spacing:-.02em; }
+  .qc-step .hint{ font-size:13px; color:var(--muted); margin-bottom:22px; }
+
+  .qc-opts{ display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+  .qc-opt{ border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:16px 17px; cursor:pointer; background:#fff; transition:border-color .15s, background .15s, transform .15s; display:flex; gap:13px; align-items:flex-start; text-align:left; }
+  .qc-opt:hover{ border-color:var(--yellow); transform:translateY(-2px); }
+  .qc-opt.sel{ border-color:var(--yellow); background:var(--yellow-tint); }
+  .qc-opt .oi{ width:34px; height:34px; border-radius:9px; background:var(--surface); color:var(--muted); display:grid; place-items:center; flex-shrink:0; transition:background .15s, color .15s; }
+  .qc-opt.sel .oi{ background:var(--yellow); color:var(--ink-hex); }
+  .qc-opt b{ display:block; font-size:13.5px; margin-bottom:3px; }
+  .qc-opt span{ font-size:11.5px; color:var(--muted); line-height:1.5; }
+
+  .qc-fields{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .qc-field{ display:block; }
+  .qc-field.full{ grid-column:1 / -1; }
+  .qc-field label{ font-size:12px; font-weight:700; display:block; margin-bottom:6px; }
+  .qc-field input{ width:100%; padding:12px 13px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-size:13.5px; font-family:inherit; background:var(--surface); outline:none; transition:border-color .15s, background .15s; }
+  .qc-field input:focus{ border-color:var(--yellow); background:#fff; }
+  .qc-consent{ grid-column:1 / -1; font-size:11.5px; color:var(--muted); line-height:1.55; background:var(--surface); border-radius:var(--radius-sm); padding:12px 14px; }
+
+  .qc-nav{ display:flex; align-items:center; gap:12px; margin-top:24px; }
+  .qc-back{ width:40px; height:40px; border-radius:var(--radius-sm); border:1.5px solid var(--border); background:#fff; display:grid; place-items:center; cursor:pointer; color:var(--muted); flex-shrink:0; }
+  .qc-back:hover{ border-color:var(--ink); color:var(--ink); }
+  .qc-go{ flex:1; padding:13px 20px; border:none; border-radius:var(--radius-sm); background:var(--surface-2); color:var(--muted-2); font-size:14px; font-weight:800; font-family:inherit; cursor:not-allowed; }
+  .qc-go.ready{ background:var(--yellow); color:var(--ink-hex); cursor:pointer; box-shadow:0 4px 14px rgba(255,197,2,.35); }
+  .qc-go.ready:hover{ background:var(--yellow-shade); }
+
+  /* ===== Vetting pass ===== */
+  .qc-vet{ padding:8px 0 4px; }
+  .qc-vet h3{ font-size:17px; margin-bottom:4px; }
+  .qc-vet .sub{ font-size:12.5px; color:var(--muted); margin-bottom:22px; }
+  .qc-check{ display:flex; align-items:center; gap:13px; padding:13px 0; border-bottom:1px solid var(--border); opacity:.35; transition:opacity .3s; }
+  .qc-check.on{ opacity:1; }
+  .qc-check .cb{ width:24px; height:24px; border-radius:50%; background:var(--surface-2); color:var(--muted-2); display:grid; place-items:center; flex-shrink:0; transition:background .3s, color .3s; }
+  .qc-check.on .cb{ background:var(--yellow); color:var(--ink-hex); }
+  .qc-check .cl{ flex:1; font-size:13px; font-weight:700; }
+  .qc-check .cv{ font-size:12px; color:var(--muted); }
+
+  .qc-grade{ margin-top:22px; border-radius:var(--radius-sm); padding:18px 20px; background:var(--surface); border:1px solid var(--border); display:none; }
+  .qc-grade.show{ display:block; animation:qcIn .3s ease both; }
+  .qc-grade .gt{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin-bottom:12px; }
+  .qc-grade .gt b{ font-size:15px; }
+  .qc-grade .gt i{ font-style:normal; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:4px 10px; border-radius:5px; }
+  .qc-grade.hot .gt i{ background:var(--yellow); color:var(--ink-hex); }
+  .qc-grade.warm .gt i{ background:var(--yellow-tint-2); color:var(--yellow-shade); }
+  .qc-grade.cool .gt i{ background:var(--surface-2); color:var(--muted); }
+  .qc-grade .gbar{ height:7px; border-radius:4px; background:var(--surface-2); overflow:hidden; margin-bottom:10px; }
+  .qc-grade .gbar em{ display:block; height:100%; width:0; background:var(--yellow); border-radius:4px; transition:width .8s cubic-bezier(.2,.8,.2,1); }
+  .qc-grade p{ font-size:12.5px; color:var(--muted); line-height:1.6; }
+
+  /* ===== Rail: the live quote ===== */
+  .qc-rail{ position:sticky; top:20px; }
+  .qc-rail-in{ padding:22px 22px 20px; }
+  .qc-rail h4{ font-size:13px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted-2); margin-bottom:4px; }
+  .qc-rail .qsol{ font-size:17px; font-weight:800; letter-spacing:-.01em; margin-bottom:3px; color:var(--ink); }
+  .qc-rail .ref{ font-size:11px; color:var(--muted-2); font-family:monospace; margin-bottom:18px; }
+
+  .qc-meter{ margin-bottom:18px; }
+  .qc-meter .mh{ display:flex; justify-content:space-between; font-size:11px; font-weight:700; color:var(--muted); margin-bottom:6px; }
+  .qc-meter .mb{ height:5px; border-radius:3px; background:var(--surface-2); overflow:hidden; }
+  .qc-meter .mb em{ display:block; height:100%; width:0; background:linear-gradient(90deg, var(--yellow), #FFE066); transition:width .5s ease; }
+
+  .qc-lines{ min-height:120px; }
+  .qc-skel{ padding:6px 0; }
+  .qc-skel i{ display:block; height:10px; border-radius:5px; background:var(--surface-2); margin-bottom:14px; }
+  .qc-skel i:nth-child(2){ width:72%; } .qc-skel i:nth-child(3){ width:84%; } .qc-skel i:nth-child(4){ width:56%; }
+  .qc-skel p{ font-size:12px; color:var(--muted-2); margin-top:14px; line-height:1.6; }
+
+  .qc-line{ display:flex; justify-content:space-between; gap:12px; padding:11px 0; border-bottom:1px solid var(--border); animation:qcIn .3s ease both; }
+  .qc-line .ln{ font-size:12.5px; font-weight:700; line-height:1.4; }
+  .qc-line .lc{ font-size:10.5px; color:var(--muted-2); margin-top:3px; line-height:1.45; }
+  .qc-line .la{ text-align:right; flex-shrink:0; }
+  .qc-line .la b{ display:block; font-size:13px; }
+  .qc-line .la span{ font-size:10px; color:var(--muted-2); }
+
+  .qc-tot{ margin-top:16px; padding-top:14px; border-top:2px solid var(--ink); }
+  .qc-tot .tr{ display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted); margin-bottom:7px; }
+  .qc-tot .tr.big{ margin:12px 0 0; padding-top:12px; border-top:1px solid var(--border); font-size:15px; font-weight:800; color:var(--ink); }
+  .qc-tot .tr.big span:last-child{ font-size:21px; }
+  .qc-foot{ font-size:10.5px; color:var(--muted-2); line-height:1.6; margin-top:14px; }
+
+  /* tracked activity */
+  .qc-log{ margin-top:14px; border-top:1px solid var(--border); padding-top:14px; }
+  .qc-log h5{ font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted-2); margin-bottom:10px; display:flex; align-items:center; gap:7px; }
+  .qc-log h5 i{ width:6px; height:6px; border-radius:50%; background:var(--yellow); flex-shrink:0; }
+  .qc-log ol{ list-style:none; }
+  .qc-log li{ font-size:11px; color:var(--muted); padding:4px 0 4px 13px; position:relative; animation:qcIn .25s ease both; line-height:1.5; }
+  .qc-log li::before{ content:""; position:absolute; left:0; top:10px; width:5px; height:5px; border-radius:50%; background:var(--border); }
+  .qc-log li b{ color:var(--ink); font-weight:700; }
+  .qc-log .none{ font-size:11px; color:var(--muted-2); }
+
+  /* ===== Result / quote document ===== */
+  .qc-res{ display:none; }
+  .qc-res.show{ display:block; animation:qcIn .3s ease both; }
+  .qc-tag{ display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--yellow-shade); background:var(--yellow-tint); border:1px solid var(--yellow-tint-2); padding:5px 11px; border-radius:6px; margin-bottom:14px; }
+  .qc-nba{ display:flex; gap:14px; background:var(--ink); color:#fff; border-radius:var(--radius-sm); padding:18px 20px; margin-bottom:18px; }
+  .qc-nba .ni{ width:34px; height:34px; border-radius:9px; background:rgba(255,197,2,.16); color:var(--yellow); display:grid; place-items:center; flex-shrink:0; }
+  .qc-nba b{ display:block; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--yellow); margin-bottom:5px; }
+  .qc-nba p{ font-size:13px; color:rgba(255,255,255,.72); line-height:1.6; }
+
+  /* calendar */
+  .qc-cal{ border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px; margin-bottom:18px; }
+  .qc-adv{ display:flex; align-items:center; gap:13px; padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid var(--border); }
+  .qc-adv .av{ width:42px; height:42px; border-radius:50%; background:var(--yellow); color:var(--ink-hex); display:grid; place-items:center; font-weight:800; font-size:14px; flex-shrink:0; }
+  .qc-adv b{ display:block; font-size:14px; }
+  .qc-adv span{ font-size:11.5px; color:var(--muted); }
+  .qc-cal h5{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted-2); margin:0 0 9px; }
+  .qc-days{ display:grid; grid-template-columns:repeat(5,1fr); gap:7px; margin-bottom:18px; }
+  .qc-day{ border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:9px 4px; text-align:center; cursor:pointer; transition:border-color .15s, background .15s; }
+  .qc-day:hover{ border-color:var(--yellow); }
+  .qc-day.sel{ border-color:var(--yellow); background:var(--yellow-tint); }
+  .qc-day .dw{ font-size:10px; color:var(--muted-2); font-weight:700; text-transform:uppercase; }
+  .qc-day .dn{ font-size:16px; font-weight:800; }
+  .qc-times{ display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
+  .qc-time{ border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:9px 4px; text-align:center; font-size:12.5px; font-weight:700; cursor:pointer; transition:border-color .15s, background .15s; }
+  .qc-time:hover{ border-color:var(--yellow); }
+  .qc-time.sel{ border-color:var(--yellow); background:var(--yellow-tint); }
+  .qc-time.gone{ opacity:.34; cursor:not-allowed; text-decoration:line-through; }
+  .qc-time.gone:hover{ border-color:var(--border); }
+
+  .qc-recover{ background:var(--surface); border-radius:var(--radius-sm); padding:16px 18px; display:flex; align-items:center; gap:16px; }
+  .qc-recover p{ flex:1; font-size:12.5px; color:var(--muted); }
+  .qc-recover p b{ color:var(--ink); }
+
+  /* booked */
+  .qc-lead{ border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px; margin-bottom:18px; background:var(--surface); }
+  .qc-lead h5{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted-2); margin-bottom:14px; }
+  .qc-lrow{ display:flex; justify-content:space-between; gap:14px; padding:9px 0; border-bottom:1px solid var(--border); font-size:12.5px; }
+  .qc-lrow:last-child{ border-bottom:none; }
+  .qc-lrow span{ color:var(--muted); }
+  .qc-lrow b.mono{ font-family:monospace; }
+  .qc-hand{ display:flex; gap:14px; align-items:center; background:var(--yellow-tint); border:1px solid var(--yellow-tint-2); border-radius:var(--radius-sm); padding:18px 20px; }
+  .qc-hand .hi{ width:34px; height:34px; border-radius:9px; background:var(--yellow); color:var(--ink-hex); display:grid; place-items:center; flex-shrink:0; }
+  .qc-hand div p{ font-size:12.5px; color:var(--muted); line-height:1.55; }
+  .qc-hand div b{ display:block; font-size:13.5px; color:var(--ink); margin-bottom:3px; }
+
+  /* ===== Knowledge centre ===== */
   .kc-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
   .kc-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:18px; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s; }
   .kc-card:hover{ box-shadow:var(--shadow-hover); transform:translateY(-2px); }
   .kc-card .ic{ width:36px; height:36px; border-radius:9px; background:var(--yellow-tint); color:var(--yellow-shade); display:grid; place-items:center; margin-bottom:14px; }
   .kc-card h4{ font-size:13.5px; line-height:1.35; margin-bottom:8px; }
   .kc-card span{ font-size:11.5px; color:var(--muted); }
-  @media(max-width:900px){ .kc-grid{ grid-template-columns:repeat(2,1fr); } }
 
-  .sa-wrap{ max-width:640px; margin:0 auto; padding:0 20px; }
-  .sa-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); margin-top:-34px; position:relative; z-index:2; padding:36px; }
-  .sa-progress{ display:flex; gap:6px; margin-bottom:28px; }
-  .sa-progress .seg{ flex:1; height:4px; border-radius:99px; background:var(--border); }
-  .sa-progress .seg.done{ background:var(--yellow); }
-  .sa-step{ display:none; }
-  .sa-step.active{ display:block; }
-  .sa-step .qnum{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow-shade); margin-bottom:8px; }
-  .sa-step h2{ font-size:20px; margin-bottom:22px; }
-  .sa-opt{ display:flex; align-items:center; gap:12px; padding:14px 16px; border:1.5px solid var(--border); border-radius:10px; margin-bottom:10px; cursor:pointer; font-size:14px; font-weight:600; transition:border-color .15s, background .15s; }
-  .sa-opt:hover{ border-color:var(--yellow); }
-  .sa-opt.sel{ border-color:var(--yellow); background:var(--yellow-tint); }
-  .sa-opt .ic{ width:34px; height:34px; border-radius:8px; background:var(--yellow-tint); color:var(--yellow-shade); display:grid; place-items:center; flex-shrink:0; }
-  .sa-opt.sel .ic{ background:var(--yellow); color:var(--ink); }
-  .sa-field{ margin-bottom:16px; }
-  .sa-field label{ display:block; font-size:12.5px; font-weight:700; margin-bottom:7px; }
-  .sa-field input{ width:100%; padding:13px 15px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; font-family:inherit; outline:none; background:var(--surface); }
-  .sa-field input:focus{ border-color:var(--yellow); background:#fff; }
-  .sa-nav{ display:flex; gap:10px; margin-top:8px; }
-  .sa-nav .btn-back{ flex-shrink:0; background:transparent; border:1.5px solid var(--border); color:var(--ink); border-radius:8px; padding:0 18px; font-weight:700; font-size:13.5px; cursor:pointer; }
-  .sa-continue{ flex:1; padding:14px; border-radius:8px; border:none; font-weight:800; font-size:14.5px; background:var(--border); color:var(--muted-2); cursor:not-allowed; }
-  .sa-continue.ready{ background:var(--yellow); color:var(--ink); cursor:pointer; }
-  .sa-continue.ready:hover{ box-shadow:0 0 0 4px rgba(255,197,2,.22); }
-
-  .sa-thinking{ text-align:center; padding:30px 0; }
-  .sa-thinking .spin{ width:52px; height:52px; border-radius:50%; border:3px solid var(--border); border-top-color:var(--yellow); margin:0 auto 20px; animation:saSpin .8s linear infinite; }
-  @keyframes saSpin{ to{ transform:rotate(360deg); } }
-  .sa-thinking p{ font-size:13.5px; color:var(--muted); }
-
-  .sa-result-tag{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow-shade); background:var(--yellow-tint); display:inline-block; padding:5px 12px; border-radius:999px; margin-bottom:14px; }
-  .sa-quote{ background:var(--ink); color:#fff; border-radius:var(--radius-sm); padding:24px; margin-bottom:18px; position:relative; overflow:hidden; }
-  .sa-quote::before{ content:""; position:absolute; top:-60px; right:-40px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.28) 0%, transparent 70%); }
-  .sa-quote *{ position:relative; z-index:1; }
-  .sa-quote .lbl{ font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow); margin-bottom:6px; }
-  .sa-quote h3{ font-size:19px; margin-bottom:10px; }
-  .sa-quote p{ font-size:13px; color:rgba(255,255,255,.65); margin-bottom:16px; }
-  .sa-quote .price{ font-size:26px; font-weight:800; }
-  .sa-quote .price span{ font-size:12px; font-weight:500; color:rgba(255,255,255,.55); }
-  .sa-nba{ display:flex; gap:12px; align-items:flex-start; background:var(--surface); border-radius:10px; padding:14px 16px; margin-bottom:20px; }
-  .sa-nba .ic{ width:32px; height:32px; border-radius:8px; background:var(--yellow); color:var(--ink); display:grid; place-items:center; flex-shrink:0; }
-  .sa-nba b{ display:block; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted-2); margin-bottom:3px; }
-  .sa-nba span{ font-size:13.5px; font-weight:600; }
-
-  .sa-book{ border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:16px; }
-  .sa-book h5{ font-size:13.5px; margin-bottom:12px; }
-  .sa-plan{ margin:0 0 16px 18px; display:flex; flex-direction:column; gap:8px; }
-  .sa-plan li{ font-size:13px; color:var(--muted); line-height:1.5; }
-  .sa-book-fine{ font-size:11px; color:var(--muted-2); text-align:center; margin-top:10px; }
-
-  .sa-done{ display:none; text-align:center; padding:10px 0; }
-  .sa-done.show{ display:block; }
-  .sa-done .ic{ width:56px; height:56px; border-radius:50%; background:var(--yellow-tint); display:grid; place-items:center; margin:0 auto 18px; color:var(--yellow-shade); }
-  .sa-done h3{ font-size:20px; margin-bottom:8px; }
-  .sa-done p{ font-size:13.5px; color:var(--muted); margin-bottom:4px; }
-  .sa-done .ref{ font-size:18px; font-weight:800; margin:14px 0; }
-
-  .sa-recover{ text-align:center; margin-top:16px; }
-  .sa-recover a{ font-size:12.5px; font-weight:700; color:var(--muted); text-decoration:underline; cursor:pointer; }
+  @media(max-width:1040px){
+    .qc{ grid-template-columns:1fr; }
+    .qc-rail{ position:static; top:auto; }
+    .kc-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media(max-width:700px){
+    .qc-main{ padding:24px 20px 22px; }
+    .qc-opts{ grid-template-columns:1fr; }
+    .qc-fields{ grid-template-columns:1fr; }
+    .qc-days{ grid-template-columns:repeat(3,1fr); }
+    .qc-times{ grid-template-columns:repeat(3,1fr); }
+    .sa-trust{ gap:18px; }
+    .qc-resume{ flex-wrap:wrap; }
+    .qc-recover{ flex-wrap:wrap; }
+    .qc-hand{ flex-wrap:wrap; }
+  }
 </style>
 </head>
 <body>
@@ -169,181 +296,269 @@
 
 <section class="sa-hero">
   <div class="wrap">
-    <p class="eyebrow-label">SME Advisor</p>
-    <h1>Not sure what your business needs?</h1>
-    <p>Answer a few quick questions and get a tailored recommendation, with a real quote, in under two minutes.</p>
+    <h1>Tell us how your business runs. Leave with a costed quote.</h1>
+    <p class="lede">Five questions, answered one at a time. Your quote builds as you go, priced on real MTN Business products, and a named advisor picks it up from there.</p>
+    <div class="sa-trust">
+      <div>
+        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <div><b>Real line items</b><span>Actual products and prices, not a price range.</span></div>
+      </div>
+      <div>
+        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6"/></svg></span>
+        <div><b>A named advisor</b><span>Lerato Mokoena on the SME desk, not a call centre queue.</span></div>
+      </div>
+      <div>
+        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
+        <div><b>No account needed</b><span>Nothing to sign up for. Your answers stay on this device.</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section style="padding-bottom:0;">
+<section style="padding-top:34px;">
+  <div class="wrap">
+
+    <div class="qc-resume" id="qc-resume">
+      <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9 9 9 0 00-6.4 2.7L3 8"/><path d="M3 3v5h5"/></svg></span>
+      <p><b>You started this before</b><span id="qc-resume-txt">We kept your answers on this device.</span></p>
+      <span class="acts">
+        <button class="btn btn-primary btn-sm" id="qc-resume-go">Pick up where I left off</button>
+        <button class="btn btn-outline btn-sm" id="qc-resume-clear">Start over</button>
+      </span>
+    </div>
+
+    <div class="qc">
+      <!-- ============ INTAKE ============ -->
+      <div class="qc-card">
+        <div class="qc-main">
+
+          <div class="qc-prog" id="qc-prog">
+            <div class="qc-segs"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+            <div class="pl"><span id="qc-prog-step">Question 1 of 5</span><span id="qc-prog-name">Your challenge</span></div>
+          </div>
+
+          <!-- Q1 -->
+          <div class="qc-step active" data-step="1">
+            <h2>What is the biggest thing holding your business back?</h2>
+            <p class="hint">Pick the one that costs you the most right now.</p>
+            <div class="qc-opts">
+              <button class="qc-opt" data-val="online">
+                <span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18 15 15 0 010-18z"/></svg></span>
+                <span><b>We are not properly online</b><span>No website, or one that does not bring in work.</span></span>
+              </button>
+              <button class="qc-opt" data-val="security">
+                <span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
+                <span><b>We are exposed on security</b><span>No firewall, no monitoring, no plan if something goes wrong.</span></span>
+              </button>
+              <button class="qc-opt" data-val="connect">
+                <span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></span>
+                <span><b>Our connectivity lets us down</b><span>Data runs out, the line drops, the team cannot work.</span></span>
+              </button>
+              <button class="qc-opt" data-val="customers">
+                <span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
+                <span><b>We are not reaching enough customers</b><span>No way to sell online and no tools to follow up leads.</span></span>
+              </button>
+            </div>
+            <div class="qc-nav"><button class="qc-go" data-next="2" disabled>Continue</button></div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="qc-step" data-step="2">
+            <h2>How many people would use this?</h2>
+            <p class="hint">This sets the per user pricing on your quote.</p>
+            <div class="qc-opts">
+              <button class="qc-opt" data-val="solo"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6"/></svg></span><span><b>Just me</b><span>Owner run, priced for one user.</span></span></button>
+              <button class="qc-opt" data-val="small"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.4"/><circle cx="17" cy="9" r="2.6"/><path d="M2 20c0-3.2 3.1-5.6 7-5.6s7 2.4 7 5.6"/></svg></span><span><b>2 to 10 people</b><span>Priced for a team of six.</span></span></button>
+              <button class="qc-opt" data-val="mid"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="7" height="12" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/></svg></span><span><b>11 to 50 people</b><span>Priced for a team of twenty four.</span></span></button>
+              <button class="qc-opt" data-val="large"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V9l7-5 7 5v12"/><path d="M9 21v-6h4v6"/><path d="M17 13h4v8h-4"/></svg></span><span><b>More than 50 people</b><span>Priced for sixty, with volume terms to confirm.</span></span></button>
+            </div>
+            <div class="qc-nav"><button class="qc-back" data-back="1" aria-label="Back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button><button class="qc-go" data-next="3" disabled>Continue</button></div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="qc-step" data-step="3">
+            <h2>When do you need this working?</h2>
+            <p class="hint">Timing decides whether an advisor calls you this week or keeps in touch.</p>
+            <div class="qc-opts">
+              <button class="qc-opt" data-val="now"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span><span><b>As soon as possible</b><span>It is already costing us money.</span></span></button>
+              <button class="qc-opt" data-val="soon"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><span><b>Within 1 to 3 months</b><span>Planned, budget being arranged.</span></span></button>
+              <button class="qc-opt" data-val="year"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><b>This financial year</b><span>On the roadmap, not urgent yet.</span></span></button>
+              <button class="qc-opt" data-val="explore"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span><b>Just exploring for now</b><span>Getting a sense of what things cost.</span></span></button>
+            </div>
+            <div class="qc-nav"><button class="qc-back" data-back="2" aria-label="Back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button><button class="qc-go" data-next="4" disabled>Continue</button></div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="qc-step" data-step="4">
+            <h2>Who signs this off?</h2>
+            <p class="hint">So the advisor prepares the right paperwork before the call.</p>
+            <div class="qc-opts">
+              <button class="qc-opt" data-val="decide"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>I decide</b><span>I can approve this myself.</span></span></button>
+              <button class="qc-opt" data-val="recommend"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.3a2 2 0 002-1.7l1.4-9A2 2 0 0019.7 9z"/></svg></span><span><b>I recommend it</b><span>Someone else signs the order.</span></span></button>
+              <button class="qc-opt" data-val="team"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><span><b>We decide together</b><span>A partner or board call.</span></span></button>
+              <button class="qc-opt" data-val="research"><span class="oi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span><span><b>Still researching</b><span>No decision on the table yet.</span></span></button>
+            </div>
+            <div class="qc-nav"><button class="qc-back" data-back="3" aria-label="Back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button><button class="qc-go" data-next="5" disabled>Continue</button></div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="qc-step" data-step="5">
+            <h2>Where should the quote go?</h2>
+            <p class="hint">The quote is issued against these details and attached to your lead record.</p>
+            <div class="qc-fields">
+              <div class="qc-field"><label for="qc-name">Full name</label><input type="text" id="qc-name" placeholder="Thabo Nkosi"></div>
+              <div class="qc-field"><label for="qc-biz">Business name</label><input type="text" id="qc-biz" placeholder="Nkosi Trading CC"></div>
+              <div class="qc-field"><label for="qc-email">eMail address</label><input type="email" id="qc-email" placeholder="thabo@nkositrading.co.za"></div>
+              <div class="qc-field"><label for="qc-phone">Contact number</label><input type="tel" id="qc-phone" placeholder="082 000 0000"></div>
+              <p class="qc-consent">MTN Business uses these details to prepare your quote and contact you about it. Nothing is charged and no account is created at this step.</p>
+            </div>
+            <div class="qc-nav"><button class="qc-back" data-back="4" aria-label="Back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button><button class="qc-go" id="qc-submit" disabled>Issue my quote</button></div>
+          </div>
+
+          <!-- Vetting pass -->
+          <div class="qc-step" data-step="vet">
+            <div class="qc-vet">
+              <h3>Checking your answers against the solution</h3>
+              <p class="sub">This is the qualification MTN's sales desk would otherwise do by phone.</p>
+              <div class="qc-check" data-check="need"><span class="cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cl">Need identified</span><span class="cv" data-cv="need">checking</span></div>
+              <div class="qc-check" data-check="seats"><span class="cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cl">Team size confirmed</span><span class="cv" data-cv="seats">checking</span></div>
+              <div class="qc-check" data-check="time"><span class="cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cl">Timeline established</span><span class="cv" data-cv="time">checking</span></div>
+              <div class="qc-check" data-check="auth"><span class="cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cl">Decision authority</span><span class="cv" data-cv="auth">checking</span></div>
+              <div class="qc-check" data-check="stock"><span class="cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cl">Products available on your answers</span><span class="cv" data-cv="stock">checking</span></div>
+
+              <div class="qc-grade" id="qc-grade">
+                <div class="gt"><b id="qc-grade-t">Qualification</b><i id="qc-grade-b">Grade</i></div>
+                <div class="gbar"><em id="qc-grade-bar"></em></div>
+                <p id="qc-grade-p"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result: next best action + scheduling -->
+          <div class="qc-res" id="qc-res">
+            <span class="qc-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Quote issued</span>
+
+            <div class="qc-nba">
+              <span class="ni"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span>
+              <div><b>Next best action</b><p id="qc-nba">Book fifteen minutes to confirm fit and firm up this quote.</p></div>
+            </div>
+
+            <div class="qc-cal" id="qc-cal">
+              <div class="qc-adv">
+                <span class="av">LM</span>
+                <div><b>Lerato Mokoena</b><span>MTN Business product and sales advisor, SME desk</span></div>
+              </div>
+              <h5>Pick a day</h5>
+              <div class="qc-days" id="qc-days">
+                <div class="qc-day" data-day="Mon 15 Sep"><div class="dw">Mon</div><div class="dn">15</div></div>
+                <div class="qc-day" data-day="Tue 16 Sep"><div class="dw">Tue</div><div class="dn">16</div></div>
+                <div class="qc-day" data-day="Wed 17 Sep"><div class="dw">Wed</div><div class="dn">17</div></div>
+                <div class="qc-day" data-day="Thu 18 Sep"><div class="dw">Thu</div><div class="dn">18</div></div>
+                <div class="qc-day" data-day="Fri 19 Sep"><div class="dw">Fri</div><div class="dn">19</div></div>
+              </div>
+              <h5>Pick a time</h5>
+              <div class="qc-times" id="qc-times">
+                <div class="qc-time" data-time="09:00">09:00</div>
+                <div class="qc-time gone">10:00</div>
+                <div class="qc-time" data-time="11:00">11:00</div>
+                <div class="qc-time" data-time="13:00">13:00</div>
+                <div class="qc-time" data-time="14:00">14:00</div>
+                <div class="qc-time gone">15:00</div>
+                <div class="qc-time" data-time="16:00">16:00</div>
+                <div class="qc-time" data-time="16:30">16:30</div>
+              </div>
+              <button class="btn btn-primary btn-block btn-lg" id="qc-confirm" disabled style="margin-top:18px;">Select a day and time</button>
+            </div>
+
+            <div class="qc-recover" id="qc-recover">
+              <p><b>Not ready to book?</b> We will hold this quote against your reference so you can pick it up later.</p>
+              <button class="btn btn-outline btn-sm" id="qc-email">eMail me this quote</button>
+            </div>
+          </div>
+
+          <!-- Booked -->
+          <div class="qc-res" id="qc-booked">
+            <span class="qc-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Consultation booked</span>
+            <h2 style="font-size:22px; margin:8px 0 8px;">You are booked in with Lerato</h2>
+            <p style="font-size:13.5px; color:var(--muted); margin-bottom:20px;" id="qc-booked-when">Your advisor will call you at the time you selected.</p>
+
+            <div class="qc-lead">
+              <h5>Lead record created</h5>
+              <div class="qc-lrow"><span>Lead reference</span><b class="mono" id="qc-lead-ref">MTN-L-000000</b></div>
+              <div class="qc-lrow"><span>Quote attached</span><b class="mono" id="qc-lead-quote">MTN-Q-000000</b></div>
+              <div class="qc-lrow"><span>Qualification</span><b id="qc-lead-grade">Sales ready</b></div>
+              <div class="qc-lrow"><span>Assigned owner</span><b>Lerato Mokoena, SME desk</b></div>
+              <div class="qc-lrow"><span>Source</span><b>SMEHub SME Advisor, V1 guided</b></div>
+              <div class="qc-lrow"><span>Status</span><b>Consultation scheduled</b></div>
+            </div>
+
+            <div class="qc-hand">
+              <span class="hi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6"/></svg></span>
+              <div>
+                <b>Your quote carries into the Shop</b>
+                <p>Open the Shop and your quote reference travels with you, so anything you add is priced against the same recommendation.</p>
+              </div>
+              <a class="btn btn-dark btn-sm" id="qc-shop" href="business-solutions.html">Continue in the Shop</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ LIVE QUOTE RAIL ============ -->
+      <aside class="qc-rail">
+        <div class="qc-card">
+          <div class="qc-rail-in">
+            <h4>Your quote</h4>
+            <div class="qsol" id="qc-sol">Builds as you answer</div>
+            <div class="ref" id="qc-ref">Reference issued when complete</div>
+
+            <div class="qc-meter">
+              <div class="mh"><span>Quote confidence</span><span id="qc-conf-n">0%</span></div>
+              <div class="mb"><em id="qc-conf"></em></div>
+            </div>
+
+            <div class="qc-lines" id="qc-lines">
+              <div class="qc-skel">
+                <i></i><i></i><i></i><i></i>
+                <p>Answer the first question and the matched products, quantities and pricing appear here.</p>
+              </div>
+            </div>
+
+            <div class="qc-tot" id="qc-tot" hidden>
+              <div class="tr"><span>Monthly subtotal</span><span id="qc-sub">R0</span></div>
+              <div class="tr"><span>Once-off</span><span id="qc-once">None</span></div>
+              <div class="tr"><span>Contract term</span><span id="qc-term">36 months</span></div>
+              <div class="tr big"><span>Monthly total</span><span id="qc-total">R0</span></div>
+            </div>
+
+            <p class="qc-foot">Indicative pricing on real MTN Business products, excluding VAT. An advisor confirms final pricing, availability and coverage before anything is signed.</p>
+
+            <div class="qc-log">
+              <h5><i></i>Tracked sales activity</h5>
+              <ol id="qc-log"><li class="none">Nothing tracked yet.</li></ol>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--surface);">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow-label">Knowledge Centre</p><h2 class="sec-title">Learn while you decide</h2></div>
-      <a class="btn btn-outline" href="insights.html">View All Insights</a>
+      <div><p class="eyebrow-label">Knowledge Centre</p><h2 class="sec-title">Read up while you decide</h2></div>
+      <a class="btn btn-outline" href="insights.html">View Insights</a>
     </div>
     <div class="kc-grid">
       <a class="kc-card" href="guide.html"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><h4>Complete Guide to Registering a Business in SA</h4><span>Guide &middot; 12 min read</span></a>
-      <a class="kc-card" href="category.html"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><h4>Staying Protected Online: A Starter's Checklist</h4><span>Connect My Business</span></a>
+      <a class="kc-card" href="business-advice.html"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><h4>Staying Protected Online: A Starter's Checklist</h4><span>Connect My Business</span></a>
       <a class="kc-card" href="templates.html"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div><h4>Cash Flow Projection Template</h4><span>Template &middot; Free download</span></a>
-      <a class="kc-card" href="stakeholders.html"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><h4>Partner Ecosystem: Funding, Tools and Advice</h4><span>5 partner categories</span></a>
+      <a class="kc-card" href="stakeholders.html"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><h4>Partner Ecosystem: Funding, Tools and Advice</h4><span>Fund, digitise, advise, access markets</span></a>
     </div>
   </div>
 </section>
-
-<section style="padding-top:36px;">
-  <div class="sa-wrap">
-    <div class="sa-card">
-      <div class="sa-progress" id="sa-progress">
-        <div class="seg done"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
-      </div>
-
-      <div id="sa-form-wrap">
-        <div class="sa-step active" data-step="1">
-          <p class="qnum">Question 1 of 4</p>
-          <h2>What's the biggest challenge facing your business right now?</h2>
-          <div class="sa-opt" data-val="online"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18 15 15 0 010-18z"/></svg></div>Getting my business online</div>
-          <div class="sa-opt" data-val="security"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>Staying protected online</div>
-          <div class="sa-opt" data-val="connect"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></div>Reliable connectivity for the team</div>
-          <div class="sa-opt" data-val="customers"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>Reaching more customers</div>
-          <div class="sa-nav"><button class="sa-continue" id="sa-next-1" disabled>Continue</button></div>
-        </div>
-
-        <div class="sa-step" data-step="2">
-          <p class="qnum">Question 2 of 4</p>
-          <h2>How many people work at your business?</h2>
-          <div class="sa-opt" data-val="solo">Just me</div>
-          <div class="sa-opt" data-val="small">2 to 10 people</div>
-          <div class="sa-opt" data-val="mid">11 to 50 people</div>
-          <div class="sa-opt" data-val="large">More than 50 people</div>
-          <div class="sa-nav">
-            <button class="btn-back" data-back="1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
-            <button class="sa-continue" id="sa-next-2" disabled>Continue</button>
-          </div>
-        </div>
-
-        <div class="sa-step" data-step="3">
-          <p class="qnum">Question 3 of 4</p>
-          <h2>What's your monthly budget range for this?</h2>
-          <div class="sa-opt" data-val="lite">Under R500 pm</div>
-          <div class="sa-opt" data-val="mid">R500 &ndash; R1,500 pm</div>
-          <div class="sa-opt" data-val="grow">R1,500 &ndash; R5,000 pm</div>
-          <div class="sa-opt" data-val="flex">Not sure, show me options</div>
-          <div class="sa-nav">
-            <button class="btn-back" data-back="2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
-            <button class="sa-continue" id="sa-next-3" disabled>Continue</button>
-          </div>
-        </div>
-
-        <div class="sa-step" data-step="4">
-          <p class="qnum">Question 4 of 4</p>
-          <h2>Where should we send your recommendation?</h2>
-          <div class="sa-field"><label>Full name</label><input type="text" id="sa-name" placeholder="Thabo Nkosi"></div>
-          <div class="sa-field"><label>Business name</label><input type="text" id="sa-business" placeholder="Nkosi Trading CC"></div>
-          <div class="sa-field"><label>eMail address</label><input type="email" id="sa-email" placeholder="thabo@nkositrading.co.za"></div>
-          <div class="sa-field"><label>Contact number</label><input type="tel" id="sa-phone" placeholder="082 000 0000"></div>
-          <div class="sa-nav">
-            <button class="btn-back" data-back="3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
-            <button class="sa-continue ready" id="sa-submit">Get my recommendation</button>
-          </div>
-        </div>
-
-        <div class="sa-step" data-step="thinking">
-          <div class="sa-thinking">
-            <div class="spin"></div>
-            <p>Matching your answers to the right solution&hellip;</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="sa-done" id="sa-result">
-        <div style="text-align:left;">
-          <span class="sa-result-tag">Your custom quote</span>
-
-          <div class="quote-doc" style="margin-bottom:16px;">
-            <div class="quote-hd">
-              <div class="lbl">Prepared for <span id="q-biz">your business</span></div>
-              <h3 id="q-title">Managed Firewall</h3>
-              <div class="ref">Quote <span id="q-ref">MTN-Q-000000</span> &middot; valid 14 days</div>
-            </div>
-            <div class="quote-lines" id="q-lines"></div>
-            <div class="q-tot">
-              <div class="row"><span>Monthly subtotal</span><span id="q-sub">R0</span></div>
-              <div class="row"><span>Once-off setup</span><span id="q-once">R0</span></div>
-              <div class="row"><span>Contract term</span><span id="q-term">36 months</span></div>
-              <div class="row big"><span>Monthly total</span><span id="q-total">R0</span></div>
-            </div>
-            <div class="q-foot">Indicative pricing based on your answers, excluding VAT. An advisor confirms final pricing, availability and coverage before anything is signed.</div>
-          </div>
-
-          <div class="nba-box" style="margin-bottom:16px;">
-            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div>
-            <div><b>Next best action</b><p id="q-nba">Book 15 minutes with a product and sales advisor to confirm fit and firm up this quote.</p></div>
-          </div>
-
-          <div class="cal" style="margin-bottom:16px;">
-            <div class="adviser">
-              <div class="av">LM</div>
-              <div><b>Lerato Mokoena</b><span>MTN Business product &amp; sales advisor</span></div>
-            </div>
-            <h5>Pick a day</h5>
-            <div class="cal-days" id="cal-days">
-              <div class="cal-day" data-day="Mon 15 Sep"><div class="dw">Mon</div><div class="dn">15</div></div>
-              <div class="cal-day" data-day="Tue 16 Sep"><div class="dw">Tue</div><div class="dn">16</div></div>
-              <div class="cal-day" data-day="Wed 17 Sep"><div class="dw">Wed</div><div class="dn">17</div></div>
-              <div class="cal-day" data-day="Thu 18 Sep"><div class="dw">Thu</div><div class="dn">18</div></div>
-              <div class="cal-day" data-day="Fri 19 Sep"><div class="dw">Fri</div><div class="dn">19</div></div>
-            </div>
-            <h5>Pick a time</h5>
-            <div class="cal-times" id="cal-times">
-              <div class="cal-time" data-time="09:00">09:00</div>
-              <div class="cal-time gone">10:00</div>
-              <div class="cal-time" data-time="11:00">11:00</div>
-              <div class="cal-time" data-time="13:00">13:00</div>
-              <div class="cal-time" data-time="14:00">14:00</div>
-              <div class="cal-time gone">15:00</div>
-              <div class="cal-time" data-time="16:00">16:00</div>
-              <div class="cal-time" data-time="16:30">16:30</div>
-            </div>
-            <button class="btn btn-primary btn-block btn-lg" id="cal-confirm" disabled style="margin-top:18px;">Select a day and time</button>
-            <p style="font-size:10.5px; color:var(--muted-2); text-align:center; margin-top:10px;">Prefer MTN's own form? <a href="https://www.mtn.co.za/business/contact-form?title=My%20EBU&product_name=dedicated-firewall" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:700; color:var(--muted);">Request contact there instead</a></p>
-          </div>
-
-          <div class="recover" id="sa-recover-wrap">
-            <p><b>Not ready to book?</b> We'll email this quote so you can pick it up later.</p>
-            <button class="btn btn-outline btn-sm" id="sa-recover">Email me this quote</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="sa-done" id="sa-booked">
-        <div style="text-align:left;">
-          <span class="sa-result-tag">Consultation booked</span>
-          <h3 style="font-size:20px; margin:10px 0 8px;">You're booked in with Lerato</h3>
-          <p style="font-size:13.5px; color:var(--muted); margin-bottom:20px;" id="booked-when">Your advisor will call you at the time you selected.</p>
-          <div class="lead-card" style="margin-bottom:16px;">
-            <h5>Lead record created</h5>
-            <div class="lead-row"><span>Lead reference</span><b class="mono" id="lead-ref">MTN-L-000000</b></div>
-            <div class="lead-row"><span>Quote attached</span><b class="mono" id="lead-quote">MTN-Q-000000</b></div>
-            <div class="lead-row"><span>Assigned owner</span><b>Lerato Mokoena &middot; SME Desk</b></div>
-            <div class="lead-row"><span>Source</span><b>SMEHub SME Advisor</b></div>
-            <div class="lead-row"><span>Status</span><b>Consultation scheduled</b></div>
-          </div>
-          <a class="btn btn-outline btn-block" href="business-solutions.html">Browse the Shop while you wait</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section style="background:var(--surface); margin-top:20px;">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="eyebrow-label">Prefer to browse yourself?</p><h2 class="sec-title">Skip straight to the Shop</h2></div>
-      <a class="btn btn-outline" href="business-solutions.html">Browse the Shop</a>
-    </div>
-  </div>
-</section>
-
 <footer class="site">
   <div class="wrap">
     <div class="foot-grid">
@@ -380,146 +595,427 @@
 <script src="assets/main.js"></script>
 <script>
 (function(){
-  var answers = {};
-  var STEPS = ['1','2','3','4'];
+  var STORE = 'smehub.advisor.v1';
+  var HANDOFF = 'smehub.quote';
 
-  function showStep(step){
-    document.querySelectorAll('.sa-step').forEach(function(s){ s.classList.toggle('active', s.getAttribute('data-step') === step); });
-    var idx = STEPS.indexOf(step);
-    document.querySelectorAll('#sa-progress .seg').forEach(function(seg, i){ seg.classList.toggle('done', idx >= 0 && i <= idx); });
-  }
-
-  document.querySelectorAll('.sa-step').forEach(function(stepEl){
-    var step = stepEl.getAttribute('data-step');
-    stepEl.querySelectorAll('.sa-opt').forEach(function(opt){
-      opt.addEventListener('click', function(){
-        stepEl.querySelectorAll('.sa-opt').forEach(function(o){ o.classList.remove('sel'); });
-        opt.classList.add('sel');
-        answers['q' + step] = opt.getAttribute('data-val');
-        var next = stepEl.querySelector('.sa-continue');
-        if (next) { next.disabled = false; next.classList.add('ready'); }
-      });
-    });
-    var backBtn = stepEl.querySelector('.btn-back');
-    if (backBtn) backBtn.addEventListener('click', function(){ showStep(backBtn.getAttribute('data-back')); });
-  });
-
-  document.getElementById('sa-next-1').addEventListener('click', function(){ showStep('2'); });
-  document.getElementById('sa-next-2').addEventListener('click', function(){ showStep('3'); });
-  document.getElementById('sa-next-3').addEventListener('click', function(){ showStep('4'); });
-
-  document.getElementById('sa-submit').addEventListener('click', function(){
-    showStep('thinking');
-    setTimeout(function(){
-      document.getElementById('sa-form-wrap').style.display = 'none';
-      renderResult();
-      document.getElementById('sa-result').classList.add('show');
-    }, 1400);
-  });
-
-  // Quote is assembled from the answers: a base solution matched to the stated
-  // need, then line items sized by team count, with the term set by budget.
-  var SEATS = { solo: 1, small: 6, mid: 24, large: 60 };
-  var TERM  = { lite: 24, mid: 36, grow: 36, flex: 36 };
-
-  var BASE = {
-    online:    { title: 'Business Website & Online Starter', nba: 'Book 15 minutes to scope the build and confirm what content you already have.',
-                 lines: [ {nm:'Website starter build', cfg:'Up to 5 pages, mobile responsive, contact form', once:4999},
-                          {nm:'MTN Microsoft 365 Business Standard', cfg:'Per user, per month', unit:189},
-                          {nm:'Domain & managed hosting', cfg:'Annual, billed monthly', month:149} ] },
-    security:  { title: 'Managed Firewall & Monitoring', nba: 'Book 15 minutes to confirm site count and coverage before we firm up pricing.',
-                 lines: [ {nm:'Managed Firewall', cfg:'Deployment, patching, 24/7 monitoring', month:899},
-                          {nm:'Managed EDR endpoint protection', cfg:'Per device, per month', unit:79},
-                          {nm:'Cybersecurity awareness training', cfg:'Per user, once-off onboarding', unitOnce:120} ] },
-    connect:   { title: 'Made For Business Connectivity', nba: 'These plans are transactable. Buy directly, or book a call if you want the mix checked first.',
-                 lines: [ {nm:'Made For Business L', cfg:'23GB data + 1,000 minutes, per line', unit:499},
-                          {nm:'Business Uncapped Wireless', cfg:'Up to 50 Mbps, router included', month:499},
-                          {nm:'SIM activation & delivery', cfg:'Once-off, per line', unitOnce:0} ] },
-    customers: { title: 'Reach & Sell Online Bundle', nba: 'Book 15 minutes for a short demo before you commit to the marketing tools.',
-                 lines: [ {nm:'Online storefront setup', cfg:'Partner build via Shopify or BoxCommerce', once:3499},
-                          {nm:'Marketing & CRM tools', cfg:'Per user, per month', unit:349},
-                          {nm:'Card payments & POS', cfg:'Via Yoco, per device once-off', unitOnce:499} ] }
+  // Real MTN Business products. Quote maths convention:
+  //   unit     = multiply by seat count, monthly
+  //   month    = flat monthly
+  //   once     = flat once-off
+  //   unitonce = multiply by seat count, once-off
+  var CATALOGUE = {
+    online: { title: 'Business Website and Online Starter', lines: [
+      { nm:'Website starter build', cfg:'Up to 5 pages, mobile responsive, contact form', once:4999 },
+      { nm:'MTN Microsoft 365 Business Standard', cfg:'Per user, per month', unit:189 },
+      { nm:'Domain and managed hosting', cfg:'Annual, billed monthly', month:149 } ] },
+    security: { title: 'Managed Firewall and Monitoring', lines: [
+      { nm:'Managed Firewall', cfg:'Deployment, patching, 24/7 monitoring', month:899 },
+      { nm:'Managed EDR endpoint protection', cfg:'Per device, per month', unit:79 },
+      { nm:'Cybersecurity awareness training', cfg:'Per user, once-off onboarding', unitonce:120 } ] },
+    connect: { title: 'Made For Business Connectivity', lines: [
+      { nm:'Made For Business L', cfg:'23GB data and 1,000 minutes, per line', unit:499 },
+      { nm:'Business Uncapped Wireless', cfg:'Up to 50 Mbps, router included', month:499 },
+      { nm:'SIM activation and delivery', cfg:'Once-off, per line', unitonce:0 } ] },
+    customers: { title: 'Reach and Sell Online Bundle', lines: [
+      { nm:'Online storefront setup', cfg:'Partner build via Shopify or BoxCommerce', once:3499 },
+      { nm:'Marketing and CRM tools', cfg:'Per user, per month', unit:349 },
+      { nm:'Card payments and POS', cfg:'Via Yoco, per device once-off', unitonce:499 } ] }
   };
 
-  function rands(n){ return 'R' + n.toLocaleString('en-ZA'); }
+  var SEATS = { solo:1, small:6, mid:24, large:60 };
+  var TERM  = { solo:24, small:24, mid:36, large:36 };
+  var STEPNAME = { '1':'Your challenge', '2':'Team size', '3':'Timeline', '4':'Sign-off', '5':'Your details' };
 
+  var NEED_LABEL = { online:'Getting online', security:'Security exposure', connect:'Connectivity', customers:'Reaching customers' };
+  var TIME_LABEL = { now:'As soon as possible', soon:'Within 1 to 3 months', year:'This financial year', explore:'Just exploring' };
+  var AUTH_LABEL = { decide:'Signs off personally', recommend:'Recommends, another signs', team:'Decided as a team', research:'Still researching' };
+
+  var SCORE_SEATS = { solo:10, small:18, mid:24, large:24 };
+  var SCORE_TIME  = { now:30, soon:22, year:10, explore:4 };
+  var SCORE_AUTH  = { decide:26, recommend:18, team:14, research:4 };
+  var CONF = [0, 40, 60, 75, 85];
+
+  var answers = {};
   var quoteRef = '';
+  var leadGrade = '';
+  var pickedDay = null, pickedTime = null;
+  var logged = {};
 
-  function renderResult(){
-    var pick = BASE[answers.q1] || BASE.connect;
-    var seats = SEATS[answers.q2] || 6;
-    var term  = TERM[answers.q3] || 36;
+  function $(id){ return document.getElementById(id); }
+  function rands(n){ return 'R' + Number(n).toLocaleString('en-ZA'); }
 
-    quoteRef = 'MTN-Q-' + Math.floor(100000 + Math.random() * 900000);
-    document.getElementById('q-ref').textContent = quoteRef;
-    document.getElementById('q-title').textContent = pick.title;
-    document.getElementById('q-term').textContent = term + ' months';
-    var biz = (document.getElementById('sa-business') || {}).value;
-    document.getElementById('q-biz').textContent = biz && biz.trim() ? biz.trim() : 'your business';
-    document.getElementById('q-nba').textContent = pick.nba;
-
-    var monthly = 0, once = 0, html = '';
-    pick.lines.forEach(function(l){
-      var lineMonth = 0, lineOnce = 0, qty = '';
-      if (l.month) { lineMonth = l.month; }
-      if (l.unit)  { lineMonth = l.unit * seats; qty = seats + ' × ' + rands(l.unit) + ' pm'; }
-      if (l.once)  { lineOnce = l.once; }
-      if (l.unitOnce !== undefined) { lineOnce = l.unitOnce * seats; qty = seats + ' × ' + rands(l.unitOnce); }
-      monthly += lineMonth; once += lineOnce;
-
-      var amt = lineMonth ? '<b>' + rands(lineMonth) + '</b><span>per month</span>'
-                          : (lineOnce ? '<b>' + rands(lineOnce) + '</b><span>once-off</span>'
-                                      : '<b>Included</b><span>no charge</span>');
-      html += '<div class="q-line"><div><div class="nm">' + l.nm + '</div><div class="cfg">' + l.cfg +
-              (qty ? ' &middot; ' + qty : '') + '</div></div><div class="amt">' + amt + '</div></div>';
-    });
-
-    document.getElementById('q-lines').innerHTML = html;
-    document.getElementById('q-sub').textContent = rands(monthly);
-    document.getElementById('q-once').textContent = once ? rands(once) : 'None';
-    document.getElementById('q-total').textContent = rands(monthly) + ' pm';
+  function save(){
+    try {
+      window.localStorage.setItem(STORE, JSON.stringify({ a:answers, t:Date.now() }));
+    } catch(e){}
+  }
+  function wipe(){ try { window.localStorage.removeItem(STORE); } catch(e){} }
+  function load(){
+    try {
+      var raw = window.localStorage.getItem(STORE);
+      return raw ? JSON.parse(raw) : null;
+    } catch(e){ return null; }
   }
 
-  // --- Calendar scheduling ---
-  var pickedDay = null, pickedTime = null;
-  function refreshBook(){
-    var btn = document.getElementById('cal-confirm');
+  /* ---------- tracked sales activity ---------- */
+  function track(text, key){
+    if (key) { if (logged[key]) return; logged[key] = true; }
+    var ol = $('qc-log');
+    var none = ol.querySelector('.none');
+    if (none) ol.removeChild(none);
+    var li = document.createElement('li');
+    li.innerHTML = text;
+    ol.appendChild(li);
+  }
+
+  /* ---------- progress ---------- */
+  function showStep(step){
+    var steps = document.querySelectorAll('.qc-step');
+    for (var i=0; i<steps.length; i++){
+      steps[i].classList.toggle('active', steps[i].getAttribute('data-step') === String(step));
+    }
+    var n = parseInt(step, 10);
+    if (!isNaN(n)) {
+      var segs = document.querySelectorAll('.qc-segs i');
+      for (var s=0; s<segs.length; s++){
+        segs[s].classList.remove('on','done');
+        if (s < n-1) segs[s].classList.add('done');
+        if (s === n-1) segs[s].classList.add('on');
+      }
+      $('qc-prog-step').textContent = 'Question ' + n + ' of 5';
+      $('qc-prog-name').textContent = STEPNAME[String(n)] || '';
+    }
+  }
+
+  // Confidence tracks how much we actually know, not which screen you are on.
+  function refreshConfidence(){
+    var n = 0;
+    for (var i=1; i<=4; i++) if (answers['q'+i]) n++;
+    setConfidence(CONF[n]);
+  }
+
+  function setConfidence(pct){
+    $('qc-conf').style.width = pct + '%';
+    $('qc-conf-n').textContent = pct + '%';
+  }
+
+  /* ---------- the live quote ---------- */
+  function seatCount(){ return SEATS[answers.q2] || 6; }
+  function seatLabel(){ var n = seatCount(); return n + (n === 1 ? ' user' : ' users'); }
+
+  function renderQuote(){
+    var pick = CATALOGUE[answers.q1];
+    if (!pick) return;
+    var seats = seatCount();
+    var box = $('qc-lines');
+    box.innerHTML = '';
+
+    for (var i=0; i<pick.lines.length; i++){
+      var l = pick.lines[i];
+      var row = document.createElement('div');
+      row.className = 'qc-line';
+
+      var qty = '', amount = '', sub = '';
+      if (l.month !== undefined) {
+        row.setAttribute('data-month', l.month);
+        amount = rands(l.month); sub = 'per month';
+      } else if (l.unit !== undefined) {
+        row.setAttribute('data-unit', l.unit);
+        qty = seats + ' × ' + rands(l.unit) + ' pm';
+        amount = rands(l.unit * seats); sub = 'per month';
+      } else if (l.once !== undefined) {
+        row.setAttribute('data-once', l.once);
+        amount = rands(l.once); sub = 'once-off';
+      } else if (l.unitonce !== undefined) {
+        row.setAttribute('data-unitonce', l.unitonce);
+        qty = seats + ' × ' + rands(l.unitonce);
+        amount = l.unitonce ? rands(l.unitonce * seats) : 'Included';
+        sub = l.unitonce ? 'once-off' : 'no charge';
+      }
+
+      row.innerHTML = '<div><div class="ln">' + l.nm + '</div><div class="lc">' + l.cfg +
+                      (qty ? ' &middot; ' + qty : '') + '</div></div>' +
+                      '<div class="la"><b>' + amount + '</b><span>' + sub + '</span></div>';
+      box.appendChild(row);
+    }
+
+    $('qc-sol').textContent = pick.title;
+    $('qc-tot').hidden = false;
+    totals();
+  }
+
+  // Totals are read back off the rendered data attributes, so the document and
+  // the arithmetic can never drift apart.
+  function totals(){
+    var seats = seatCount(), monthly = 0, once = 0;
+    var rows = document.querySelectorAll('#qc-lines .qc-line');
+    for (var i=0; i<rows.length; i++){
+      var r = rows[i];
+      if (r.hasAttribute('data-unit'))     monthly += Number(r.getAttribute('data-unit')) * seats;
+      if (r.hasAttribute('data-month'))    monthly += Number(r.getAttribute('data-month'));
+      if (r.hasAttribute('data-once'))     once    += Number(r.getAttribute('data-once'));
+      if (r.hasAttribute('data-unitonce')) once    += Number(r.getAttribute('data-unitonce')) * seats;
+    }
+    $('qc-sub').textContent = rands(monthly);
+    $('qc-once').textContent = once ? rands(once) : 'None';
+    $('qc-term').textContent = (TERM[answers.q2] || 36) + ' months';
+    countTo($('qc-total'), monthly);
+    return { monthly: monthly, once: once };
+  }
+
+  // The correct figure is written first. The count-up is decoration on top, so a
+  // throttled or never-running frame loop can never leave a wrong total on screen.
+  function countTo(el, target){
+    var final = rands(target) + ' pm';
+    el.textContent = final;
+    if (document.hidden) return;
+    var t0 = null, dur = 520;
+    function frame(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = p < 1 ? rands(Math.round(target * eased)) + ' pm' : final;
+      if (p < 1) window.requestAnimationFrame(frame);
+    }
+    window.requestAnimationFrame(frame);
+  }
+
+  /* ---------- intake wiring ---------- */
+  function bindStep(stepEl){
+    var step = stepEl.getAttribute('data-step');
+    var opts = stepEl.querySelectorAll('.qc-opt');
+    for (var i=0; i<opts.length; i++){
+      opts[i].addEventListener('click', function(){
+        var all = stepEl.querySelectorAll('.qc-opt');
+        for (var j=0; j<all.length; j++) all[j].classList.remove('sel');
+        this.classList.add('sel');
+        answers['q' + step] = this.getAttribute('data-val');
+        var go = stepEl.querySelector('.qc-go');
+        if (go) { go.disabled = false; go.classList.add('ready'); }
+        onAnswer(step);
+        save();
+      });
+    }
+    var back = stepEl.querySelector('.qc-back');
+    if (back) back.addEventListener('click', function(){ showStep(back.getAttribute('data-back')); });
+    var next = stepEl.querySelector('.qc-go[data-next]');
+    if (next) next.addEventListener('click', function(){
+      if (this.disabled) return;
+      showStep(this.getAttribute('data-next'));
+    });
+  }
+
+  function onAnswer(step){
+    track('Intake started', 'start');
+    refreshConfidence();
+    if (step === '1') {
+      renderQuote();
+      track('Need identified: <b>' + NEED_LABEL[answers.q1] + '</b>', 'need');
+    }
+    if (step === '2') {
+      renderQuote();
+      track('Team size captured: <b>' + seatLabel() + '</b>', 'seats');
+    }
+    if (step === '3') track('Timeline: <b>' + TIME_LABEL[answers.q3] + '</b>', 'time');
+    if (step === '4') track('Sign-off: <b>' + AUTH_LABEL[answers.q4] + '</b>', 'auth');
+  }
+
+  var stepEls = document.querySelectorAll('.qc-step');
+  for (var s=0; s<stepEls.length; s++) bindStep(stepEls[s]);
+
+  /* ---------- contact validation ---------- */
+  var fields = ['qc-name','qc-biz','qc-email','qc-phone'];
+  function checkContact(){
+    var ok = true;
+    for (var i=0; i<fields.length; i++){
+      if (!$(fields[i]).value.trim()) ok = false;
+    }
+    var mail = $('qc-email').value.trim();
+    if (mail.indexOf('@') < 1 || mail.indexOf('.') < 0) ok = false;
+    var btn = $('qc-submit');
+    btn.disabled = !ok;
+    btn.classList.toggle('ready', ok);
+  }
+  for (var f=0; f<fields.length; f++) $(fields[f]).addEventListener('input', checkContact);
+
+  /* ---------- vetting pass ---------- */
+  function scoreLead(){
+    return 20 + (SCORE_SEATS[answers.q2]||0) + (SCORE_TIME[answers.q3]||0) + (SCORE_AUTH[answers.q4]||0);
+  }
+
+  var CHECK_VALUE = {
+    need:  function(){ return CATALOGUE[answers.q1].title; },
+    seats: function(){ return seatLabel(); },
+    time:  function(){ return TIME_LABEL[answers.q3]; },
+    auth:  function(){ return AUTH_LABEL[answers.q4]; },
+    stock: function(){ return answers.q2 === 'large' ? 'Volume terms to confirm' : 'Available'; }
+  };
+
+  function runVetting(done){
+    var order = ['need','seats','time','auth','stock'];
+    var i = 0;
+    (function tick(){
+      if (i >= order.length) { window.setTimeout(done, 380); return; }
+      var key = order[i++];
+      var row = document.querySelector('.qc-check[data-check="' + key + '"]');
+      row.classList.add('on');
+      row.querySelector('[data-cv="' + key + '"]').textContent = CHECK_VALUE[key]();
+      window.setTimeout(tick, 340);
+    })();
+  }
+
+  function gradeLead(){
+    var score = scoreLead();
+    var band, label, blurb, nba, showCal;
+    if (score >= 70) {
+      band = 'hot'; label = 'Sales ready';
+      blurb = 'Clear need, a confirmed timeline and sign-off in the room. This goes to Lerato as a priority lead with the quote attached.';
+      nba = 'Book fifteen minutes with Lerato to confirm coverage and firm up this quote. She will have your line items open when she calls.';
+      showCal = true;
+    } else if (score >= 45) {
+      band = 'warm'; label = 'Worth a call';
+      blurb = 'The need is real but the timing or the sign-off still has to settle. Lerato will use the call to pin both down before quoting firm.';
+      nba = 'Book a short call so Lerato can confirm scope and who needs to approve it, then reissue this quote as firm pricing.';
+      showCal = true;
+    } else {
+      band = 'cool'; label = 'Nurture';
+      blurb = 'You are early, so there is no point putting you through a sales call yet. The quote is yours to keep and we will hold the reference.';
+      nba = 'Keep the quote and read up while you decide. When your timing firms up, come back to this reference and an advisor picks it up from there.';
+      showCal = false;
+    }
+    leadGrade = label;
+
+    var g = $('qc-grade');
+    g.className = 'qc-grade show ' + band;
+    $('qc-grade-t').textContent = 'Qualification score ' + score + ' of 100';
+    $('qc-grade-b').textContent = label;
+    $('qc-grade-p').textContent = blurb;
+    window.setTimeout(function(){ $('qc-grade-bar').style.width = score + '%'; }, 60);
+
+    $('qc-nba').textContent = nba;
+    $('qc-cal').style.display = showCal ? 'block' : 'none';
+    track('Lead graded: <b>' + label + '</b>, ' + score + ' of 100', 'grade');
+    return score;
+  }
+
+  /* ---------- issue the quote ---------- */
+  function issueQuote(){
+    var t = totals();
+    quoteRef = 'MTN-Q-' + Math.floor(100000 + Math.random() * 900000);
+    $('qc-ref').textContent = quoteRef + ' · valid 14 days';
+    setConfidence(100);
+    track('Quote <b>' + quoteRef + '</b> issued, ' + rands(t.monthly) + ' pm', 'quote');
+
+    // Context carried across SMEHub, Shop and enquiry.
+    try {
+      window.sessionStorage.setItem(HANDOFF, JSON.stringify({
+        ref: quoteRef, solution: CATALOGUE[answers.q1].title,
+        monthly: t.monthly, once: t.once, seats: seatCount(),
+        grade: leadGrade, source: 'sme-advisor-v1'
+      }));
+    } catch(e){}
+    $('qc-shop').setAttribute('href', 'business-solutions.html?quote=' + quoteRef);
+  }
+
+  $('qc-submit').addEventListener('click', function(){
+    if (this.disabled) return;
+    showStep('vet');
+    runVetting(function(){
+      var score = gradeLead();
+      issueQuote();
+      window.setTimeout(function(){
+        document.querySelector('.qc-step[data-step="vet"]').classList.remove('active');
+        $('qc-prog').style.display = 'none';
+        $('qc-res').classList.add('show');
+      }, score >= 45 ? 1500 : 2200);
+    });
+  });
+
+  /* ---------- scheduling into Lerato's diary ---------- */
+  function refreshConfirm(){
+    var btn = $('qc-confirm');
     if (pickedDay && pickedTime) {
-      btn.disabled = false; btn.classList.add('ready');
+      btn.disabled = false;
       btn.textContent = 'Confirm ' + pickedDay + ' at ' + pickedTime;
     } else {
       btn.disabled = true;
       btn.textContent = 'Select a day and time';
     }
   }
-  document.querySelectorAll('#cal-days .cal-day').forEach(function(d){
-    d.addEventListener('click', function(){
-      document.querySelectorAll('#cal-days .cal-day').forEach(function(x){ x.classList.remove('sel'); });
-      d.classList.add('sel'); pickedDay = d.getAttribute('data-day'); refreshBook();
+  var days = document.querySelectorAll('#qc-days .qc-day');
+  for (var d=0; d<days.length; d++){
+    days[d].addEventListener('click', function(){
+      for (var k=0; k<days.length; k++) days[k].classList.remove('sel');
+      this.classList.add('sel'); pickedDay = this.getAttribute('data-day'); refreshConfirm();
     });
-  });
-  document.querySelectorAll('#cal-times .cal-time').forEach(function(t){
-    if (t.classList.contains('gone')) return;
-    t.addEventListener('click', function(){
-      document.querySelectorAll('#cal-times .cal-time').forEach(function(x){ x.classList.remove('sel'); });
-      t.classList.add('sel'); pickedTime = t.getAttribute('data-time'); refreshBook();
+  }
+  var times = document.querySelectorAll('#qc-times .qc-time');
+  for (var t2=0; t2<times.length; t2++){
+    if (times[t2].classList.contains('gone')) continue;
+    times[t2].addEventListener('click', function(){
+      for (var k=0; k<times.length; k++) times[k].classList.remove('sel');
+      this.classList.add('sel'); pickedTime = this.getAttribute('data-time'); refreshConfirm();
     });
-  });
+  }
 
-  document.getElementById('cal-confirm').addEventListener('click', function(){
+  $('qc-confirm').addEventListener('click', function(){
     if (this.disabled) return;
-    document.getElementById('sa-result').classList.remove('show');
-    document.getElementById('booked-when').textContent =
-      'Lerato will call you on ' + pickedDay + ' at ' + pickedTime + '. The quote below is attached to the booking.';
-    document.getElementById('lead-ref').textContent = 'MTN-L-' + Math.floor(100000 + Math.random() * 900000);
-    document.getElementById('lead-quote').textContent = quoteRef;
-    document.getElementById('sa-booked').classList.add('show');
+    var leadRef = 'MTN-L-' + Math.floor(100000 + Math.random() * 900000);
+    $('qc-res').classList.remove('show');
+    $('qc-booked-when').textContent = 'Lerato will call you on ' + pickedDay + ' at ' + pickedTime +
+      '. Quote ' + quoteRef + ' is attached to the booking.';
+    $('qc-lead-ref').textContent = leadRef;
+    $('qc-lead-quote').textContent = quoteRef;
+    $('qc-lead-grade').textContent = leadGrade;
+    track('Consultation booked: <b>' + pickedDay + ', ' + pickedTime + '</b>', 'booked');
+    track('Lead <b>' + leadRef + '</b> created against ' + quoteRef, 'lead');
+    $('qc-booked').classList.add('show');
+    wipe();
   });
 
-  document.getElementById('sa-recover').addEventListener('click', function(){
+  $('qc-email').addEventListener('click', function(){
     this.textContent = 'Sent, check your inbox';
     this.disabled = true;
+    track('Quote emailed for later pick-up', 'emailed');
   });
+
+  $('qc-shop').addEventListener('click', function(){
+    track('Handed off to Shop with ' + quoteRef, 'handoff');
+  });
+
+  /* ---------- journey recovery ---------- */
+  var prior = load();
+  if (prior && prior.a && prior.a.q1) {
+    var have = 0;
+    for (var q=1; q<=4; q++) if (prior.a['q'+q]) have++;
+    $('qc-resume-txt').textContent = ' We kept ' + have + ' of your answers on this device, starting with ' +
+      NEED_LABEL[prior.a.q1] + '.';
+    $('qc-resume').classList.add('show');
+
+    $('qc-resume-go').addEventListener('click', function(){
+      answers = prior.a;
+      var last = 1;
+      for (var q2=1; q2<=4; q2++){
+        if (!answers['q'+q2]) break;
+        var stepEl = document.querySelector('.qc-step[data-step="' + q2 + '"]');
+        var opt = stepEl.querySelector('.qc-opt[data-val="' + answers['q'+q2] + '"]');
+        if (opt) opt.classList.add('sel');
+        var go = stepEl.querySelector('.qc-go');
+        if (go) { go.disabled = false; go.classList.add('ready'); }
+        last = q2;
+      }
+      renderQuote();
+      for (var r=1; r<=last; r++) onAnswer(String(r));
+      track('Journey recovered from a previous visit', 'recovered');
+      showStep(String(Math.min(5, last + 1)));
+      $('qc-resume').classList.remove('show');
+    });
+
+    $('qc-resume-clear').addEventListener('click', function(){
+      wipe();
+      $('qc-resume').classList.remove('show');
+    });
+  }
 })();
 </script>
 </body>

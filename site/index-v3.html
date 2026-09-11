@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>V3 Portal-first | MTN SME Hub</title>
+<title>V3 Personalised | MTN SME Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -18,9 +18,9 @@
     <span class="opts">
       <a href="index.html">V1 Content-led</a>
       <a href="index-v2.html">V2 Marketplace-led</a>
-      <a href="index-v3.html" class="on">V3 Portal-first</a>
+      <a href="index-v3.html" class="on">V3 Personalised</a>
     </span>
-    <span class="note">Membership-first: toggle between visitor and member views in the hero</span>
+    <span class="note">Personalised first: toggle between a first visit and a return visit</span>
   </div>
 </div>
 
@@ -91,49 +91,48 @@
   </div>
 </div>
 
-<!-- ============ HERO: VISITOR / MEMBER STATES ============ -->
+<!-- ============ HERO: FIRST VISIT / RETURN VISIT ============ -->
 <section class="hero">
   <div class="wrap">
     <div class="state-toggle" role="group" aria-label="Preview homepage as">
-      <button type="button" class="on" data-state="visitor">Viewing as visitor</button>
-      <button type="button" data-state="member">Viewing as member</button>
+      <button type="button" class="on" data-state="visitor">Viewing as a first visit</button>
+      <button type="button" data-state="member">Viewing as a return visit</button>
     </div>
 
     <!-- VISITOR -->
     <div class="state-view on" data-view="visitor">
       <div class="mem-hero">
         <div>
-          <p class="eyebrow-label">Free SMEHub membership</p>
+          <p class="eyebrow-label">Start here</p>
           <h1>Every South African business deserves a head start</h1>
-          <p class="lead">Join SMEHub free and get advice, funding options, tools and rewards in one place. No purchase required, and you never have to become an MTN customer.</p>
+          <p class="lead">Get advice, funding options and tools matched to your business in one place. Nothing to sign up for, and you never have to become an MTN customer.</p>
           <ul class="mem-list" style="margin-bottom:24px;">
             <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> A personalised action plan for your business</li>
             <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Funding matched to what you actually qualify for</li>
-            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Member rewards on MTN Business products</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Offers matched to what your business needs</li>
           </ul>
-          <p style="font-size:12px; color:var(--muted-2);">Already a member? <a href="portal-login.html" style="text-decoration:underline; font-weight:700; color:var(--ink);">Log in</a></p>
         </div>
         <div class="join-card">
-          <h4>Create your free account</h4>
+          <h4>Get your action plan</h4>
           <div class="field"><label>Business name</label><input type="text" placeholder="Nkosi Trading CC"></div>
           <div class="field"><label>eMail address</label><input type="email" placeholder="thabo@nkositrading.co.za"></div>
-          <a class="btn btn-primary btn-block btn-lg" href="portal-login.html">Join SMEHub free</a>
-          <p class="fine">Free forever. Your membership stays separate from any MTN customer record until you start a purchase.</p>
+          <a class="btn btn-primary btn-block btn-lg" href="sales-advisor.html">Build my action plan</a>
+          <p class="fine">No account needed. Your answers stay on this device until you ask an advisor to pick them up.</p>
         </div>
       </div>
     </div>
 
-    <!-- MEMBER -->
+    <!-- RETURN VISIT -->
     <div class="state-view" data-view="member">
       <div class="dash-greet">
         <div class="who">
           <div class="av">TN</div>
           <div>
             <h2>Welcome back, Thabo</h2>
-            <div class="sub">Nkosi Trading CC &middot; Free member since Aug 2026</div>
+            <div class="sub">Nkosi Trading CC &middot; picked up from this device</div>
           </div>
         </div>
-        <a class="btn btn-outline" href="portal-dashboard.html">Open full Portal</a>
+        <a class="btn btn-outline" href="sales-advisor.html">Continue your quote</a>
       </div>
 
       <div class="plan-strip">
@@ -175,7 +174,7 @@
           <div class="dash-item"><b>Funding Your Business in 2026</b><span>Event registered, 10 Sep</span></div>
         </div>
         <div class="dash-card">
-          <h5>Your member rewards</h5>
+          <h5>Offers matched to you</h5>
           <div class="dash-item"><b>First month free</b><span>Managed Firewall, expires 30 Sep</span></div>
           <div class="dash-item"><b>10% off setup</b><span>Business Website Starter Kit</span></div>
           <div class="dash-item"><b>Priority booking</b><span>SME Advisor consultations</span></div>
@@ -185,33 +184,33 @@
   </div>
 </section>
 
-<!-- ============ WHAT MEMBERSHIP INCLUDES ============ -->
+<!-- ============ THE FIVE PILLARS ============ -->
 <section style="background:var(--surface);">
   <div class="wrap">
     <div class="sec-head">
       <div>
         <h2 class="sec-title">Learn, fund, connect, buy and scale</h2>
-        <p class="sec-desc">Membership is the thread through all five. Everything you do is remembered, so advice and offers get sharper over time.</p>
+        <p class="sec-desc">Your context is the thread through all five. What you do here is remembered, so advice and offers get sharper over time.</p>
       </div>
     </div>
     <div class="vp-rail">
       <a class="vp" href="insights.html"><div class="n">01</div><h4>Learn</h4><p>Guides, templates and events, with your progress saved.</p></a>
       <a class="vp" href="stakeholders.html"><div class="n">02</div><h4>Fund</h4><p>Funding matched to your profile, with applications tracked.</p></a>
       <a class="vp" href="stakeholders.html"><div class="n">03</div><h4>Connect</h4><p>Advisers and partners reachable through one sign-in.</p></a>
-      <a class="vp" href="business-solutions.html"><div class="n">04</div><h4>Buy</h4><p>Member pricing, and quotes that remember your context.</p></a>
+      <a class="vp" href="business-solutions.html"><div class="n">04</div><h4>Buy</h4><p>Quotes that remember your context, with no account needed.</p></a>
       <a class="vp" href="stakeholders.html"><div class="n">05</div><h4>Scale</h4><p>Procurement and market access as you grow.</p></a>
     </div>
   </div>
 </section>
 
-<!-- ============ MEMBER DEALS ============ -->
+<!-- ============ DEALS ============ -->
 <section>
   <div class="wrap">
     <div class="sec-head">
       <div>
         <p class="eyebrow-label">This month</p>
-        <h2 class="sec-title">Deals, with member pricing applied</h2>
-        <p class="sec-desc">Monthly MTN Business deals. Members see their reward already applied before checkout.</p>
+        <h2 class="sec-title">Deals matched to your business</h2>
+        <p class="sec-desc">Monthly MTN Business deals, with the offers that fit your business surfaced first.</p>
       </div>
       <a class="btn btn-outline" href="business-solutions.html">See all deals</a>
     </div>
