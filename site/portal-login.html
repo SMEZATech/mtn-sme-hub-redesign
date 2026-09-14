@@ -3,24 +3,35 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SMEHub Portal | MTN SME Hub</title>
+<title>Join SMEHub | MTN SME Hub</title>
 <link rel="stylesheet" href="assets/styles.css" />
 <style>
-  .pl-section{ padding:56px 0 80px; }
-  .pl-layout{ display:grid; grid-template-columns:1fr 1fr; gap:0; max-width:980px; margin:0 auto; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
-  .pl-visual{ background:var(--ink); color:#fff; padding:44px 40px; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:center; }
-  .pl-visual::before{ content:""; position:absolute; top:-100px; left:-60px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.24) 0%, transparent 70%); }
-  .pl-visual *{ position:relative; z-index:1; }
-  .pl-visual .eyebrow-label{ color:var(--yellow); }
-  .pl-visual .eyebrow-label::before{ background:var(--yellow); }
-  .pl-visual h1{ color:#fff; font-size:24px; margin-bottom:14px; }
-  .pl-visual p{ color:rgba(255,255,255,.65); font-size:13.5px; margin-bottom:22px; }
-  .pl-perk{ display:flex; gap:10px; align-items:flex-start; font-size:13px; color:rgba(255,255,255,.85); margin-bottom:12px; }
-  .pl-perk svg{ color:var(--yellow); flex-shrink:0; margin-top:2px; }
+  /* ===== Hero: dark, yellow-glow, matches the Sales Advisor treatment ===== */
+  .pl-hero{ background:var(--ink); color:#fff; padding:64px 0 0; position:relative; overflow:hidden; }
+  .pl-hero::before{ content:""; position:absolute; top:-180px; right:-120px; width:560px; height:560px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); }
+  .pl-hero::after{ content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size:22px 22px; opacity:.5; pointer-events:none; }
+  .pl-hero .wrap{ position:relative; z-index:1; }
+  .pl-hero .eyebrow-label{ color:var(--yellow); justify-content:center; }
+  .pl-hero .eyebrow-label::before{ background:var(--yellow); }
+  .pl-intro{ text-align:center; max-width:620px; margin:0 auto 44px; }
+  .pl-intro h1{ color:#fff; font-size:clamp(30px,4.2vw,46px); margin:12px 0 16px; }
+  .pl-intro p{ color:rgba(255,255,255,.68); font-size:16px; }
 
-  .pl-form-side{ padding:44px 40px; background:#fff; }
+  .pl-trust-row{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:24px; }
+  .pl-trust-chip{ display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:700; color:rgba(255,255,255,.85); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:999px; padding:8px 15px; }
+  .pl-trust-chip svg{ color:var(--yellow); flex-shrink:0; }
+
+  .pl-grid{ display:grid; grid-template-columns:1fr 460px; gap:56px; align-items:start; padding-bottom:60px; }
+  .pl-benefits{ display:flex; flex-direction:column; gap:20px; padding-top:8px; }
+  .pl-benefit{ display:flex; gap:16px; align-items:flex-start; }
+  .pl-benefit .ic{ width:42px; height:42px; border-radius:11px; background:rgba(255,197,2,.14); color:var(--yellow); display:grid; place-items:center; flex-shrink:0; }
+  .pl-benefit h4{ color:#fff; font-size:15px; margin-bottom:4px; }
+  .pl-benefit p{ color:rgba(255,255,255,.6); font-size:13.5px; line-height:1.6; }
+
+  /* ===== Signup / login form card ===== */
+  .pl-card{ background:#fff; border-radius:var(--radius); box-shadow:0 24px 60px rgba(0,0,0,.35); padding:38px 36px; position:sticky; top:100px; }
   .pl-tabs{ display:flex; gap:6px; background:var(--surface); border-radius:8px; padding:4px; margin-bottom:26px; }
-  .pl-tab{ flex:1; text-align:center; padding:9px; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; color:var(--muted); }
+  .pl-tab{ flex:1; text-align:center; padding:10px; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; color:var(--muted); }
   .pl-tab.active{ background:#fff; color:var(--ink); box-shadow:var(--shadow); }
   .pl-field{ margin-bottom:16px; }
   .pl-field label{ display:block; font-size:12.5px; font-weight:700; margin-bottom:7px; }
@@ -29,13 +40,44 @@
   .pl-panel{ display:none; }
   .pl-panel.active{ display:block; }
   .pl-fine{ font-size:11px; color:var(--muted-2); text-align:center; margin-top:14px; line-height:1.6; }
+  .pl-switch{ font-size:12.5px; color:var(--muted); text-align:center; margin-top:18px; padding-top:18px; border-top:1px solid var(--border); }
+  .pl-switch a{ font-weight:700; color:var(--ink); text-decoration:underline; cursor:pointer; }
 
-  .pl-done{ display:none; text-align:center; padding:20px 0; }
+  .pl-done{ display:none; text-align:center; padding:24px 0; }
   .pl-done.show{ display:block; }
   .pl-done .ic{ width:56px; height:56px; border-radius:50%; background:var(--yellow-tint); display:grid; place-items:center; margin:0 auto 18px; color:var(--yellow-shade); }
   .pl-done h3{ font-size:19px; margin-bottom:8px; }
   .pl-done p{ font-size:13.5px; color:var(--muted); margin-bottom:20px; }
-  @media(max-width:800px){ .pl-layout{ grid-template-columns:1fr; } .pl-visual{ padding:36px 28px; } .pl-form-side{ padding:36px 28px; } }
+
+  /* ===== "What's waiting for you" mini-preview band ===== */
+  .pl-preview-band{ background:var(--ink); position:relative; overflow:hidden; padding:0 0 64px; }
+  .pl-preview-band .sec-title{ color:#fff; }
+  .pl-preview-band .sec-desc{ color:rgba(255,255,255,.6); }
+  .pl-preview-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .pl-preview-card{ background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:var(--radius); padding:24px; transition:background .15s, border-color .15s, transform .15s; }
+  .pl-preview-card:hover{ background:rgba(255,255,255,.07); border-color:rgba(255,197,2,.4); transform:translateY(-3px); }
+  .pl-preview-card .ic{ width:40px; height:40px; border-radius:9px; background:rgba(255,197,2,.14); display:grid; place-items:center; margin-bottom:16px; color:var(--yellow); }
+  .pl-preview-card h4{ color:#fff; font-size:15px; margin-bottom:8px; }
+  .pl-preview-card p{ font-size:12.5px; color:rgba(255,255,255,.55); margin-bottom:18px; line-height:1.55; }
+
+  /* Mini illustrated mockups, one per card, no real screenshots needed */
+  .pv-mock{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:8px; padding:12px; }
+  .pv-row{ display:flex; align-items:center; gap:8px; padding:6px 0; }
+  .pv-row:not(:last-child){ border-bottom:1px solid rgba(255,255,255,.06); }
+  .pv-dot{ width:7px; height:7px; border-radius:50%; background:var(--yellow); flex-shrink:0; }
+  .pv-bar{ height:6px; border-radius:3px; background:rgba(255,255,255,.16); flex:1; }
+  .pv-bar.short{ flex:.5; }
+  .pv-match{ display:flex; align-items:center; justify-content:space-between; padding:8px 0; }
+  .pv-match:not(:last-child){ border-bottom:1px solid rgba(255,255,255,.06); }
+  .pv-match .name{ font-size:11px; color:rgba(255,255,255,.7); font-weight:600; }
+  .pv-match .pct{ font-size:10px; font-weight:800; background:rgba(255,197,2,.16); color:var(--yellow); padding:3px 8px; border-radius:999px; }
+  .pv-rewards{ display:flex; gap:8px; }
+  .pv-reward{ flex:1; background:rgba(255,197,2,.1); border:1px solid rgba(255,197,2,.25); border-radius:7px; padding:9px 7px; text-align:center; }
+  .pv-reward svg{ color:var(--yellow); margin-bottom:5px; }
+  .pv-reward span{ display:block; font-size:9.5px; font-weight:700; color:rgba(255,255,255,.75); }
+
+  @media(max-width:1000px){ .pl-grid{ grid-template-columns:1fr; } .pl-card{ position:static; max-width:480px; margin:0 auto; } .pl-preview-grid{ grid-template-columns:1fr; } }
+  @media(max-width:640px){ .pl-card{ padding:28px 24px; } }
 </style>
 </head>
 <body>
@@ -109,39 +151,67 @@
   </div>
 </div>
 
-<section class="pl-section">
+<section class="pl-hero">
   <div class="wrap">
-    <div class="pl-layout">
-      <div class="pl-visual">
-        <p class="eyebrow-label">SMEHub Portal</p>
-        <h1>Free membership, built around your business.</h1>
-        <p>One profile that follows you across content, tools and MTN Business, kept separate from any purchase until you're ready to become a customer.</p>
-        <div class="pl-perk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Your profile and activity, visible to you and MTN Business</div>
-        <div class="pl-perk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Member rewards, exclusive incentives and funding opportunities</div>
-        <div class="pl-perk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Reach MTN's partner products from one profile</div>
+    <div class="pl-intro">
+      <p class="eyebrow-label">SMEHub Portal</p>
+      <h1>Sign up for free. Everything tracks from here.</h1>
+      <p>One profile across content, tools and MTN Business. Free forever, kept separate from any purchase until you're ready to become a customer.</p>
+      <div class="pl-trust-row">
+        <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Free forever</span>
+        <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> No credit card</span>
+        <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Under 2 minutes to join</span>
+        <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 4,200+ SME members</span>
+      </div>
+    </div>
+
+    <div class="pl-grid">
+      <div class="pl-benefits">
+        <div class="pl-benefit">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div><h4>Registered SMEHub membership, free</h4><p>One login for the whole Hub. No fees, no trial period, no card required to join.</p></div>
+        </div>
+        <div class="pl-benefit">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div><h4>Your profile and activity, visible to you and MTN</h4><p>Guides read, templates downloaded, events attended, advisor consultations, all in one history so nothing gets asked twice.</p></div>
+        </div>
+        <div class="pl-benefit">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div>
+          <div><h4>Member rewards and funding matched to you</h4><p>Exclusive discounts, first-month offers, and funding options scored against your own SME Advisor answers.</p></div>
+        </div>
+        <div class="pl-benefit">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6"/></svg></div>
+          <div><h4>Partner products in one place</h4><p>Microsoft, Yoco, Sage and the rest of the SMEHub partner ecosystem, reachable from your profile.</p></div>
+        </div>
+        <div class="pl-benefit">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <div><h4>Become a customer only when you choose to</h4><p>Membership stays separate from any MTN purchase. Buying is always a deliberate next step, never automatic.</p></div>
+        </div>
       </div>
 
-      <div class="pl-form-side">
+      <div class="pl-card">
         <div id="pl-form-wrap">
           <div class="pl-tabs">
-            <div class="pl-tab active" data-tab="login">Log in</div>
-            <div class="pl-tab" data-tab="signup">Create free account</div>
+            <div class="pl-tab active" data-tab="signup">Sign Up Free</div>
+            <div class="pl-tab" data-tab="login">Log In</div>
           </div>
 
-          <div class="pl-panel active" data-panel="login">
-            <div class="pl-field"><label>eMail address</label><input type="email" placeholder="thabo@nkositrading.co.za"></div>
-            <div class="pl-field"><label>Password</label><input type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"></div>
-            <button class="btn btn-primary btn-block btn-lg" id="pl-login-btn">Log in</button>
-            <p class="pl-fine">Forgot your password? <a href="#" onclick="return false;" style="text-decoration:underline; color:var(--ink);">Reset it</a></p>
-          </div>
-
-          <div class="pl-panel" data-panel="signup">
+          <div class="pl-panel active" data-panel="signup">
             <div class="pl-field"><label>Full name</label><input type="text" placeholder="Thabo Nkosi"></div>
             <div class="pl-field"><label>Business name</label><input type="text" placeholder="Nkosi Trading CC"></div>
             <div class="pl-field"><label>eMail address</label><input type="email" placeholder="thabo@nkositrading.co.za"></div>
             <div class="pl-field"><label>Password</label><input type="password" placeholder="Create a password"></div>
-            <button class="btn btn-primary btn-block btn-lg" id="pl-signup-btn">Create my free account</button>
+            <button class="btn btn-primary btn-block btn-lg" id="pl-signup-btn">Sign Up for Free</button>
             <p class="pl-fine">Free to join. No purchase required. By continuing, you agree to MTN's Privacy Policy and Terms of Service.</p>
+            <div class="pl-switch">Already a member? <a data-switch="login">Log in</a></div>
+          </div>
+
+          <div class="pl-panel" data-panel="login">
+            <div class="pl-field"><label>eMail address</label><input type="email" placeholder="thabo@nkositrading.co.za"></div>
+            <div class="pl-field"><label>Password</label><input type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"></div>
+            <button class="btn btn-primary btn-block btn-lg" id="pl-login-btn">Log In</button>
+            <p class="pl-fine">Forgot your password? <a href="#" onclick="return false;" style="text-decoration:underline; color:var(--ink);">Reset it</a></p>
+            <div class="pl-switch">New here? <a data-switch="signup">Sign up for free</a></div>
           </div>
         </div>
 
@@ -150,6 +220,52 @@
           <h3>Welcome to SMEHub</h3>
           <p>Your free membership is active.</p>
           <a class="btn btn-primary btn-block btn-lg" href="portal-dashboard.html">Go to your Portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pl-preview-band">
+  <div class="wrap">
+    <div class="sec-head" style="border:none;">
+      <div>
+        <p class="eyebrow-label" style="color:var(--yellow);">What's waiting for you</p>
+        <h2 class="sec-title">Your profile, from day one</h2>
+        <p class="sec-desc">A preview of what members actually see once they're in.</p>
+      </div>
+    </div>
+    <div class="pl-preview-grid">
+      <div class="pl-preview-card">
+        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h4>Engagement history</h4>
+        <p>Every guide, template, event and consultation, timestamped and picked up by your next advisor.</p>
+        <div class="pv-mock">
+          <div class="pv-row"><span class="pv-dot"></span><span class="pv-bar"></span><span class="pv-bar short"></span></div>
+          <div class="pv-row"><span class="pv-dot"></span><span class="pv-bar short"></span><span class="pv-bar"></span></div>
+          <div class="pv-row"><span class="pv-dot"></span><span class="pv-bar"></span><span class="pv-bar short"></span></div>
+        </div>
+      </div>
+      <div class="pl-preview-card">
+        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg></div>
+        <h4>Funding matched to you</h4>
+        <p>Scored against your SME Advisor answers, not a generic list of every fund that exists.</p>
+        <div class="pv-mock">
+          <div class="pv-match"><span class="name">SEDFA Small Business Loan</span><span class="pct">Strong match</span></div>
+          <div class="pv-match"><span class="name">NEF uMastandi Fund</span><span class="pct">Strong match</span></div>
+          <div class="pv-match"><span class="name">African Bank Overdraft</span><span class="pct">Eligible</span></div>
+        </div>
+      </div>
+      <div class="pl-preview-card">
+        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div>
+        <h4>Member rewards</h4>
+        <p>Exclusive incentives that only show up once you're a registered member.</p>
+        <div class="pv-mock" style="background:transparent; border:none; padding:2px 0 0;">
+          <div class="pv-rewards">
+            <div class="pv-reward"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 010-4h12v4"/><path d="M4 6v12a2 2 0 002 2h14v-4"/></svg><span>1st month free</span></div>
+            <div class="pv-reward"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg><span>10% off setup</span></div>
+            <div class="pv-reward"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>Priority booking</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -191,13 +307,15 @@
 
 <script src="assets/main.js"></script>
 <script>
+  function showTab(name){
+    document.querySelectorAll('.pl-tab').forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-tab') === name); });
+    document.querySelectorAll('.pl-panel').forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-panel') === name); });
+  }
   document.querySelectorAll('.pl-tab').forEach(function(tab){
-    tab.addEventListener('click', function(){
-      document.querySelectorAll('.pl-tab').forEach(function(t){ t.classList.remove('active'); });
-      document.querySelectorAll('.pl-panel').forEach(function(p){ p.classList.remove('active'); });
-      tab.classList.add('active');
-      document.querySelector('.pl-panel[data-panel="' + tab.getAttribute('data-tab') + '"]').classList.add('active');
-    });
+    tab.addEventListener('click', function(){ showTab(tab.getAttribute('data-tab')); });
+  });
+  document.querySelectorAll('.pl-switch a').forEach(function(link){
+    link.addEventListener('click', function(){ showTab(link.getAttribute('data-switch')); });
   });
   function completeAuth(){
     document.getElementById('pl-form-wrap').style.display = 'none';

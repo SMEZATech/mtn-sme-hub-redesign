@@ -20,14 +20,27 @@
   .db-stat b{ display:block; font-size:24px; font-weight:800; margin-bottom:2px; }
   .db-stat span{ font-size:11.5px; color:var(--muted); }
 
-  /* min-width:0 on the grid items: a bare 1fr track still respects its
-     content's min-content width, so long rows (activity, funding, partner)
-     were pushing the whole grid wider than the viewport on mobile. */
   .db-layout{ display:grid; grid-template-columns:1fr 320px; gap:32px; align-items:start; }
   .db-layout > *{ min-width:0; }
   .db-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:24px; margin-bottom:22px; }
   .db-card h3{ font-size:16px; margin-bottom:4px; }
   .db-card .sub{ font-size:12px; color:var(--muted); margin-bottom:16px; }
+
+  /* ===== Profile card ===== */
+  .profile-top{ display:flex; align-items:center; gap:16px; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--border); }
+  .profile-top .avatar-lg{ width:64px; height:64px; border-radius:50%; background:var(--yellow-tint); color:var(--yellow-shade); display:grid; place-items:center; font-weight:800; font-size:21px; flex-shrink:0; border:2px solid var(--yellow); }
+  .profile-top h4{ font-size:16px; margin-bottom:2px; }
+  .profile-top .biz{ font-size:12.5px; color:var(--muted); }
+  .profile-top .edit{ margin-left:auto; flex-shrink:0; }
+  .profile-fields{ display:grid; grid-template-columns:1fr 1fr; gap:16px 20px; }
+  .profile-field label{ display:block; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--muted-2); margin-bottom:5px; }
+  .profile-field .val{ font-size:13.5px; font-weight:600; color:var(--ink); }
+  .profile-visibility{ display:flex; align-items:flex-start; gap:9px; font-size:11.5px; color:var(--muted); background:var(--surface); border-radius:8px; padding:11px 13px; margin-top:18px; line-height:1.6; }
+  .profile-visibility svg{ color:var(--yellow-shade); flex-shrink:0; margin-top:1px; }
+
+  /* ===== Engagement history ===== */
+  .activity-filters{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+  .activity-list{ display:flex; flex-direction:column; }
   .activity-row{ display:flex; align-items:center; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
   .activity-row:last-child{ border-bottom:none; }
   .activity-row .ic{ width:36px; height:36px; border-radius:9px; background:var(--yellow-tint); color:var(--yellow-shade); display:grid; place-items:center; flex-shrink:0; }
@@ -41,13 +54,16 @@
   .fund-item > div{ min-width:0; }
   .fund-item b{ display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13.5px; }
   .fund-item span{ font-size:11.5px; color:var(--muted); }
-  .fund-item a{ flex-shrink:0; font-size:12px; font-weight:700; color:var(--yellow-shade); text-decoration:underline; }
+  .fund-item .match{ display:inline-block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; background:var(--yellow-tint); color:var(--yellow-shade); padding:3px 8px; border-radius:5px; margin-top:4px; }
+  .fund-item .actions{ flex-shrink:0; display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
+  .fund-item a{ font-size:12px; font-weight:700; color:var(--yellow-shade); text-decoration:underline; }
 
   .reward-strip{ display:flex; gap:12px; overflow-x:auto; padding-bottom:4px; }
-  .reward-card{ flex-shrink:0; width:180px; border:1px solid var(--border); border-radius:10px; padding:16px; }
+  .reward-card{ flex-shrink:0; width:190px; border:1px solid var(--border); border-radius:10px; padding:16px; }
   .reward-card .ic{ width:32px; height:32px; border-radius:8px; background:var(--yellow); color:var(--ink); display:grid; place-items:center; margin-bottom:10px; }
   .reward-card b{ display:block; font-size:12.5px; margin-bottom:4px; }
-  .reward-card span{ font-size:11px; color:var(--muted); }
+  .reward-card span{ font-size:11px; color:var(--muted); display:block; margin-bottom:10px; }
+  .reward-card .redeem{ font-size:11px; font-weight:800; color:var(--ink); background:var(--yellow-tint); border-radius:6px; padding:6px 10px; display:inline-block; }
 
   .partner-row{ display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--border); }
   .partner-row:last-child{ border-bottom:none; }
@@ -65,6 +81,7 @@
   .db-profile-note{ font-size:12px; color:var(--muted); background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-top:18px; line-height:1.6; }
 
   @media(max-width:1000px){ .db-layout{ grid-template-columns:1fr; } .db-stats{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:560px){ .profile-fields{ grid-template-columns:1fr; } .profile-top{ flex-wrap:wrap; } .profile-top .edit{ margin-left:0; } }
 </style>
 </head>
 <body>
@@ -164,36 +181,96 @@
     <div class="db-layout">
       <div>
         <div class="db-card">
+          <h3>Your profile</h3>
+          <p class="sub">Visible to you and to MTN Business, so nothing has to be typed twice.</p>
+          <div class="profile-top">
+            <div class="avatar-lg">TN</div>
+            <div>
+              <h4>Thabo Nkosi</h4>
+              <div class="biz">Nkosi Trading CC</div>
+            </div>
+            <a class="btn btn-outline btn-sm edit" href="#" onclick="return false;">Edit profile</a>
+          </div>
+          <div class="profile-fields">
+            <div class="profile-field"><label>Email</label><div class="val">thabo@nkositrading.co.za</div></div>
+            <div class="profile-field"><label>Phone</label><div class="val">082 145 6721</div></div>
+            <div class="profile-field"><label>Business type</label><div class="val">Retail &amp; e-commerce</div></div>
+            <div class="profile-field"><label>Team size</label><div class="val">2 to 10 people</div></div>
+            <div class="profile-field"><label>Member since</label><div class="val">14 Aug 2026</div></div>
+            <div class="profile-field"><label>Membership</label><div class="val">Free SMEHub Member</div></div>
+          </div>
+          <div class="profile-visibility"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Your profile and activity are visible to you and to MTN Business, so an advisor can pick up exactly where you left off. Never shown to other members or made public.</div>
+        </div>
+
+        <div class="db-card">
           <h3>Your activity</h3>
-          <p class="sub">Visible to you and to MTN Business, so an advisor picks up exactly where you left off.</p>
-          <div class="activity-row">
-            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
-            <div class="txt"><b>Booked a SME Advisor consultation</b><span>Managed Firewall &middot; Tue 10:00</span></div>
-            <div class="when">2 days ago</div>
+          <p class="sub">Every guide, template, event and consultation, in one history.</p>
+          <div class="activity-filters tab-row" style="margin-bottom:16px;">
+            <span class="tab-btn active" data-filter="all" data-target=".activity-list">All</span>
+            <span class="tab-btn" data-filter="advisor" data-target=".activity-list">Advisor</span>
+            <span class="tab-btn" data-filter="guides" data-target=".activity-list">Guides</span>
+            <span class="tab-btn" data-filter="templates" data-target=".activity-list">Templates</span>
+            <span class="tab-btn" data-filter="events" data-target=".activity-list">Events</span>
           </div>
-          <div class="activity-row">
-            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-            <div class="txt"><b>Downloaded Cash Flow Projection Template</b><span>Templates</span></div>
-            <div class="when">5 days ago</div>
-          </div>
-          <div class="activity-row">
-            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
-            <div class="txt"><b>Completed Complete Guide to Registering a Business in SA</b><span>Guides</span></div>
-            <div class="when">1 week ago</div>
-          </div>
-          <div class="activity-row">
-            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-            <div class="txt"><b>Registered for Funding Your Business in 2026</b><span>Events</span></div>
-            <div class="when">2 weeks ago</div>
+          <div class="activity-list">
+            <div class="activity-row" data-cat="advisor">
+              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+              <div class="txt"><b>Booked a SME Advisor consultation</b><span>Managed Firewall &middot; Tue 10:00</span></div>
+              <div class="when">2 days ago</div>
+            </div>
+            <div class="activity-row" data-cat="templates">
+              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
+              <div class="txt"><b>Downloaded Cash Flow Projection Template</b><span>Templates</span></div>
+              <div class="when">5 days ago</div>
+            </div>
+            <div class="activity-row" data-cat="guides">
+              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+              <div class="txt"><b>Completed Complete Guide to Registering a Business in SA</b><span>Guides</span></div>
+              <div class="when">1 week ago</div>
+            </div>
+            <div class="activity-row" data-cat="events">
+              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+              <div class="txt"><b>Registered for Funding Your Business in 2026</b><span>Events</span></div>
+              <div class="when">2 weeks ago</div>
+            </div>
+            <div class="activity-row" data-cat="guides">
+              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+              <div class="txt"><b>Read How To Drive Traffic To Your eCommerce Website</b><span>Guides</span></div>
+              <div class="when">2 weeks ago</div>
+            </div>
+            <div class="activity-row" data-cat="advisor">
+              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+              <div class="txt"><b>Requested a quote for MTN Microsoft 365</b><span>SME Advisor</span></div>
+              <div class="when">3 weeks ago</div>
+            </div>
+            <div class="activity-row" data-cat="templates">
+              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
+              <div class="txt"><b>Downloaded VAT Registration Checklist</b><span>Templates</span></div>
+              <div class="when">3 weeks ago</div>
+            </div>
+            <div class="activity-row" data-cat="events">
+              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+              <div class="txt"><b>Attended Business Registration Masterclass</b><span>Events</span></div>
+              <div class="when">1 month ago</div>
+            </div>
           </div>
         </div>
 
         <div class="db-card">
           <h3>Funding opportunities for you</h3>
-          <p class="sub">Matched from your SME Advisor answers.</p>
-          <div class="fund-item"><div><b>SEDFA Small Business Loan</b><span>Based on your SME Advisor answers</span></div><a href="stakeholders.html">View</a></div>
-          <div class="fund-item"><div><b>African Bank Business Overdraft</b><span>For businesses trading 12+ months</span></div><a href="stakeholders.html">View</a></div>
-          <div class="fund-item"><div><b>NEF uMastandi Fund</b><span>Youth and women-owned businesses</span></div><a href="stakeholders.html">View</a></div>
+          <p class="sub">Matched from your SME Advisor answers, not a generic list.</p>
+          <div class="fund-item">
+            <div><b>SEDFA Small Business Loan</b><span>Trading 12+ months, turnover under R5m</span><div class="match">Strong match</div></div>
+            <div class="actions"><a href="stakeholders.html">View</a></div>
+          </div>
+          <div class="fund-item">
+            <div><b>NEF uMastandi Fund</b><span>Youth and women-owned businesses</span><div class="match">Strong match</div></div>
+            <div class="actions"><a href="stakeholders.html">View</a></div>
+          </div>
+          <div class="fund-item">
+            <div><b>African Bank Business Overdraft</b><span>For businesses trading 12+ months</span><div class="match">Eligible</div></div>
+            <div class="actions"><a href="stakeholders.html">View</a></div>
+          </div>
         </div>
 
         <div class="db-card">
@@ -211,9 +288,9 @@
           <h3>Member rewards</h3>
           <p class="sub">Exclusive to SMEHub members.</p>
           <div class="reward-strip">
-            <div class="reward-card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div><b>10% off setup</b><span>Business Website Starter Kit</span></div>
-            <div class="reward-card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 010-4h12v4"/><path d="M4 6v12a2 2 0 002 2h14v-4"/></svg></div><b>First month free</b><span>Managed Firewall</span></div>
-            <div class="reward-card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><b>Priority booking</b><span>SME Advisor consultations</span></div>
+            <div class="reward-card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div><b>10% off setup</b><span>Business Website Starter Kit</span><span class="redeem">Redeem</span></div>
+            <div class="reward-card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 010-4h12v4"/><path d="M4 6v12a2 2 0 002 2h14v-4"/></svg></div><b>First month free</b><span>Managed Firewall, expires 30 Sep</span><span class="redeem">Redeem</span></div>
+            <div class="reward-card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><b>Priority booking</b><span>SME Advisor consultations</span><span class="redeem">Active</span></div>
           </div>
         </div>
 
