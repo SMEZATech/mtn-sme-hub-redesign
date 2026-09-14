@@ -75,8 +75,19 @@ header.site{ position:sticky; top:0; z-index:200; background:rgba(255,255,255,.9
 .mega.mega-simple a{ padding:10px 12px; border-radius:8px; font-size:13.5px; font-weight:600; }
 .mega.mega-simple a:hover{ background:var(--surface); }
 .nav-cta{ display:flex; align-items:center; gap:10px; }
-.nav-search{ width:36px; height:36px; border-radius:50%; border:1px solid var(--border); display:grid; place-items:center; cursor:pointer; color:var(--ink); }
-.nav-search:hover{ background:var(--surface); }
+
+/* Search: an icon button that expands a search field. The field is fixed-position
+   on narrow screens so it never fights the nav row for width. */
+.nav-search{ position:relative; }
+.nav-search-btn{ width:36px; height:36px; border-radius:50%; border:1px solid var(--border); display:grid; place-items:center; cursor:pointer; color:var(--ink); background:#fff; font-family:inherit; padding:0; }
+.nav-search-btn:hover, .nav-search.open .nav-search-btn{ background:var(--surface); }
+.nav-search-form{ position:absolute; top:calc(100% + 10px); right:0; width:320px; max-width:calc(100vw - 32px); background:#fff; border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow-hover); padding:8px; display:none; align-items:center; gap:6px; z-index:60; }
+.nav-search.open .nav-search-form{ display:flex; }
+.nav-search-form input{ flex:1; min-width:0; border:none; outline:none; font-family:inherit; font-size:13.5px; padding:9px 12px; background:var(--surface); border-radius:8px; color:var(--ink); }
+.nav-search-form button{ flex-shrink:0; width:34px; height:34px; border:none; background:var(--ink); color:#fff; border-radius:8px; display:grid; place-items:center; cursor:pointer; }
+.nav-search-form button:hover{ background:#000; }
+@media(max-width:720px){ .nav-search-form{ position:fixed; top:64px; left:12px; right:12px; width:auto; max-width:none; } }
+
 .nav-burger{ display:none; width:36px; height:36px; border-radius:8px; border:1px solid var(--border); align-items:center; justify-content:center; cursor:pointer; background:#fff; }
 
 .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:13.5px; padding:10px 20px; border-radius:8px; border:none; cursor:pointer; transition:transform .1s, box-shadow .2s, background .15s; white-space:nowrap; }
@@ -134,6 +145,7 @@ section{ padding:76px 0; }
 .deal-banner.dark::before{ content:""; position:absolute; top:-190px; right:-130px; width:540px; height:540px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.24) 0%, transparent 70%); pointer-events:none; }
 .deal-banner.dark::after{ content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size:22px 22px; opacity:.55; pointer-events:none; }
 .deal-banner.dark .txt, .deal-banner.dark .visual{ position:relative; z-index:1; }
+.deal-banner.dark .visual{ background-color:transparent; box-shadow:none; }
 .deal-banner.dark .txt h2{ color:#fff; }
 .deal-banner.dark .txt .eyebrow-label{ color:var(--yellow); }
 .deal-banner.dark .txt .eyebrow-label::before{ background:var(--yellow); }
@@ -162,6 +174,21 @@ section{ padding:76px 0; }
    for the desk and every app icon. Anything wider and the subject reads small. */
 .deal-banner.hero-single .visual{ aspect-ratio:13/10; width:100%; max-width:none; border-radius:var(--radius); box-shadow:0 18px 40px rgba(0,0,0,.28); }
 @media(max-width:900px){ .deal-banner{ grid-template-columns:1fr; padding:28px; } .deal-banner .visual{ aspect-ratio:16/10; } .deal-banner.hero-single{ grid-template-columns:1fr; padding:28px; } .deal-banner.hero-single .visual{ aspect-ratio:13/10; max-width:none; margin-left:0; box-shadow:0 12px 26px rgba(0,0,0,.24); } }
+
+/* Full-bleed hero photo: the image fills the entire card rather than sitting in a
+   boxed visual, with a dark gradient blending it into the card's own background
+   colour so there is no visible seam where the photo's own backdrop shows through. */
+.deal-banner.hero-bg{ display:block; position:relative; overflow:hidden; padding:64px 56px; min-height:400px; }
+.deal-banner.hero-bg .bg-photo{ position:absolute; inset:0; z-index:0; background-size:cover; background-position:center 28%; }
+.deal-banner.hero-bg .bg-fade{ position:absolute; inset:0; z-index:1; background:linear-gradient(100deg, var(--ink) 0%, rgba(33,37,41,.96) 32%, rgba(33,37,41,.72) 52%, rgba(33,37,41,.28) 72%, rgba(33,37,41,.05) 88%, transparent 100%); }
+.deal-banner.hero-bg.dark::before, .deal-banner.hero-bg.dark::after{ z-index:1; }
+.deal-banner.hero-bg .txt{ position:relative; z-index:2; max-width:460px; }
+@media(max-width:900px){
+  .deal-banner.hero-bg{ padding:36px 26px; min-height:0; }
+  .deal-banner.hero-bg .bg-photo{ background-position:center 18%; }
+  .deal-banner.hero-bg .bg-fade{ background:linear-gradient(180deg, rgba(33,37,41,.5) 0%, var(--ink) 62%); }
+  .deal-banner.hero-bg .txt{ max-width:none; }
+}
 
 .hero-side{ display:flex; flex-direction:column; gap:14px; }
 .side-card{ display:flex; gap:14px; background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s; }
@@ -208,6 +235,9 @@ section{ padding:76px 0; }
 .lg-callout .txt .stats{ display:flex; gap:26px; margin-top:24px; }
 .lg-callout .txt .stats div b{ display:block; font-size:20px; color:var(--yellow); }
 .lg-callout .txt .stats div span{ font-size:11.5px; color:rgba(255,255,255,.5); }
+.lg-callout .visual{ position:relative; background:rgba(255,255,255,.03); border-left:1px solid rgba(255,255,255,.1); display:grid; place-items:center; padding:32px; }
+.lg-callout .visual svg{ width:100%; max-width:300px; height:auto; display:block; }
+@media(max-width:900px){ .lg-callout{ grid-template-columns:1fr; } .lg-callout .visual{ border-left:none; border-top:1px solid rgba(255,255,255,.1); padding:28px; order:-1; } .lg-callout .visual svg{ max-width:240px; } }
 .lg-form{ background:#fff; padding:32px 34px; }
 .lg-form h4{ font-size:15px; margin-bottom:4px; color:var(--ink); }
 .lg-form p.sub{ font-size:12.5px; color:var(--muted); margin-bottom:18px; }

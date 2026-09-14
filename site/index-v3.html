@@ -17,7 +17,7 @@
       <a href="index-v2.html">V2 Marketplace-led</a>
       <a href="index-v3.html" class="on">V3 Personalised</a>
     </span>
-    <span class="note">Personalised first: toggle between a first visit and a return visit</span>
+    <span class="note">Two inputs build an action plan on the spot, no account needed</span>
   </div>
 </div>
 
@@ -48,7 +48,7 @@
       <div class="nav-item"><a href="business-solutions.html">Shop</a></div>
     </nav>
     <div class="nav-cta">
-      <div class="nav-search"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+      <div class="nav-search"><button type="button" class="nav-search-btn" aria-label="Search" aria-expanded="false"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button><form class="nav-search-form" role="search"><input type="search" placeholder="Search guides, articles, plans" aria-label="Search MTN SME Hub"><button type="submit" aria-label="Submit search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button></form></div>
       <div class="nav-burger"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
     </div>
   </div>
@@ -88,94 +88,26 @@
   </div>
 </div>
 
-<!-- ============ HERO: FIRST VISIT / RETURN VISIT ============ -->
+<!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap">
-    <div class="state-toggle" role="group" aria-label="Preview homepage as">
-      <button type="button" class="on" data-state="visitor">Viewing as a first visit</button>
-      <button type="button" data-state="member">Viewing as a return visit</button>
-    </div>
-
-    <!-- VISITOR -->
-    <div class="state-view on" data-view="visitor">
-      <div class="mem-hero">
-        <div>
-          <p class="eyebrow-label">Start here</p>
-          <h1>Every South African business deserves a head start</h1>
-          <p class="lead">Get advice, funding options and tools matched to your business in one place. Nothing to sign up for, and you never have to become an MTN customer.</p>
-          <ul class="mem-list" style="margin-bottom:24px;">
-            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> A personalised action plan for your business</li>
-            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Funding matched to what you actually qualify for</li>
-            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Offers matched to what your business needs</li>
-          </ul>
-        </div>
-        <div class="join-card">
-          <h4>Get your action plan</h4>
-          <div class="field"><label>Business name</label><input type="text" placeholder="Nkosi Trading CC"></div>
-          <div class="field"><label>eMail address</label><input type="email" placeholder="thabo@nkositrading.co.za"></div>
-          <a class="btn btn-primary btn-block btn-lg" href="sales-advisor.html">Build my action plan</a>
-          <p class="fine">No account needed. Your answers stay on this device until you ask an advisor to pick them up.</p>
-        </div>
+    <div class="plan-hero">
+      <div>
+        <p class="eyebrow-label">Start here</p>
+        <h1>Every South African business deserves a head start</h1>
+        <p class="lead">Get advice, funding options and tools matched to your business in one place. Nothing to sign up for, and you never have to become an MTN customer.</p>
+        <ul class="plan-checks">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> A personalised action plan for your business</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Funding matched to what you actually qualify for</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Offers matched to what your business needs</li>
+        </ul>
       </div>
-    </div>
-
-    <!-- RETURN VISIT -->
-    <div class="state-view" data-view="member">
-      <div class="dash-greet">
-        <div class="who">
-          <div class="av">TN</div>
-          <div>
-            <h2>Welcome back, Thabo</h2>
-            <div class="sub">Nkosi Trading CC &middot; picked up from this device</div>
-          </div>
-        </div>
-        <a class="btn btn-outline" href="sales-advisor.html">Continue your quote</a>
-      </div>
-
-      <div class="plan-strip">
-        <div class="hd">
-          <h4>Your action plan</h4>
-          <span class="prog">2 of 4 complete</span>
-        </div>
-        <div class="plan-row done">
-          <div class="tick"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <div class="txt"><b>Register your business with CIPC</b><span>Guide completed</span></div>
-        </div>
-        <div class="plan-row done">
-          <div class="tick"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <div class="txt"><b>Set up a cash flow projection</b><span>Template downloaded</span></div>
-        </div>
-        <div class="plan-row">
-          <div class="tick"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <div class="txt"><b>Check your funding eligibility</b><span>4 partners matched to your profile</span></div>
-          <a class="btn btn-primary btn-sm" href="stakeholders.html">Start</a>
-        </div>
-        <div class="plan-row">
-          <div class="tick"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <div class="txt"><b>Get your team connected</b><span>Based on your team size, 3 plans fit</span></div>
-          <a class="btn btn-outline btn-sm" href="business-solutions.html">Compare</a>
-        </div>
-      </div>
-
-      <div class="dash-cols">
-        <div class="dash-card">
-          <h5>Funding matched to you</h5>
-          <div class="dash-item"><b>SEDFA Small Business Loan</b><span>Trading 12+ months, turnover under R5m</span><div class="match">Strong match</div></div>
-          <div class="dash-item"><b>NEF uMastandi Fund</b><span>Youth and women-owned businesses</span><div class="match">Strong match</div></div>
-          <div class="dash-item"><b>African Bank Overdraft</b><span>Requires 12 months bank statements</span></div>
-        </div>
-        <div class="dash-card">
-          <h5>Picking up where you left off</h5>
-          <div class="dash-item"><b>Managed Firewall quote</b><span>Started 2 days ago, not submitted</span><div class="match">Resume</div></div>
-          <div class="dash-item"><b>Complete Guide to Registering a Business</b><span>Step 5 of 7</span></div>
-          <div class="dash-item"><b>Funding Your Business in 2026</b><span>Event registered, 10 Sep</span></div>
-        </div>
-        <div class="dash-card">
-          <h5>Offers matched to you</h5>
-          <div class="dash-item"><b>First month free</b><span>Managed Firewall, expires 30 Sep</span></div>
-          <div class="dash-item"><b>10% off setup</b><span>Business Website Starter Kit</span></div>
-          <div class="dash-item"><b>Priority booking</b><span>SME Advisor consultations</span></div>
-        </div>
+      <div class="plan-card">
+        <h4>Get your action plan</h4>
+        <div class="field"><label>Business name</label><input type="text" placeholder="Nkosi Trading CC"></div>
+        <div class="field"><label>eMail address</label><input type="email" placeholder="thabo@nkositrading.co.za"></div>
+        <a class="btn btn-primary btn-block btn-lg" href="sales-advisor.html">Build my action plan</a>
+        <p class="fine">No account needed. Your answers stay on this device until you ask an advisor to pick them up.</p>
       </div>
     </div>
   </div>
@@ -193,53 +125,64 @@
     <div class="vp-rail">
       <a class="vp" href="insights.html"><div class="n">01</div><h4>Learn</h4><p>Guides, templates and events, with your progress saved.</p></a>
       <a class="vp" href="stakeholders.html"><div class="n">02</div><h4>Fund</h4><p>Funding matched to your profile, with applications tracked.</p></a>
-      <a class="vp" href="stakeholders.html"><div class="n">03</div><h4>Connect</h4><p>Advisers and partners reachable through one sign-in.</p></a>
+      <a class="vp" href="stakeholders.html"><div class="n">03</div><h4>Connect</h4><p>Advisers and partners, matched to what your business needs.</p></a>
       <a class="vp" href="business-solutions.html"><div class="n">04</div><h4>Buy</h4><p>Quotes that remember your context, with no account needed.</p></a>
       <a class="vp" href="stakeholders.html"><div class="n">05</div><h4>Scale</h4><p>Procurement and market access as you grow.</p></a>
     </div>
   </div>
 </section>
 
-<!-- ============ DEALS ============ -->
+<!-- ============ SHOP ============ -->
 <section>
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <p class="eyebrow-label">This month</p>
-        <h2 class="sec-title">Deals matched to your business</h2>
-        <p class="sec-desc">Monthly MTN Business deals, with the offers that fit your business surfaced first.</p>
+        <p class="eyebrow-label">Shop</p>
+        <h2 class="sec-title">MTN Business products, ready to activate</h2>
+        <p class="sec-desc">Matched to the plan you're building above. Buy the simple things outright, get a quote on the complex ones.</p>
       </div>
-      <a class="btn btn-outline" href="business-solutions.html">See all deals</a>
+      <a class="btn btn-outline" href="business-solutions.html">Explore the Shop</a>
     </div>
-    <div class="deals-rail">
-      <a class="deal lead" href="sales-advisor.html">
-        <div>
-          <div class="month">Made For Business &middot; September</div>
-          <h3>Working smarter starts here</h3>
-          <p>MTN Microsoft 365 with productivity, AI and advanced security in one bundle.</p>
-          <div class="apps">
-            <span style="background:#0A63C9;">O</span><span style="background:#5B5FC7;">T</span><span style="background:#2B579A;">W</span><span style="background:#217346;">X</span><span style="background:#D24726;">P</span>
-          </div>
+    <div class="mk-grid">
+      <a class="mk-card" href="business-solutions.html">
+        <div class="plan-top"></div>
+        <div class="bd">
+          <div class="cat">Made For Business</div>
+          <h4>MTN Microsoft 365</h4>
+          <p class="excerpt" style="margin-bottom:10px;">Outlook, Teams, Word, Excel, AI included</p>
+          <div class="price-row"><span class="from">From</span><span class="amt">R189</span><span class="per">pm, per user</span></div>
+          <span class="btn btn-outline btn-sm btn-block">View Plans</span>
         </div>
-        <span class="btn btn-primary" style="align-self:flex-start;">Get Microsoft 365</span>
       </a>
-      <a class="deal" href="plan.html?plan=l">
-        <div>
-          <div class="month">Business Internet</div>
-          <h3>Business without boundaries</h3>
-          <p>Up to 50 Mbps on MTN Business Uncapped Wireless, free WiFi router included.</p>
-          <div class="pricing"><span class="was">R799</span><span class="now">R499</span><span class="per">pm x24</span></div>
+      <a class="mk-card" href="business-solutions.html">
+        <div class="plan-top"></div>
+        <div class="bd">
+          <div class="cat">Business Internet</div>
+          <h4>Business Uncapped Wireless</h4>
+          <p class="excerpt" style="margin-bottom:10px;">Up to 50Mbps &middot; free WiFi router included</p>
+          <div class="price-row"><span class="from">From</span><span class="amt">R499</span><span class="per">pm x24</span></div>
+          <span class="btn btn-outline btn-sm btn-block">View Plans</span>
         </div>
-        <span class="btn btn-dark btn-sm" style="align-self:flex-start;">Buy Now</span>
       </a>
-      <a class="deal" href="product.html">
-        <div>
-          <div class="month">Managed Security</div>
-          <h3>Stop intrusions before they start</h3>
-          <p>Managed Firewall with deployment, patching and 24/7 monitoring.</p>
-          <div class="pricing"><span class="now">Custom</span><span class="per">quote</span></div>
+      <a class="mk-card" href="product.html">
+        <div class="plan-top"><span class="tag-pill dark badge" style="background:var(--ink);">Security</span></div>
+        <div class="bd">
+          <div class="cat">Managed Security</div>
+          <h4>Managed Firewall</h4>
+          <p class="excerpt" style="margin-bottom:10px;">Deployment, patching, and 24/7 monitoring.</p>
+          <div class="price-row"><span class="from">Custom</span><span class="amt">quote</span></div>
+          <span class="btn btn-outline btn-sm btn-block">View Solutions</span>
         </div>
-        <span class="btn btn-outline btn-sm" style="align-self:flex-start;">Get a Quote</span>
+      </a>
+      <a class="mk-card" href="business-solutions.html">
+        <div class="plan-top"></div>
+        <div class="bd">
+          <div class="cat">Made For Business Plans</div>
+          <h4>Made For Business L</h4>
+          <p class="excerpt" style="margin-bottom:10px;">23GB anytime data &middot; 1,000 min voice</p>
+          <div class="price-row"><span class="from">From</span><span class="amt">R499</span><span class="per">pm x36</span></div>
+          <span class="btn btn-outline btn-sm btn-block">View Plans</span>
+        </div>
       </a>
     </div>
   </div>
@@ -255,13 +198,13 @@
       <a class="btn btn-outline" href="category.html">View All Articles</a>
     </div>
     <div class="tab-row">
-      <span class="tab-btn active">All</span>
-      <span class="tab-btn">Finance</span>
-      <span class="tab-btn">Ecommerce</span>
-      <span class="tab-btn">Entrepreneurship</span>
+      <span class="tab-btn active" data-filter="all">All</span>
+      <span class="tab-btn" data-filter="finance">Finance</span>
+      <span class="tab-btn" data-filter="ecommerce">Ecommerce</span>
+      <span class="tab-btn" data-filter="entrepreneurship">Entrepreneurship</span>
     </div>
-    <div class="card-grid">
-      <a class="article-card" href="article.html">
+    <div class="card-grid la-grid">
+      <a class="article-card" href="article.html" data-cat="ecommerce">
         <div class="img ph-web"></div>
         <div class="bd">
           <div class="tags"><span class="tag">Connect · Ecommerce</span></div>
@@ -270,7 +213,7 @@
           <div class="meta"><span>2 Aug 2026</span><span>·</span><span>5 min read</span></div>
         </div>
       </a>
-      <a class="article-card" href="article.html">
+      <a class="article-card" href="article.html" data-cat="ecommerce">
         <div class="img ph-pay"></div>
         <div class="bd">
           <div class="tags"><span class="tag">Connect · Ecommerce</span></div>
@@ -279,7 +222,7 @@
           <div class="meta"><span>28 Jul 2026</span><span>·</span><span>4 min read</span></div>
         </div>
       </a>
-      <a class="article-card" href="article.html">
+      <a class="article-card" href="article.html" data-cat="finance">
         <div class="img ph-cash"></div>
         <div class="bd">
           <div class="tags"><span class="tag">Manage · Finance</span></div>
@@ -288,13 +231,13 @@
           <div class="meta"><span>20 Jul 2026</span><span>·</span><span>7 min read</span></div>
         </div>
       </a>
-      <a class="article-card" href="article.html">
-        <div class="img ph-fund"></div>
+      <a class="article-card" href="article.html" data-cat="entrepreneurship">
+        <div class="img ph-retail"></div>
         <div class="bd">
-          <div class="tags"><span class="tag">Connect · Finance</span></div>
-          <h4>NYDA Business Funding for SMEs in SA</h4>
-          <p class="excerpt">How the National Youth Development Agency helps thousands of small businesses.</p>
-          <div class="meta"><span>14 Jul 2026</span><span>·</span><span>5 min read</span></div>
+          <div class="tags"><span class="tag">Entrepreneurship</span></div>
+          <h4>How to Sell Products in Retail Stores</h4>
+          <p class="excerpt">Seeing your products on shelves nationwide starts with knowing which buyers to approach.</p>
+          <div class="meta"><span>1 Jul 2026</span><span>·</span><span>5 min read</span></div>
         </div>
       </a>
     </div>
@@ -373,20 +316,5 @@
 </footer>
 
 <script src="assets/main.js"></script>
-<script>
-(function(){
-  var btns=document.querySelectorAll('.state-toggle button');
-  btns.forEach(function(b){
-    b.addEventListener('click',function(){
-      btns.forEach(function(x){x.classList.remove('on');});
-      b.classList.add('on');
-      var want=b.getAttribute('data-state');
-      document.querySelectorAll('.state-view').forEach(function(v){
-        v.classList.toggle('on', v.getAttribute('data-view')===want);
-      });
-    });
-  });
-})();
-</script>
 </body>
 </html>

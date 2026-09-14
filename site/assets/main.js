@@ -12,6 +12,35 @@ document.addEventListener('DOMContentLoaded', function () {
     if (scrim) scrim.addEventListener('click', close);
   }
 
+  // Nav search: expand a search field from the icon button, close on outside
+  // click or Escape, and never let the empty state submit anywhere.
+  document.querySelectorAll('.nav-search').forEach(function (wrap) {
+    var btn = wrap.querySelector('.nav-search-btn');
+    var form = wrap.querySelector('.nav-search-form');
+    var input = wrap.querySelector('input');
+    if (!btn || !form) return;
+    var openSearch = function () {
+      wrap.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      if (input) setTimeout(function () { input.focus(); }, 10);
+    };
+    var closeSearch = function () {
+      wrap.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    };
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (wrap.classList.contains('open')) closeSearch(); else openSearch();
+    });
+    form.addEventListener('submit', function (e) { e.preventDefault(); });
+    document.addEventListener('click', function (e) {
+      if (!wrap.contains(e.target)) closeSearch();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeSearch();
+    });
+  });
+
   document.querySelectorAll('.mdrawer-group').forEach(function (group) {
     var label = group.querySelector('.mlabel');
     var sub = group.querySelector('.mdrawer-sub');
