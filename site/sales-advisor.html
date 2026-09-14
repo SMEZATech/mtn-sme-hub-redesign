@@ -93,20 +93,6 @@
   <div class="wrap">
     <h1>Tell us how your business runs. Leave with a costed quote.</h1>
     <p class="lede">Five questions, answered one at a time. Your quote builds as you go, priced on real MTN Business products, and a named advisor picks it up from there.</p>
-    <div class="adv-trust">
-      <div>
-        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>
-        <div><b>Real line items</b><span>Actual products and prices, not a price range.</span></div>
-      </div>
-      <div>
-        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6"/></svg></span>
-        <div><b>A named advisor</b><span>Lerato Mokoena on the SME desk, not a call centre queue.</span></div>
-      </div>
-      <div>
-        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
-        <div><b>No account needed</b><span>Nothing to sign up for. Your answers stay on this device.</span></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -267,7 +253,7 @@
 
             <div class="qc-recover" id="qc-recover">
               <p><b>Not ready to book?</b> We will hold this quote against your reference so you can pick it up later.</p>
-              <button class="btn btn-outline btn-sm" id="qc-email">eMail me this quote</button>
+              <button class="btn btn-outline btn-sm" id="qc-email-btn">eMail me this quote</button>
             </div>
           </div>
 
@@ -768,7 +754,7 @@
     wipe();
   });
 
-  $('qc-email').addEventListener('click', function(){
+  $('qc-email-btn').addEventListener('click', function(){
     this.textContent = 'Sent, check your inbox';
     this.disabled = true;
     track('Quote emailed for later pick-up', 'emailed');

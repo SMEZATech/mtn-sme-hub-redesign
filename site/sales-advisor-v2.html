@@ -93,20 +93,6 @@
   <div class="wrap">
     <h1>Score your business, then see what closing the gaps costs.</h1>
     <p class="lede">A readiness check across connectivity, security, online presence, tools and funding. You get a scorecard, a costed plan for your weakest areas, and the funding partners you can apply to without leaving the Hub.</p>
-    <div class="adv-trust">
-      <div>
-        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></span>
-        <div><b>A readiness score</b><span>Five parts of the business, scored as you answer.</span></div>
-      </div>
-      <div>
-        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>
-        <div><b>Funding you can start here</b><span>Applications begin on the Hub and are tracked by reference.</span></div>
-      </div>
-      <div>
-        <span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>
-        <div><b>A costed plan</b><span>Real MTN products priced against your two weakest areas.</span></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -298,7 +284,7 @@
 
             <div class="qc-recover" id="qc-recover">
               <p><b>Not ready to book?</b> We will hold the scorecard and plan against your reference so you can pick it up later.</p>
-              <button class="btn btn-outline btn-sm" id="qc-email">eMail me my scorecard</button>
+              <button class="btn btn-outline btn-sm" id="qc-email-btn">eMail me my scorecard</button>
             </div>
           </div>
 
@@ -892,7 +878,7 @@
     wipe();
   });
 
-  $('qc-email').addEventListener('click', function(){
+  $('qc-email-btn').addEventListener('click', function(){
     this.textContent = 'Sent, check your inbox';
     this.disabled = true;
     track('Scorecard emailed for later pick-up', 'emailed');
