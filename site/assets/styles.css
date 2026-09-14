@@ -90,6 +90,10 @@ header.site{ position:sticky; top:0; z-index:200; background:rgba(255,255,255,.9
 
 .nav-burger{ display:none; width:36px; height:36px; border-radius:8px; border:1px solid var(--border); align-items:center; justify-content:center; cursor:pointer; background:#fff; }
 
+/* Signed-in state on portal-dashboard.html only: a small avatar standing in
+   for the profile icon, distinct from .nav-search so the two never collide. */
+.portal-avatar-btn{ width:36px; height:36px; border-radius:50%; background:var(--yellow); border:1.5px solid var(--yellow-shade); display:grid; place-items:center; font-size:12px; font-weight:800; color:var(--ink); text-decoration:none; flex-shrink:0; }
+
 .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:13.5px; padding:10px 20px; border-radius:8px; border:none; cursor:pointer; transition:transform .1s, box-shadow .2s, background .15s; white-space:nowrap; }
 .btn:active{ transform:scale(.97); }
 .btn-primary{ background:var(--yellow); color:var(--ink); }
