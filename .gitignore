@@ -2,3 +2,7 @@
 reports/Mailchimp/
 brief.md
 AGENT-BRIEF.md
+
+# Private mission-control dashboard — local only, never published. It sets
+# mockup-status.js, which IS committed and read by the live gate-links.js.
+control.html

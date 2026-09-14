@@ -28,17 +28,13 @@
   .pl-benefit h4{ color:#fff; font-size:15px; margin-bottom:4px; }
   .pl-benefit p{ color:rgba(255,255,255,.6); font-size:13.5px; line-height:1.6; }
 
-  /* ===== Signup / login form card ===== */
+  /* ===== Sign up form card ===== */
   .pl-card{ background:#fff; border-radius:var(--radius); box-shadow:0 24px 60px rgba(0,0,0,.35); padding:38px 36px; position:sticky; top:100px; }
-  .pl-tabs{ display:flex; gap:6px; background:var(--surface); border-radius:8px; padding:4px; margin-bottom:26px; }
-  .pl-tab{ flex:1; text-align:center; padding:10px; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; color:var(--muted); }
-  .pl-tab.active{ background:#fff; color:var(--ink); box-shadow:var(--shadow); }
+  .pl-card-title{ font-size:15px; margin-bottom:18px; }
   .pl-field{ margin-bottom:16px; }
   .pl-field label{ display:block; font-size:12.5px; font-weight:700; margin-bottom:7px; }
   .pl-field input{ width:100%; padding:13px 15px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; font-family:inherit; outline:none; background:var(--surface); }
   .pl-field input:focus{ border-color:var(--yellow); background:#fff; }
-  .pl-panel{ display:none; }
-  .pl-panel.active{ display:block; }
   .pl-fine{ font-size:11px; color:var(--muted-2); text-align:center; margin-top:14px; line-height:1.6; }
   .pl-switch{ font-size:12.5px; color:var(--muted); text-align:center; margin-top:18px; padding-top:18px; border-top:1px solid var(--border); }
   .pl-switch a{ font-weight:700; color:var(--ink); text-decoration:underline; cursor:pointer; }
@@ -49,7 +45,13 @@
   .pl-done h3{ font-size:19px; margin-bottom:8px; }
   .pl-done p{ font-size:13.5px; color:var(--muted); margin-bottom:20px; }
 
-  /* ===== "What's waiting for you" mini-preview band ===== */
+  /* ===== Log in: deliberately minimal, no pitch, just a form ===== */
+  .pl-view-login{ padding:56px 0 96px; }
+  .pl-login-wrap{ max-width:420px; margin:0 auto; text-align:center; }
+  .pl-login-title{ color:#fff; font-size:clamp(24px,3.2vw,32px); margin:10px 0 28px; }
+  .pl-login-card{ background:#fff; border-radius:var(--radius); box-shadow:0 24px 60px rgba(0,0,0,.35); padding:34px 32px; text-align:left; }
+
+  /* ===== "What's waiting for you" mini-preview band (sign up only) ===== */
   .pl-preview-band{ background:var(--ink); position:relative; overflow:hidden; padding:0 0 64px; }
   .pl-preview-band .sec-title{ color:#fff; }
   .pl-preview-band .sec-desc{ color:rgba(255,255,255,.6); }
@@ -77,7 +79,7 @@
   .pv-reward span{ display:block; font-size:9.5px; font-weight:700; color:rgba(255,255,255,.75); }
 
   @media(max-width:1000px){ .pl-grid{ grid-template-columns:1fr; } .pl-card{ position:static; max-width:480px; margin:0 auto; } .pl-preview-grid{ grid-template-columns:1fr; } }
-  @media(max-width:640px){ .pl-card{ padding:28px 24px; } }
+  @media(max-width:640px){ .pl-card{ padding:28px 24px; } .pl-login-card{ padding:26px 22px; } }
 </style>
 </head>
 <body>
@@ -107,9 +109,10 @@
       </div>
       <div class="nav-item"><a href="sales-advisor.html">SME Advisor</a></div>
       <div class="nav-item"><a href="business-solutions.html">Shop</a></div>
-      <div class="nav-item"><a href="portal-login.html">Portal</a></div>
     </nav>
     <div class="nav-cta">
+      <a class="btn btn-outline btn-sm" href="portal-login.html?tab=login">Log In</a>
+      <a class="btn btn-primary btn-sm" href="portal-login.html?tab=signup">Sign Up</a>
       <div class="nav-search"><button type="button" class="nav-search-btn" aria-label="Search" aria-expanded="false"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button><form class="nav-search-form" role="search"><input type="search" placeholder="Search guides, articles, plans" aria-label="Search MTN SME Hub"><button type="submit" aria-label="Submit search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button></form></div>
       <div class="nav-burger"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
     </div>
@@ -143,7 +146,8 @@
     </div>
     <div class="mdrawer-group"><a href="sales-advisor.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">SME Advisor</a></div>
     <div class="mdrawer-group"><a href="business-solutions.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Shop</a></div>
-    <div class="mdrawer-group"><a href="portal-login.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Portal</a></div>
+    <div class="mdrawer-group"><a href="portal-login.html?tab=signup" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Sign Up</a></div>
+    <div class="mdrawer-group"><a href="portal-login.html?tab=login" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Log In</a></div>
     <div class="mdrawer-group"><a href="about.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">About</a></div>
     <div class="cta-block">
       <a class="btn btn-primary btn-block" href="contact.html">Contact MTN Business</a>
@@ -153,80 +157,93 @@
 
 <section class="pl-hero">
   <div class="wrap">
-    <div class="pl-intro">
-      <p class="eyebrow-label">SMEHub Portal</p>
-      <h1>Sign up for free. Everything tracks from here.</h1>
-      <p>One profile across content, tools and MTN Business. Free forever, kept separate from any purchase until you're ready to become a customer.</p>
-      <div class="pl-trust-row">
-        <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Free forever</span>
-        <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> No credit card</span>
-        <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Under 2 minutes to join</span>
-        <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 4,200+ SME members</span>
-      </div>
-    </div>
-
-    <div class="pl-grid">
-      <div class="pl-benefits">
-        <div class="pl-benefit">
-          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-          <div><h4>Registered SMEHub membership, free</h4><p>One login for the whole Hub. No fees, no trial period, no card required to join.</p></div>
-        </div>
-        <div class="pl-benefit">
-          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-          <div><h4>Your profile and activity, visible to you and MTN</h4><p>Guides read, templates downloaded, events attended, advisor consultations, all in one history so nothing gets asked twice.</p></div>
-        </div>
-        <div class="pl-benefit">
-          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div>
-          <div><h4>Member rewards and funding matched to you</h4><p>Exclusive discounts, first-month offers, and funding options scored against your own SME Advisor answers.</p></div>
-        </div>
-        <div class="pl-benefit">
-          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6"/></svg></div>
-          <div><h4>Partner products in one place</h4><p>Microsoft, Yoco, Sage and the rest of the SMEHub partner ecosystem, reachable from your profile.</p></div>
-        </div>
-        <div class="pl-benefit">
-          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
-          <div><h4>Become a customer only when you choose to</h4><p>Membership stays separate from any MTN purchase. Buying is always a deliberate next step, never automatic.</p></div>
+    <!-- ===== SIGN UP: the full pitch ===== -->
+    <div class="pl-view" id="view-signup">
+      <div class="pl-intro">
+        <p class="eyebrow-label">SMEHub Portal</p>
+        <h1>Sign up for free. Everything tracks from here.</h1>
+        <p>One profile across content, tools and MTN Business. Free forever, kept separate from any purchase until you're ready to become a customer.</p>
+        <div class="pl-trust-row">
+          <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Free forever</span>
+          <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> No credit card</span>
+          <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Under 2 minutes to join</span>
+          <span class="pl-trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 4,200+ SME members</span>
         </div>
       </div>
 
-      <div class="pl-card">
-        <div id="pl-form-wrap">
-          <div class="pl-tabs">
-            <div class="pl-tab active" data-tab="signup">Sign Up Free</div>
-            <div class="pl-tab" data-tab="login">Log In</div>
+      <div class="pl-grid">
+        <div class="pl-benefits">
+          <div class="pl-benefit">
+            <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div><h4>Registered SMEHub membership, free</h4><p>One login for the whole Hub. No fees, no trial period, no card required to join.</p></div>
           </div>
+          <div class="pl-benefit">
+            <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <div><h4>Your profile and activity, visible to you and MTN</h4><p>Guides read, templates downloaded, events attended, advisor consultations, all in one history so nothing gets asked twice.</p></div>
+          </div>
+          <div class="pl-benefit">
+            <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div>
+            <div><h4>Member rewards and funding matched to you</h4><p>Exclusive discounts, first-month offers, and funding options scored against your own SME Advisor answers.</p></div>
+          </div>
+          <div class="pl-benefit">
+            <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6"/></svg></div>
+            <div><h4>Partner products in one place</h4><p>Microsoft, Yoco, Sage and the rest of the SMEHub partner ecosystem, reachable from your profile.</p></div>
+          </div>
+          <div class="pl-benefit">
+            <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <div><h4>Become a customer only when you choose to</h4><p>Membership stays separate from any MTN purchase. Buying is always a deliberate next step, never automatic.</p></div>
+          </div>
+        </div>
 
-          <div class="pl-panel active" data-panel="signup">
+        <div class="pl-card">
+          <div id="signup-form-wrap">
+            <h4 class="pl-card-title">Create your free account</h4>
             <div class="pl-field"><label>Full name</label><input type="text" placeholder="Thabo Nkosi"></div>
             <div class="pl-field"><label>Business name</label><input type="text" placeholder="Nkosi Trading CC"></div>
             <div class="pl-field"><label>eMail address</label><input type="email" placeholder="thabo@nkositrading.co.za"></div>
             <div class="pl-field"><label>Password</label><input type="password" placeholder="Create a password"></div>
             <button class="btn btn-primary btn-block btn-lg" id="pl-signup-btn">Sign Up for Free</button>
             <p class="pl-fine">Free to join. No purchase required. By continuing, you agree to MTN's Privacy Policy and Terms of Service.</p>
-            <div class="pl-switch">Already a member? <a data-switch="login">Log in</a></div>
+            <div class="pl-switch">Already a member? <a data-view-switch="login">Log in</a></div>
           </div>
 
-          <div class="pl-panel" data-panel="login">
+          <div class="pl-done" id="signup-done">
+            <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h3>Welcome to SMEHub</h3>
+            <p>Your free membership is active.</p>
+            <a class="btn btn-primary btn-block btn-lg" href="portal-dashboard.html">Go to your Portal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== LOG IN: no pitch, just the form ===== -->
+    <div class="pl-view pl-view-login" id="view-login" hidden>
+      <div class="pl-login-wrap">
+        <p class="eyebrow-label" style="justify-content:center;">Welcome back</p>
+        <h1 class="pl-login-title">Log in to your Portal</h1>
+        <div class="pl-login-card">
+          <div id="login-form-wrap">
             <div class="pl-field"><label>eMail address</label><input type="email" placeholder="thabo@nkositrading.co.za"></div>
             <div class="pl-field"><label>Password</label><input type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"></div>
             <button class="btn btn-primary btn-block btn-lg" id="pl-login-btn">Log In</button>
             <p class="pl-fine">Forgot your password? <a href="#" onclick="return false;" style="text-decoration:underline; color:var(--ink);">Reset it</a></p>
-            <div class="pl-switch">New here? <a data-switch="signup">Sign up for free</a></div>
+            <div class="pl-switch">New here? <a data-view-switch="signup">Sign up for free</a></div>
           </div>
-        </div>
 
-        <div class="pl-done" id="pl-done">
-          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <h3>Welcome to SMEHub</h3>
-          <p>Your free membership is active.</p>
-          <a class="btn btn-primary btn-block btn-lg" href="portal-dashboard.html">Go to your Portal</a>
+          <div class="pl-done" id="login-done">
+            <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h3>Welcome back</h3>
+            <p>You're logged in.</p>
+            <a class="btn btn-primary btn-block btn-lg" href="portal-dashboard.html">Go to your Portal</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="pl-preview-band">
+<section class="pl-preview-band" id="preview-band">
   <div class="wrap">
     <div class="sec-head" style="border:none;">
       <div>
@@ -305,24 +322,28 @@
   </div>
 </footer>
 
+<script src="../mockup-status.js"></script>
+<script src="../gate-links.js"></script>
 <script src="assets/main.js"></script>
 <script>
-  function showTab(name){
-    document.querySelectorAll('.pl-tab').forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-tab') === name); });
-    document.querySelectorAll('.pl-panel').forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-panel') === name); });
+  function showView(name){
+    document.getElementById('view-signup').hidden = (name !== 'signup');
+    document.getElementById('view-login').hidden = (name !== 'login');
+    document.getElementById('preview-band').style.display = (name === 'signup') ? '' : 'none';
   }
-  document.querySelectorAll('.pl-tab').forEach(function(tab){
-    tab.addEventListener('click', function(){ showTab(tab.getAttribute('data-tab')); });
+  document.querySelectorAll('[data-view-switch]').forEach(function(link){
+    link.addEventListener('click', function(){ showView(link.getAttribute('data-view-switch')); });
   });
-  document.querySelectorAll('.pl-switch a').forEach(function(link){
-    link.addEventListener('click', function(){ showTab(link.getAttribute('data-switch')); });
-  });
-  function completeAuth(){
-    document.getElementById('pl-form-wrap').style.display = 'none';
-    document.getElementById('pl-done').classList.add('show');
+  function completeAuth(doneId, formWrapId){
+    document.getElementById(formWrapId).style.display = 'none';
+    document.getElementById(doneId).classList.add('show');
   }
-  document.getElementById('pl-login-btn').addEventListener('click', completeAuth);
-  document.getElementById('pl-signup-btn').addEventListener('click', completeAuth);
+  document.getElementById('pl-signup-btn').addEventListener('click', function(){ completeAuth('signup-done', 'signup-form-wrap'); });
+  document.getElementById('pl-login-btn').addEventListener('click', function(){ completeAuth('login-done', 'login-form-wrap'); });
+
+  // Land on the right view depending on which header CTA was clicked.
+  var wantView = new URLSearchParams(location.search).get('tab');
+  if (wantView === 'login' || wantView === 'signup') showView(wantView);
 </script>
 </body>
 </html>

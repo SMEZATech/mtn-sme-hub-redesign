@@ -35,6 +35,11 @@
   .profile-fields{ display:grid; grid-template-columns:1fr 1fr; gap:16px 20px; }
   .profile-field label{ display:block; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--muted-2); margin-bottom:5px; }
   .profile-field .val{ font-size:13.5px; font-weight:600; color:var(--ink); }
+  .pf-input{ width:100%; padding:8px 10px; border:1.5px solid var(--border); border-radius:7px; font-size:13px; font-family:inherit; outline:none; background:var(--surface); color:var(--ink); }
+  .pf-input:focus{ border-color:var(--yellow); background:#fff; }
+  .profile-edit-actions{ display:flex; gap:8px; margin-top:18px; padding-top:18px; border-top:1px solid var(--border); }
+  .profile-edit-saved{ display:none; align-items:center; gap:6px; font-size:12px; font-weight:700; color:#1B8A5A; margin-top:18px; }
+  .profile-edit-saved.show{ display:flex; }
   .profile-visibility{ display:flex; align-items:flex-start; gap:9px; font-size:11.5px; color:var(--muted); background:var(--surface); border-radius:8px; padding:11px 13px; margin-top:18px; line-height:1.6; }
   .profile-visibility svg{ color:var(--yellow-shade); flex-shrink:0; margin-top:1px; }
 
@@ -111,9 +116,10 @@
       </div>
       <div class="nav-item"><a href="sales-advisor.html">SME Advisor</a></div>
       <div class="nav-item"><a href="business-solutions.html">Shop</a></div>
-      <div class="nav-item"><a href="portal-dashboard.html">Portal</a></div>
     </nav>
     <div class="nav-cta">
+      <a class="btn btn-outline btn-sm" href="portal-login.html?tab=login">Log In</a>
+      <a class="btn btn-primary btn-sm" href="portal-login.html?tab=signup">Sign Up</a>
       <div class="nav-search"><button type="button" class="nav-search-btn" aria-label="Search" aria-expanded="false"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button><form class="nav-search-form" role="search"><input type="search" placeholder="Search guides, articles, plans" aria-label="Search MTN SME Hub"><button type="submit" aria-label="Submit search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button></form></div>
       <a class="portal-avatar-btn" href="portal-dashboard.html" aria-label="Your Portal"><span>TN</span></a>
       <div class="nav-burger"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
@@ -148,7 +154,8 @@
     </div>
     <div class="mdrawer-group"><a href="sales-advisor.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">SME Advisor</a></div>
     <div class="mdrawer-group"><a href="business-solutions.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Shop</a></div>
-    <div class="mdrawer-group"><a href="portal-dashboard.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Portal</a></div>
+    <div class="mdrawer-group"><a href="portal-login.html?tab=signup" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Sign Up</a></div>
+    <div class="mdrawer-group"><a href="portal-login.html?tab=login" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Log In</a></div>
     <div class="mdrawer-group"><a href="about.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">About</a></div>
     <div class="cta-block">
       <a class="btn btn-primary btn-block" href="contact.html">Contact MTN Business</a>
@@ -183,22 +190,67 @@
         <div class="db-card">
           <h3>Your profile</h3>
           <p class="sub">Visible to you and to MTN Business, so nothing has to be typed twice.</p>
+          <form id="profile-form">
           <div class="profile-top">
-            <div class="avatar-lg">TN</div>
+            <div class="avatar-lg" id="pf-avatar">TN</div>
             <div>
-              <h4>Thabo Nkosi</h4>
-              <div class="biz">Nkosi Trading CC</div>
+              <h4 id="pf-name-display">Thabo Nkosi</h4>
+              <div class="biz" id="pf-biz-display">Nkosi Trading CC</div>
             </div>
-            <a class="btn btn-outline btn-sm edit" href="#" onclick="return false;">Edit profile</a>
+            <button class="btn btn-outline btn-sm edit" id="profile-edit-btn" type="button">Edit profile</button>
           </div>
           <div class="profile-fields">
-            <div class="profile-field"><label>Email</label><div class="val">thabo@nkositrading.co.za</div></div>
-            <div class="profile-field"><label>Phone</label><div class="val">082 145 6721</div></div>
-            <div class="profile-field"><label>Business type</label><div class="val">Retail &amp; e-commerce</div></div>
-            <div class="profile-field"><label>Team size</label><div class="val">2 to 10 people</div></div>
+            <div class="profile-field">
+              <label>Full name</label>
+              <div class="val" data-view>Thabo Nkosi</div>
+              <input class="pf-input" data-edit data-target="pf-name" type="text" value="Thabo Nkosi" hidden>
+            </div>
+            <div class="profile-field">
+              <label>Business name</label>
+              <div class="val" data-view>Nkosi Trading CC</div>
+              <input class="pf-input" data-edit data-target="pf-biz" type="text" value="Nkosi Trading CC" hidden>
+            </div>
+            <div class="profile-field">
+              <label>Email</label>
+              <div class="val" data-view>thabo@nkositrading.co.za</div>
+              <input class="pf-input" data-edit data-target="pf-email" type="email" value="thabo@nkositrading.co.za" hidden>
+            </div>
+            <div class="profile-field">
+              <label>Phone</label>
+              <div class="val" data-view>082 145 6721</div>
+              <input class="pf-input" data-edit data-target="pf-phone" type="tel" value="082 145 6721" hidden>
+            </div>
+            <div class="profile-field">
+              <label>Business type</label>
+              <div class="val" data-view>Retail &amp; e-commerce</div>
+              <select class="pf-input" data-edit data-target="pf-biztype" hidden>
+                <option selected>Retail &amp; e-commerce</option>
+                <option>Professional services</option>
+                <option>Manufacturing</option>
+                <option>Hospitality &amp; tourism</option>
+                <option>Construction</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="profile-field">
+              <label>Team size</label>
+              <div class="val" data-view>2 to 10 people</div>
+              <select class="pf-input" data-edit data-target="pf-team" hidden>
+                <option>Just me</option>
+                <option selected>2 to 10 people</option>
+                <option>11 to 50 people</option>
+                <option>50+ people</option>
+              </select>
+            </div>
             <div class="profile-field"><label>Member since</label><div class="val">14 Aug 2026</div></div>
             <div class="profile-field"><label>Membership</label><div class="val">Free SMEHub Member</div></div>
           </div>
+          <div class="profile-edit-actions" id="profile-edit-actions" hidden>
+            <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
+            <button class="btn btn-outline btn-sm" type="button" id="profile-cancel-btn">Cancel</button>
+          </div>
+          <div class="profile-edit-saved" id="profile-edit-saved"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Profile updated</div>
+          </form>
           <div class="profile-visibility"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Your profile and activity are visible to you and to MTN Business, so an advisor can pick up exactly where you left off. Never shown to other members or made public.</div>
         </div>
 
@@ -339,6 +391,83 @@
   </div>
 </footer>
 
+<script src="../mockup-status.js"></script>
+<script src="../gate-links.js"></script>
 <script src="assets/main.js"></script>
+<script>
+  (function(){
+    var form = document.getElementById('profile-form');
+    var editBtn = document.getElementById('profile-edit-btn');
+    var cancelBtn = document.getElementById('profile-cancel-btn');
+    var actions = document.getElementById('profile-edit-actions');
+    var saved = document.getElementById('profile-edit-saved');
+    var views = form.querySelectorAll('[data-view]');
+    var edits = form.querySelectorAll('[data-edit]');
+    var savedValues = {};
+
+    function initials(name){
+      var parts = name.trim().split(/\s+/);
+      return (parts[0].charAt(0) + (parts[1] ? parts[1].charAt(0) : '')).toUpperCase();
+    }
+
+    function fieldValue(el){
+      if (el.tagName === 'SELECT') return el.options[el.selectedIndex].text;
+      return el.value;
+    }
+
+    function setEditing(on){
+      for (var i = 0; i < views.length; i++) views[i].hidden = on;
+      for (var i = 0; i < edits.length; i++) edits[i].hidden = !on;
+      actions.hidden = !on;
+      editBtn.hidden = on;
+      saved.classList.remove('show');
+    }
+
+    editBtn.addEventListener('click', function(){
+      savedValues = {};
+      for (var i = 0; i < edits.length; i++){
+        savedValues[edits[i].dataset.target] = edits[i].value;
+      }
+      setEditing(true);
+    });
+
+    cancelBtn.addEventListener('click', function(){
+      for (var i = 0; i < edits.length; i++){
+        if (edits[i].dataset.target in savedValues) edits[i].value = savedValues[edits[i].dataset.target];
+      }
+      setEditing(false);
+    });
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var nameInput = form.querySelector('[data-target="pf-name"]');
+      var bizInput = form.querySelector('[data-target="pf-biz"]');
+      var emailInput = form.querySelector('[data-target="pf-email"]');
+      var phoneInput = form.querySelector('[data-target="pf-phone"]');
+      var biztypeInput = form.querySelector('[data-target="pf-biztype"]');
+      var teamInput = form.querySelector('[data-target="pf-team"]');
+
+      var fieldPairs = [
+        [nameInput, form.querySelectorAll('.profile-field')[0].querySelector('[data-view]')],
+        [bizInput, form.querySelectorAll('.profile-field')[1].querySelector('[data-view]')],
+        [emailInput, form.querySelectorAll('.profile-field')[2].querySelector('[data-view]')],
+        [phoneInput, form.querySelectorAll('.profile-field')[3].querySelector('[data-view]')],
+        [biztypeInput, form.querySelectorAll('.profile-field')[4].querySelector('[data-view]')],
+        [teamInput, form.querySelectorAll('.profile-field')[5].querySelector('[data-view]')]
+      ];
+      for (var j = 0; j < fieldPairs.length; j++){
+        fieldPairs[j][1].textContent = fieldValue(fieldPairs[j][0]);
+      }
+
+      document.getElementById('pf-name-display').textContent = nameInput.value;
+      document.getElementById('pf-biz-display').textContent = bizInput.value;
+      var ini = initials(nameInput.value);
+      document.getElementById('pf-avatar').textContent = ini;
+
+      setEditing(false);
+      saved.classList.add('show');
+    });
+  })();
+</script>
 </body>
 </html>
