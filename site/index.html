@@ -6,6 +6,22 @@
 <title>V1 Hub-first | MTN SME Hub</title>
 <link rel="stylesheet" href="assets/styles.css" />
 <link rel="stylesheet" href="assets/versions.css" />
+<style>
+  /* ===== SME Advisor callout: a visualised lead-gen journey, not a
+     product-avatar card. Three steps, chained by a line, ending on a
+     human handoff that's opt-in rather than an always-on chat persona. ===== */
+  .adv-journey{ display:flex; flex-direction:column; width:100%; max-width:320px; }
+  .adv-step{ display:flex; gap:16px; align-items:flex-start; position:relative; }
+  .adv-step:not(:last-child){ padding-bottom:8px; }
+  .adv-rail{ display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
+  .adv-ic{ width:44px; height:44px; border-radius:50%; background:#2B3036; border:2px solid var(--yellow); color:var(--yellow); display:grid; place-items:center; flex-shrink:0; z-index:1; }
+  .adv-step.final .adv-ic{ background:var(--yellow); border-color:var(--yellow); color:var(--ink); }
+  .adv-line{ width:2px; flex:1; min-height:32px; background:rgba(255,197,2,.25); margin:2px 0; }
+  .adv-body{ padding-top:8px; padding-bottom:22px; }
+  .adv-body .tag{ display:block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow); margin-bottom:4px; }
+  .adv-body b{ display:block; color:#fff; font-size:14.5px; margin-bottom:3px; }
+  .adv-body span{ font-size:12px; color:rgba(255,255,255,.55); line-height:1.5; }
+</style>
 </head>
 <body>
 
@@ -218,29 +234,47 @@
         <h3>Not sure what your business needs?</h3>
         <p>Answer a few quick questions and get matched to the right plan or solution, with a clear next step and a real MTN Business advisor when you need one.</p>
         <a class="btn btn-primary btn-lg" href="sales-advisor.html">Talk to the SME Advisor</a>
+        <div class="stats">
+          <div><b>4,200+</b><span>SMEs matched so far</span></div>
+          <div><b>&lt;2 min</b><span>To get your match</span></div>
+          <div><b>0</b><span>Cold calls, ever</span></div>
+        </div>
       </div>
       <div class="visual">
-        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A short guided assessment matches you to a plan or solution">
-          <circle cx="150" cy="150" r="136" fill="rgba(255,197,2,.06)"/>
-          <circle cx="150" cy="150" r="136" fill="none" stroke="rgba(255,197,2,.28)" stroke-width="2" stroke-dasharray="5 8"/>
-
-          <!-- icon frame, matching the site's own icon language rather than a face -->
-          <circle cx="150" cy="118" r="72" fill="#2B3036"/>
-          <circle cx="150" cy="118" r="72" fill="none" stroke="#FFC502" stroke-width="3"/>
-          <g fill="none" stroke="#FFC502" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="122" y="88" width="56" height="66" rx="8"/>
-            <path d="M138 84h24a4 4 0 014 4v4h-32v-4a4 4 0 014-4z" fill="#FFC502" stroke="none"/>
-            <path d="M134 116l10 10 20-22"/>
-            <path d="M134 140h32"/>
-          </g>
-
-          <!-- matched badge, top right of the frame -->
-          <circle cx="204" cy="66" r="19" fill="#1B8A5A" stroke="#212529" stroke-width="3"/>
-          <path d="M196 66l5 5 10-11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-
-          <text x="150" y="219" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="15.5" fill="#fff">Guided, not generic</text>
-          <text x="150" y="239" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="11.5" fill="rgba(255,255,255,.55)">Matched to a plan in under 2 minutes</text>
-        </svg>
+        <div class="adv-journey">
+          <div class="adv-step">
+            <div class="adv-rail">
+              <div class="adv-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6a1 1 0 011 1v1h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2V3a1 1 0 011-1z"/><path d="M9 11h6M9 15h4"/></svg></div>
+              <div class="adv-line"></div>
+            </div>
+            <div class="adv-body">
+              <span class="tag">Step 1</span>
+              <b>Answer a few quick questions</b>
+              <span>About your business, no account needed to start.</span>
+            </div>
+          </div>
+          <div class="adv-step">
+            <div class="adv-rail">
+              <div class="adv-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div>
+              <div class="adv-line"></div>
+            </div>
+            <div class="adv-body">
+              <span class="tag">Step 2</span>
+              <b>Get matched instantly</b>
+              <span>To the plan, solution or funding option that actually fits.</span>
+            </div>
+          </div>
+          <div class="adv-step final">
+            <div class="adv-rail">
+              <div class="adv-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+            </div>
+            <div class="adv-body">
+              <span class="tag">If you need it</span>
+              <b>Talk to a real advisor</b>
+              <span>Only when you choose to, never a forced handoff.</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
