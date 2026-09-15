@@ -59,17 +59,36 @@
   .eco-start .note{ font-size:12px; color:var(--muted-2); }
   .eco-form{ margin-top:16px; border:1px solid var(--border); border-radius:var(--radius); background:#fff; padding:24px 26px; box-shadow:var(--shadow); position:relative; overflow:hidden; }
   .eco-form::before{ content:""; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--yellow) 0%, #FFE066 60%, transparent 100%); }
-  .eco-q{ margin-bottom:20px; }
-  .eco-q h5{ font-size:13.5px; margin-bottom:10px; }
-  .eco-opts{ display:flex; flex-wrap:wrap; gap:8px; }
-  .eco-opt{ border:1.5px solid var(--border); background:#fff; border-radius:999px; padding:9px 16px; font-family:inherit; font-size:12.5px; font-weight:700; color:var(--muted); cursor:pointer; transition:border-color .15s, background .15s, color .15s; }
+
+  /* ===== Step progress ===== */
+  .eco-progress{ display:flex; align-items:center; gap:14px; margin-bottom:24px; }
+  .eco-progress .steps{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--muted-2); flex-shrink:0; }
+  .eco-progress .bar{ flex:1; height:4px; background:var(--border); border-radius:2px; overflow:hidden; }
+  .eco-progress .bar-fill{ height:100%; background:var(--yellow); border-radius:2px; transition:width .25s ease; }
+
+  /* ===== One question per step ===== */
+  .eco-step{ display:none; }
+  .eco-step.active{ display:block; animation:eco-step-in .2s ease; }
+  @keyframes eco-step-in{ from{ opacity:0; transform:translateX(6px); } to{ opacity:1; transform:none; } }
+  .eco-q h5{ font-size:14.5px; margin-bottom:14px; }
+  .eco-opts{ display:flex; flex-direction:column; gap:8px; }
+  .eco-opt{ text-align:left; border:1.5px solid var(--border); background:#fff; border-radius:var(--radius-sm); padding:13px 16px; font-family:inherit; font-size:13px; font-weight:700; color:var(--muted); cursor:pointer; transition:border-color .15s, background .15s, color .15s; }
   .eco-opt:hover{ border-color:var(--yellow); color:var(--ink); }
   .eco-opt.sel{ border-color:var(--yellow); background:var(--yellow-tint); color:var(--ink); }
-  .eco-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0 18px; padding-top:20px; border-top:1px solid var(--border); }
+
+  .eco-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
   .eco-field label{ font-size:12px; font-weight:700; display:block; margin-bottom:6px; }
   .eco-field input{ width:100%; padding:11px 13px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-size:13.5px; font-family:inherit; background:var(--surface); outline:none; }
   .eco-field input:focus{ border-color:var(--yellow); background:#fff; }
-  .eco-fine{ grid-column:1 / -1; font-size:11.5px; color:var(--muted); line-height:1.55; }
+  .eco-fine{ grid-column:1 / -1; font-size:11.5px; color:var(--muted); line-height:1.55; margin-top:4px; }
+
+  .eco-nav{ display:flex; gap:10px; margin-top:22px; padding-top:20px; border-top:1px solid var(--border); }
+  .eco-nav .eco-back{ flex-shrink:0; }
+  .eco-nav .eco-next{ flex:1; }
+  /* .btn sets display:inline-flex unconditionally, which as an author rule
+     beats the browser's own [hidden]{display:none}, so these need their
+     own higher-specificity override or a hidden nav button stays visible. */
+  .eco-nav .eco-back[hidden], .eco-nav .eco-next[hidden]{ display:none; }
 
   .eco-result{ margin-top:16px; border-radius:var(--radius); background:var(--ink); color:#fff; padding:26px 28px; position:relative; overflow:hidden; }
   .eco-result::before{ content:""; position:absolute; top:-120px; right:-90px; width:360px; height:360px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); pointer-events:none; }
@@ -619,23 +638,29 @@
     var form = document.createElement('div');
     form.className = 'eco-form';
     form.hidden = true;
-    var html = '';
+    var totalSteps = cfg.questions.length + 1;
+    var contactStep = cfg.questions.length;
+
+    var html = '<div class="eco-progress"><span class="steps" data-steps-label>Step 1 of ' + totalSteps + '</span><div class="bar"><div class="bar-fill" data-bar-fill style="width:' + Math.round(100 / totalSteps) + '%"></div></div></div>';
+
     for (var i = 0; i < cfg.questions.length; i++){
       var q = cfg.questions[i];
-      html += '<div class="eco-q" data-q="' + q.id + '"><h5>' + esc(q.q) + '</h5><div class="eco-opts">';
+      html += '<div class="eco-step' + (i === 0 ? ' active' : '') + '" data-step="' + i + '"><div class="eco-q" data-q="' + q.id + '"><h5>' + esc(q.q) + '</h5><div class="eco-opts">';
       for (var j = 0; j < q.opts.length; j++){
         html += '<button type="button" class="eco-opt" data-val="' + q.opts[j][0] + '">' + esc(q.opts[j][1]) + '</button>';
       }
-      html += '</div></div>';
+      html += '</div></div></div>';
     }
-    html += '<div class="eco-grid">' +
+
+    html += '<div class="eco-step" data-step="' + contactStep + '"><div class="eco-grid">' +
       '<div class="eco-field"><label>Full name</label><input type="text" data-f="name" placeholder="Thabo Nkosi"></div>' +
       '<div class="eco-field"><label>Business name</label><input type="text" data-f="biz" placeholder="Nkosi Trading CC"></div>' +
       '<div class="eco-field"><label>eMail address</label><input type="email" data-f="email" placeholder="thabo@nkositrading.co.za"></div>' +
       '<div class="eco-field"><label>Contact number</label><input type="tel" data-f="phone" placeholder="082 000 0000"></div>' +
       '<p class="eco-fine">MTN Business uses these details to progress this application and contact you about it. Nothing is charged and no account is created.</p>' +
-      '</div>' +
-      '<button type="button" class="btn btn-primary btn-block eco-submit" disabled>Answer every question to continue</button>';
+      '</div></div>';
+
+    html += '<div class="eco-nav"><button type="button" class="btn btn-outline btn-sm eco-back" hidden>Back</button><button type="button" class="btn btn-primary eco-next" disabled hidden>Next</button></div>';
     form.innerHTML = html;
     block.appendChild(form);
 
@@ -644,18 +669,37 @@
     result.hidden = true;
     block.appendChild(result);
 
-    var submit = form.querySelector('.eco-submit');
+    var step = 0;
+    var stepsLabel = form.querySelector('[data-steps-label]');
+    var barFill = form.querySelector('[data-bar-fill]');
+    var backBtn = form.querySelector('.eco-back');
+    var nextBtn = form.querySelector('.eco-next');
+    var stepEls = form.querySelectorAll('.eco-step');
 
-    function refresh(){
-      var done = true;
-      for (var i = 0; i < cfg.questions.length; i++) if (!answers[cfg.questions[i].id]) done = false;
+    function stepValid(n){
+      if (n < cfg.questions.length) return !!answers[cfg.questions[n].id];
       var fields = form.querySelectorAll('[data-f]');
-      for (var k = 0; k < fields.length; k++) if (!fields[k].value.trim()) done = false;
+      for (var k = 0; k < fields.length; k++) if (!fields[k].value.trim()) return false;
       var mail = form.querySelector('[data-f="email"]').value.trim();
-      if (mail.indexOf('@') < 1 || mail.indexOf('.') < 0) done = false;
-      submit.disabled = !done;
-      submit.textContent = done ? cfg.cta : 'Answer every question to continue';
+      return mail.indexOf('@') > 0 && mail.indexOf('.') > 0;
     }
+
+    function goToStep(n){
+      step = n;
+      for (var i = 0; i < stepEls.length; i++){
+        stepEls[i].classList.toggle('active', parseInt(stepEls[i].getAttribute('data-step'), 10) === n);
+      }
+      stepsLabel.textContent = 'Step ' + (n + 1) + ' of ' + totalSteps;
+      barFill.style.width = Math.round(((n + 1) / totalSteps) * 100) + '%';
+      backBtn.hidden = (n === 0);
+      // Question steps auto-advance on selection; only the last, multi-field
+      // step needs an explicit button, doubling as the final submit.
+      nextBtn.hidden = (n < contactStep);
+      nextBtn.disabled = !stepValid(n);
+      nextBtn.textContent = (n === contactStep) ? cfg.cta : 'Next';
+    }
+
+    backBtn.addEventListener('click', function(){ if (step > 0) goToStep(step - 1); });
 
     var opts = form.querySelectorAll('.eco-opt');
     for (var o = 0; o < opts.length; o++){
@@ -665,19 +709,23 @@
         for (var s = 0; s < sibs.length; s++) sibs[s].classList.remove('sel');
         this.classList.add('sel');
         answers[group.parentNode.getAttribute('data-q')] = this.getAttribute('data-val');
-        refresh();
+        setTimeout(function(){ goToStep(step + 1); }, 180);
       });
     }
     var inputs = form.querySelectorAll('[data-f]');
-    for (var f = 0; f < inputs.length; f++) inputs[f].addEventListener('input', refresh);
+    for (var f = 0; f < inputs.length; f++){
+      inputs[f].addEventListener('input', function(){ nextBtn.disabled = !stepValid(step); });
+    }
 
     strip.querySelector('button').addEventListener('click', function(){
       form.hidden = !form.hidden;
+      if (!form.hidden) goToStep(0);
       this.innerHTML = (form.hidden ? esc(cfg.cta) + ' ' + ARROW : 'Close');
     });
 
-    submit.addEventListener('click', function(){
-      if (submit.disabled) return;
+    nextBtn.addEventListener('click', function(){
+      if (nextBtn.disabled) return;
+      if (step < contactStep){ goToStep(step + 1); return; }
       var appRef = ref('MTN-A-'), leadRef = ref('MTN-L-');
       // Two rules can land on the same partner, so keep the first mention only.
       var raw = cfg.match(answers), seen = {}, matched = [];

@@ -261,8 +261,8 @@
 
             <div class="qc-cal" id="qc-cal">
               <div class="qc-adv">
-                <span class="av">LM</span>
-                <div><b>Lerato Mokoena</b><span>MTN Business product and sales advisor, SME desk</span></div>
+                <span class="av"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></span>
+                <div><b>MTN Business SME Desk</b><span>Product and sales advisors</span></div>
               </div>
               <h5>Pick a day</h5>
               <div class="qc-days" id="qc-days">
@@ -295,7 +295,7 @@
           <!-- booked -->
           <div class="qc-res" id="qc-booked">
             <span class="qc-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Consultation booked</span>
-            <h2 style="font-size:22px; margin:8px 0 8px;">You are booked in with Lerato</h2>
+            <h2 style="font-size:22px; margin:8px 0 8px;">You are booked in</h2>
             <p style="font-size:13.5px; color:var(--muted); margin-bottom:20px;" id="qc-booked-when">Your advisor will call you at the time you selected.</p>
 
             <div class="qc-lead">
@@ -305,7 +305,7 @@
               <div class="qc-lrow"><span>Readiness score</span><b id="qc-lead-score">0 of 100</b></div>
               <div class="qc-lrow"><span>Lead priority</span><b id="qc-lead-grade">Standard</b></div>
               <div class="qc-lrow"><span>Funding applications</span><b id="qc-lead-apps">None started</b></div>
-              <div class="qc-lrow"><span>Assigned owner</span><b>Lerato Mokoena, SME desk</b></div>
+              <div class="qc-lrow"><span>Assigned owner</span><b>SME desk</b></div>
               <div class="qc-lrow"><span>Source</span><b>SMEHub SME Advisor, V2 assessment</b></div>
               <div class="qc-lrow"><span>Status</span><b>Consultation scheduled</b></div>
             </div>
@@ -720,8 +720,8 @@
     var p = priority(), band, label, blurb, nba, showCal;
     if (p >= 60) {
       band = 'hot'; label = 'Priority lead';
-      blurb = 'Sizeable gaps, a team big enough to matter and records good enough to transact. This goes to Lerato ahead of the queue with the plan attached.';
-      nba = 'Book fifteen minutes with Lerato. She will have your scorecard and line items open, and can confirm coverage at your address.';
+      blurb = 'Sizeable gaps, a team big enough to matter and records good enough to transact. This goes to the SME desk ahead of the queue with the plan attached.';
+      nba = 'Book fifteen minutes with the SME desk. They will have your scorecard and line items open, and can confirm coverage at your address.';
       showCal = true;
     } else if (p >= 35) {
       band = 'warm'; label = 'Standard lead';
@@ -867,7 +867,7 @@
     if (this.disabled) return;
     var leadRef = 'MTN-L-' + Math.floor(100000 + Math.random() * 900000);
     $('qc-res').classList.remove('show');
-    $('qc-booked-when').textContent = 'Lerato will call you on ' + pickedDay + ' at ' + pickedTime +
+    $('qc-booked-when').textContent = 'The SME desk will call you on ' + pickedDay + ' at ' + pickedTime +
       '. Quote ' + quoteRef + ' and your scorecard are attached to the booking.';
     $('qc-lead-ref').textContent = leadRef;
     $('qc-lead-quote').textContent = quoteRef;

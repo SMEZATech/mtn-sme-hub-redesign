@@ -230,8 +230,8 @@
 
             <div class="qc-cal" id="qc-cal">
               <div class="qc-adv">
-                <span class="av">LM</span>
-                <div><b>Lerato Mokoena</b><span>MTN Business product and sales advisor, SME desk</span></div>
+                <span class="av"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></span>
+                <div><b>MTN Business SME Desk</b><span>Product and sales advisors</span></div>
               </div>
               <h5>Pick a day</h5>
               <div class="qc-days" id="qc-days">
@@ -264,7 +264,7 @@
           <!-- Booked -->
           <div class="qc-res" id="qc-booked">
             <span class="qc-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Consultation booked</span>
-            <h2 style="font-size:22px; margin:8px 0 8px;">You are booked in with Lerato</h2>
+            <h2 style="font-size:22px; margin:8px 0 8px;">You are booked in</h2>
             <p style="font-size:13.5px; color:var(--muted); margin-bottom:20px;" id="qc-booked-when">Your advisor will call you at the time you selected.</p>
 
             <div class="qc-lead">
@@ -272,7 +272,7 @@
               <div class="qc-lrow"><span>Lead reference</span><b class="mono" id="qc-lead-ref">MTN-L-000000</b></div>
               <div class="qc-lrow"><span>Quote attached</span><b class="mono" id="qc-lead-quote">MTN-Q-000000</b></div>
               <div class="qc-lrow"><span>Qualification</span><b id="qc-lead-grade">Sales ready</b></div>
-              <div class="qc-lrow"><span>Assigned owner</span><b>Lerato Mokoena, SME desk</b></div>
+              <div class="qc-lrow"><span>Assigned owner</span><b>SME desk</b></div>
               <div class="qc-lrow"><span>Source</span><b>SMEHub SME Advisor, V1 guided</b></div>
               <div class="qc-lrow"><span>Status</span><b>Consultation scheduled</b></div>
             </div>
@@ -656,13 +656,13 @@
     var band, label, blurb, nba, showCal;
     if (score >= 70) {
       band = 'hot'; label = 'Sales ready';
-      blurb = 'Clear need, a confirmed timeline and sign-off in the room. This goes to Lerato as a priority lead with the quote attached.';
-      nba = 'Book fifteen minutes with Lerato to confirm coverage and firm up this quote. She will have your line items open when she calls.';
+      blurb = 'Clear need, a confirmed timeline and sign-off in the room. This goes to the SME desk as a priority lead with the quote attached.';
+      nba = 'Book fifteen minutes with the SME desk to confirm coverage and firm up this quote. They will have your line items open when they call.';
       showCal = true;
     } else if (score >= 45) {
       band = 'warm'; label = 'Worth a call';
-      blurb = 'The need is real but the timing or the sign-off still has to settle. Lerato will use the call to pin both down before quoting firm.';
-      nba = 'Book a short call so Lerato can confirm scope and who needs to approve it, then reissue this quote as firm pricing.';
+      blurb = 'The need is real but the timing or the sign-off still has to settle. The SME desk will use the call to pin both down before quoting firm.';
+      nba = 'Book a short call so the SME desk can confirm scope and who needs to approve it, then reissue this quote as firm pricing.';
       showCal = true;
     } else {
       band = 'cool'; label = 'Nurture';
@@ -718,7 +718,7 @@
     });
   });
 
-  /* ---------- scheduling into Lerato's diary ---------- */
+  /* ---------- scheduling the callback ---------- */
   function refreshConfirm(){
     var btn = $('qc-confirm');
     if (pickedDay && pickedTime) {
@@ -749,7 +749,7 @@
     if (this.disabled) return;
     var leadRef = 'MTN-L-' + Math.floor(100000 + Math.random() * 900000);
     $('qc-res').classList.remove('show');
-    $('qc-booked-when').textContent = 'Lerato will call you on ' + pickedDay + ' at ' + pickedTime +
+    $('qc-booked-when').textContent = 'The SME desk will call you on ' + pickedDay + ' at ' + pickedTime +
       '. Quote ' + quoteRef + ' is attached to the booking.';
     $('qc-lead-ref').textContent = leadRef;
     $('qc-lead-quote').textContent = quoteRef;

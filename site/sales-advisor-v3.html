@@ -273,8 +273,8 @@
 
         <div class="cal" id="rail-cal" style="display:none;">
           <div class="adviser">
-            <div class="av">LM</div>
-            <div><b>Lerato Mokoena</b><span>Product &amp; sales advisor</span></div>
+            <div class="av"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></div>
+            <div><b>MTN Business SME Desk</b><span>Product &amp; sales advisors</span></div>
           </div>
           <h5>Pick a day</h5>
           <div class="cal-days" id="cal-days">
@@ -299,7 +299,7 @@
           <div class="lead-row"><span>Lead reference</span><b class="mono" id="lead-ref">MTN-L-000000</b></div>
           <div class="lead-row"><span>Quote attached</span><b class="mono" id="lead-quote">MTN-Q-000000</b></div>
           <div class="lead-row"><span>Items on quote</span><b id="lead-items">0</b></div>
-          <div class="lead-row"><span>Assigned owner</span><b>Lerato Mokoena</b></div>
+          <div class="lead-row"><span>Assigned owner</span><b>SME desk</b></div>
           <div class="lead-row"><span>Source</span><b>Solutions browser</b></div>
         </div>
 
@@ -488,7 +488,7 @@
     document.getElementById('lead-items').textContent = cart.length;
     document.getElementById('rail-lead').style.display = 'block';
     document.getElementById('rail-cal').style.display  = 'none';
-    track('Booked ' + day + ' at ' + time + ' with Lerato, lead ' + leadRef);
+    track('Booked ' + day + ' at ' + time + ', lead ' + leadRef);
   });
 
   // --- Journey recovery ---------------------------------------------------
