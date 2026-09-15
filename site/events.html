@@ -37,6 +37,10 @@
   .past-row .bd{ flex:1; min-width:0; }
   .past-row h5{ font-size:14px; margin-bottom:3px; }
   .past-row .meta{ font-size:12px; color:var(--muted-2); }
+  .past-row .src{ display:inline-block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--yellow-shade); background:var(--yellow-tint); padding:2px 8px; border-radius:5px; margin-left:8px; }
+
+  .source-note{ font-size:11.5px; color:var(--muted); background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-top:18px; line-height:1.6; }
+  .source-note a{ color:var(--ink); text-decoration:underline; font-weight:600; }
 
   @media(max-width:1100px){ .event-hero{ grid-template-columns:1fr; } .event-hero .img{ min-height:200px; } .event-grid{ grid-template-columns:repeat(2,1fr); } }
   @media(max-width:640px){ .event-grid{ grid-template-columns:1fr; } .event-hero .txt{ padding:26px 22px; } }
@@ -126,19 +130,19 @@
 <section style="padding-top:44px;">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow-label">Next up</p><h2 class="sec-title" style="font-size:22px;">Don't miss this one</h2></div>
+      <div><p class="eyebrow-label">Just happened</p><h2 class="sec-title" style="font-size:22px;">The latest from the ecosystem</h2></div>
     </div>
     <div class="event-hero">
       <div class="img" style="background-image:radial-gradient(circle at 25% 20%, rgba(255,197,2,.35), transparent 55%), linear-gradient(140deg,#212529 0%,#3A4048 60%,#5C6570 100%)"></div>
       <div class="txt">
-        <div class="date-badge"><b>10</b><span>Sep</span></div>
-        <h2>Funding Your Business in 2026</h2>
-        <p>A live session on grants, loans, and MTN Business support options, with time for audience Q&amp;A.</p>
+        <div class="date-badge"><b>2</b><span>Sep</span></div>
+        <h2>The Business Show :: Africa 2026</h2>
+        <p>South Africa's entrepreneurs, business owners and decision-makers gathered at Sandton Convention Centre for two days of exhibitors, talks and networking dedicated to helping businesses connect, grow and succeed.</p>
         <div class="meta-row">
-          <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 10:00 to 11:30 SAST</div>
-          <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.6 7-12a7 7 0 10-14 0c0 5.4 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg> In Person, MTN Innovation Centre, Fairland</div>
+          <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 2 to 3 September 2026</div>
+          <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.6 7-12a7 7 0 10-14 0c0 5.4 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg> Sandton Convention Centre, Johannesburg</div>
         </div>
-        <a class="btn btn-primary btn-lg" href="event.html">Register Free</a>
+        <a class="btn btn-primary btn-lg" href="event.html">See the Recap</a>
       </div>
     </div>
   </div>
@@ -147,41 +151,40 @@
 <section style="background:var(--surface);">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow-label">Past events</p><h2 class="sec-title" style="font-size:22px;">Recent recaps</h2></div>
+      <div><p class="eyebrow-label">Past events</p><h2 class="sec-title" style="font-size:22px;">MTN and MTN Business, in the SME calendar</h2></div>
     </div>
     <div class="panel" style="background:#fff;">
-      <div class="past-row">
+      <div class="past-row" data-page="1">
         <div class="th" style="background-image:radial-gradient(circle at 70% 25%, rgba(255,255,255,.5), transparent 58%), linear-gradient(135deg,#FFE066 0%,#CC9E00 100%)"></div>
-        <div class="bd"><h5>Ecommerce Trends Going Into 2027</h5><div class="meta">In Person · 26 Aug 2026 · 204 attended</div></div>
+        <div class="bd"><h5>ITWeb Security Summit CISO Banquet 2026 <span class="src">MTN Business title partner</span></h5><div class="meta">The Forum, Hyde Park &middot; 25 June 2026 &middot; MTN Business is title sponsor of the ITWeb Brainstorm South Africa CISO Survey</div></div>
         <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
       </div>
-      <div class="past-row">
+      <div class="past-row" data-page="1">
         <div class="th" style="background-image:radial-gradient(circle at 35% 22%, rgba(255,255,255,.42), transparent 55%), linear-gradient(150deg,#E7E9EC 0%,#FFF3C4 100%)"></div>
-        <div class="bd"><h5>MTN SME Excellence Awards 2026</h5><div class="meta">Awards · 12 Aug 2026 · 340 attended</div></div>
+        <div class="bd"><h5>SME Funding Summit 2026 <span class="src">Hosted by SME South Africa</span></h5><div class="meta">Focus Rooms, Modderfontein, Sandton &middot; 18 June 2026 &middot; Every seat for the 2026 Summit was claimed</div></div>
         <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
       </div>
-      <div class="past-row">
+      <div class="past-row" data-page="1">
         <div class="th" style="background-image:radial-gradient(circle at 70% 25%, rgba(255,255,255,.5), transparent 58%), linear-gradient(135deg,#FFE066 0%,#CC9E00 100%)"></div>
-        <div class="bd"><h5>How to Win Your First Government Tender</h5><div class="meta">In Person · 14 Aug 2026 · 312 attended</div></div>
+        <div class="bd"><h5>MTN Small Business Awards 2026 <span class="src">With 702 &amp; Primedia</span></h5><div class="meta">Primedia Place, Johannesburg &middot; 23 April 2026 &middot; Winner took R25,000 cash and a R200,000 advertising package</div></div>
         <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
       </div>
-      <div class="past-row">
+      <div class="past-row" data-page="2">
         <div class="th" style="background-image:radial-gradient(circle at 68% 30%, rgba(255,255,255,.6), transparent 60%), linear-gradient(135deg,#FFFAE6 0%,#FFE066 100%)"></div>
-        <div class="bd"><h5>Understanding Working Capital &amp; Funding</h5><div class="meta">Workshop · 5 Aug 2026 · 88 attended</div></div>
+        <div class="bd"><h5>MTN Business Celebrates SME Excellence: Kevinot Farming <span class="src">SME JumpStarter</span></h5><div class="meta">Matatiele, Eastern Cape &middot; December 2023 &middot; R100,000 cash prize plus a year of Sage accounting software</div></div>
         <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
       </div>
-      <div class="past-row">
+      <div class="past-row" data-page="2" style="border-bottom:none;">
         <div class="th" style="background-image:radial-gradient(circle at 72% 28%, rgba(255,255,255,.55), transparent 58%), linear-gradient(135deg,#FFF3C4 0%,#FFC502 100%)"></div>
-        <div class="bd"><h5>MTN SME JumpStarter: Gauteng Pitch Day</h5><div class="meta">Roadshow · 2 Aug 2026 · 180 attended</div></div>
-        <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
-      </div>
-      <div class="past-row" style="border-bottom:none;">
-        <div class="th" style="background-image:radial-gradient(circle at 30% 25%, rgba(255,255,255,.5), transparent 55%), linear-gradient(140deg,#F1F3F4 0%,#C9CED4 100%)"></div>
-        <div class="bd"><h5>Cash Flow Clinic: Ask the Experts</h5><div class="meta">Workshop · 19 Jul 2026 · 96 attended</div></div>
+        <div class="bd"><h5>MTN SME JumpStarter Campaign Launch <span class="src">MTN SME Day</span></h5><div class="meta">May 2023 &middot; The competition that would go on to name Kevinot Farming its 2023 winner</div></div>
         <a class="btn btn-outline btn-sm" href="event-replay.html">View Recap</a>
       </div>
     </div>
-    <p class="sample-note">Event listings on this page are illustrative sample content. MTN runs SME events occasionally, not on a packed calendar, so this page favours a recap archive over a long upcoming list.</p>
+    <div class="pagination" id="events-pagination">
+      <a href="#" data-page="1" class="active">1</a>
+      <a href="#" data-page="2">2</a>
+    </div>
+    <p class="source-note">Dates, venues and prize details on this page are drawn from public reporting on MTN Business, MTN Small Business Awards, the ITWeb Security Summit and the SME South Africa Funding Summit. MTN does not run SME events on a packed calendar, so this archive favours real, verifiable recaps over an invented upcoming schedule.</p>
   </div>
 </section>
 
@@ -231,5 +234,28 @@
 <script src="../mockup-status.js"></script>
 <script src="../gate-links.js"></script>
 <script src="assets/main.js"></script>
+<script>
+(function(){
+  var pager = document.getElementById('events-pagination');
+  if (!pager) return;
+  var rows = document.querySelectorAll('.past-row[data-page]');
+  var links = pager.querySelectorAll('a[data-page]');
+
+  function showPage(n){
+    rows.forEach(function(row){ row.style.display = (row.getAttribute('data-page') === n) ? '' : 'none'; });
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-page') === n); });
+  }
+
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      showPage(a.getAttribute('data-page'));
+      document.querySelector('.panel').scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  });
+
+  showPage('1');
+})();
+</script>
 </body>
 </html>

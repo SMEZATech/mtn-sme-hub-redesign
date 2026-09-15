@@ -6,23 +6,53 @@
 <title>Partner Ecosystem | MTN SME Hub</title>
 <link rel="stylesheet" href="assets/styles.css" />
 <style>
-  .eco-block{ margin-bottom:52px; }
+  /* ===== Intro hero ===== */
+  .pe-hero{ background:var(--ink); color:#fff; padding:52px 0 0; position:relative; overflow:hidden; }
+  .pe-hero::before{ content:""; position:absolute; top:-160px; right:-100px; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); }
+  .pe-hero::after{ content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px); background-size:22px 22px; opacity:.5; pointer-events:none; }
+  .pe-hero .wrap{ position:relative; z-index:1; }
+  .pe-hero .eyebrow-label{ color:var(--yellow); }
+  .pe-hero .eyebrow-label::before{ background:var(--yellow); }
+  .pe-hero h1{ color:#fff; font-size:clamp(28px,3.8vw,40px); margin:10px 0 14px; max-width:16ch; }
+  .pe-hero p{ color:rgba(255,255,255,.65); font-size:15px; max-width:58ch; margin-bottom:30px; }
+  .pe-stats{ display:flex; gap:0; border-top:1px solid rgba(255,255,255,.12); }
+  .pe-stats div{ flex:1; padding:20px 4px 22px; border-right:1px solid rgba(255,255,255,.12); }
+  .pe-stats div:last-child{ border-right:none; }
+  .pe-stats b{ display:block; color:#fff; font-size:26px; margin-bottom:2px; }
+  .pe-stats span{ font-size:11.5px; color:rgba(255,255,255,.5); }
+
+  /* ===== Sticky pillar quick-nav ===== */
+  .pe-nav{ position:sticky; top:73px; z-index:150; background:#fff; border-bottom:1px solid var(--border); box-shadow:0 1px 0 rgba(0,0,0,.02); }
+  .pe-nav .row{ display:flex; gap:6px; overflow-x:auto; padding:12px 0; scrollbar-width:none; }
+  .pe-nav .row::-webkit-scrollbar{ display:none; }
+  .pe-nav a{ flex-shrink:0; font-size:12.5px; font-weight:700; color:var(--muted); padding:8px 15px; border-radius:999px; white-space:nowrap; border:1.5px solid var(--border); }
+  .pe-nav a:hover{ border-color:var(--ink); color:var(--ink); }
+  .pe-nav a.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  /* ===== Ecosystem block ===== */
+  .eco-block{ margin-bottom:56px; scroll-margin-top:130px; }
   .eco-block:last-child{ margin-bottom:0; }
   .eco-head{ display:flex; gap:16px; align-items:flex-start; margin-bottom:22px; }
   .eco-head .ic{ width:48px; height:48px; border-radius:12px; background:var(--ink); color:var(--yellow); display:grid; place-items:center; flex-shrink:0; }
   .eco-head h2{ font-size:21px; margin-bottom:6px; }
   .eco-head p{ font-size:13.5px; color:var(--muted); max-width:640px; }
-  .eco-body{ display:grid; grid-template-columns:1.1fr 1.4fr; gap:0; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:#fff; }
-  .eco-partners{ padding:22px 24px; border-right:1px solid var(--border); }
-  .eco-partners h5{ font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted-2); margin-bottom:12px; }
-  .partner-pills{ display:flex; flex-wrap:wrap; gap:8px; }
-  .partner-pills span{ font-size:12.5px; font-weight:700; background:var(--surface); border:1px solid var(--border); padding:6px 12px; border-radius:999px; }
-  .eco-journey{ padding:22px 24px; background:var(--yellow-tint); }
+
+  .partner-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:16px; }
+  .partner-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:18px; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s; }
+  .partner-card:hover{ box-shadow:var(--shadow-hover); transform:translateY(-2px); }
+  .partner-card .mark{ width:40px; height:40px; border-radius:9px; background:var(--surface); border:1px solid var(--border); display:grid; place-items:center; font-size:10.5px; font-weight:800; color:var(--muted); margin-bottom:13px; letter-spacing:-.02em; }
+  .partner-card h4{ font-size:13.5px; margin-bottom:4px; line-height:1.3; }
+  .partner-card .role{ display:block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--yellow-shade); margin-bottom:8px; }
+  .partner-card p{ font-size:11.5px; color:var(--muted); line-height:1.55; }
+
+  .eco-journey{ padding:18px 22px; background:var(--yellow-tint); border-radius:var(--radius-sm); }
   .eco-journey h5{ font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow-shade); margin-bottom:12px; }
   .journey-steps{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
   .journey-steps span{ font-size:12.5px; font-weight:700; color:var(--ink); }
   .journey-steps .arrow{ color:var(--yellow-shade); font-weight:400; }
-  @media(max-width:900px){ .eco-body{ grid-template-columns:1fr; } .eco-partners{ border-right:none; border-bottom:1px solid var(--border); } }
+
+  @media(max-width:900px){ .partner-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:640px){ .pe-stats{ flex-wrap:wrap; } .pe-stats div{ flex:1 1 50%; border-right:none; border-bottom:1px solid rgba(255,255,255,.12); } .partner-grid{ grid-template-columns:1fr; } }
 
   /* ---- Starting the journey on the Hub ---- */
   .eco-start{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:14px; }
@@ -144,13 +174,30 @@
   </div>
 </div>
 
-<div class="page-head">
+<section class="pe-hero">
   <div class="wrap">
-    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="about.html">About</a><span class="sep">/</span><span class="current">Partners and Stakeholders</span></div>
+    <p class="eyebrow-label">Ecosystem</p>
     <h1>Partners and Stakeholders</h1>
-    <p>MTN SME Hub sits inside a wider support network. These are the funders, agencies, and institutions whose programmes the advice on this hub can point SMEs toward.</p>
+    <p>MTN SME Hub sits inside a wider support network. These are the funders, agencies, platforms and institutions whose programmes the advice on this hub can point SMEs toward, and every journey below starts and finishes without leaving the Hub.</p>
+    <div class="pe-stats">
+      <div><b>5</b><span>Ecosystem pillars</span></div>
+      <div><b>20</b><span>Partner organisations</span></div>
+      <div><b>0</b><span>Sites you get redirected to</span></div>
+    </div>
   </div>
-</div>
+</section>
+
+<nav class="pe-nav">
+  <div class="wrap">
+    <div class="row">
+      <a href="#fund">Fund &amp; Bank</a>
+      <a href="#operate">Operate &amp; Digitise</a>
+      <a href="#advise">Advise &amp; Develop</a>
+      <a href="#markets">Access Markets</a>
+      <a href="#learn">Learn &amp; Inspire</a>
+    </div>
+  </div>
+</nav>
 
 <section>
   <div class="wrap">
@@ -160,7 +207,7 @@
       <div id="eco-tray-list"></div>
     </div>
 
-    <div class="eco-block" data-role="fund">
+    <div class="eco-block" data-role="fund" id="fund">
       <div class="eco-head">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg></div>
         <div><h2>Fund &amp; Bank</h2><p>Browse funding options, check eligibility, apply or refer, and track the next step, all from inside the hub.</p></div>
@@ -191,14 +238,61 @@
           <p>Funding for industrial and productive-sector SMEs across South Africa.</p>
         </div>
       </div>
+      <div class="eco-journey">
+        <h5>SMEHub journey</h5>
+        <div class="journey-steps"><span>Check eligibility</span><span class="arrow">&rarr;</span><span>Apply through the Hub</span><span class="arrow">&rarr;</span><span>Track your reference</span><span class="arrow">&rarr;</span><span>Funds disbursed</span></div>
+      </div>
     </div>
 
-    <div class="eco-block" data-role="operate">
+    <div class="eco-block" data-role="operate" id="operate">
       <div class="eco-head">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16M10 4v16"/></svg></div>
         <div><h2>Operate &amp; Digitise</h2><p>Subscription-based tools an SME runs the business on, browsed and bought without leaving the hub.</p></div>
       </div>
       <div class="partner-grid">
+        <div class="partner-card">
+          <div class="mark">Shopify</div>
+          <h4>Shopify</h4>
+          <div class="role">Ecommerce Partner</div>
+          <p>Online store with integrated payments and shipping, live in a day.</p>
+        </div>
+        <div class="partner-card">
+          <div class="mark">Sage</div>
+          <h4>Sage</h4>
+          <div class="role">Finance &amp; Payroll Partner</div>
+          <p>Accounting, invoicing and payroll built for South African compliance.</p>
+        </div>
+        <div class="partner-card">
+          <div class="mark">MS</div>
+          <h4>Microsoft 365</h4>
+          <div class="role">Productivity Partner</div>
+          <p>Mail, files, Teams and AI tools bundled for small teams.</p>
+        </div>
+        <div class="partner-card">
+          <div class="mark">Yoco</div>
+          <h4>Yoco</h4>
+          <div class="role">Payments Partner</div>
+          <p>Card machines and online payments built for South African SMEs.</p>
+        </div>
+      </div>
+      <div class="eco-journey">
+        <h5>SMEHub journey</h5>
+        <div class="journey-steps"><span>Choose your tools</span><span class="arrow">&rarr;</span><span>Get trial access</span><span class="arrow">&rarr;</span><span>Set up in a week</span><span class="arrow">&rarr;</span><span>Run your business</span></div>
+      </div>
+    </div>
+
+    <div class="eco-block" data-role="advise" id="advise">
+      <div class="eco-head">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div>
+        <div><h2>Advise &amp; Develop</h2><p>Independent guidance and structured development support for founders who need more than an article.</p></div>
+      </div>
+      <div class="partner-grid">
+        <div class="partner-card">
+          <div class="mark">MTN</div>
+          <h4>MTN Business</h4>
+          <div class="role">Connectivity and Security</div>
+          <p>Mobile, data, and Managed Security Solutions for South African SMEs.</p>
+        </div>
         <div class="partner-card">
           <div class="mark">SEDA</div>
           <h4>Small Enterprise Development Agency</h4>
@@ -217,65 +311,84 @@
           <div class="role">Government Department</div>
           <p>National policy and support programmes for South African SMMEs.</p>
         </div>
-        <div class="partner-card">
-          <div class="mark">GEP</div>
-          <h4>Gauteng Enterprise Propeller</h4>
-          <div class="role">Provincial Agency</div>
-          <p>Provincial funding and business support for Gauteng-based SMEs.</p>
-        </div>
+      </div>
+      <div class="eco-journey">
+        <h5>SMEHub journey</h5>
+        <div class="journey-steps"><span>Book an adviser</span><span class="arrow">&rarr;</span><span>Attend virtual consultations</span><span class="arrow">&rarr;</span><span>Access playbooks</span><span class="arrow">&rarr;</span><span>Complete business assessments</span></div>
       </div>
     </div>
 
-    <div class="eco-block" data-role="advise">
-      <div class="eco-head">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div>
-        <div><h2>Advise &amp; Develop</h2><p>Independent guidance and structured development support for founders who need more than an article.</p></div>
-      </div>
-      <div class="partner-grid">
-        <div class="partner-card">
-          <div class="mark">MTN</div>
-          <h4>MTN Business</h4>
-          <div class="role">Connectivity and Security</div>
-          <p>Mobile, data, and Managed Security Solutions for South African SMEs.</p>
-        </div>
-        <div class="eco-journey">
-          <h5>SMEHub journey</h5>
-          <div class="journey-steps"><span>Book an adviser</span><span class="arrow">&rarr;</span><span>Attend virtual consultations</span><span class="arrow">&rarr;</span><span>Access playbooks</span><span class="arrow">&rarr;</span><span>Complete business assessments</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="eco-block" data-role="markets">
+    <div class="eco-block" data-role="markets" id="markets">
       <div class="eco-head">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z"/></svg></div>
         <div><h2>Access Markets</h2><p>Routes into procurement and enterprise supply chains that most SMEs would otherwise never see.</p></div>
       </div>
-      <div class="eco-body">
-        <div class="eco-partners">
-          <h5>Potential partners</h5>
-          <div class="partner-pills"><span>MTN Procurement</span><span>Corporate ESD programmes</span><span>Public procurement portals</span><span>Ayoba</span></div>
+      <div class="partner-grid">
+        <div class="partner-card">
+          <div class="mark">MTN</div>
+          <h4>MTN Procurement</h4>
+          <div class="role">Enterprise Supply Chain</div>
+          <p>Supplier opportunities inside MTN's own procurement pipeline.</p>
         </div>
-        <div class="eco-journey">
-          <h5>SMEHub journey</h5>
-          <div class="journey-steps"><span>View opportunities</span><span class="arrow">&rarr;</span><span>Improve supplier readiness</span><span class="arrow">&rarr;</span><span>Create a storefront</span><span class="arrow">&rarr;</span><span>Reach customers</span></div>
+        <div class="partner-card">
+          <div class="mark">ESD</div>
+          <h4>Corporate ESD Programmes</h4>
+          <div class="role">Enterprise Development</div>
+          <p>Enterprise and supplier development placements with major corporates.</p>
         </div>
+        <div class="partner-card">
+          <div class="mark">CSD</div>
+          <h4>Public Procurement Portals</h4>
+          <div class="role">Government Tenders</div>
+          <p>Tenders matched to what you supply, from CSD-registered opportunities.</p>
+        </div>
+        <div class="partner-card">
+          <div class="mark">Ayoba</div>
+          <h4>Ayoba</h4>
+          <div class="role">Consumer Reach</div>
+          <p>Reach customers directly on MTN's own messaging platform.</p>
+        </div>
+      </div>
+      <div class="eco-journey">
+        <h5>SMEHub journey</h5>
+        <div class="journey-steps"><span>View opportunities</span><span class="arrow">&rarr;</span><span>Improve supplier readiness</span><span class="arrow">&rarr;</span><span>Create a storefront</span><span class="arrow">&rarr;</span><span>Reach customers</span></div>
       </div>
     </div>
 
-    <div class="eco-block" data-role="learn">
+    <div class="eco-block" data-role="learn" id="learn">
       <div class="eco-head">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
         <div><h2>Learn &amp; Inspire</h2><p>The content layer that keeps members coming back between funding rounds and purchases.</p></div>
       </div>
-      <div class="eco-body">
-        <div class="eco-partners">
-          <h5>Potential partners</h5>
-          <div class="partner-pills"><span>Microsoft Learn</span><span>LinkedIn Learning</span><span>Coursera</span><span>SME media &amp; founder networks</span></div>
+      <div class="partner-grid">
+        <div class="partner-card">
+          <div class="mark">MS</div>
+          <h4>Microsoft Learn</h4>
+          <div class="role">Digital Skills</div>
+          <p>Free, structured paths on Microsoft 365, cloud and AI basics.</p>
         </div>
-        <div class="eco-journey">
-          <h5>SMEHub journey</h5>
-          <div class="journey-steps"><span>Masterclasses</span><span class="arrow">&rarr;</span><span>Podcasts</span><span class="arrow">&rarr;</span><span>SME Spotlight</span><span class="arrow">&rarr;</span><span>Expert Q&amp;A</span></div>
+        <div class="partner-card">
+          <div class="mark">in</div>
+          <h4>LinkedIn Learning</h4>
+          <div class="role">Professional Skills</div>
+          <p>Short courses on selling, managing people and growing a team.</p>
         </div>
+        <div class="partner-card">
+          <div class="mark">C</div>
+          <h4>Coursera</h4>
+          <div class="role">Certified Learning</div>
+          <p>Small business finance and bookkeeping courses with certificates.</p>
+        </div>
+        <div class="partner-card">
+          <div class="mark">SME</div>
+          <h4>SME Media &amp; Founder Networks</h4>
+          <div class="role">Community</div>
+          <p>Podcasts, founder stories and expert Q&amp;A from the wider SME ecosystem.</p>
+        </div>
+      </div>
+      <div class="eco-journey">
+        <h5>SMEHub journey</h5>
+        <div class="journey-steps"><span>Masterclasses</span><span class="arrow">&rarr;</span><span>Podcasts</span><span class="arrow">&rarr;</span><span>SME Spotlight</span><span class="arrow">&rarr;</span><span>Expert Q&amp;A</span></div>
       </div>
     </div>
 
@@ -354,14 +467,14 @@
                   ['Nedbank','Overdraft and term lending'],
                   ['FNB','Business lending against signed off statements']];
         if (a.records === 'books')
-          return [['SEDFA','State small enterprise funding, no audit required'],
+          return [['sefa','State small enterprise funding, no audit required'],
                   ['IDC','Development finance for manufacturing and job creation'],
                   ['African Bank','Business overdraft on 12 months of statements']];
         if (a.records === 'informal')
-          return [['SEDFA','Funding with development support attached'],
+          return [['sefa','Funding with development support attached'],
                   ['NEF','National Empowerment Fund, black owned businesses']];
         return [['NSBC','Readiness programme to get your records fundable'],
-                ['SEDFA','Worth approaching once you have clean records']];
+                ['sefa','Worth approaching once you have clean records']];
       }
     },
     operate: {
@@ -597,6 +710,22 @@
 
   var blocks = document.querySelectorAll('.eco-block[data-role]');
   for (var b = 0; b < blocks.length; b++) buildBlock(blocks[b]);
+
+  // Sticky pillar nav: highlight whichever block is currently in view.
+  var navLinks = document.querySelectorAll('.pe-nav a');
+  if (navLinks.length && typeof IntersectionObserver === 'function'){
+    var byId = {};
+    navLinks.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(function(a){ a.classList.remove('active'); });
+        var link = byId[entry.target.id];
+        if (link) link.classList.add('active');
+      });
+    }, { rootMargin: '-140px 0px -70% 0px' });
+    blocks.forEach(function(block){ spy.observe(block); });
+  }
 })();
 </script>
 </body>
