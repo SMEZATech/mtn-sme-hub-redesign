@@ -9,7 +9,10 @@
   .db-hero{ background:var(--ink); color:#fff; padding:40px 0; position:relative; overflow:hidden; }
   .db-hero::before{ content:""; position:absolute; top:-100px; right:-60px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); }
   .db-hero .wrap{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
-  .db-hero .who{ display:flex; align-items:center; gap:16px; }
+  .db-hero .who{ display:flex; align-items:center; gap:16px; background:none; border:none; padding:6px 8px 6px 6px; margin-left:-8px; border-radius:999px; cursor:pointer; font-family:inherit; color:inherit; text-align:left; transition:background .15s; }
+  .db-hero .who:hover{ background:rgba(255,255,255,.08); }
+  .acct-trigger .chev{ color:rgba(255,255,255,.55); transition:transform .2s; flex-shrink:0; }
+  .acct-trigger[aria-expanded="true"] .chev{ transform:rotate(180deg); }
   .db-hero .avatar{ width:56px; height:56px; border-radius:50%; background:var(--yellow); color:var(--ink); display:grid; place-items:center; font-weight:800; font-size:19px; flex-shrink:0; }
   .db-hero h1{ color:#fff; font-size:22px; margin-bottom:4px; }
   .db-hero .sub{ font-size:13px; color:rgba(255,255,255,.6); }
@@ -80,10 +83,48 @@
   .convert-card{ background:var(--ink); color:#fff; border-radius:var(--radius); padding:22px; position:relative; overflow:hidden; }
   .convert-card::before{ content:""; position:absolute; top:-60px; right:-40px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.28) 0%, transparent 70%); }
   .convert-card *{ position:relative; z-index:1; }
-  .convert-card h4{ font-size:15px; margin-bottom:8px; }
+  .convert-card h4{ font-size:15px; margin-bottom:8px; color:#fff; }
   .convert-card p{ font-size:12.5px; color:rgba(255,255,255,.65); margin-bottom:16px; }
 
   .db-profile-note{ font-size:12px; color:var(--muted); background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-top:18px; line-height:1.6; }
+
+  /* ===== Account panel ===== */
+  .acct-panel{ animation:acctIn .18s ease; }
+  @keyframes acctIn{ from{ opacity:0; transform:translateY(-6px); } to{ opacity:1; transform:none; } }
+  .acct-card{ margin-top:0; margin-bottom:36px; }
+  .acct-tabs{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px; border-bottom:1px solid var(--border); padding-bottom:0; }
+  .acct-tab{ font-size:13px; font-weight:700; color:var(--muted); padding:10px 4px; cursor:pointer; border-bottom:2px solid transparent; margin-right:18px; display:flex; align-items:center; gap:6px; }
+  .acct-tab:hover{ color:var(--ink); }
+  .acct-tab.active{ color:var(--ink); border-bottom-color:var(--yellow); }
+  .acct-dot{ width:6px; height:6px; border-radius:50%; background:#C0392B; display:inline-block; }
+  .acct-pane{ display:none; }
+  .acct-pane.active{ display:block; }
+
+  .acct-setting{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--border); }
+  .acct-setting:last-of-type{ border-bottom:none; }
+  .acct-setting b{ display:block; font-size:13.5px; margin-bottom:2px; }
+  .acct-setting span{ font-size:12px; color:var(--muted); }
+  .acct-switch{ position:relative; display:inline-block; width:40px; height:23px; flex-shrink:0; }
+  .acct-switch input{ opacity:0; width:0; height:0; }
+  .acct-switch span{ position:absolute; inset:0; background:var(--border); border-radius:999px; transition:background .15s; cursor:pointer; }
+  .acct-switch span::before{ content:""; position:absolute; width:17px; height:17px; left:3px; top:3px; background:#fff; border-radius:50%; transition:transform .15s; box-shadow:0 1px 2px rgba(0,0,0,.2); }
+  .acct-switch input:checked + span{ background:var(--yellow); }
+  .acct-switch input:checked + span::before{ transform:translateX(17px); }
+  .acct-danger{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:10px; padding-top:20px; border-top:1px solid var(--border); }
+  .acct-danger b{ display:block; font-size:13.5px; margin-bottom:2px; color:#93271B; }
+  .acct-danger span{ font-size:12px; color:var(--muted); }
+
+  .notif-list{ display:flex; flex-direction:column; }
+  .notif-row{ display:flex; align-items:center; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
+  .notif-row:last-child{ border-bottom:none; }
+  .notif-row .ic{ width:36px; height:36px; border-radius:9px; background:var(--surface); color:var(--muted); display:grid; place-items:center; flex-shrink:0; }
+  .notif-row.unread .ic{ background:var(--yellow-tint); color:var(--yellow-shade); }
+  .notif-row .txt{ min-width:0; }
+  .notif-row .txt b{ display:block; font-size:13.5px; margin-bottom:2px; }
+  .notif-row .txt span{ font-size:11.5px; color:var(--muted); }
+  .notif-row .when{ margin-left:auto; font-size:11.5px; color:var(--muted-2); flex-shrink:0; }
+
+  @media(max-width:560px){ .acct-tabs{ overflow-x:auto; flex-wrap:nowrap; } }
 
   @media(max-width:1000px){ .db-layout{ grid-template-columns:1fr; } .db-stats{ grid-template-columns:repeat(2,1fr); } }
   @media(max-width:560px){ .profile-fields{ grid-template-columns:1fr; } .profile-top{ flex-wrap:wrap; } .profile-top .edit{ margin-left:0; } }
@@ -165,14 +206,169 @@
 
 <section class="db-hero">
   <div class="wrap">
-    <div class="who">
+    <button type="button" class="who acct-trigger" id="acct-trigger" aria-expanded="false" aria-controls="acct-panel">
       <div class="avatar">TN</div>
       <div>
         <h1>Welcome back, Thabo</h1>
         <div class="sub">Nkosi Trading CC &middot; Member since Aug 2026</div>
       </div>
+      <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <span class="tier">SMEHub Member</span>
+  </div>
+</section>
+
+<section class="acct-panel" id="acct-panel" hidden style="padding-top:0; padding-bottom:0;">
+  <div class="wrap">
+    <div class="db-card acct-card">
+      <div class="acct-tabs tab-row">
+        <span class="acct-tab active" data-pane="profile">Profile</span>
+        <span class="acct-tab" data-pane="settings">Account settings</span>
+        <span class="acct-tab" data-pane="activity">Activity</span>
+        <span class="acct-tab" data-pane="notifications">Notifications <span class="acct-dot"></span></span>
+      </div>
+
+      <div class="acct-pane active" data-pane="profile">
+        <p class="sub">Visible to you and to MTN Business, so nothing has to be typed twice.</p>
+        <form id="profile-form">
+        <div class="profile-top">
+          <div class="avatar-lg" id="pf-avatar">TN</div>
+          <div>
+            <h4 id="pf-name-display">Thabo Nkosi</h4>
+            <div class="biz" id="pf-biz-display">Nkosi Trading CC</div>
+          </div>
+          <button class="btn btn-outline btn-sm edit" id="profile-edit-btn" type="button">Edit profile</button>
+        </div>
+        <div class="profile-fields">
+          <div class="profile-field">
+            <label>Full name</label>
+            <div class="val" data-view>Thabo Nkosi</div>
+            <input class="pf-input" data-edit data-target="pf-name" type="text" value="Thabo Nkosi" hidden>
+          </div>
+          <div class="profile-field">
+            <label>Business name</label>
+            <div class="val" data-view>Nkosi Trading CC</div>
+            <input class="pf-input" data-edit data-target="pf-biz" type="text" value="Nkosi Trading CC" hidden>
+          </div>
+          <div class="profile-field">
+            <label>Email</label>
+            <div class="val" data-view>thabo@nkositrading.co.za</div>
+            <input class="pf-input" data-edit data-target="pf-email" type="email" value="thabo@nkositrading.co.za" hidden>
+          </div>
+          <div class="profile-field">
+            <label>Phone</label>
+            <div class="val" data-view>082 145 6721</div>
+            <input class="pf-input" data-edit data-target="pf-phone" type="tel" value="082 145 6721" hidden>
+          </div>
+          <div class="profile-field">
+            <label>Business type</label>
+            <div class="val" data-view>Retail &amp; e-commerce</div>
+            <select class="pf-input" data-edit data-target="pf-biztype" hidden>
+              <option selected>Retail &amp; e-commerce</option>
+              <option>Professional services</option>
+              <option>Manufacturing</option>
+              <option>Hospitality &amp; tourism</option>
+              <option>Construction</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="profile-field">
+            <label>Team size</label>
+            <div class="val" data-view>2 to 10 people</div>
+            <select class="pf-input" data-edit data-target="pf-team" hidden>
+              <option>Just me</option>
+              <option selected>2 to 10 people</option>
+              <option>11 to 50 people</option>
+              <option>50+ people</option>
+            </select>
+          </div>
+          <div class="profile-field"><label>Member since</label><div class="val">14 Aug 2026</div></div>
+          <div class="profile-field"><label>Membership</label><div class="val">SMEHub Member</div></div>
+        </div>
+        <div class="profile-edit-actions" id="profile-edit-actions" hidden>
+          <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
+          <button class="btn btn-outline btn-sm" type="button" id="profile-cancel-btn">Cancel</button>
+        </div>
+        <div class="profile-edit-saved" id="profile-edit-saved"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Profile updated</div>
+        </form>
+        <div class="profile-visibility"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Your profile and activity are visible to you and to MTN Business, so an advisor can pick up exactly where you left off. Never shown to other members or made public.</div>
+      </div>
+
+      <div class="acct-pane" data-pane="settings">
+        <p class="sub">Control how MTN SME Hub reaches you and what it remembers.</p>
+        <div class="acct-setting"><div><b>Email notifications</b><span>Funding matches, advisor replies, event reminders</span></div><label class="acct-switch"><input type="checkbox" checked><span></span></label></div>
+        <div class="acct-setting"><div><b>SMS alerts</b><span>Advisor booking confirmations only</span></div><label class="acct-switch"><input type="checkbox" checked><span></span></label></div>
+        <div class="acct-setting"><div><b>Newsletter</b><span>Monthly digest of guides and events</span></div><label class="acct-switch"><input type="checkbox"><span></span></label></div>
+        <div class="acct-setting"><div><b>Share profile with SME Advisor</b><span>Lets an advisor see your saved answers before a call</span></div><label class="acct-switch"><input type="checkbox" checked><span></span></label></div>
+        <div class="acct-danger">
+          <div><b>Close your account</b><span>Removes your profile and activity history. This cannot be undone.</span></div>
+          <button class="btn btn-outline btn-sm" type="button">Close account</button>
+        </div>
+      </div>
+
+      <div class="acct-pane" data-pane="activity">
+        <p class="sub">Every guide, template, event and consultation, in one history.</p>
+        <div class="activity-filters tab-row" style="margin-bottom:16px;">
+          <span class="tab-btn active" data-filter="all" data-target=".activity-list">All</span>
+          <span class="tab-btn" data-filter="advisor" data-target=".activity-list">Advisor</span>
+          <span class="tab-btn" data-filter="guides" data-target=".activity-list">Guides</span>
+          <span class="tab-btn" data-filter="templates" data-target=".activity-list">Templates</span>
+          <span class="tab-btn" data-filter="events" data-target=".activity-list">Events</span>
+        </div>
+        <div class="activity-list">
+          <div class="activity-row" data-cat="advisor">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+            <div class="txt"><b>Booked a SME Advisor consultation</b><span>Managed Firewall &middot; Tue 10:00</span></div>
+            <div class="when">2 days ago</div>
+          </div>
+          <div class="activity-row" data-cat="templates">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
+            <div class="txt"><b>Downloaded Cash Flow Projection Template</b><span>Templates</span></div>
+            <div class="when">5 days ago</div>
+          </div>
+          <div class="activity-row" data-cat="guides">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+            <div class="txt"><b>Completed Complete Guide to Registering a Business in SA</b><span>Guides</span></div>
+            <div class="when">1 week ago</div>
+          </div>
+          <div class="activity-row" data-cat="events">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <div class="txt"><b>Registered for Funding Your Business in 2026</b><span>Events</span></div>
+            <div class="when">2 weeks ago</div>
+          </div>
+          <div class="activity-row" data-cat="guides">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+            <div class="txt"><b>Read How To Drive Traffic To Your eCommerce Website</b><span>Guides</span></div>
+            <div class="when">2 weeks ago</div>
+          </div>
+          <div class="activity-row" data-cat="advisor">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+            <div class="txt"><b>Requested a quote for MTN Microsoft 365</b><span>SME Advisor</span></div>
+            <div class="when">3 weeks ago</div>
+          </div>
+          <div class="activity-row" data-cat="templates">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
+            <div class="txt"><b>Downloaded VAT Registration Checklist</b><span>Templates</span></div>
+            <div class="when">3 weeks ago</div>
+          </div>
+          <div class="activity-row" data-cat="events">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <div class="txt"><b>Attended Business Registration Masterclass</b><span>Events</span></div>
+            <div class="when">1 month ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acct-pane" data-pane="notifications">
+        <p class="sub">What MTN SME Hub has let you know recently.</p>
+        <div class="notif-list">
+          <div class="notif-row unread"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div><div class="txt"><b>Strong funding match found</b><span>SEDFA Small Business Loan matches your profile</span></div><div class="when">2 days ago</div></div>
+          <div class="notif-row unread"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><div class="txt"><b>Advisor consultation confirmed</b><span>Tuesday 10:00 with Lerato Mokoena, SME desk</span></div><div class="when">2 days ago</div></div>
+          <div class="notif-row"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div class="txt"><b>Event reminder</b><span>Funding Your Business in 2026 starts in 3 days</span></div><div class="when">1 week ago</div></div>
+          <div class="notif-row"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div class="txt"><b>Reward available</b><span>10% off setup on the Business Website Starter Kit</span></div><div class="when">2 weeks ago</div></div>
+        </div>
+      </div>
     </div>
-    <span class="tier">Free SMEHub Member</span>
   </div>
 </section>
 
@@ -187,127 +383,6 @@
 
     <div class="db-layout">
       <div>
-        <div class="db-card">
-          <h3>Your profile</h3>
-          <p class="sub">Visible to you and to MTN Business, so nothing has to be typed twice.</p>
-          <form id="profile-form">
-          <div class="profile-top">
-            <div class="avatar-lg" id="pf-avatar">TN</div>
-            <div>
-              <h4 id="pf-name-display">Thabo Nkosi</h4>
-              <div class="biz" id="pf-biz-display">Nkosi Trading CC</div>
-            </div>
-            <button class="btn btn-outline btn-sm edit" id="profile-edit-btn" type="button">Edit profile</button>
-          </div>
-          <div class="profile-fields">
-            <div class="profile-field">
-              <label>Full name</label>
-              <div class="val" data-view>Thabo Nkosi</div>
-              <input class="pf-input" data-edit data-target="pf-name" type="text" value="Thabo Nkosi" hidden>
-            </div>
-            <div class="profile-field">
-              <label>Business name</label>
-              <div class="val" data-view>Nkosi Trading CC</div>
-              <input class="pf-input" data-edit data-target="pf-biz" type="text" value="Nkosi Trading CC" hidden>
-            </div>
-            <div class="profile-field">
-              <label>Email</label>
-              <div class="val" data-view>thabo@nkositrading.co.za</div>
-              <input class="pf-input" data-edit data-target="pf-email" type="email" value="thabo@nkositrading.co.za" hidden>
-            </div>
-            <div class="profile-field">
-              <label>Phone</label>
-              <div class="val" data-view>082 145 6721</div>
-              <input class="pf-input" data-edit data-target="pf-phone" type="tel" value="082 145 6721" hidden>
-            </div>
-            <div class="profile-field">
-              <label>Business type</label>
-              <div class="val" data-view>Retail &amp; e-commerce</div>
-              <select class="pf-input" data-edit data-target="pf-biztype" hidden>
-                <option selected>Retail &amp; e-commerce</option>
-                <option>Professional services</option>
-                <option>Manufacturing</option>
-                <option>Hospitality &amp; tourism</option>
-                <option>Construction</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="profile-field">
-              <label>Team size</label>
-              <div class="val" data-view>2 to 10 people</div>
-              <select class="pf-input" data-edit data-target="pf-team" hidden>
-                <option>Just me</option>
-                <option selected>2 to 10 people</option>
-                <option>11 to 50 people</option>
-                <option>50+ people</option>
-              </select>
-            </div>
-            <div class="profile-field"><label>Member since</label><div class="val">14 Aug 2026</div></div>
-            <div class="profile-field"><label>Membership</label><div class="val">Free SMEHub Member</div></div>
-          </div>
-          <div class="profile-edit-actions" id="profile-edit-actions" hidden>
-            <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
-            <button class="btn btn-outline btn-sm" type="button" id="profile-cancel-btn">Cancel</button>
-          </div>
-          <div class="profile-edit-saved" id="profile-edit-saved"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Profile updated</div>
-          </form>
-          <div class="profile-visibility"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Your profile and activity are visible to you and to MTN Business, so an advisor can pick up exactly where you left off. Never shown to other members or made public.</div>
-        </div>
-
-        <div class="db-card">
-          <h3>Your activity</h3>
-          <p class="sub">Every guide, template, event and consultation, in one history.</p>
-          <div class="activity-filters tab-row" style="margin-bottom:16px;">
-            <span class="tab-btn active" data-filter="all" data-target=".activity-list">All</span>
-            <span class="tab-btn" data-filter="advisor" data-target=".activity-list">Advisor</span>
-            <span class="tab-btn" data-filter="guides" data-target=".activity-list">Guides</span>
-            <span class="tab-btn" data-filter="templates" data-target=".activity-list">Templates</span>
-            <span class="tab-btn" data-filter="events" data-target=".activity-list">Events</span>
-          </div>
-          <div class="activity-list">
-            <div class="activity-row" data-cat="advisor">
-              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
-              <div class="txt"><b>Booked a SME Advisor consultation</b><span>Managed Firewall &middot; Tue 10:00</span></div>
-              <div class="when">2 days ago</div>
-            </div>
-            <div class="activity-row" data-cat="templates">
-              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-              <div class="txt"><b>Downloaded Cash Flow Projection Template</b><span>Templates</span></div>
-              <div class="when">5 days ago</div>
-            </div>
-            <div class="activity-row" data-cat="guides">
-              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
-              <div class="txt"><b>Completed Complete Guide to Registering a Business in SA</b><span>Guides</span></div>
-              <div class="when">1 week ago</div>
-            </div>
-            <div class="activity-row" data-cat="events">
-              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-              <div class="txt"><b>Registered for Funding Your Business in 2026</b><span>Events</span></div>
-              <div class="when">2 weeks ago</div>
-            </div>
-            <div class="activity-row" data-cat="guides">
-              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
-              <div class="txt"><b>Read How To Drive Traffic To Your eCommerce Website</b><span>Guides</span></div>
-              <div class="when">2 weeks ago</div>
-            </div>
-            <div class="activity-row" data-cat="advisor">
-              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
-              <div class="txt"><b>Requested a quote for MTN Microsoft 365</b><span>SME Advisor</span></div>
-              <div class="when">3 weeks ago</div>
-            </div>
-            <div class="activity-row" data-cat="templates">
-              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
-              <div class="txt"><b>Downloaded VAT Registration Checklist</b><span>Templates</span></div>
-              <div class="when">3 weeks ago</div>
-            </div>
-            <div class="activity-row" data-cat="events">
-              <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-              <div class="txt"><b>Attended Business Registration Masterclass</b><span>Events</span></div>
-              <div class="when">1 month ago</div>
-            </div>
-          </div>
-        </div>
-
         <div class="db-card">
           <h3>Funding opportunities for you</h3>
           <p class="sub">Matched from your SME Advisor answers, not a generic list.</p>
@@ -352,7 +427,7 @@
           <a class="btn btn-primary btn-block" href="business-solutions.html">Browse the Shop</a>
         </div>
 
-        <p class="db-profile-note">Your SMEHub membership is free and stays separate from any MTN purchase. Buying something is always a separate step, started from the Shop or the SME Advisor, never inside the Portal itself.</p>
+        <p class="db-profile-note">Your SMEHub membership stays separate from any MTN purchase. Buying something is always a separate step, started from the Shop or the SME Advisor, never inside the Portal itself.</p>
       </aside>
     </div>
   </div>
@@ -395,6 +470,26 @@
 <script src="../gate-links.js"></script>
 <script src="assets/main.js"></script>
 <script>
+  (function(){
+    var trigger = document.getElementById('acct-trigger');
+    var panel = document.getElementById('acct-panel');
+    if (trigger && panel) {
+      trigger.addEventListener('click', function(){
+        var open = panel.hidden;
+        panel.hidden = !open;
+        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+      panel.querySelectorAll('.acct-tab').forEach(function(tab){
+        tab.addEventListener('click', function(){
+          panel.querySelectorAll('.acct-tab').forEach(function(t){ t.classList.remove('active'); });
+          panel.querySelectorAll('.acct-pane').forEach(function(p){ p.classList.remove('active'); });
+          tab.classList.add('active');
+          panel.querySelector('.acct-pane[data-pane="' + tab.getAttribute('data-pane') + '"]').classList.add('active');
+        });
+      });
+    }
+  })();
   (function(){
     var form = document.getElementById('profile-form');
     var editBtn = document.getElementById('profile-edit-btn');
