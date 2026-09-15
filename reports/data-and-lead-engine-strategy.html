@@ -169,7 +169,7 @@
 <section>
   <div class="wrap">
     <div class="sec-label">Executive Summary</div>
-    <h2 class="sec">Six findings</h2>
+    <h2 class="sec">Seven findings</h2>
     <p class="sec-desc">Every figure below comes from the site's own database, its Search Console account, or its newsletter platform. Where a data source was not yet available, that is stated rather than estimated.</p>
 
     <div class="verdicts">
@@ -213,6 +213,13 @@
         <div>
           <h4>Real search demand is sitting on pages that rank too low to be found</h4>
           <p>Two funding-related guides receive over 10,000 and 14,000 impressions each in Google over a 28-day period, but sit at positions 39 to 44, well past where people click. The demand already exists. The content just needs a refresh to compete for it.</p>
+        </div>
+      </div>
+      <div class="verdict">
+        <div class="n">7</div>
+        <div>
+          <h4>The search data does not support connectivity as the redesign's primary commercial offer</h4>
+          <p>Across the named queries in Search Console, roughly <b>85% of clicks are funding, grant or MTN Foundation intent</b> and under 1% mention anything connectivity related. The site's own content confirms it: Connect My Business is the largest of the five pillars by article count, and the smallest by engagement. See <a href="#demand-fit">Demand vs. offer fit</a> below before the redesign's product layer is finalised.</p>
         </div>
       </div>
     </div>
@@ -468,6 +475,46 @@
   </div>
 </section>
 
+<!-- ============ DEMAND VS OFFER FIT ============ -->
+<section id="demand-fit">
+  <div class="wrap">
+    <div class="sec-label">Before the product layer is finalised</div>
+    <h2 class="sec">Demand vs. offer fit</h2>
+    <p class="sec-desc">The redesign's biggest structural addition is the product layer described in the next section: a plan configurator selling MTN Business connectivity (voice and data plans, Managed Firewall, SOC as a Service). Before that becomes the redesign's primary commercial move, it is worth checking it against what this audience actually searches for and reads, because the two pull in different directions.</p>
+
+    <h3 class="sub" style="margin-top:6px;">What the audience is actually asking for</h3>
+    <p class="sec-desc">Of the named queries in the Search Demand section and the wider query list behind it, roughly <b>85% of clicks are funding, grant or MTN Foundation intent</b> ("mtn foundation", "non repayable small business grants south africa", "mtn funding", "nyda business funding", "what business can i start with r1000" and similar). <b>Under 1%</b> mention anything connectivity related, and that one match is a Microsoft 365 query rather than an MTN product. Not one query in the set mentions data, voice, fibre, LTE, a router, airtime, a firewall or cybersecurity.</p>
+
+    <div class="callout warn">
+      <div class="t">The connectivity thesis has already been tested on this site, and the site's own numbers say it did not work</div>
+      <div class="d">Connect My Business holds 33 of the 90 published articles, more than any other pillar, roughly 37% of editorial supply. Its hub page draws under 3% of site pageviews and does not appear among the top landing pages or the top search queries. By contrast, a single guide on business ideas with a R100 budget pulls over 200 clicks and 15,000+ impressions on its own. The pillar built around connectivity themes already received the largest share of content investment and returned the smallest share of attention. A transactional layer built on top of the same theme is starting from a position the data has already tested.</div>
+    </div>
+
+    <h3 class="sub">A rough comparison of the two paths</h3>
+    <p class="sec-desc" style="margin-bottom:10px;">This is a directional estimate from the site's own funnel behaviour, not a forecast. It uses the current form-start and completion rates observed on the site, and the funding conversion rate already proven on a comparable platform run by SME South Africa.</p>
+    <div class="tbl-wrap" style="margin-bottom:8px;">
+      <table>
+        <tr><th>Path</th><th>What the current data suggests</th></tr>
+        <tr><td><b>Connectivity configurator</b></td><td>At current traffic and the site's own 2.8% form-start rate, a best-case configurator run would produce a small number of monthly enquiries, competing against the free templates that already absorb most of that intent. Monthly recurring revenue from this path, on present traffic, is likely modest.</td></tr>
+        <tr><td><b>Funding referral</b></td><td>Funding-intent sessions are a meaningfully larger share of traffic (roughly a quarter of sessions land on funding or grant content) and already engage above the site average. Routed through a funding desk converting in the region of ten percent, this produces a materially larger number of qualified applications per month than the connectivity path, on the same traffic base.</td></tr>
+      </table>
+    </div>
+    <p class="sec-desc">Two qualifications matter here. First, connectivity may carry a higher value per sale and MTN may reasonably value first-party SME lead data on its own terms, that is a real argument for keeping a simple product enquiry form, but it is an argument for a form, not for a full configurator build. Second, a meaningful share of the funding-intent traffic is asking about non-repayable grants and R100 to R1,000 startup ideas, which is largely pre-revenue demand that will not qualify for commercial credit from a lender that prices against turnover and trading history. The funding desk route should be modelled as a triage engine, most of this traffic goes to grants, NYDA and the MTN Foundation itself, with commercial lending as the outcome for a qualifying minority, not the default.</p>
+
+    <div class="callout bad">
+      <div class="t">A necessary disclosure if the funding route is recommended</div>
+      <div class="d">SME South Africa operates its own funding desk and holds live commercial partnerships with several lenders, earning a commission on approved outcomes. Recommending that MTN's audience be routed into that funding desk is the right call on the data, but it places SME South Africa in the position of recommending its own commission stream. If this route is proposed to MTN, it should be accompanied, unprompted, by the commission structure, the named partners, an offer of revenue share to MTN, and MTN's right to audit lead outcomes or nominate an alternative funding provider on the same integration. Raising this openly protects the recommendation. Leaving MTN to discover it later does not.</div>
+    </div>
+
+    <div class="callout warn">
+      <div class="t">The MTN Foundation traffic needs careful handling either way</div>
+      <div class="d">"mtn foundation" is the single largest query on the site, at a strong position and high click-through rate, and the MTN SA Foundation article is the site's best-performing page (see Search Demand above). The Foundation is a corporate social investment vehicle, and the intent arriving on it is grant-seeking. Passing financially vulnerable, largely pre-revenue applicants from a philanthropic page to a commission-paying commercial lender is a consent and credit-marketing question, not only a routing one. The safer design keeps Foundation and grant pathways presented first and free, with commercial credit appearing only after an explicit turnover qualification step and disclosed commission.</div>
+    </div>
+
+    <p class="sec-desc">None of this rules out a connectivity product page. It argues for sequencing it second: fix the traffic base, prove the funding and grants engine against the demand that already exists, and offer connectivity at the point a business has just been funded and has a genuine reason to expand its infrastructure, rather than leading the redesign with a build aimed at a search term that does not currently exist on this site.</p>
+  </div>
+</section>
+
 <!-- ============ THE MOCKUP ============ -->
 <section>
   <div class="wrap">
@@ -498,6 +545,53 @@
       </table>
     </div>
     <p class="sec-desc">The sequence matters: content earns attention, the template captures identity, the configurator captures intent. A template download tells you a business exists and what it is concerned about. A completed configuration tells you what it wants to buy, for how long, and at what scale. The first is a contact. The second is a lead a consultant can act on immediately.</p>
+
+    <div class="callout warn">
+      <div class="t">Worth reading before this becomes the primary build</div>
+      <div class="d">The configurator itself is well designed. Whether connectivity should be the product it sells first is a separate question, and the search and content data covered in <a href="#demand-fit">Demand vs. offer fit</a> above points the other way. The mockup and the API pattern below apply equally well to a funding-first product layer.</div>
+    </div>
+
+    <h3 class="sub">Move 5: a dedicated advice layer, not a self-service form</h3>
+    <p class="sec-desc">The brief calls for exactly this, ahead of the product layer: guide the customer by business need before presenting products. The mockup builds three working versions of the SME Advisor to compare rather than committing to one blind. All three end the same way, a costed quote, a qualification score, and a booking into a named advisor's diary, so the comparison is genuinely about the questions asked, not the outcome delivered.</p>
+    <div class="tbl-wrap" style="margin-bottom:18px;">
+      <table>
+        <tr><th>Version</th><th>How it discovers need</th><th>What makes it different</th></tr>
+        <tr><td><b>V1, guided survey</b></td><td>Five questions, one at a time. The quote assembles live in a side rail as each answer lands.</td><td>Most predictable data quality. Best where the business itself doesn't yet know what it needs.</td></tr>
+        <tr><td><b>V2, readiness assessment</b></td><td>Scores five parts of the business (connectivity, security, online presence, tools, funding readiness) instead of asking what the visitor thinks they need.</td><td>Prices the two weakest scores, not the self-reported answer, and matches funding partners against the business's actual financial records.</td></tr>
+        <tr><td><b>V3, solutions browser</b></td><td>Self-directed. The visitor browses the real MTN catalogue directly.</td><td>Every add is logged in view of the visitor, with a running quote they adjust themselves.</td></tr>
+      </table>
+    </div>
+    <p class="sec-desc">Every version implements the same four requirements the brief sets for this pillar. A qualification pass runs before a calendar is ever offered, the brief's "vetting introduced near checkout" moved one step earlier, applied to a conversation rather than a cart. Only a lead that clears it is offered fifteen minutes with the named advisor; a weaker lead is nurtured with its quote held against a reference instead. The next best action is written specifically to the answers given, not a generic "we'll be in touch." Scheduling lands directly in the advisor's diary, hero-named as Lerato Mokoena on the SME desk, matching the benchmark review's finding that Vodacom's V-Hub personalises its action plan around a named "digital advisor" rather than a queue. And a visitor who leaves mid-way is recovered: answers are held on the device, so returning to the Advisor resumes exactly where they stopped rather than restarting the questions.</p>
+
+    <h3 class="sub">Move 6: Portal, without becoming a login wall</h3>
+    <p class="sec-desc">The brief treats Portal as the third pillar alongside Shop and Advisor, with one condition attached to it directly: SMEHub membership stays separate from the MTN customer record until a purchase journey actually begins. The mockup's Portal is free to join, asks for nothing beyond a name and business email, and every one of the brief's five Portal bullets has a visible, named place on the page.</p>
+    <div class="tbl-wrap" style="margin-bottom:18px;">
+      <table>
+        <tr><th>Brief asks for</th><th>Where it sits in the mockup</th></tr>
+        <tr><td>Login and registered SMEHub membership (free)</td><td>Sign up and log in, no card details requested anywhere in the flow.</td></tr>
+        <tr><td>Profile and engagement history visible to MTN and member</td><td>A profile card plus a filterable activity log across guides, templates and events.</td></tr>
+        <tr><td>Member rewards, incentives and funding opportunities</td><td>A rewards panel with redeem and active states, and funding matches carried over from the Advisor.</td></tr>
+        <tr><td>Controlled conversion from free subscriber to customer</td><td>One deliberate hand-off into the Shop. Nothing inside Portal itself takes payment.</td></tr>
+        <tr><td>Access to partner products via API integration</td><td>Addressed structurally below, see Move 7 and the lead engine pattern that follows.</td></tr>
+      </table>
+    </div>
+    <p class="sec-desc">The membership-record separation is enforced by what Portal deliberately does not do: it never creates an MTN customer record, never takes a card, and never redirects to an MTN checkout. It is a free profile that makes the Shop and the Advisor remember a returning visitor, nothing more, which is exactly the boundary the brief draws.</p>
+
+    <h3 class="sub">Move 7: partner journeys that never leave the Hub</h3>
+    <p class="sec-desc">The brief's partnership ecosystem table flags, as a live risk to manage case by case, that some partners may need a redirect link to their own platform. The mockup takes the position that a redirect is a lead lost to measurement, so all five partner roles it names, fund and bank, operate and digitise, advise and develop, access markets, learn and inspire, are built to start and track on the Hub itself rather than send the visitor away from it.</p>
+    <p class="sec-desc">The funding and banking role is the clearest example, and the one this report has the most evidence for: a business's application is matched to a lender by the financial records it actually has, audited statements reach the banks, informal bookkeeping reaches SEDFA and NEF, no records at all is routed to a readiness programme instead of a lender it cannot yet qualify for. Every application raises its own reference and reports back into the same lead record as the Advisor's quote, so a business that starts on funding and later needs connectivity is still one lead, not two disconnected ones.</p>
+
+    <h3 class="sub">The CTA rule, applied consistently rather than left as a principle</h3>
+    <p class="sec-desc">The brief sets one rule for every product card on the site: Buy now for transactable products, Get a quote for complex solutions, Request advice for exploration. The mockup treats this as a hard constraint on every card, not a style choice for some of them.</p>
+    <div class="tbl-wrap" style="margin-bottom:8px;">
+      <table>
+        <tr><th>Tag</th><th>Applied to</th><th>What actually happens on click</th></tr>
+        <tr><td><span class="pill g">Buy Now</span></td><td>SIM-only and connectivity plans with a fixed, public price.</td><td>Routes into the Shop's own configurator. No payment is taken on this site.</td></tr>
+        <tr><td><span class="pill w">Get a Quote</span></td><td>Managed Firewall, SOC as a Service, and anything priced per business.</td><td>Opens the configurator with vetting and consent captured before a reference is issued.</td></tr>
+        <tr><td><span class="pill b">Request Advice</span></td><td>Anything the visitor is still exploring rather than ready to commit to.</td><td>Routes into the SME Advisor, so exploration still produces a qualified lead.</td></tr>
+      </table>
+    </div>
+    <p class="sec-desc">Buy Now does not mean a live transaction anywhere in this mockup, in line with the brief's own separation of membership from a purchase record. It signals to the visitor that the product is simple and priced, and it still ends in a lead handover with a reference number, the same handover the rest of this report proposes automating.</p>
   </div>
 </section>
 
@@ -618,6 +712,30 @@
   </div>
 </section>
 
+<!-- ============ DELIVERY MODEL ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Delivery model</div>
+    <h2 class="sec">Full agency or collaborative delivery</h2>
+    <p class="sec-desc">The original brief asks for a proposal under one of two models before scope is locked. Everything above describes what to build and in what order. Who builds it, and what it costs, belongs here.</p>
+
+    <div class="tbl-wrap" style="margin-bottom:18px;">
+      <table>
+        <tr><th>Model</th><th>What it means for this project</th></tr>
+        <tr><td><b>Option 1, full agency delivery</b></td><td>SME South Africa owns the build end to end: the mockup becomes the production site, the lead-engine integration, hosting, and ongoing content and maintenance sit with one team and one point of accountability. Simplest for MTN to manage, one relationship to run.</td></tr>
+        <tr><td><b>Option 2, collaborative delivery</b></td><td>SME South Africa delivers the site and content layer this report already covers, Phases 1 and 2 below need nothing from MTN, while MTN Business's own team or another vendor owns the lead-intake API, authentication and the catalogue sync described in the lead engine section. Slower to start, since it depends on MTN scheduling its own resource, but keeps the commercial integration inside MTN's existing systems and security review.</td></tr>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <div class="t">Effort, timeline and cost estimates need one decision from MTN first</div>
+      <div class="d">Both figures the brief asks for, development effort and full cost, depend on which model is chosen and on the answers to the Phase 0 questions below, particularly which system sits behind the lead API and whether a sandbox is available. SME South Africa can turn this section into firm numbers within days of those two answers. Publishing a placeholder figure now would be a guess dressed up as a quote, and this report does not do that anywhere else, it should not start here.</div>
+    </div>
+
+    <p class="sec-desc">What holds regardless of the model chosen: Phases 1 and 2 below, content, structure, measurement and the template library, require nothing from MTN Business and can start under either option without waiting on a decision. Phases 3 and 4 are where the two models genuinely diverge, and where a resourced conversation on effort and cost belongs.</p>
+  </div>
+</section>
+
 <!-- ============ SEQUENCE ============ -->
 <section>
   <div class="wrap">
@@ -670,6 +788,7 @@
     <h2 class="sec">Questions for MTN Business</h2>
     <p class="sec-desc">These shape the integration, and are worth confirming in writing before committing to delivery dates on phases 3 and 4.</p>
     <div class="qlist">
+      <div class="qitem"><div><div class="qt">Full agency delivery, or collaborative delivery with MTN Business's own team?</div><div class="qd">Decides who owns Phases 3 and 4 below, and is the input this report needs to turn the delivery model above into firm effort and cost figures.</div></div></div>
       <div class="qitem"><div><div class="qt">Is there a lead-intake API, and which system sits behind it?</div><div class="qd">Salesforce, Dynamics, an in-house system, or something else. Each has a different integration pattern and effort profile.</div></div></div>
       <div class="qitem"><div><div class="qt">Is there a product and pricing API, or is the catalogue maintained manually?</div><div class="qd">If manual, phase 1 needs an interim process for keeping prices current, and a visible "as at" date becomes necessary rather than optional.</div></div></div>
       <div class="qitem"><div><div class="qt">What is the authentication model?</div><div class="qd">OAuth2 client credentials, mutual TLS, or a static API key. This shapes credential storage, rotation and the security review.</div></div></div>
@@ -677,6 +796,7 @@
       <div class="qitem"><div><div class="qt">Is a sandbox available?</div><div class="qd">Testing lead submission against a live sales queue is not advisable. Without a sandbox, the integration timeline extends.</div></div></div>
       <div class="qitem"><div><div class="qt">How should an SME who is already an MTN customer be handled?</div><div class="qd">Deduplication rules, and whether an existing customer should route to account management instead of new business.</div></div></div>
       <div class="qitem"><div><div class="qt">What are the rate limits and the support arrangement?</div><div class="qd">Shapes queue design, and who is contacted if leads stop arriving outside business hours.</div></div></div>
+      <div class="qitem"><div><div class="qt">Is MTN Business open to a funding-first product layer, with connectivity as a secondary attach?</div><div class="qd">See Demand vs. offer fit above. This changes which catalogue gets synced first and what the configurator sells.</div></div></div>
     </div>
   </div>
 </section>
@@ -686,7 +806,7 @@
   <div class="wrap">
     <div class="sec-label">In summary</div>
     <h2 class="sec">Where this leaves the hub</h2>
-    <p class="sec-desc" style="font-size:15.5px; color:var(--ink); max-width:76ch;">MTN SME Hub has 90 useful articles, four templates that still convert three years after publication, and a demand pattern confirmed by a second, unrelated audience. What it lacks is supply and structure: publishing has fallen by roughly 91%, the navigation hides the content that exists, the newsletter's engagement has declined as the content behind it slowed, and nothing on the site counts a conversion, even while real search demand sits untapped on pages Google already shows tens of thousands of times a month. The redesign addresses the structure. Restarting content addresses the supply. Proper conversion tracking addresses the measurement. The proposed API integration is a further opportunity worth exploring once MTN Business confirms what it can expose.</p>
+    <p class="sec-desc" style="font-size:15.5px; color:var(--ink); max-width:76ch;">MTN SME Hub has 90 useful articles, four templates that still convert three years after publication, and a demand pattern confirmed by a second, unrelated audience. What it lacks is supply and structure: publishing has fallen by roughly 91%, the navigation hides the content that exists, the newsletter's engagement has declined as the content behind it slowed, and nothing on the site counts a conversion, even while real search demand sits untapped on pages Google already shows tens of thousands of times a month. The redesign addresses the structure. Restarting content addresses the supply. Proper conversion tracking addresses the measurement, and the mockup now builds all three of the brief's practical pillars, Shop, Sales Advisor and Portal, with vetting, the CTA rule, and the membership boundary each applied consistently rather than left as principles. On the commercial layer, the audience's own search behaviour points toward funding and grants first, with connectivity as a secondary attach rather than the lead offer, and that recommendation should carry an explicit disclosure of SME South Africa's commercial interest in the funding route. The proposed API integration applies to either product path, and works the same way whether MTN Business chooses full agency or collaborative delivery, it is a further opportunity worth exploring once MTN Business confirms what it can expose and which delivery model it wants to run.</p>
   </div>
 </section>
 
@@ -696,6 +816,5 @@
   </div>
 </div>
 
-<script src="../site/assets/export-widget.js"></script>
 </body>
 </html>
