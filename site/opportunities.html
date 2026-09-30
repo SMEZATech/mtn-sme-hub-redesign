@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Opportunities | MTN SME Hub</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .pe-hero{ background:var(--ink); color:#fff; padding:52px 0 40px; position:relative; overflow:hidden; }
+  .pe-hero::before{ content:""; position:absolute; top:-160px; right:-100px; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); }
+  .pe-hero::after{ content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px); background-size:22px 22px; opacity:.5; pointer-events:none; }
+  .pe-hero .wrap{ position:relative; z-index:1; }
+  .pe-hero .eyebrow-label{ color:var(--yellow); }
+  .pe-hero .eyebrow-label::before{ background:var(--yellow); }
+  .pe-hero h1{ color:#fff; font-size:clamp(28px,3.8vw,40px); margin:10px 0 14px; max-width:20ch; }
+  .pe-hero > .wrap > p{ color:rgba(255,255,255,.65); font-size:15px; max-width:62ch; margin-bottom:28px; }
+
+  .seg-picker{ border-top:1px solid rgba(255,255,255,.12); padding-top:22px; }
+  .seg-label{ display:block; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:rgba(255,255,255,.55); margin-bottom:12px; }
+  .seg-btns{ display:flex; flex-wrap:wrap; gap:8px; }
+  .seg-btn{ font-family:inherit; font-size:13px; font-weight:700; padding:10px 16px; border-radius:999px; border:1.5px solid rgba(255,255,255,.22); background:transparent; color:#fff; cursor:pointer; transition:background .15s, border-color .15s, color .15s; }
+  .seg-btn:hover{ border-color:var(--yellow); }
+  .seg-btn.active{ background:var(--yellow); border-color:var(--yellow); color:var(--ink-hex); }
+
+  .pe-nav{ position:sticky; top:73px; z-index:150; background:#fff; border-bottom:1px solid var(--border); }
+  .pe-nav .row{ display:flex; gap:6px; overflow-x:auto; padding:12px 0; scrollbar-width:none; }
+  .pe-nav .row::-webkit-scrollbar{ display:none; }
+  .pe-nav a{ flex-shrink:0; font-size:12.5px; font-weight:700; color:var(--muted); padding:8px 15px; border-radius:999px; white-space:nowrap; border:1.5px solid var(--border); }
+  .pe-nav a:hover{ border-color:var(--ink); color:var(--ink); }
+
+  .eco-block{ margin-bottom:56px; scroll-margin-top:130px; }
+  .eco-block:last-child{ margin-bottom:0; }
+  .eco-head{ display:flex; gap:16px; align-items:flex-start; margin-bottom:22px; }
+  .eco-head .ic{ width:48px; height:48px; border-radius:12px; background:var(--ink); color:var(--yellow); display:grid; place-items:center; flex-shrink:0; }
+  .eco-head h2{ font-size:21px; margin-bottom:6px; }
+  .eco-head p{ font-size:13.5px; color:var(--muted); max-width:640px; }
+
+  .cat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:16px; }
+  .cat-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:18px; box-shadow:var(--shadow); display:flex; flex-direction:column; transition:box-shadow .15s, transform .15s, opacity .2s, border-color .2s; }
+  .cat-card:hover{ box-shadow:var(--shadow-hover); transform:translateY(-2px); }
+  .cat-card h4{ font-size:13.5px; margin-bottom:6px; line-height:1.3; }
+  .cat-card p{ font-size:12px; color:var(--muted); line-height:1.55; margin-bottom:14px; flex:1; }
+  .cat-card .rec-tag{ display:none; align-self:flex-start; font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-hex); background:var(--yellow); padding:3px 8px; border-radius:4px; margin-bottom:10px; }
+  .cat-card.rec{ border-color:var(--yellow); }
+  .cat-card.rec .rec-tag{ display:inline-block; }
+  .cat-card.dim{ opacity:.42; }
+  .reg-btn{ align-self:flex-start; font-family:inherit; font-size:12px; font-weight:800; padding:8px 13px; border-radius:7px; border:1.5px solid var(--ink); background:#fff; color:var(--ink); cursor:pointer; }
+  .reg-btn:hover{ background:var(--ink); color:#fff; }
+  .see-also{ font-size:12.5px; font-weight:700; color:var(--yellow-shade); }
+
+
+  .placement-slot{ border:1.5px dashed var(--border); border-radius:var(--radius); padding:20px 22px; display:flex; align-items:center; gap:18px; background:var(--surface); margin-bottom:16px; }
+  .placement-slot .badge{ font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--muted-2); background:#fff; border:1px solid var(--border); padding:4px 10px; border-radius:5px; flex-shrink:0; }
+  .placement-slot .logo-ph{ width:52px; height:52px; border-radius:10px; background:#fff; border:1px solid var(--border); display:grid; place-items:center; font-size:10.5px; font-weight:800; color:var(--muted-2); flex-shrink:0; }
+  .placement-slot h4{ font-size:14px; margin-bottom:3px; }
+  .placement-slot p{ font-size:12px; color:var(--muted); }
+
+  .reg-shell{ display:grid; grid-template-columns:.9fr 1.1fr; gap:40px; align-items:start; }
+  .reg-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); position:relative; overflow:hidden; }
+  .reg-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--yellow) 0%, #FFE066 60%, transparent 100%); }
+  .reg-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  .reg-field label{ display:block; font-size:12px; font-weight:700; margin-bottom:6px; }
+  .reg-field input, .reg-field select{ width:100%; padding:11px 12px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-size:13.5px; font-family:inherit; background:var(--surface); color:var(--ink); outline:none; }
+  .reg-field input:focus, .reg-field select:focus{ border-color:var(--yellow); background:#fff; }
+  .reg-fine{ font-size:11.5px; color:var(--muted); margin-bottom:14px; line-height:1.55; }
+  .reg-error{ font-size:12px; color:#93271B; background:#FDECEA; border-radius:7px; padding:9px 12px; margin-bottom:12px; }
+  .reg-done .tag{ display:inline-block; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; background:var(--yellow); color:var(--ink-hex); padding:5px 11px; border-radius:5px; margin-bottom:12px; }
+  .reg-done h4{ font-size:18px; margin-bottom:14px; }
+  .reg-refs{ display:flex; gap:26px; flex-wrap:wrap; padding:14px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin-bottom:14px; }
+  .reg-refs span{ display:block; font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted-2); margin-bottom:4px; }
+  .reg-refs b{ font-size:14px; }
+  .reg-refs #rd-ref{ font-family:ui-monospace,Menlo,monospace; }
+  .reg-done p{ font-size:12.5px; color:var(--muted); margin-bottom:14px; }
+
+  @media(max-width:900px){ .cat-grid{ grid-template-columns:repeat(2,1fr); } .reg-shell{ grid-template-columns:1fr; gap:20px; } }
+  @media(max-width:640px){ .cat-grid, .reg-grid{ grid-template-columns:1fr; } .placement-slot{ flex-wrap:wrap; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-row">
+    <a href="index.html" class="logo"><img src="assets/logo-black.png" alt="MTN SME Hub"></a>
+    <nav class="nav-main">
+      <div class="nav-item">
+        <a href="business-advice.html">Business Advice <svg class="icon chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega mega-pillars">
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div><b>Connect My Business</b><span>Websites, funding, going online</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 19V9m7 10V5m7 14v-7"/></svg></div><div><b>Build My Business</b><span>Growth, trends, entrepreneurship</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><div><b>Manage My Business</b><span>Cash flow, inventory, compliance</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div><div><b>Feature My Business</b><span>SME spotlights &amp; success stories</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6"/></svg></div><div><b>Ecommerce</b><span>Online stores &amp; digital sales</span></div></a>
+          <a class="mega-link" href="index.html#leadgen"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></div><div><b>MTN Business</b><span>Products for your business</span></div></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="insights.html">Insights <svg class="icon chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega mega-simple">
+          <a href="guides.html">Guides</a>
+          <a href="templates.html">Templates</a>
+          <a href="events.html">Events</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="opportunities.html">Opportunities</a></div>
+      <div class="nav-item"><a href="sales-advisor.html">SME Advisor</a></div>
+      <div class="nav-item"><a href="business-solutions.html">Shop</a></div>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-outline btn-sm" href="portal-login.html?tab=login">Log In</a>
+      <a class="btn btn-primary btn-sm" href="portal-login.html?tab=signup">Sign Up</a>
+      <div class="nav-search"><button type="button" class="nav-search-btn" aria-label="Search" aria-expanded="false"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button><form class="nav-search-form" role="search"><input type="search" placeholder="Search guides, articles, plans" aria-label="Search MTN SME Hub"><button type="submit" aria-label="Submit search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button></form></div>
+      <div class="nav-burger"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-drawer">
+  <div class="scrim"></div>
+  <div class="panel">
+    <div class="top">
+      <img src="assets/logo-black.png" alt="MTN SME Hub" style="height:24px;">
+      <div class="close"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+    </div>
+    <div class="mdrawer-group">
+      <div class="mlabel">Business Advice <svg class="icon chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="mdrawer-sub">
+        <a href="category.html">Connect My Business</a>
+        <a href="category.html">Build My Business</a>
+        <a href="category.html">Manage My Business</a>
+        <a href="category.html">Feature My Business</a>
+        <a href="category.html">Ecommerce</a>
+      </div>
+    </div>
+    <div class="mdrawer-group">
+      <div class="mlabel">Insights <svg class="icon chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="mdrawer-sub">
+        <a href="guides.html">Guides</a>
+        <a href="templates.html">Templates</a>
+        <a href="events.html">Events</a>
+      </div>
+    </div>
+    <div class="mdrawer-group"><a href="opportunities.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Opportunities</a></div>
+    <div class="mdrawer-group"><a href="sales-advisor.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">SME Advisor</a></div>
+    <div class="mdrawer-group"><a href="business-solutions.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Shop</a></div>
+    <div class="mdrawer-group"><a href="portal-login.html?tab=signup" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Sign Up</a></div>
+    <div class="mdrawer-group"><a href="portal-login.html?tab=login" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Log In</a></div>
+    <div class="mdrawer-group"><a href="about.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">About</a></div>
+    <div class="cta-block">
+      <a class="btn btn-primary btn-block" href="sales-advisor.html">Get a tailored quote</a>
+    </div>
+  </div>
+</div>
+
+<section class="pe-hero">
+  <div class="wrap">
+    <p class="eyebrow-label">Opportunities</p>
+    <h1>Funding, skills and ways to sell to MTN, in one place</h1>
+    <p>Programmes from the MTN Foundation, supplier opportunities, enterprise development and practical support, matched to the stage your business is at. Every enquiry you make here gets a reference you can track.</p>
+    <div class="seg-picker" role="group" aria-label="Filter by business stage">
+      <span class="seg-label">Where is your business right now?</span>
+      <div class="seg-btns">
+        <button type="button" class="seg-btn" data-seg="survival">Just starting or informal</button>
+        <button type="button" class="seg-btn" data-seg="growth">Growing, about 20 to 50 people</button>
+        <button type="button" class="seg-btn" data-seg="established">Established</button>
+        <button type="button" class="seg-btn active" data-seg="all">Show everything</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="pe-nav">
+  <div class="wrap">
+    <div class="row">
+      <a href="#foundation">MTN Foundation</a>
+      <a href="#supplier">Sell to MTN</a>
+      <a href="#esd">Enterprise development</a>
+      <a href="#funding">Funding</a>
+      <a href="#skills">Skills</a>
+      <a href="#partners">Partners</a>
+      <a href="#register">Register interest</a>
+    </div>
+  </div>
+</nav>
+
+<section style="padding-top:48px;">
+  <div class="wrap">
+
+    <div class="eco-block" id="foundation">
+      <div class="eco-head">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div>
+        <div><h2>MTN Foundation</h2><p>Skills, jobs and training programmes run by MTN's social investment arm, which has its own mandate separate from MTN Business.</p></div>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card" data-seg="survival growth">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Digital skills training</h4>
+          <p>Courses for business owners and their teams on the tools a small business actually runs on.</p>
+          <button type="button" class="reg-btn" data-topic="foundation-skills">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="survival">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Digital jobs programmes</h4>
+          <p>Training and placement pathways for young people entering the digital economy.</p>
+          <button type="button" class="reg-btn" data-topic="foundation-jobs">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="survival growth">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Training cohorts</h4>
+          <p>Structured cohorts with intake dates and a graduation at the end, so progress is visible.</p>
+          <button type="button" class="reg-btn" data-topic="foundation-cohorts">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="survival">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Applications and graduations</h4>
+          <p>Which programmes are open for applications now, and news from cohorts that have just graduated.</p>
+          <button type="button" class="reg-btn" data-topic="foundation-updates">Register interest</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="eco-block" id="supplier">
+      <div class="eco-head">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div>
+        <div><h2>Sell to MTN</h2><p>What MTN buys from small businesses, how to get in front of its procurement team, and which requests for information and proposals are open right now.</p></div>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card" data-seg="growth established">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>What MTN buys</h4>
+          <p>The categories MTN sources from local suppliers, explained in plain language.</p>
+          <button type="button" class="reg-btn" data-topic="supplier-vendor">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="growth established">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Open RFIs and RFPs</h4>
+          <p>Current requests for information and proposals, taken from MTN's own publication channel.</p>
+          <button type="button" class="reg-btn" data-topic="supplier-rfp">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="growth">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Supplier readiness</h4>
+          <p>The registrations, compliance documents and certificates a procurement team checks first.</p>
+          <a class="see-also" href="guides.html">Read the guides &rarr;</a>
+        </div>
+        <div class="cat-card" data-seg="established">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>How to become an MTN vendor</h4>
+          <p>What MTN requires from a new vendor, and where its official supplier registration happens.</p>
+          <a class="see-also" href="guides.html">Read the guide &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="eco-block" id="esd">
+      <div class="eco-head">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div><h2>Enterprise and supplier development</h2><p>Enterprise and supplier development (ESD) placements run or supported by MTN's transformation function.</p></div>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card" data-seg="growth established">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>ESD placements</h4>
+          <p>Development programmes that pair a small supplier with MTN or a corporate partner.</p>
+          <button type="button" class="reg-btn" data-topic="esd">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="growth">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Why ESD matters to buyers</h4>
+          <p>How ESD spend counts on a corporate's B-BBEE scorecard, and why that makes you a more attractive supplier.</p>
+          <a class="see-also" href="guides.html">Read the guide &rarr;</a>
+        </div>
+        <div class="cat-card" data-seg="established">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Grow into a supplier</h4>
+          <p>For businesses ready to move from a development programme into MTN's supply chain.</p>
+          <button type="button" class="reg-btn" data-topic="esd">Register interest</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="eco-block" id="funding">
+      <div class="eco-head">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+        <div><h2>Funding</h2><p>Matched to the records you actually have. A business with no trading history is pointed at grants and development funding, not at a lender that will turn it down.</p></div>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card" data-seg="survival">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Grants and youth funding</h4>
+          <p>Non-repayable funding and youth-focused programmes for businesses without a trading record.</p>
+          <button type="button" class="reg-btn" data-topic="funding">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="survival growth">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>SEDFA</h4>
+          <p>The Small Enterprise Development and Finance Agency, which combines funding with business development support. SME South Africa makes the introduction.</p>
+          <button type="button" class="reg-btn" data-topic="funding">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="growth established">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Banks and commercial lenders</h4>
+          <p>Term loans, overdrafts and asset finance for trading businesses with clean records.</p>
+          <a class="see-also" href="stakeholders.html#fund">See funding partners &rarr;</a>
+        </div>
+        <div class="cat-card" data-seg="growth">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Check your readiness first</h4>
+          <p>The SME Advisor scores your records and shortlists the funders you can realistically approach.</p>
+          <a class="see-also" href="sales-advisor-v2.html">Start the assessment &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="eco-block" id="skills">
+      <div class="eco-head">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div>
+        <div><h2>Skills</h2><p>Practical training you can use this week, including Microsoft training and vouchers through the MTN Microsoft 365 partnership.</p></div>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card" data-seg="survival growth established">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Microsoft training</h4>
+          <p>Guided modules on the Microsoft 365 tools your team already uses, or will.</p>
+          <button type="button" class="reg-btn" data-topic="microsoft">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="growth established">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Microsoft vouchers</h4>
+          <p>Training and certification vouchers, offered whenever a voucher round is open.</p>
+          <button type="button" class="reg-btn" data-topic="microsoft">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="survival growth">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Guides and templates</h4>
+          <p>Business plans, cash flow projections and step-by-step guides, ready to use.</p>
+          <a class="see-also" href="templates.html">Browse templates &rarr;</a>
+        </div>
+        <div class="cat-card" data-seg="survival growth established">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Masterclasses and events</h4>
+          <p>Live sessions and replays with people who have built businesses here.</p>
+          <a class="see-also" href="events.html">See events &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="eco-block" id="partners">
+      <div class="eco-head">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M17 3.13a4 4 0 010 7.75M23 21v-2a4 4 0 00-3-3.87"/><path d="M2 21v-2a4 4 0 014-4h6a4 4 0 014 4v2"/></svg></div>
+        <div><h2>Partners and access points</h2><p>Formal relationships with a way in, not a name in a list. Every partner here has a dedicated entry point on the Hub.</p></div>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card" data-seg="survival growth">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>Local economic development offices</h4>
+          <p>Municipal small business support, reached through a named contact rather than a phone number in a list.</p>
+          <button type="button" class="reg-btn" data-topic="partners">Register interest</button>
+        </div>
+        <div class="cat-card" data-seg="growth established">
+          <span class="rec-tag">Suits your stage</span>
+          <h4>FinTech and business tools</h4>
+          <p>Payments, accounting and point-of-sale partners, set up from one profile.</p>
+          <a class="see-also" href="stakeholders.html#operate">See tools &rarr;</a>
+        </div>
+      </div>
+      <div class="placement-slot">
+        <div class="logo-ph">LOGO</div>
+        <div style="flex:1; min-width:0;"><h4>Partner name</h4><p>One line on what this partner offers SMEs on the Hub.</p></div>
+        <div class="badge">Featured partner</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="register" style="background:var(--surface); scroll-margin-top:130px;">
+  <div class="wrap">
+    <div class="reg-shell">
+      <div class="reg-intro">
+        <p class="eyebrow-label">Register interest</p>
+        <h2 class="sec-title">Tell us once, and the right team follows up</h2>
+        <p class="sec-desc">Pick what you are interested in and your stage. Your enquiry goes to the team that owns that opportunity, with a reference you can quote.</p>
+      </div>
+      <div class="reg-card">
+        <form id="reg-form" novalidate>
+          <div class="reg-grid">
+            <div class="reg-field"><label for="rg-name">Full name</label><input id="rg-name" type="text" placeholder="Thabo Nkosi" required></div>
+            <div class="reg-field"><label for="rg-biz">Business name</label><input id="rg-biz" type="text" placeholder="Nkosi Trading CC" required></div>
+            <div class="reg-field"><label for="rg-email">Email</label><input id="rg-email" type="email" placeholder="thabo@nkositrading.co.za" required></div>
+            <div class="reg-field"><label for="rg-phone">Phone</label><input id="rg-phone" type="tel" placeholder="082 000 0000"></div>
+            <div class="reg-field"><label for="rg-stage">Your stage</label>
+              <select id="rg-stage" required>
+                <option value="">Select your stage</option>
+                <option value="survival">Just starting or informal</option>
+                <option value="growth">Growing, about 20 to 50 people</option>
+                <option value="established">Established</option>
+              </select>
+            </div>
+            <div class="reg-field"><label for="rg-topic">Interested in</label>
+              <select id="rg-topic" required>
+                <option value="">Select an opportunity</option>
+                <option value="foundation-skills">MTN Foundation: digital skills training</option>
+                <option value="foundation-jobs">MTN Foundation: digital jobs programmes</option>
+                <option value="foundation-cohorts">MTN Foundation: training cohorts</option>
+                <option value="foundation-updates">MTN Foundation: applications and graduations</option>
+                <option value="supplier-vendor">Becoming an MTN vendor</option>
+                <option value="supplier-rfp">Open RFIs and RFPs</option>
+                <option value="esd">Enterprise and supplier development</option>
+                <option value="funding">Funding</option>
+                <option value="microsoft">Microsoft training and vouchers</option>
+                <option value="partners">Local economic development support</option>
+              </select>
+            </div>
+          </div>
+          <p class="reg-fine">We share your details only with the team that owns the opportunity you picked. No purchase, no account needed.</p>
+          <p class="reg-error" id="rg-error" hidden>Please fill in your name, business, a valid email, your stage and what you are interested in.</p>
+          <button class="btn btn-primary btn-block" type="submit">Send my enquiry</button>
+        </form>
+        <div class="reg-done" id="reg-done" hidden>
+          <span class="tag">Enquiry received</span>
+          <h4 id="rd-head">Thanks, the right team has your details.</h4>
+          <div class="reg-refs">
+            <div><span>Your reference</span><b id="rd-ref">MTN-L-000000</b></div>
+            <div><span>Routed to</span><b id="rd-owner">MTN Foundation team</b></div>
+          </div>
+          <p>Quote your reference if you follow up. You can register for another opportunity at any time.</p>
+          <button type="button" class="btn btn-outline btn-sm" id="rd-again">Register for another</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="assets/logo-white.png" alt="MTN SME Hub">
+        <p>MTN SME Hub is a daily online resource that provides strategic business content and tools to help South African SMMEs grow.</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/MTNBusinessZA/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+          <a href="https://x.com/MTNBusinessZA" target="_blank" rel="noopener" aria-label="X"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.7l-5.2-6.8L5.6 22H2.4l8.1-9.3L1.6 2h6.8l4.7 6.2z"/></svg></a>
+          <a href="https://www.linkedin.com/company/mtn-business-south-africa/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21H9z"/></svg></a>
+          <a href="https://www.instagram.com/mtnza/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Business Advice</h5>
+        <ul><li><a href="category.html">Connect My Business</a></li><li><a href="category.html">Build My Business</a></li><li><a href="category.html">Manage My Business</a></li><li><a href="category.html">Feature My Business</a></li><li><a href="category.html">Ecommerce</a></li></ul>
+      </div>
+      <div>
+        <h5>Insights</h5>
+        <ul><li><a href="guides.html">Guides</a></li><li><a href="templates.html">Templates</a></li><li><a href="events.html">Events</a></li><li><a href="business-solutions.html">Business Solutions</a></li><li><a href="stakeholders.html">Partners and Stakeholders</a></li></ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul><li>Innovation Centre, 216 14th Avenue,<br>Fairland, Gauteng, 2195</li><li>info@mtnsmehub.co.za</li><li>www.mtnsmehub.co.za</li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 MTN SME Hub. All rights reserved. Built and managed by <a class="credit" href="https://smesouthafrica.co.za" target="_blank" rel="noopener">SME South Africa</a>.</span>
+      <div class="links"><a href="https://www.mtn.co.za/home/help/content/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a><a href="https://www.mtn.co.za/business/terms-and-conditions" target="_blank" rel="noopener">Terms of Use</a><a href="index.html#leadgen">MTN Business</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../mockup-status.js"></script>
+<script src="../gate-links.js"></script>
+<script src="assets/main.js"></script>
+<script>
+(function(){
+  var OWNER = {
+    'foundation-skills':'MTN Foundation team', 'foundation-jobs':'MTN Foundation team',
+    'foundation-cohorts':'MTN Foundation team', 'foundation-updates':'MTN Foundation team',
+    'supplier-vendor':'MTN Procurement', 'supplier-rfp':'MTN Procurement',
+    'esd':'MTN Transformation', 'funding':'SME South Africa funding partners',
+    'microsoft':'MTN Business skills programme', 'partners':'Hub partner team'
+  };
+  var btns = document.querySelectorAll('.seg-btn');
+  var cards = document.querySelectorAll('.cat-card[data-seg]');
+  var stage = document.getElementById('rg-stage');
+
+  function applySeg(seg){
+    for (var i = 0; i < btns.length; i++) btns[i].classList.toggle('active', btns[i].getAttribute('data-seg') === seg);
+    for (var j = 0; j < cards.length; j++){
+      var fits = (' ' + cards[j].getAttribute('data-seg') + ' ').indexOf(' ' + seg + ' ') !== -1;
+      cards[j].classList.toggle('rec', seg !== 'all' && fits);
+      cards[j].classList.toggle('dim', seg !== 'all' && !fits);
+    }
+    if (seg !== 'all') stage.value = seg;
+  }
+  for (var b = 0; b < btns.length; b++){
+    btns[b].addEventListener('click', function(){ applySeg(this.getAttribute('data-seg')); });
+  }
+
+  var form = document.getElementById('reg-form');
+  var done = document.getElementById('reg-done');
+  var topic = document.getElementById('rg-topic');
+  var err = document.getElementById('rg-error');
+
+  var regBtns = document.querySelectorAll('.reg-btn[data-topic]');
+  for (var r = 0; r < regBtns.length; r++){
+    regBtns[r].addEventListener('click', function(){
+      topic.value = this.getAttribute('data-topic');
+      form.hidden = false; done.hidden = true;
+      document.getElementById('register').scrollIntoView({ behavior:'smooth', block:'start' });
+      document.getElementById('rg-name').focus({ preventScroll:true });
+    });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('rg-name').value.trim();
+    var biz = document.getElementById('rg-biz').value.trim();
+    var email = document.getElementById('rg-email').value.trim();
+    var ok = name && biz && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) && stage.value && topic.value;
+    err.hidden = !!ok;
+    if (!ok) return;
+    var ref = 'MTN-L-' + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('rd-ref').textContent = ref;
+    document.getElementById('rd-owner').textContent = OWNER[topic.value];
+    document.getElementById('rd-head').textContent = 'Thanks, ' + name.split(' ')[0] + '. The right team has your details.';
+    form.hidden = true; done.hidden = false;
+  });
+
+  document.getElementById('rd-again').addEventListener('click', function(){
+    form.reset(); err.hidden = true; form.hidden = false; done.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

@@ -39,6 +39,7 @@ window.MOCKUP_STATUS = {
   "site/event-replay.html": "finalised",
   "site/events.html": "finalised",
   "site/stakeholders.html": "finalised",
+  "site/opportunities.html": "finalised",
   "site/brand_ci.html": "finalised",
   "reports/data-and-lead-engine-strategy.html": "finalised",
   "reports/SMEHub-Marketplace-Delivery-Proposal.html": "finalised"
