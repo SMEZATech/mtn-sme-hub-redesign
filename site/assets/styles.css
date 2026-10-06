@@ -427,7 +427,7 @@ footer.site{ background:var(--ink); color:rgba(255,255,255,.62); padding:64px 0 
 .foot-social a{ width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.16); display:grid; place-items:center; color:#fff; }
 .foot-social a:hover{ background:rgba(255,255,255,.08); }
 .foot-bottom{ padding:22px 0; display:flex; justify-content:space-between; align-items:center; font-size:12px; color:rgba(255,255,255,.4); flex-wrap:wrap; gap:10px; }
-.foot-bottom .links{ display:flex; gap:18px; }
+.foot-bottom .links{ display:flex; flex-wrap:wrap; gap:8px 18px; }
 .foot-bottom a.credit{ color:rgba(255,255,255,.65); text-decoration:underline; }
 .foot-bottom a.credit:hover{ color:#fff; }
 

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your account | MTN SME Hub</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .db-hero{ background:var(--ink); color:#fff; padding:40px 0; position:relative; overflow:hidden; }
+  .db-hero::before{ content:""; position:absolute; top:-100px; right:-60px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(255,197,2,.22) 0%, transparent 70%); }
+  .db-hero .wrap{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  .db-hero .who{ display:flex; align-items:center; gap:16px; }
+  .db-hero .avatar{ width:56px; height:56px; border-radius:50%; background:var(--yellow); color:var(--ink); display:grid; place-items:center; font-weight:800; font-size:19px; flex-shrink:0; }
+  .db-hero h1{ color:#fff; font-size:22px; margin-bottom:4px; }
+  .db-hero .sub{ font-size:13px; color:rgba(255,255,255,.6); }
+  .db-hero .tier{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--yellow); background:rgba(255,197,2,.12); border:1px solid rgba(255,197,2,.3); padding:6px 13px; border-radius:999px; }
+
+  .portal-avatar-btn{ cursor:pointer; transition:box-shadow .15s; }
+  .portal-avatar-btn[aria-expanded="true"]{ box-shadow:0 0 0 3px rgba(255,197,2,.35); }
+
+  /* ===== Compact account dropdown ===== */
+  .acct-wrap{ position:relative; }
+  .acct-menu{ position:absolute; top:calc(100% + 10px); right:0; width:250px; background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow-hover); padding:8px; z-index:300; }
+  .acct-menu[hidden]{ display:none; }
+  .acct-menu-head{ display:flex; align-items:center; gap:10px; padding:8px 8px 14px; text-align:left; }
+  .acct-menu-head .av{ width:36px; height:36px; border-radius:50%; background:var(--yellow); color:var(--ink); display:grid; place-items:center; font-weight:800; font-size:13px; flex-shrink:0; }
+  .acct-menu-head b{ display:block; font-size:13.5px; color:var(--ink); }
+  .acct-menu-head span{ font-size:11.5px; color:var(--muted); }
+  .acct-menu hr{ border:none; border-top:1px solid var(--border); margin:0 0 6px; }
+  .acct-menu-item{ display:flex; align-items:center; gap:10px; width:100%; padding:9px 10px; border-radius:8px; font-size:13px; font-weight:600; color:var(--ink); cursor:pointer; background:none; border:none; font-family:inherit; text-align:left; text-decoration:none; }
+  .acct-menu-item:hover{ background:var(--surface); }
+  .acct-menu-item .ic{ color:var(--muted); flex-shrink:0; }
+  .acct-menu-item .badge{ margin-left:auto; background:#C0392B; color:#fff; font-size:10px; font-weight:800; padding:2px 7px; border-radius:999px; flex-shrink:0; }
+  .db-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:24px; margin-bottom:22px; }
+  .db-card h3{ font-size:16px; margin-bottom:4px; }
+  .db-card .sub{ font-size:12px; color:var(--muted); margin-bottom:16px; }
+
+  /* ===== Profile card ===== */
+  .profile-top{ display:flex; align-items:center; gap:16px; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--border); }
+  .profile-top .avatar-lg{ width:64px; height:64px; border-radius:50%; background:var(--yellow-tint); color:var(--yellow-shade); display:grid; place-items:center; font-weight:800; font-size:21px; flex-shrink:0; border:2px solid var(--yellow); }
+  .profile-top h4{ font-size:16px; margin-bottom:2px; }
+  .profile-top .biz{ font-size:12.5px; color:var(--muted); }
+  .profile-top .edit{ margin-left:auto; flex-shrink:0; }
+  .profile-fields{ display:grid; grid-template-columns:1fr 1fr; gap:16px 20px; }
+  .profile-field label{ display:block; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--muted-2); margin-bottom:5px; }
+  .profile-field .val{ font-size:13.5px; font-weight:600; color:var(--ink); }
+  .pf-input{ width:100%; padding:8px 10px; border:1.5px solid var(--border); border-radius:7px; font-size:13px; font-family:inherit; outline:none; background:var(--surface); color:var(--ink); }
+  .pf-input:focus{ border-color:var(--yellow); background:#fff; }
+  .profile-edit-actions{ display:flex; gap:8px; margin-top:18px; padding-top:18px; border-top:1px solid var(--border); }
+  .profile-edit-saved{ display:none; align-items:center; gap:6px; font-size:12px; font-weight:700; color:#1B8A5A; margin-top:18px; }
+  .profile-edit-saved.show{ display:flex; }
+  .profile-visibility{ display:flex; align-items:flex-start; gap:9px; font-size:11.5px; color:var(--muted); background:var(--surface); border-radius:8px; padding:11px 13px; margin-top:18px; line-height:1.6; }
+  .profile-visibility svg{ color:var(--yellow-shade); flex-shrink:0; margin-top:1px; }
+
+  /* ===== Engagement history ===== */
+  .activity-filters{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+  .activity-list{ display:flex; flex-direction:column; }
+  .activity-row{ display:flex; align-items:center; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
+  .activity-row:last-child{ border-bottom:none; }
+  .activity-row .ic{ width:36px; height:36px; border-radius:9px; background:var(--yellow-tint); color:var(--yellow-shade); display:grid; place-items:center; flex-shrink:0; }
+  .activity-row .txt{ min-width:0; }
+  .activity-row .txt b{ display:block; font-size:13.5px; margin-bottom:2px; }
+  .activity-row .txt span{ font-size:11.5px; color:var(--muted); }
+  .activity-row .when{ margin-left:auto; font-size:11.5px; color:var(--muted-2); flex-shrink:0; }
+
+  .notif-list{ display:flex; flex-direction:column; }
+  .notif-row{ display:flex; align-items:center; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
+  .notif-row:last-child{ border-bottom:none; }
+  .notif-row .ic{ width:36px; height:36px; border-radius:9px; background:var(--surface); color:var(--muted); display:grid; place-items:center; flex-shrink:0; }
+  .notif-row.unread .ic{ background:var(--yellow-tint); color:var(--yellow-shade); }
+  .notif-row .txt{ min-width:0; }
+  .notif-row .txt b{ display:block; font-size:13.5px; margin-bottom:2px; }
+  .notif-row .txt span{ font-size:11.5px; color:var(--muted); }
+  .notif-row .when{ margin-left:auto; font-size:11.5px; color:var(--muted-2); flex-shrink:0; }
+
+  .acct-setting{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--border); }
+  .acct-setting:last-of-type{ border-bottom:none; }
+  .acct-setting b{ display:block; font-size:13.5px; margin-bottom:2px; }
+  .acct-setting span{ font-size:12px; color:var(--muted); }
+  .acct-switch{ position:relative; display:inline-block; width:40px; height:23px; flex-shrink:0; }
+  .acct-switch input{ opacity:0; width:0; height:0; }
+  .acct-switch span{ position:absolute; inset:0; background:var(--border); border-radius:999px; transition:background .15s; cursor:pointer; }
+  .acct-switch span::before{ content:""; position:absolute; width:17px; height:17px; left:3px; top:3px; background:#fff; border-radius:50%; transition:transform .15s; box-shadow:0 1px 2px rgba(0,0,0,.2); }
+  .acct-switch input:checked + span{ background:var(--yellow); }
+  .acct-switch input:checked + span::before{ transform:translateX(17px); }
+  .acct-danger{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:10px; padding-top:20px; border-top:1px solid var(--border); }
+  .acct-danger b{ display:block; font-size:13.5px; margin-bottom:2px; color:#93271B; }
+  .acct-danger span{ font-size:12px; color:var(--muted); }
+
+
+  /* ===== Account page layout: its own page, side navigation + one pane at a time ===== */
+  .db-hero .wrap .back{ flex-shrink:0; }
+  .ac-layout{ display:grid; grid-template-columns:240px 1fr; gap:32px; align-items:start; padding:40px 0 64px; }
+  .ac-layout > *{ min-width:0; }
+  .ac-nav{ position:sticky; top:96px; background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:8px; }
+  .ac-nav a{ display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:8px; font-size:13.5px; font-weight:600; color:var(--muted); text-decoration:none; }
+  .ac-nav a:hover{ background:var(--surface); color:var(--ink); }
+  .ac-nav a.active{ background:var(--yellow-tint); color:var(--ink); font-weight:700; }
+  .ac-nav a .ic{ flex-shrink:0; }
+  .ac-nav a.active .ic{ color:var(--yellow-shade); }
+  .ac-nav .badge{ margin-left:auto; background:#C0392B; color:#fff; font-size:10px; font-weight:800; padding:2px 7px; border-radius:999px; }
+  .ac-pane{ display:none; }
+  .ac-pane.active{ display:block; }
+  .ac-pane-head{ margin-bottom:22px; }
+  .ac-pane-head h2{ font-size:22px; margin-bottom:4px; }
+  .ac-pane-head p{ font-size:13.5px; color:var(--muted); margin:0; }
+  .ac-pane-head .row{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .ac-group{ margin-bottom:22px; }
+  .ac-group > h3{ font-size:15px; margin-bottom:2px; }
+  .ac-group > .sub{ font-size:12.5px; color:var(--muted); margin-bottom:10px; }
+  .ac-meta{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px 20px; }
+  .ac-meta label{ display:block; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--muted-2); margin-bottom:5px; }
+  .ac-meta .val{ font-size:13.5px; font-weight:600; color:var(--ink); }
+  .ac-pill{ display:inline-block; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; background:var(--yellow-tint); color:var(--yellow-shade); border:1px solid var(--yellow-tint-2); padding:4px 10px; border-radius:999px; }
+  .ac-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--border); }
+  .ac-row:last-child{ border-bottom:none; }
+  .ac-row b{ display:block; font-size:13.5px; margin-bottom:2px; }
+  .ac-row span.d{ font-size:12px; color:var(--muted); }
+  .ac-pw{ display:none; margin-top:6px; padding:16px; background:var(--surface); border:1px solid var(--border); border-radius:10px; }
+  .ac-pw.show{ display:block; }
+  .ac-pw .pw-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+  .ac-pw .pw-grid .full{ grid-column:1 / -1; }
+  [hidden]{ display:none !important; }
+  .pf-l{ display:block; font-size:12px; font-weight:700; margin-bottom:6px; }
+  .ac-pw .actions{ display:flex; gap:8px; align-items:center; }
+  .ac-ok{ display:none; align-items:center; gap:6px; font-size:12px; font-weight:700; color:#1B8A5A; }
+  .ac-ok.show{ display:inline-flex; }
+  .ac-saved{ font-size:12px; font-weight:700; color:#1B8A5A; opacity:0; transition:opacity .2s; margin-left:10px; }
+  .ac-saved.show{ opacity:1; }
+  .ac-danger-card{ border-color:#E7C3BE; }
+  .ac-danger-card h3{ color:#93271B; }
+  .ac-confirm{ display:none; margin-top:14px; padding:14px 16px; background:#FDF1EF; border:1px solid #E7C3BE; border-radius:10px; font-size:13px; line-height:1.6; }
+  .ac-confirm.show{ display:block; }
+  .ac-confirm .actions{ display:flex; gap:8px; margin-top:12px; }
+  .ac-mark{ background:none; border:none; font-family:inherit; font-size:12.5px; font-weight:700; color:var(--yellow-shade); text-decoration:underline; cursor:pointer; padding:0; }
+  .ac-empty{ display:none; padding:26px 0 8px; text-align:center; font-size:13px; color:var(--muted); }
+  .ac-empty.show{ display:block; }
+  @media(max-width:900px){
+    .ac-layout{ grid-template-columns:1fr; gap:20px; padding:28px 0 48px; }
+    .ac-nav{ position:static; display:flex; gap:4px; overflow-x:auto; padding:6px; }
+    .ac-nav a{ white-space:nowrap; flex-shrink:0; }
+    .ac-meta{ grid-template-columns:1fr 1fr; }
+  }
+  @media(max-width:560px){ .ac-meta, .ac-pw .pw-grid{ grid-template-columns:1fr; } .ac-row{ flex-wrap:wrap; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-row">
+    <a href="index.html" class="logo"><img src="assets/logo-black.png" alt="MTN SME Hub"></a>
+    <nav class="nav-main">
+      <div class="nav-item">
+        <a href="business-advice.html">Business Advice <svg class="icon chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega mega-pillars">
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div><b>Connect My Business</b><span>Websites, funding, going online</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 19V9m7 10V5m7 14v-7"/></svg></div><div><b>Build My Business</b><span>Growth, trends, entrepreneurship</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><div><b>Manage My Business</b><span>Cash flow, inventory, compliance</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div><div><b>Feature My Business</b><span>SME spotlights &amp; success stories</span></div></a>
+          <a class="mega-link" href="category.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a2 2 0 002 1.5h8a2 2 0 002-1.8L21 8H6"/></svg></div><div><b>Ecommerce</b><span>Online stores &amp; digital sales</span></div></a>
+          <a class="mega-link" href="contact.html"><div class="ic"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg></div><div><b>MTN Business</b><span>Products for your business</span></div></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="insights.html">Insights <svg class="icon chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega mega-simple">
+          <a href="guides.html">Guides</a>
+          <a href="templates.html">Templates</a>
+          <a href="events.html">Events</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="opportunities.html">Opportunities</a></div>
+      <div class="nav-item"><a href="sales-advisor.html">SME Advisor</a></div>
+      <div class="nav-item"><a href="business-solutions.html">Shop</a></div>
+    </nav>
+    <div class="nav-cta">
+      <div class="nav-search"><button type="button" class="nav-search-btn" aria-label="Search" aria-expanded="false"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button><form class="nav-search-form" role="search"><input type="search" placeholder="Search guides, articles, plans" aria-label="Search MTN SME Hub"><button type="submit" aria-label="Submit search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button></form></div>
+      <div class="acct-wrap">
+        <button type="button" class="portal-avatar-btn" id="acct-trigger" aria-label="Your account" aria-haspopup="true" aria-expanded="false" aria-controls="acct-menu"><span>TN</span></button>
+        <div class="acct-menu" id="acct-menu" hidden>
+          <div class="acct-menu-head">
+            <div class="av">TN</div>
+            <div><b>Thabo Nkosi</b><span>Nkosi Trading CC</span></div>
+          </div>
+          <hr>
+          <a class="acct-menu-item" href="portal-dashboard.html"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> Dashboard</a>
+          <a class="acct-menu-item" href="portal-account.html?tab=profile"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6"/></svg> Profile</a>
+          <a class="acct-menu-item" href="portal-account.html?tab=settings"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg> Account settings</a>
+          <a class="acct-menu-item" href="portal-account.html?tab=activity"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Activity</a>
+          <a class="acct-menu-item" href="portal-account.html?tab=notifications"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg> Notifications <span class="badge">2</span></a>
+          <hr>
+          <a class="acct-menu-item" href="portal-login.html?tab=login"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg> Log Out</a>
+        </div>
+      </div>
+      <div class="nav-burger"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-drawer">
+  <div class="scrim"></div>
+  <div class="panel">
+    <div class="top">
+      <img src="assets/logo-black.png" alt="MTN SME Hub" style="height:24px;">
+      <div class="close"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+    </div>
+    <div class="mdrawer-group">
+      <div class="mlabel">Business Advice <svg class="icon chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="mdrawer-sub">
+        <a href="category.html">Connect My Business</a>
+        <a href="category.html">Build My Business</a>
+        <a href="category.html">Manage My Business</a>
+        <a href="category.html">Feature My Business</a>
+        <a href="category.html">Ecommerce</a>
+      </div>
+    </div>
+    <div class="mdrawer-group">
+      <div class="mlabel">Insights <svg class="icon chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="mdrawer-sub">
+        <a href="guides.html">Guides</a>
+        <a href="templates.html">Templates</a>
+        <a href="events.html">Events</a>
+      </div>
+    </div>
+    <div class="mdrawer-group"><a href="opportunities.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Opportunities</a></div>
+    <div class="mdrawer-group"><a href="sales-advisor.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">SME Advisor</a></div>
+    <div class="mdrawer-group"><a href="business-solutions.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Shop</a></div>
+    <div class="mdrawer-group"><a href="portal-dashboard.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Dashboard</a></div>
+    <div class="mdrawer-group"><a href="portal-account.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">My account</a></div>
+    <div class="mdrawer-group"><a href="portal-login.html?tab=login" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">Log Out</a></div>
+    <div class="mdrawer-group"><a href="about.html" style="display:block; padding:13px 4px; font-size:15px; font-weight:700; border-bottom:1px solid var(--border);">About</a></div>
+    <div class="cta-block">
+      <a class="btn btn-primary btn-block" href="contact.html">Contact MTN Business</a>
+    </div>
+  </div>
+</div>
+
+
+<section class="db-hero">
+  <div class="wrap">
+    <div class="who">
+      <div class="avatar">TN</div>
+      <div>
+        <h1>Your account</h1>
+        <div class="sub">Thabo Nkosi &middot; Nkosi Trading CC</div>
+      </div>
+    </div>
+    <a class="btn btn-outline btn-sm back" href="portal-dashboard.html" style="border-color:rgba(255,255,255,.35); color:#fff;">&larr; Back to dashboard</a>
+  </div>
+</section>
+
+<section style="padding:0;">
+  <div class="wrap">
+    <div class="ac-layout">
+      <nav class="ac-nav" id="ac-nav" aria-label="Account sections">
+        <a href="?tab=profile" data-pane="profile"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6"/></svg> Profile</a>
+        <a href="?tab=settings" data-pane="settings"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg> Account settings</a>
+        <a href="?tab=activity" data-pane="activity"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Activity</a>
+        <a href="?tab=notifications" data-pane="notifications"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg> Notifications <span class="badge" id="nav-badge">2</span></a>
+      </nav>
+
+      <div>
+        <!-- PROFILE -->
+        <div class="ac-pane" data-pane="profile">
+          <div class="ac-pane-head"><h2>Profile</h2><p>Visible to you and to MTN Business, so nothing has to be typed twice.</p></div>
+          <div class="db-card">
+            <form id="profile-form">
+        <div class="profile-top">
+          <div class="avatar-lg" id="pf-avatar">TN</div>
+          <div>
+            <h4 id="pf-name-display">Thabo Nkosi</h4>
+            <div class="biz" id="pf-biz-display">Nkosi Trading CC</div>
+          </div>
+          <button class="btn btn-outline btn-sm edit" id="profile-edit-btn" type="button">Edit profile</button>
+        </div>
+        <div class="profile-fields">
+          <div class="profile-field">
+            <label>Full name</label>
+            <div class="val" data-view>Thabo Nkosi</div>
+            <input class="pf-input" data-edit data-target="pf-name" type="text" value="Thabo Nkosi" hidden>
+          </div>
+          <div class="profile-field">
+            <label>Business name</label>
+            <div class="val" data-view>Nkosi Trading CC</div>
+            <input class="pf-input" data-edit data-target="pf-biz" type="text" value="Nkosi Trading CC" hidden>
+          </div>
+          <div class="profile-field">
+            <label>Email</label>
+            <div class="val" data-view>thabo@nkositrading.co.za</div>
+            <input class="pf-input" data-edit data-target="pf-email" type="email" value="thabo@nkositrading.co.za" hidden>
+          </div>
+          <div class="profile-field">
+            <label>Phone</label>
+            <div class="val" data-view>082 145 6721</div>
+            <input class="pf-input" data-edit data-target="pf-phone" type="tel" value="082 145 6721" hidden>
+          </div>
+          <div class="profile-field">
+            <label>Business type</label>
+            <div class="val" data-view>Retail &amp; e-commerce</div>
+            <select class="pf-input" data-edit data-target="pf-biztype" hidden>
+              <option selected>Retail &amp; e-commerce</option>
+              <option>Professional services</option>
+              <option>Manufacturing</option>
+              <option>Hospitality &amp; tourism</option>
+              <option>Construction</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="profile-field">
+            <label>Team size</label>
+            <div class="val" data-view>2 to 10 people</div>
+            <select class="pf-input" data-edit data-target="pf-team" hidden>
+              <option>Just me</option>
+              <option selected>2 to 10 people</option>
+              <option>11 to 50 people</option>
+              <option>50+ people</option>
+            </select>
+          </div>
+        </div>
+        <div class="profile-edit-actions" id="profile-edit-actions" hidden>
+          <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
+          <button class="btn btn-outline btn-sm" type="button" id="profile-cancel-btn">Cancel</button>
+        </div>
+        <div class="profile-edit-saved" id="profile-edit-saved"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Profile updated</div>
+        </form>
+            <div class="profile-visibility"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Your profile and activity are visible to you and to MTN Business, so an advisor can pick up exactly where you left off. Never shown to other members or made public.</div>
+          </div>
+          <div class="db-card">
+            <h3>Membership</h3>
+            <p class="sub">Free, with no purchase required.</p>
+            <div class="ac-meta">
+              <div><label>Plan</label><div class="val"><span class="ac-pill">SMEHub Member</span></div></div>
+              <div><label>Member since</label><div class="val">14 Aug 2026</div></div>
+              <div><label>Cost</label><div class="val">Free</div></div>
+            </div>
+            <p class="db-profile-note">Your membership stays separate from any MTN customer record until you start a purchase journey yourself, from the Shop or the SME Advisor.</p>
+          </div>
+        </div>
+
+        <!-- ACCOUNT SETTINGS -->
+        <div class="ac-pane" data-pane="settings">
+          <div class="ac-pane-head"><div class="row"><div><h2>Account settings</h2><p>How you sign in, how we reach you, and what we remember.</p></div><span class="ac-saved" id="ac-saved" aria-live="polite">Saved</span></div></div>
+
+          <div class="db-card ac-group">
+            <h3>Sign in</h3>
+            <p class="sub">The details you use to get into your account.</p>
+            <div class="ac-row"><div><b>Email address</b><span class="d">thabo@nkositrading.co.za</span></div></div>
+            <div class="ac-row"><div><b>Password</b><span class="d">Use a password you do not use anywhere else</span></div><button class="btn btn-outline btn-sm" type="button" id="pw-toggle" aria-expanded="false" aria-controls="pw-panel">Change password</button></div>
+            <form class="ac-pw" id="pw-panel" novalidate>
+              <div class="pw-grid">
+                <div class="pl-f full"><label class="pf-l" for="pw-cur">Current password</label><input class="pf-input" id="pw-cur" type="password" autocomplete="current-password"></div>
+                <div class="pl-f"><label class="pf-l" for="pw-new">New password</label><input class="pf-input" id="pw-new" type="password" autocomplete="new-password"></div>
+                <div class="pl-f"><label class="pf-l" for="pw-new2">Confirm new password</label><input class="pf-input" id="pw-new2" type="password" autocomplete="new-password"></div>
+              </div>
+              <div class="actions"><button class="btn btn-primary btn-sm" type="submit">Update password</button><button class="btn btn-outline btn-sm" type="button" id="pw-cancel">Cancel</button><span class="ac-err" id="pw-err" style="font-size:12px; font-weight:700; color:#93271B;" role="alert"></span></div>
+            </form>
+            <div class="ac-ok" id="pw-ok" style="margin-top:12px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Password updated</div>
+          </div>
+
+          <div class="db-card ac-group">
+            <h3>Communication</h3>
+            <p class="sub">Choose how MTN SME Hub reaches you.</p>
+            <div class="acct-setting"><div><b>Email notifications</b><span>Funding matches, advisor replies, event reminders</span></div><label class="acct-switch"><input type="checkbox" checked aria-label="Email notifications"><span></span></label></div>
+            <div class="acct-setting"><div><b>SMS alerts</b><span>Advisor booking confirmations only</span></div><label class="acct-switch"><input type="checkbox" checked aria-label="SMS alerts"><span></span></label></div>
+            <div class="acct-setting"><div><b>Newsletter</b><span>Monthly digest of guides and events</span></div><label class="acct-switch"><input type="checkbox" aria-label="Newsletter"><span></span></label></div>
+          </div>
+
+          <div class="db-card ac-group">
+            <h3>Privacy</h3>
+            <p class="sub">What an MTN Business advisor can see.</p>
+            <div class="acct-setting"><div><b>Share profile with SME Advisor</b><span>Lets an advisor see your saved answers before a call</span></div><label class="acct-switch"><input type="checkbox" checked aria-label="Share profile with SME Advisor"><span></span></label></div>
+          </div>
+
+          <div class="db-card ac-group ac-danger-card">
+            <h3>Close your account</h3>
+            <p class="sub" style="margin-bottom:12px;">Removes your profile and activity history. This cannot be undone.</p>
+            <button class="btn btn-outline btn-sm" type="button" id="close-open">Close account</button>
+            <div class="ac-confirm" id="close-confirm" role="alertdialog" aria-label="Confirm closing your account">
+              Are you sure? Your profile, saved answers and activity history will be removed.
+              <div class="actions"><a class="btn btn-primary btn-sm" href="portal-login.html?tab=signup" style="background:#93271B; border-color:#93271B; color:#fff;">Yes, close my account</a><button class="btn btn-outline btn-sm" type="button" id="close-cancel">Keep my account</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIVITY -->
+        <div class="ac-pane" data-pane="activity">
+          <div class="ac-pane-head"><h2>Activity</h2><p>Every guide, template, event and consultation, in one history.</p></div>
+          <div class="db-card">
+            <div class="activity-filters tab-row" style="margin-bottom:16px;">
+          <span class="tab-btn active" data-filter="all" data-target=".activity-list">All</span>
+          <span class="tab-btn" data-filter="advisor" data-target=".activity-list">Advisor</span>
+          <span class="tab-btn" data-filter="guides" data-target=".activity-list">Guides</span>
+          <span class="tab-btn" data-filter="templates" data-target=".activity-list">Templates</span>
+          <span class="tab-btn" data-filter="events" data-target=".activity-list">Events</span>
+        </div>
+        <div class="activity-list">
+          <div class="activity-row" data-cat="advisor">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+            <div class="txt"><b>Booked a SME Advisor consultation</b><span>Managed Firewall &middot; Tue 10:00</span></div>
+            <div class="when">2 days ago</div>
+          </div>
+          <div class="activity-row" data-cat="templates">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
+            <div class="txt"><b>Downloaded Cash Flow Projection Template</b><span>Templates</span></div>
+            <div class="when">5 days ago</div>
+          </div>
+          <div class="activity-row" data-cat="guides">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+            <div class="txt"><b>Completed Complete Guide to Registering a Business in SA</b><span>Guides</span></div>
+            <div class="when">1 week ago</div>
+          </div>
+          <div class="activity-row" data-cat="events">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <div class="txt"><b>Registered for Funding Your Business in 2026</b><span>Events</span></div>
+            <div class="when">2 weeks ago</div>
+          </div>
+          <div class="activity-row" data-cat="guides">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+            <div class="txt"><b>Read How To Drive Traffic To Your eCommerce Website</b><span>Guides</span></div>
+            <div class="when">2 weeks ago</div>
+          </div>
+          <div class="activity-row" data-cat="advisor">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+            <div class="txt"><b>Requested a quote for MTN Microsoft 365</b><span>SME Advisor</span></div>
+            <div class="when">3 weeks ago</div>
+          </div>
+          <div class="activity-row" data-cat="templates">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg></div>
+            <div class="txt"><b>Downloaded VAT Registration Checklist</b><span>Templates</span></div>
+            <div class="when">3 weeks ago</div>
+          </div>
+          <div class="activity-row" data-cat="events">
+            <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <div class="txt"><b>Attended Business Registration Masterclass</b><span>Events</span></div>
+            <div class="when">1 month ago</div>
+          </div>
+        </div>
+          </div>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <div class="ac-pane" data-pane="notifications">
+          <div class="ac-pane-head"><div class="row"><div><h2>Notifications</h2><p>What MTN SME Hub has let you know recently.</p></div><button class="ac-mark" type="button" id="mark-read">Mark all as read</button></div></div>
+          <div class="db-card">
+            <div class="notif-list">
+          <div class="notif-row unread"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div><div class="txt"><b>Strong funding match found</b><span>SEDFA Small Business Loan matches your profile</span></div><div class="when">2 days ago</div></div>
+          <div class="notif-row unread"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><div class="txt"><b>Advisor consultation confirmed</b><span>Tuesday 10:00 with Lerato Mokoena, SME desk</span></div><div class="when">2 days ago</div></div>
+          <div class="notif-row"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div class="txt"><b>Event reminder</b><span>Funding Your Business in 2026 starts in 3 days</span></div><div class="when">1 week ago</div></div>
+          <div class="notif-row"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div class="txt"><b>Reward available</b><span>10% off setup on the Business Website Starter Kit</span></div><div class="when">2 weeks ago</div></div>
+        </div>
+            <div class="ac-empty" id="notif-empty">You are all caught up.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="assets/logo-white.png" alt="MTN SME Hub">
+        <p>MTN SME Hub is where South African small businesses find practical advice, funding and growth opportunities, and the tools to start, run and grow, brought to you by MTN Business.</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/MTNBusinessZA/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+          <a href="https://x.com/MTNBusinessZA" target="_blank" rel="noopener" aria-label="X"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.7l-5.2-6.8L5.6 22H2.4l8.1-9.3L1.6 2h6.8l4.7 6.2z"/></svg></a>
+          <a href="https://www.linkedin.com/company/mtn-business-south-africa/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21H9z"/></svg></a>
+          <a href="https://www.instagram.com/mtnza/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Business Advice</h5>
+        <ul><li><a href="category.html">Connect My Business</a></li><li><a href="category.html">Build My Business</a></li><li><a href="category.html">Manage My Business</a></li><li><a href="category.html">Feature My Business</a></li><li><a href="category.html">Ecommerce</a></li></ul>
+      </div>
+      <div>
+        <h5>Insights</h5>
+        <ul><li><a href="guides.html">Guides</a></li><li><a href="templates.html">Templates</a></li><li><a href="events.html">Events</a></li><li><a href="business-solutions.html">Shop</a></li><li><a href="stakeholders.html">Partner Ecosystem</a></li></ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul><li>Innovation Centre, 216 14th Avenue,<br>Fairland, Gauteng, 2195</li><li><a href="mailto:info@mtnsmehub.co.za">info@mtnsmehub.co.za</a></li><li><a href="contact.html">Contact us</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 MTN SME Hub. All rights reserved. Built and managed by <a class="credit" href="https://smesouthafrica.co.za" target="_blank" rel="noopener">SME South Africa</a>.</span>
+      <div class="links"><a href="https://www.mtn.co.za/home/help/content/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a><a href="https://www.mtn.co.za/business/terms-and-conditions" target="_blank" rel="noopener">Terms of Use</a><a href="https://www.mtn.co.za/business/terms-and-conditions/content/legal" target="_blank" rel="noopener">Legal</a><a href="https://www.mtn.co.za/home/accessibility" target="_blank" rel="noopener">Accessibility</a><a href="https://www.mtn.co.za/home/help/content/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a><a href="contact.html">MTN Business</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../mockup-status.js"></script>
+<script src="../gate-links.js"></script>
+<script src="assets/main.js"></script>
+<script>
+  (function(){
+    var trigger = document.getElementById('acct-trigger');
+    var menu = document.getElementById('acct-menu');
+    function closeMenu(){ menu.hidden = true; trigger.setAttribute('aria-expanded', 'false'); }
+    if (trigger && menu) {
+      trigger.addEventListener('click', function(e){
+        e.stopPropagation();
+        var open = menu.hidden;
+        menu.hidden = !open;
+        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('click', function(e){
+        if (!menu.hidden && !menu.contains(e.target) && e.target !== trigger) closeMenu();
+      });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+    }
+  })();
+
+  // ---- Section switching, deep-linkable with ?tab= ----
+  (function(){
+    var links = document.querySelectorAll('#ac-nav a');
+    var panes = document.querySelectorAll('.ac-pane');
+    var names = ['profile', 'settings', 'activity', 'notifications'];
+    function show(name, push){
+      if (names.indexOf(name) < 0) name = 'profile';
+      for (var i = 0; i < links.length; i++) links[i].classList.toggle('active', links[i].getAttribute('data-pane') === name);
+      for (var j = 0; j < panes.length; j++) panes[j].classList.toggle('active', panes[j].getAttribute('data-pane') === name);
+      var t = { profile:'Profile', settings:'Account settings', activity:'Activity', notifications:'Notifications' }[name];
+      document.title = t + ' | Your account | MTN SME Hub';
+      if (push) { try { history.replaceState(null, '', '?tab=' + name); } catch (e) {} }
+    }
+    for (var k = 0; k < links.length; k++) {
+      links[k].addEventListener('click', function(e){ e.preventDefault(); show(this.getAttribute('data-pane'), true); });
+    }
+    show(new URLSearchParams(location.search).get('tab') || 'profile', false);
+  })();
+
+  // ---- Settings: toggles confirm they saved ----
+  (function(){
+    var saved = document.getElementById('ac-saved'), timer;
+    document.querySelectorAll('.acct-switch input').forEach(function(box){
+      box.addEventListener('change', function(){
+        saved.classList.add('show'); clearTimeout(timer);
+        timer = setTimeout(function(){ saved.classList.remove('show'); }, 1600);
+      });
+    });
+    var tg = document.getElementById('pw-toggle'), panel = document.getElementById('pw-panel'), ok = document.getElementById('pw-ok'), err = document.getElementById('pw-err');
+    function setPw(open){ panel.classList.toggle('show', open); tg.setAttribute('aria-expanded', open ? 'true' : 'false'); err.textContent = ''; if (open) ok.classList.remove('show'); }
+    tg.addEventListener('click', function(){ setPw(!panel.classList.contains('show')); });
+    document.getElementById('pw-cancel').addEventListener('click', function(){ panel.reset(); setPw(false); });
+    panel.addEventListener('submit', function(e){
+      e.preventDefault();
+      var cur = document.getElementById('pw-cur').value, n1 = document.getElementById('pw-new').value, n2 = document.getElementById('pw-new2').value;
+      if (!cur || !n1 || !n2) { err.textContent = 'Fill in all three fields.'; return; }
+      if (n1.length < 8) { err.textContent = 'Use at least 8 characters.'; return; }
+      if (n1 !== n2) { err.textContent = 'The new passwords do not match.'; return; }
+      panel.reset(); setPw(false); ok.classList.add('show');
+    });
+    var cOpen = document.getElementById('close-open'), cBox = document.getElementById('close-confirm');
+    cOpen.addEventListener('click', function(){ cBox.classList.add('show'); cOpen.hidden = true; });
+    document.getElementById('close-cancel').addEventListener('click', function(){ cBox.classList.remove('show'); cOpen.hidden = false; });
+  })();
+
+  // ---- Notifications: mark all read ----
+  (function(){
+    var btn = document.getElementById('mark-read');
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.notif-row.unread').forEach(function(r){ r.classList.remove('unread'); });
+      var b = document.getElementById('nav-badge'); if (b) b.hidden = true;
+      var d = document.querySelector('#acct-menu .badge'); if (d) d.hidden = true;
+      btn.hidden = true;
+    });
+  })();
+
+  (function(){
+    var form = document.getElementById('profile-form');
+    var editBtn = document.getElementById('profile-edit-btn');
+    var cancelBtn = document.getElementById('profile-cancel-btn');
+    var actions = document.getElementById('profile-edit-actions');
+    var saved = document.getElementById('profile-edit-saved');
+    var views = form.querySelectorAll('[data-view]');
+    var edits = form.querySelectorAll('[data-edit]');
+    var savedValues = {};
+
+    function initials(name){
+      var parts = name.trim().split(/\s+/);
+      return (parts[0].charAt(0) + (parts[1] ? parts[1].charAt(0) : '')).toUpperCase();
+    }
+
+    function fieldValue(el){
+      if (el.tagName === 'SELECT') return el.options[el.selectedIndex].text;
+      return el.value;
+    }
+
+    function setEditing(on){
+      for (var i = 0; i < views.length; i++) views[i].hidden = on;
+      for (var i = 0; i < edits.length; i++) edits[i].hidden = !on;
+      actions.hidden = !on;
+      editBtn.hidden = on;
+      saved.classList.remove('show');
+    }
+
+    editBtn.addEventListener('click', function(){
+      savedValues = {};
+      for (var i = 0; i < edits.length; i++){
+        savedValues[edits[i].dataset.target] = edits[i].value;
+      }
+      setEditing(true);
+    });
+
+    cancelBtn.addEventListener('click', function(){
+      for (var i = 0; i < edits.length; i++){
+        if (edits[i].dataset.target in savedValues) edits[i].value = savedValues[edits[i].dataset.target];
+      }
+      setEditing(false);
+    });
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var nameInput = form.querySelector('[data-target="pf-name"]');
+      var bizInput = form.querySelector('[data-target="pf-biz"]');
+      var emailInput = form.querySelector('[data-target="pf-email"]');
+      var phoneInput = form.querySelector('[data-target="pf-phone"]');
+      var biztypeInput = form.querySelector('[data-target="pf-biztype"]');
+      var teamInput = form.querySelector('[data-target="pf-team"]');
+
+      var fieldPairs = [
+        [nameInput, form.querySelectorAll('.profile-field')[0].querySelector('[data-view]')],
+        [bizInput, form.querySelectorAll('.profile-field')[1].querySelector('[data-view]')],
+        [emailInput, form.querySelectorAll('.profile-field')[2].querySelector('[data-view]')],
+        [phoneInput, form.querySelectorAll('.profile-field')[3].querySelector('[data-view]')],
+        [biztypeInput, form.querySelectorAll('.profile-field')[4].querySelector('[data-view]')],
+        [teamInput, form.querySelectorAll('.profile-field')[5].querySelector('[data-view]')]
+      ];
+      for (var j = 0; j < fieldPairs.length; j++){
+        fieldPairs[j][1].textContent = fieldValue(fieldPairs[j][0]);
+      }
+
+      document.getElementById('pf-name-display').textContent = nameInput.value;
+      document.getElementById('pf-biz-display').textContent = bizInput.value;
+      var ini = initials(nameInput.value);
+      document.getElementById('pf-avatar').textContent = ini;
+
+      setEditing(false);
+      saved.classList.add('show');
+    });
+  })();
+</script>
+</body>
+</html>

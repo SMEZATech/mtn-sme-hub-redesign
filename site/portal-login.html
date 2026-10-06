@@ -6,12 +6,7 @@
 <title>Join SMEHub | MTN SME Hub</title>
 <link rel="stylesheet" href="assets/styles.css" />
 <style>
-  /* ===== Split hero shell: dark brand rail + light form panel =====
-     A single full-bleed dark section (hero -> dark preview band -> dark
-     footer) reads as one flat block with no visual rhythm. Splitting the
-     hero left/right means the page goes dark-rail / light-panel / light
-     preview band / dark footer, so colour actually alternates down the
-     page instead of stacking three dark bands in a row. */
+  /* ===== Split hero shell: dark brand rail + light form panel ===== */
   .pl-shell{ display:grid; grid-template-columns:42% 1fr; min-height:600px; }
 
   .pl-brand{ background:var(--ink); color:#fff; padding:64px 48px; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:center; }
@@ -48,48 +43,11 @@
   .pl-switch{ font-size:12.5px; color:var(--muted); text-align:center; margin-top:18px; padding-top:18px; border-top:1px solid var(--border); }
   .pl-switch a{ font-weight:700; color:var(--ink); text-decoration:underline; cursor:pointer; }
 
-  .pl-done{ display:none; text-align:center; padding:10px 0; }
-  .pl-done.show{ display:block; }
-  .pl-done .ic{ width:56px; height:56px; border-radius:50%; background:var(--yellow-tint); display:grid; place-items:center; margin:0 auto 18px; color:var(--yellow-shade); }
-  .pl-done h3{ font-size:19px; margin-bottom:8px; }
-  .pl-done p{ font-size:13.5px; color:var(--muted); margin-bottom:20px; }
-
-  /* ===== "What's waiting for you" preview band (sign up only) =====
-     Light, not dark: it sits directly under the split hero and directly
-     above the dark footer, so this is the section that actually breaks
-     up the colour rhythm rather than adding to a wall of dark bands. */
-  .pl-preview-band{ background:var(--surface); border-top:1px solid var(--border); padding:60px 0; }
-  .pl-preview-band .sec-title{ color:var(--ink); }
-  .pl-preview-band .sec-desc{ color:var(--muted); }
-  .pl-preview-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-  .pl-preview-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s; }
-  .pl-preview-card:hover{ box-shadow:var(--shadow-hover); transform:translateY(-3px); }
-  .pl-preview-card .ic{ width:40px; height:40px; border-radius:9px; background:var(--yellow-tint); display:grid; place-items:center; margin-bottom:16px; color:var(--yellow-shade); }
-  .pl-preview-card h4{ color:var(--ink); font-size:15px; margin-bottom:8px; }
-  .pl-preview-card p{ font-size:12.5px; color:var(--muted); margin-bottom:18px; line-height:1.55; }
-
-  /* Mini illustrated mockups, recoloured for a light card */
-  .pv-mock{ background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; }
-  .pv-row{ display:flex; align-items:center; gap:8px; padding:6px 0; }
-  .pv-row:not(:last-child){ border-bottom:1px solid var(--border); }
-  .pv-dot{ width:7px; height:7px; border-radius:50%; background:var(--yellow-shade); flex-shrink:0; }
-  .pv-bar{ height:6px; border-radius:3px; background:var(--border); flex:1; }
-  .pv-bar.short{ flex:.5; }
-  .pv-match{ display:flex; align-items:center; justify-content:space-between; padding:8px 0; }
-  .pv-match:not(:last-child){ border-bottom:1px solid var(--border); }
-  .pv-match .name{ font-size:11px; color:var(--ink); font-weight:600; }
-  .pv-match .pct{ font-size:10px; font-weight:800; background:var(--yellow-tint); color:var(--yellow-shade); padding:3px 8px; border-radius:999px; }
-  .pv-rewards{ display:flex; gap:8px; }
-  .pv-reward{ flex:1; background:var(--yellow-tint); border:1px solid var(--yellow-tint-2); border-radius:7px; padding:9px 7px; text-align:center; }
-  .pv-reward svg{ color:var(--yellow-shade); margin-bottom:5px; }
-  .pv-reward span{ display:block; font-size:9.5px; font-weight:700; color:var(--ink); }
-
   @media(max-width:960px){
     .pl-shell{ grid-template-columns:1fr; min-height:0; }
     .pl-brand{ padding:44px 28px; }
     .pl-benefits{ margin-top:22px; padding-top:22px; }
     .pl-main{ padding:44px 28px; }
-    .pl-preview-grid{ grid-template-columns:1fr; }
   }
   @media(max-width:640px){ .pl-brand, .pl-main{ padding:36px 22px; } }
 </style>
@@ -211,12 +169,6 @@
           <div class="pl-switch">Already a member? <a data-view-switch="login">Log in</a></div>
         </div>
 
-        <div class="pl-done" id="signup-done">
-          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <h3>Welcome to SMEHub</h3>
-          <p>Your membership is active.</p>
-          <a class="btn btn-primary btn-block btn-lg" href="portal-dashboard.html">Go to your Portal</a>
-        </div>
       </div>
     </div>
   </div>
@@ -247,69 +199,17 @@
           <div class="pl-switch">New here? <a data-view-switch="signup">Sign up</a></div>
         </div>
 
-        <div class="pl-done" id="login-done">
-          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <h3>Welcome back</h3>
-          <p>You're logged in.</p>
-          <a class="btn btn-primary btn-block btn-lg" href="portal-dashboard.html">Go to your Portal</a>
-        </div>
       </div>
     </div>
   </div>
 </div>
-
-<section class="pl-preview-band" id="preview-band">
-  <div class="wrap">
-    <div class="sec-head" style="border:none;">
-      <div>
-        <p class="eyebrow-label" style="color:var(--yellow);">What's waiting for you</p>
-        <h2 class="sec-title">Your profile, from day one</h2>
-        <p class="sec-desc">A preview of what members actually see once they're in.</p>
-      </div>
-    </div>
-    <div class="pl-preview-grid">
-      <div class="pl-preview-card">
-        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-        <h4>Engagement history</h4>
-        <p>Every guide, template, event and consultation, timestamped and picked up by your next advisor.</p>
-        <div class="pv-mock">
-          <div class="pv-row"><span class="pv-dot"></span><span class="pv-bar"></span><span class="pv-bar short"></span></div>
-          <div class="pv-row"><span class="pv-dot"></span><span class="pv-bar short"></span><span class="pv-bar"></span></div>
-          <div class="pv-row"><span class="pv-dot"></span><span class="pv-bar"></span><span class="pv-bar short"></span></div>
-        </div>
-      </div>
-      <div class="pl-preview-card">
-        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg></div>
-        <h4>Funding matched to you</h4>
-        <p>Scored against your SME Advisor answers, not a generic list of every fund that exists.</p>
-        <div class="pv-mock">
-          <div class="pv-match"><span class="name">sefa Small Business Loan</span><span class="pct">Strong match</span></div>
-          <div class="pv-match"><span class="name">NEF uMastandi Fund</span><span class="pct">Strong match</span></div>
-          <div class="pv-match"><span class="name">African Bank Overdraft</span><span class="pct">Eligible</span></div>
-        </div>
-      </div>
-      <div class="pl-preview-card">
-        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg></div>
-        <h4>Member rewards</h4>
-        <p>Exclusive incentives that only show up once you're a registered member.</p>
-        <div class="pv-mock" style="background:transparent; border:none; padding:2px 0 0;">
-          <div class="pv-rewards">
-            <div class="pv-reward"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 010-4h12v4"/><path d="M4 6v12a2 2 0 002 2h14v-4"/></svg><span>1st month free</span></div>
-            <div class="pv-reward"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 5.4L20 8l-4 4 1 5.6L12 15l-5 2.6L8 12 4 8l5.4-.6z"/></svg><span>10% off setup</span></div>
-            <div class="pv-reward"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>Priority booking</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <footer class="site">
   <div class="wrap">
     <div class="foot-grid">
       <div>
         <img src="assets/logo-white.png" alt="MTN SME Hub">
-        <p>MTN SME Hub is a daily online resource that provides strategic business content and tools to help South African SMMEs grow.</p>
+        <p>MTN SME Hub is where South African small businesses find practical advice, funding and growth opportunities, and the tools to start, run and grow, brought to you by MTN Business.</p>
         <div class="foot-social">
           <a href="https://www.facebook.com/MTNBusinessZA/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
           <a href="https://x.com/MTNBusinessZA" target="_blank" rel="noopener" aria-label="X"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.7l-5.2-6.8L5.6 22H2.4l8.1-9.3L1.6 2h6.8l4.7 6.2z"/></svg></a>
@@ -332,7 +232,7 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 MTN SME Hub. All rights reserved. Built and managed by <a class="credit" href="https://smesouthafrica.co.za" target="_blank" rel="noopener">SME South Africa</a>.</span>
-      <div class="links"><a href="https://www.mtn.co.za/home/help/content/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a><a href="https://www.mtn.co.za/business/terms-and-conditions" target="_blank" rel="noopener">Terms of Use</a><a href="contact.html">MTN Business</a></div>
+      <div class="links"><a href="https://www.mtn.co.za/home/help/content/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a><a href="https://www.mtn.co.za/business/terms-and-conditions" target="_blank" rel="noopener">Terms of Use</a><a href="https://www.mtn.co.za/business/terms-and-conditions/content/legal" target="_blank" rel="noopener">Legal</a><a href="https://www.mtn.co.za/home/accessibility" target="_blank" rel="noopener">Accessibility</a><a href="https://www.mtn.co.za/home/help/content/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a><a href="contact.html">MTN Business</a></div>
     </div>
   </div>
 </footer>
@@ -344,17 +244,14 @@
   function showView(name){
     document.getElementById('view-signup').hidden = (name !== 'signup');
     document.getElementById('view-login').hidden = (name !== 'login');
-    document.getElementById('preview-band').style.display = (name === 'signup') ? '' : 'none';
   }
   document.querySelectorAll('[data-view-switch]').forEach(function(link){
     link.addEventListener('click', function(){ showView(link.getAttribute('data-view-switch')); });
   });
-  function completeAuth(doneId, formWrapId){
-    document.getElementById(formWrapId).style.display = 'none';
-    document.getElementById(doneId).classList.add('show');
-  }
-  document.getElementById('pl-signup-btn').addEventListener('click', function(){ completeAuth('signup-done', 'signup-form-wrap'); });
-  document.getElementById('pl-login-btn').addEventListener('click', function(){ completeAuth('login-done', 'login-form-wrap'); });
+  // Signing up or logging in lands straight on the dashboard: no interstitial step.
+  function goToDashboard(){ window.location.href = 'portal-dashboard.html'; }
+  document.getElementById('pl-signup-btn').addEventListener('click', goToDashboard);
+  document.getElementById('pl-login-btn').addEventListener('click', goToDashboard);
 
   // Land on the right view depending on which header CTA was clicked.
   var wantView = new URLSearchParams(location.search).get('tab');

@@ -22,6 +22,7 @@ window.MOCKUP_STATUS = {
   "site/sales-advisor-v3.html": "finalised",
   "site/portal-login.html": "finalised",
   "site/portal-dashboard.html": "finalised",
+  "site/portal-account.html": "finalised",
   "site/contact.html": "finalised",
   "site/business-solutions.html": "finalised",
   "site/product.html": "finalised",
